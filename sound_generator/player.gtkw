@@ -1,0 +1,26 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sun Jul 02 10:32:45 2023
+[*]
+[dumpfile] "C:\verilog\sound_generator\player.vcd"
+[dumpfile_mtime] "Sun Jul 02 10:31:52 2023"
+[dumpfile_size] 933
+[savefile] "C:\verilog\sound_generator\player.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -113 -113
+*-7.208821 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] Player_tb.
+[sst_width] 197
+[signals_width] 315
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+Player_tb.Reset
+Player_tb.Clock
+Player_tb.DUT.Play_i
+Player_tb.DUT.Stop_i
+@29
+Player_tb.DUT.SoundWave_o
+[pattern_trace] 1
+[pattern_trace] 0

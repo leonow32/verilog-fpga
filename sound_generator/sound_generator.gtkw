@@ -1,0 +1,63 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sat Jul 01 19:01:23 2023
+[*]
+[dumpfile] "C:\Lattice\Icarus\Sound Generator\sound_generator.vcd"
+[dumpfile_mtime] "Sat Jul 01 19:00:32 2023"
+[dumpfile_size] 8907821
+[savefile] "C:\Lattice\Icarus\Sound Generator\sound_generator.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -1 -1
+*-21.179010 7001100 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] SoundGenerator_tb.
+[treeopen] SoundGenerator_tb.DUT.
+[sst_width] 221
+[signals_width] 299
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+SoundGenerator_tb.Reset
+SoundGenerator_tb.Clock
+@200
+-Strobe Generator 1us
+@28
+SoundGenerator_tb.DUT.StrobeGeneratorMicro.Enable_i
+SoundGenerator_tb.DUT.TickMicro
+@200
+-Strobe Generator 1ms
+@28
+SoundGenerator_tb.DUT.TickMilli
+SoundGenerator_tb.DUT.StrobeGeneratorMilli.Enable_i
+@200
+-Inputs
+@28
+[color] 3
+SoundGenerator_tb.DUT.Request_i
+@24
+[color] 3
+SoundGenerator_tb.DUT.HalfPeriod_us_i[15:0]
+[color] 3
+SoundGenerator_tb.DUT.Duration_ms_i[15:0]
+@200
+-Duration
+@24
+SoundGenerator_tb.DUT.DurationTimer[15:0]
+@200
+-Period
+@24
+SoundGenerator_tb.DUT.HalfPeriodCopy[15:0]
+SoundGenerator_tb.DUT.HalfPeriodTimer[15:0]
+@28
+SoundGenerator_tb.DUT.Signal
+@200
+-Outputs
+@28
+SoundGenerator_tb.DUT.Busy_o
+@29
+[color] 2
+SoundGenerator_tb.DUT.SoundWave_o
+@28
+SoundGenerator_tb.DUT.Done_o
+[pattern_trace] 1
+[pattern_trace] 0
