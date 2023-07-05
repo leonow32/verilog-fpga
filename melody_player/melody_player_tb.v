@@ -1,7 +1,7 @@
 `timescale 1ns/1ns  // time-unit, precision
 
 `default_nettype none
-module Player_tb();
+module MelodyPlayer_tb();
 
 	parameter CLOCK_HZ	= 10_000_000;
 	parameter HALF_PERIOD_NS = 1_000_000_000 / (2 * CLOCK_HZ);
@@ -17,22 +17,23 @@ module Player_tb();
 	reg Reset   = 1'b0;
 	reg Play    = 1'b0;
 	reg Stop    = 1'b0;
+	wire SoundWave;
 	
 	// Instantiate device under test
-	Player #(
+	MelodyPlayer #(
 		.CLOCK_HZ(CLOCK_HZ)
 	) DUT(
 		.Clock(Clock),
 		.Reset(Reset),
 		.Play_i(Play),
 		.Stop_i(Stop),
-		.SoundWave_o()
+		.SoundWave_o(SoundWave)
 	);
 	
 	// Variable dump
 	initial begin
-		$dumpfile("player.vcd");
-		$dumpvars(0, Player_tb);
+		$dumpfile("melody_player.vcd");
+		$dumpvars(0, MelodyPlayer_tb);
 	end
 
 	// Test sequence
@@ -43,8 +44,19 @@ module Player_tb();
 
 		#1 Reset <= 1'b1; 
 		
+		repeat(9) @(posedge Clock);
+		
+		@(posedge Clock)
+		Play <= 1'b1;
+		@(posedge Clock)
+		Play <= 1'b0;
+		
+		
+		
 		repeat(10) @(posedge Clock);
 		
+		wait(DUT.State == DUT.IDLE);
+		repeat(10) @(posedge Clock);
 		
 		#1 $display("===== END =====");
 		#1 $finish;
