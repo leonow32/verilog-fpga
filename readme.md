@@ -53,3 +53,8 @@ Example:
 		.Done_o()
 	);
 
+## Strobe Generator
+
+>**Status**: code ready, documentaion to be updated
+
+This is the most useful code in Verilog I've ever made. I use it almost in every project.
