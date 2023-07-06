@@ -2,7 +2,7 @@
 # Verilog FPGA
 This is my repo for various peripherals coded in Verilog that I use in my FPGA projects. I use this as a code base and a library of many useful things that I can just copy-paste into something more advanced. 
 
-I decided to publish these peripherals because I think they mat be useful for other Verilog coders. Feel free to download all ot them and use without any limits. It would be nice it you mention me (Dominik Bieczyński) in your project decription.
+I decided to publish these peripherals because I think they mat be useful for other Verilog coders. Feel free to download all of them and use without any limits. It would be nice if you mention me (Dominik Bieczyński) in your project decription.
 
 # Description
 
@@ -10,7 +10,7 @@ I decided to publish these peripherals because I think they mat be useful for ot
 
 >**Status**: ready
 
-This is very simple implementation of ROM memory using `case` instruction. It has no practical sense - can be used only for educational purposes.
+This is very simple implementation of ROM memory using `case` instruction. It has no practical sense - but can be used for educational purposes.
 
 ### Instantiation:
 

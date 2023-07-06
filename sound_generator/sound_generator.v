@@ -76,15 +76,17 @@ module SoundGenerator #(
 			HalfPeriodTimer <= 0;
 		end else begin
 			if(Request_i) begin
-				HalfPeriodTimer <= HalfPeriod_us_i - 1;
-				HalfPeriodCopy  <= HalfPeriod_us_i - 1;
+				HalfPeriodTimer <= HalfPeriod_us_i - 1'b1;
+				HalfPeriodCopy  <= HalfPeriod_us_i - 1'b1;
 				DebugMessage();
-			end else if(TickMicro & Busy_o) begin
-				if(HalfPeriodTimer == 16'd0) begin
-					Signal          <= ~Signal;
-					HalfPeriodTimer <= HalfPeriodCopy;
-				end else begin
-					HalfPeriodTimer <= HalfPeriodTimer - 1'b1;
+			end else if(~&HalfPeriodCopy) begin	// check HalfPeriodCopy != 16'hFFFF
+				if(TickMicro && Busy_o) begin
+					if(HalfPeriodTimer == 16'd0) begin
+						Signal          <= ~Signal;
+						HalfPeriodTimer <= HalfPeriodCopy;
+					end else begin
+						HalfPeriodTimer <= HalfPeriodTimer - 1'b1;
+					end
 				end
 			end
 		end
