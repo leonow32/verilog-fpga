@@ -14,8 +14,9 @@ module SoundGenerator_tb();
 	end
 	
 	// Variables
-	reg Reset   = 1'b0;
-	reg Request = 1'b0;
+	reg Reset  = 1'b0;
+	reg Start  = 1'b0;
+	reg Finish = 1'b0;
 	reg [15:0] Duration_ms   = 16'd0;
 	reg [15:0] HalfPeriod_us = 16'd0;
 	wire Done;
@@ -28,7 +29,8 @@ module SoundGenerator_tb();
 	) DUT(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Request_i(Request),
+		.Start_i(Start),
+		.Finish_i(Finish),
 		.Duration_ms_i(Duration_ms),
 		.HalfPeriod_us_i(HalfPeriod_us),
 		
@@ -54,56 +56,60 @@ module SoundGenerator_tb();
 		repeat(10) @(posedge Clock);
 		
 		// 1ms, 50kHz
-		Duration_ms	  <= 16'd1;
+		Duration_ms   <= 16'd1;
 		HalfPeriod_us <= 16'd10;
-		Request       <= 1'b1;
+		Start         <= 1'b1;
 		@(posedge Clock);
-		Duration_ms	  <= 16'd0;
+		Duration_ms   <= 16'd0;
 		HalfPeriod_us <= 16'd0;
-		Request       <= 1'b0;
+		Start         <= 1'b0;
+		@(posedge Done);
 		
 		// 2ms, silence
-		@(posedge Done);
-		Duration_ms	  <= 16'd2;
+		Duration_ms   <= 16'd2;
 		HalfPeriod_us <= 16'd0;
-		Request       <= 1'b1;
+		Start         <= 1'b1;
 		@(posedge Clock);
 		Duration_ms	  <= 16'd0;
 		HalfPeriod_us <= 16'd0;
-		Request       <= 1'b0;
+		Start         <= 1'b0;
+		@(posedge Done);
 		
 		// 3ms, 500kHz
-		@(posedge Done);
-		Duration_ms	  <= 16'd3;
+		Duration_ms   <= 16'd3;
 		HalfPeriod_us <= 16'd1;
-		Request       <= 1'b1;
+		Start         <= 1'b1;
 		@(posedge Clock);
-		Duration_ms	  <= 16'd0;
+		Duration_ms   <= 16'd0;
 		HalfPeriod_us <= 16'd0;
-		Request       <= 1'b0;
+		Start         <= 1'b0;
+		@(posedge Done);
 		
 		// 0ms, 500kHz
-		@(posedge Done);
-		Duration_ms	  <= 16'd0;
+		Duration_ms   <= 16'd0;
 		HalfPeriod_us <= 16'd99;
-		Request       <= 1'b1;
+		Start         <= 1'b1;
 		@(posedge Clock);
-		Duration_ms	  <= 16'd0;
+		Duration_ms   <= 16'd0;
 		HalfPeriod_us <= 16'd0;
-		Request       <= 1'b0;
+		Start         <= 1'b0;
+		repeat(5) @(posedge Clock);
 		
 		// 1ms, 100Hz
-		repeat(5) @(posedge Clock);
-		//@(posedge Done);
 		Duration_ms	  <= 16'd10;
 		HalfPeriod_us <= 16'd500;
-		Request       <= 1'b1;
+		Start         <= 1'b1;
 		@(posedge Clock);
 		Duration_ms	  <= 16'd0;
 		HalfPeriod_us <= 16'd0;
-		Request       <= 1'b0;
+		Start         <= 1'b0;
+		repeat(50000) @(posedge Clock);
 		
-		@(posedge Done);
+		// Break operation
+		Finish        <= 1'b1;
+		@(posedge Clock);
+		Finish        <= 1'b0;
+		@(posedge Clock);
 		repeat(10) @(posedge Clock);
 		
 		#1 $display("===== END =====");
