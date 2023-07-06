@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Thu Jul 06 20:45:47 2023
+[*] Thu Jul 06 19:38:25 2023
 [*]
 [dumpfile] "C:\verilog\melody_player\melody_player.vcd"
-[dumpfile_mtime] "Thu Jul 06 20:35:36 2023"
-[dumpfile_size] 3790976
+[dumpfile_mtime] "Thu Jul 06 19:36:27 2023"
+[dumpfile_size] 11144962
 [savefile] "C:\verilog\melody_player\melody_player.gtkw"
-[timestart] 380
+[timestart] 0
 [size] 1920 1009
-[pos] -9 -9
-*-9.215637 2600 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 -1
+*-21.492579 1750 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] MelodyPlayer_tb.
 [treeopen] MelodyPlayer_tb.DUT.
 [treeopen] MelodyPlayer_tb.DUT.SoundGenerator_inst.
@@ -56,10 +56,7 @@ MelodyPlayer_tb.DUT.SoundGenerator_inst.DurationTimer[15:0]
 MelodyPlayer_tb.DUT.SoundGenerator_inst.HalfPeriod_us_i[15:0]
 MelodyPlayer_tb.DUT.SoundGenerator_inst.HalfPeriodCopy[15:0]
 @28
-MelodyPlayer_tb.DUT.SoundGenerator_inst.Request_i
-@29
 MelodyPlayer_tb.DUT.SoundGenerator_inst.Busy_o
-@28
 MelodyPlayer_tb.DUT.SoundGenerator_inst.Done_o
 @200
 -Outputs

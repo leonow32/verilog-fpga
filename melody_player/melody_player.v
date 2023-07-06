@@ -98,6 +98,8 @@ module MelodyPlayer #(
 					Request <= 1'b0;
 					if(Duration_ms == 16'd0)
 						State      <= IDLE;
+					else if(Stop_i)
+						State      <= IDLE;
 					else if(SoundGeneratorDone) begin
 						ReadEnable <= 1'b1;
 						State      <= READ_DURATION_H;
@@ -115,7 +117,8 @@ module MelodyPlayer #(
 	) SoundGenerator_inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Request_i(Request),
+		.Start_i(Request),
+		.Finish_i(Stop_i),
 		.Duration_ms_i(Duration_ms),
 		.HalfPeriod_us_i(HalfPeriod_us),
 		.SoundWave_o(SoundWave_o),
