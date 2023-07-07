@@ -8,7 +8,10 @@ module MelodyPlayer #(
 	input wire Reset,
 	input wire Play_i,
 	input wire Stop_i,
-	output wire SoundWave_o
+	output wire SoundWave_o,
+	
+	output wire [15:0] Duration_o,
+	output wire [15:0] HalfPeriod_o
 );
 	
 	// Variables
@@ -95,6 +98,8 @@ module MelodyPlayer #(
 					Request <= 1'b0;
 					if(Duration_ms == 16'd0)
 						State      <= IDLE;
+					else if(Stop_i)
+						State      <= IDLE;
 					else if(SoundGeneratorDone) begin
 						ReadEnable <= 1'b1;
 						State      <= READ_DURATION_H;
@@ -112,13 +117,18 @@ module MelodyPlayer #(
 	) SoundGenerator_inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Request_i(Request),
+		.Start_i(Request),
+		.Finish_i(Stop_i),
 		.Duration_ms_i(Duration_ms),
 		.HalfPeriod_us_i(HalfPeriod_us),
 		.SoundWave_o(SoundWave_o),
 		.Busy_o(SoundGeneratorBusy),
 		.Done_o(SoundGeneratorDone)
 	);
+	
+	// Debug only
+	assign Duration_o   = Duration_ms;
+	assign HalfPeriod_o = HalfPeriod_us;
 	
 endmodule
 `default_nettype wire

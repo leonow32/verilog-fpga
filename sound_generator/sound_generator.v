@@ -7,7 +7,8 @@ module SoundGenerator #(
 	input wire Clock,
 	input wire Reset,
 	
-	input wire Request_i,
+	input wire Start_i,
+	input wire Finish_i,
 	input wire [15:0] Duration_ms_i,
 	input wire [15:0] HalfPeriod_us_i,
 	
@@ -24,7 +25,7 @@ module SoundGenerator #(
 	) StrobeGeneratorMilli(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Enable_i(Busy_o || Request_i),
+		.Enable_i(Busy_o || Start_i),
 		.Strobe_o(TickMilli)
 	);
 	
@@ -36,7 +37,7 @@ module SoundGenerator #(
 	) StrobeGeneratorMicro(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Enable_i(Busy_o || Request_i),
+		.Enable_i(Busy_o || Start_i),
 		.Strobe_o(TickMicro)
 	);
 	
@@ -45,10 +46,12 @@ module SoundGenerator #(
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset)
 			DurationTimer <= 0;
-		else if(Request_i)
+		else if(Start_i)
 			DurationTimer <= Duration_ms_i;
 		else if(Busy_o && TickMilli)
 			DurationTimer <= DurationTimer - 1'b1;
+		else if(Finish_i)
+			DurationTimer <= 0;
 	end
 	
 	// Busy signal
@@ -75,16 +78,18 @@ module SoundGenerator #(
 			HalfPeriodCopy  <= 0;
 			HalfPeriodTimer <= 0;
 		end else begin
-			if(Request_i) begin
-				HalfPeriodTimer <= HalfPeriod_us_i - 1;
-				HalfPeriodCopy  <= HalfPeriod_us_i - 1;
+			if(Start_i) begin
+				HalfPeriodTimer <= HalfPeriod_us_i - 1'b1;
+				HalfPeriodCopy  <= HalfPeriod_us_i - 1'b1;
 				DebugMessage();
-			end else if(TickMicro & Busy_o) begin
-				if(HalfPeriodTimer == 16'd0) begin
-					Signal          <= ~Signal;
-					HalfPeriodTimer <= HalfPeriodCopy;
-				end else begin
-					HalfPeriodTimer <= HalfPeriodTimer - 1'b1;
+			end else if(~&HalfPeriodCopy) begin	// check HalfPeriodCopy != 16'hFFFF
+				if(TickMicro && Busy_o) begin
+					if(HalfPeriodTimer == 16'd0) begin
+						Signal          <= ~Signal;
+						HalfPeriodTimer <= HalfPeriodCopy;
+					end else begin
+						HalfPeriodTimer <= HalfPeriodTimer - 1'b1;
+					end
 				end
 			end
 		end

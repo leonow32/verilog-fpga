@@ -15,11 +15,13 @@ module ROM(
 		else if(ReadEnable_i) begin
 			case(Address_i)
 				
-				// 1ms, 50kHz
+				// HalfPeriod = 10^6 / 2*Freq
+				
+				// 5ms, 5kHz
 				8'h00:		Data_o <= 8'h00;
-				8'h01:		Data_o <= 8'h01;
+				8'h01:		Data_o <= 8'h05;
 				8'h02:		Data_o <= 8'h00;
-				8'h03:		Data_o <= 8'h0A;
+				8'h03:		Data_o <= 8'h64;
 				
 				// 2ms, silence
 				8'h04:		Data_o <= 8'h00;
@@ -27,17 +29,17 @@ module ROM(
 				8'h06:		Data_o <= 8'h00;
 				8'h07:		Data_o <= 8'h00;
 				
-				// 3ms, 500kHz
+				// 8ms, 1kHz
 				8'h08:		Data_o <= 8'h00;
-				8'h09:		Data_o <= 8'h03;
-				8'h0A:		Data_o <= 8'h00;
-				8'h0B:		Data_o <= 8'h01;
+				8'h09:		Data_o <= 8'h08;
+				8'h0A:		Data_o <= 8'h01;
+				8'h0B:		Data_o <= 8'hF4;
 				
-				// 1ms, 5kHz
+				// 5ms, 10kHz
 				8'h0C:		Data_o <= 8'h00;
-				8'h0D:		Data_o <= 8'h01;
+				8'h0D:		Data_o <= 8'h05;
 				8'h0E:		Data_o <= 8'h00;
-				8'h0F:		Data_o <= 8'h64;
+				8'h0F:		Data_o <= 8'h32;
 				
 				default:	Data_o <= 8'h00;
 			endcase

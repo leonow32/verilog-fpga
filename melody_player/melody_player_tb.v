@@ -51,14 +51,12 @@ module MelodyPlayer_tb();
 		@(posedge Clock)
 		Play <= 1'b0;
 		
-		
-		
 		repeat(10) @(posedge Clock);
 		
 		wait(DUT.State == DUT.IDLE);
 		repeat(10) @(posedge Clock);
 		
-		#1 $display("===== END =====");
+		#1 $display("====== END ======");
 		#1 $finish;
 	end
 

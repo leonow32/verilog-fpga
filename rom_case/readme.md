@@ -2,7 +2,7 @@
 
 >**Status**: ready
 
-This is very simple implementation of ROM memory using `case` instruction. It has no practical sense - can be used only for educational purposes.
+This is very simple implementation of ROM memory using `case` instruction. It has no practical sense - but can be used for educational purposes.
 
 ## Instantiation:
 
