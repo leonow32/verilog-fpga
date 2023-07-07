@@ -1,8 +1,8 @@
 
 # Verilog FPGA
-This is my repo for various peripherals coded in Verilog that I use in my FPGA projects. I use this as a code base and a library of many useful things that I can just copy-paste into something more advanced. 
+This is my repo with various peripherals coded in Verilog that I use in my FPGA projects. I use this as a code base and a library of many useful things that I can just copy-paste into something more advanced. 
 
-I decided to publish these peripherals because I think they mat be useful for other Verilog coders. Feel free to download all of them and use without any limits. It would be nice if you mention me (Dominik Bieczyński) in your project decription.
+I decided to publish these peripherals because I think they may be useful for other Verilog coders. Feel free to download all of them and use them without any limits. It would be nice if you mention me (Dominik Bieczyński) in your project description.
 
 # Modules
 
@@ -28,16 +28,17 @@ This module is superior to the `SoundGenerator` module, which can only play a si
 
 **Port description**
 
-+ **CLOCK_HZ** - clock signal fequency [Hz]
++ **CLOCK_HZ** - clock signal frequency [Hz]
 + **Clock** - clock signal, active rising edge.
-+ **Reset** - asyncronous reset, active low.
++ **Reset** - asynchronous reset, active low.
 + **Play_i** - a high pulse triggers the start of melody playback.
 + **Stop_i** - a high pulse stops the operation.
 + **SoundWave_o** - connect to the speaker.
 
 **Simulation**
 
-![Simulation](melody_player/simulation.png "Simulation")
+![Simulation](melody_player/simulation1.png "Simulation")
+![Simulation](melody_player/simulation2.png "Simulation")
 
 **Console output**
 
@@ -56,7 +57,7 @@ This module is superior to the `SoundGenerator` module, which can only play a si
 
 >**Status**: ready
 
-This is very simple implementation of ROM memory using `case` instruction. It has no practical sense - but can be used for educational purposes.
+This is very a simple implementation of ROM memory using `case` instruction. It has no practical sense - but can be used for educational purposes.
 
 **Instantiation**
 
@@ -76,8 +77,7 @@ This is very simple implementation of ROM memory using `case` instruction. It ha
     
 **Simulation**
 
-![Simulation](rom_case/simulation1.png "Simulation")
-![Simulation](rom_case/simulation2.png "Simulation")
+![Simulation](rom_case/simulation.png "Simulation")
 
 ## Sound Generator
 
@@ -115,7 +115,7 @@ TODO
 
 ## Strobe Generator
 
->**Status**: code ready, documentaion to be updated
+>**Status**: code ready, documentation to be updated
 
 This is the most useful code in Verilog I've ever made. I use it almost in every project.
 
