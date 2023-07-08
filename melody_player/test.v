@@ -3,8 +3,8 @@ module ROM(
 	input wire Clock,
 	input wire Reset,
 	input wire ReadEnable_i,
-	input wire [7:0] Address_i,
-	output reg [7:0] Data_o
+	input wire [11:0] Address_i,
+	output reg [ 7:0] Data_o
 );
 
 	always @(posedge Clock) begin
@@ -13,305 +13,305 @@ module ROM(
 		else if(ReadEnable_i) begin
 			case(Address_i)
 
-				// 4a1
-				8'h00:		Data_o <= 8'h01;
-				8'h01:		Data_o <= 8'hF4;
-				8'h02:		Data_o <= 8'h04;
-				8'h03:		Data_o <= 8'h70;
+				// 0 4a1
+				12'h000:	Data_o <= 8'h01;
+				12'h001:	Data_o <= 8'hF4;
+				12'h002:	Data_o <= 8'h04;
+				12'h003:	Data_o <= 8'h70;
 
-				// 4a1
-				8'h04:		Data_o <= 8'h01;
-				8'h05:		Data_o <= 8'hF4;
-				8'h06:		Data_o <= 8'h04;
-				8'h07:		Data_o <= 8'h70;
+				// 1 4a1
+				12'h004:	Data_o <= 8'h01;
+				12'h005:	Data_o <= 8'hF4;
+				12'h006:	Data_o <= 8'h04;
+				12'h007:	Data_o <= 8'h70;
 
-				// 4a1
-				8'h08:		Data_o <= 8'h01;
-				8'h09:		Data_o <= 8'hF4;
-				8'h0A:		Data_o <= 8'h04;
-				8'h0B:		Data_o <= 8'h70;
+				// 2 4a1
+				12'h008:	Data_o <= 8'h01;
+				12'h009:	Data_o <= 8'hF4;
+				12'h00A:	Data_o <= 8'h04;
+				12'h00B:	Data_o <= 8'h70;
 
-				// 4f1
-				8'h0C:		Data_o <= 8'h01;
-				8'h0D:		Data_o <= 8'hF4;
-				8'h0E:		Data_o <= 8'h05;
-				8'h0F:		Data_o <= 8'h97;
+				// 3 4f1
+				12'h00C:	Data_o <= 8'h01;
+				12'h00D:	Data_o <= 8'hF4;
+				12'h00E:	Data_o <= 8'h05;
+				12'h00F:	Data_o <= 8'h97;
 
-				// 16c2
-				8'h10:		Data_o <= 8'h00;
-				8'h11:		Data_o <= 8'h7D;
-				8'h12:		Data_o <= 8'h03;
-				8'h13:		Data_o <= 8'hBB;
+				// 4 16c2
+				12'h010:	Data_o <= 8'h00;
+				12'h011:	Data_o <= 8'h7D;
+				12'h012:	Data_o <= 8'h03;
+				12'h013:	Data_o <= 8'hBB;
 
-				// 4a1
-				8'h14:		Data_o <= 8'h01;
-				8'h15:		Data_o <= 8'hF4;
-				8'h16:		Data_o <= 8'h04;
-				8'h17:		Data_o <= 8'h70;
+				// 5 4a1
+				12'h014:	Data_o <= 8'h01;
+				12'h015:	Data_o <= 8'hF4;
+				12'h016:	Data_o <= 8'h04;
+				12'h017:	Data_o <= 8'h70;
 
-				// 4f1
-				8'h18:		Data_o <= 8'h01;
-				8'h19:		Data_o <= 8'hF4;
-				8'h1A:		Data_o <= 8'h05;
-				8'h1B:		Data_o <= 8'h97;
+				// 6 4f1
+				12'h018:	Data_o <= 8'h01;
+				12'h019:	Data_o <= 8'hF4;
+				12'h01A:	Data_o <= 8'h05;
+				12'h01B:	Data_o <= 8'h97;
 
-				// 16c2
-				8'h1C:		Data_o <= 8'h00;
-				8'h1D:		Data_o <= 8'h7D;
-				8'h1E:		Data_o <= 8'h03;
-				8'h1F:		Data_o <= 8'hBB;
+				// 7 16c2
+				12'h01C:	Data_o <= 8'h00;
+				12'h01D:	Data_o <= 8'h7D;
+				12'h01E:	Data_o <= 8'h03;
+				12'h01F:	Data_o <= 8'hBB;
 
-				// 2a1
-				8'h20:		Data_o <= 8'h03;
-				8'h21:		Data_o <= 8'hE8;
-				8'h22:		Data_o <= 8'h04;
-				8'h23:		Data_o <= 8'h70;
+				// 8 2a1
+				12'h020:	Data_o <= 8'h03;
+				12'h021:	Data_o <= 8'hE8;
+				12'h022:	Data_o <= 8'h04;
+				12'h023:	Data_o <= 8'h70;
 
-				// 4e2
-				8'h24:		Data_o <= 8'h01;
-				8'h25:		Data_o <= 8'hF4;
-				8'h26:		Data_o <= 8'h02;
-				8'h27:		Data_o <= 8'hF6;
+				// 9 4e2
+				12'h024:	Data_o <= 8'h01;
+				12'h025:	Data_o <= 8'hF4;
+				12'h026:	Data_o <= 8'h02;
+				12'h027:	Data_o <= 8'hF6;
 
-				// 4e2
-				8'h28:		Data_o <= 8'h01;
-				8'h29:		Data_o <= 8'hF4;
-				8'h2A:		Data_o <= 8'h02;
-				8'h2B:		Data_o <= 8'hF6;
+				// 10 4e2
+				12'h028:	Data_o <= 8'h01;
+				12'h029:	Data_o <= 8'hF4;
+				12'h02A:	Data_o <= 8'h02;
+				12'h02B:	Data_o <= 8'hF6;
 
-				// 4e2
-				8'h2C:		Data_o <= 8'h01;
-				8'h2D:		Data_o <= 8'hF4;
-				8'h2E:		Data_o <= 8'h02;
-				8'h2F:		Data_o <= 8'hF6;
+				// 11 4e2
+				12'h02C:	Data_o <= 8'h01;
+				12'h02D:	Data_o <= 8'hF4;
+				12'h02E:	Data_o <= 8'h02;
+				12'h02F:	Data_o <= 8'hF6;
 
-				// 4f2
-				8'h30:		Data_o <= 8'h01;
-				8'h31:		Data_o <= 8'hF4;
-				8'h32:		Data_o <= 8'h02;
-				8'h33:		Data_o <= 8'hCB;
+				// 12 4f2
+				12'h030:	Data_o <= 8'h01;
+				12'h031:	Data_o <= 8'hF4;
+				12'h032:	Data_o <= 8'h02;
+				12'h033:	Data_o <= 8'hCB;
 
-				// 16c2
-				8'h34:		Data_o <= 8'h00;
-				8'h35:		Data_o <= 8'h7D;
-				8'h36:		Data_o <= 8'h03;
-				8'h37:		Data_o <= 8'hBB;
+				// 13 16c2
+				12'h034:	Data_o <= 8'h00;
+				12'h035:	Data_o <= 8'h7D;
+				12'h036:	Data_o <= 8'h03;
+				12'h037:	Data_o <= 8'hBB;
 
-				// 4#g1
-				8'h38:		Data_o <= 8'h01;
-				8'h39:		Data_o <= 8'hF4;
-				8'h3A:		Data_o <= 8'h04;
-				8'h3B:		Data_o <= 8'hB3;
+				// 14 4#g1
+				12'h038:	Data_o <= 8'h01;
+				12'h039:	Data_o <= 8'hF4;
+				12'h03A:	Data_o <= 8'h04;
+				12'h03B:	Data_o <= 8'hB3;
 
-				// 4f1
-				8'h3C:		Data_o <= 8'h01;
-				8'h3D:		Data_o <= 8'hF4;
-				8'h3E:		Data_o <= 8'h05;
-				8'h3F:		Data_o <= 8'h97;
+				// 15 4f1
+				12'h03C:	Data_o <= 8'h01;
+				12'h03D:	Data_o <= 8'hF4;
+				12'h03E:	Data_o <= 8'h05;
+				12'h03F:	Data_o <= 8'h97;
 
-				// 16c2
-				8'h40:		Data_o <= 8'h00;
-				8'h41:		Data_o <= 8'h7D;
-				8'h42:		Data_o <= 8'h03;
-				8'h43:		Data_o <= 8'hBB;
+				// 16 16c2
+				12'h040:	Data_o <= 8'h00;
+				12'h041:	Data_o <= 8'h7D;
+				12'h042:	Data_o <= 8'h03;
+				12'h043:	Data_o <= 8'hBB;
 
-				// 2a1
-				8'h44:		Data_o <= 8'h03;
-				8'h45:		Data_o <= 8'hE8;
-				8'h46:		Data_o <= 8'h04;
-				8'h47:		Data_o <= 8'h70;
+				// 17 2a1
+				12'h044:	Data_o <= 8'h03;
+				12'h045:	Data_o <= 8'hE8;
+				12'h046:	Data_o <= 8'h04;
+				12'h047:	Data_o <= 8'h70;
 
-				// 4a2
-				8'h48:		Data_o <= 8'h01;
-				8'h49:		Data_o <= 8'hF4;
-				8'h4A:		Data_o <= 8'h02;
-				8'h4B:		Data_o <= 8'h38;
+				// 18 4a2
+				12'h048:	Data_o <= 8'h01;
+				12'h049:	Data_o <= 8'hF4;
+				12'h04A:	Data_o <= 8'h02;
+				12'h04B:	Data_o <= 8'h38;
 
-				// 4a1
-				8'h4C:		Data_o <= 8'h01;
-				8'h4D:		Data_o <= 8'hF4;
-				8'h4E:		Data_o <= 8'h04;
-				8'h4F:		Data_o <= 8'h70;
+				// 19 4a1
+				12'h04C:	Data_o <= 8'h01;
+				12'h04D:	Data_o <= 8'hF4;
+				12'h04E:	Data_o <= 8'h04;
+				12'h04F:	Data_o <= 8'h70;
 
-				// 16a1
-				8'h50:		Data_o <= 8'h00;
-				8'h51:		Data_o <= 8'h7D;
-				8'h52:		Data_o <= 8'h04;
-				8'h53:		Data_o <= 8'h70;
+				// 20 16a1
+				12'h050:	Data_o <= 8'h00;
+				12'h051:	Data_o <= 8'h7D;
+				12'h052:	Data_o <= 8'h04;
+				12'h053:	Data_o <= 8'h70;
 
-				// 4a2
-				8'h54:		Data_o <= 8'h01;
-				8'h55:		Data_o <= 8'hF4;
-				8'h56:		Data_o <= 8'h02;
-				8'h57:		Data_o <= 8'h38;
+				// 21 4a2
+				12'h054:	Data_o <= 8'h01;
+				12'h055:	Data_o <= 8'hF4;
+				12'h056:	Data_o <= 8'h02;
+				12'h057:	Data_o <= 8'h38;
 
-				// 4#g2
-				8'h58:		Data_o <= 8'h01;
-				8'h59:		Data_o <= 8'hF4;
-				8'h5A:		Data_o <= 8'h02;
-				8'h5B:		Data_o <= 8'h59;
+				// 22 4#g2
+				12'h058:	Data_o <= 8'h01;
+				12'h059:	Data_o <= 8'hF4;
+				12'h05A:	Data_o <= 8'h02;
+				12'h05B:	Data_o <= 8'h59;
 
-				// 16g2
-				8'h5C:		Data_o <= 8'h00;
-				8'h5D:		Data_o <= 8'h7D;
-				8'h5E:		Data_o <= 8'h02;
-				8'h5F:		Data_o <= 8'h7D;
+				// 23 16g2
+				12'h05C:	Data_o <= 8'h00;
+				12'h05D:	Data_o <= 8'h7D;
+				12'h05E:	Data_o <= 8'h02;
+				12'h05F:	Data_o <= 8'h7D;
 
-				// 16#f2
-				8'h60:		Data_o <= 8'h00;
-				8'h61:		Data_o <= 8'h7D;
-				8'h62:		Data_o <= 8'h02;
-				8'h63:		Data_o <= 8'hA3;
+				// 24 16#f2
+				12'h060:	Data_o <= 8'h00;
+				12'h061:	Data_o <= 8'h7D;
+				12'h062:	Data_o <= 8'h02;
+				12'h063:	Data_o <= 8'hA3;
 
-				// 16f2
-				8'h64:		Data_o <= 8'h00;
-				8'h65:		Data_o <= 8'h7D;
-				8'h66:		Data_o <= 8'h02;
-				8'h67:		Data_o <= 8'hCB;
+				// 25 16f2
+				12'h064:	Data_o <= 8'h00;
+				12'h065:	Data_o <= 8'h7D;
+				12'h066:	Data_o <= 8'h02;
+				12'h067:	Data_o <= 8'hCB;
 
-				// 4#f2
-				8'h68:		Data_o <= 8'h01;
-				8'h69:		Data_o <= 8'hF4;
-				8'h6A:		Data_o <= 8'h02;
-				8'h6B:		Data_o <= 8'hA3;
+				// 26 4#f2
+				12'h068:	Data_o <= 8'h01;
+				12'h069:	Data_o <= 8'hF4;
+				12'h06A:	Data_o <= 8'h02;
+				12'h06B:	Data_o <= 8'hA3;
 
-				// 8#a1
-				8'h6C:		Data_o <= 8'h00;
-				8'h6D:		Data_o <= 8'hFA;
-				8'h6E:		Data_o <= 8'h04;
-				8'h6F:		Data_o <= 8'h30;
+				// 27 8#a1
+				12'h06C:	Data_o <= 8'h00;
+				12'h06D:	Data_o <= 8'hFA;
+				12'h06E:	Data_o <= 8'h04;
+				12'h06F:	Data_o <= 8'h30;
 
-				// 4#d2
-				8'h70:		Data_o <= 8'h01;
-				8'h71:		Data_o <= 8'hF4;
-				8'h72:		Data_o <= 8'h03;
-				8'h73:		Data_o <= 8'h23;
+				// 28 4#d2
+				12'h070:	Data_o <= 8'h01;
+				12'h071:	Data_o <= 8'hF4;
+				12'h072:	Data_o <= 8'h03;
+				12'h073:	Data_o <= 8'h23;
 
-				// 4d2
-				8'h74:		Data_o <= 8'h01;
-				8'h75:		Data_o <= 8'hF4;
-				8'h76:		Data_o <= 8'h03;
-				8'h77:		Data_o <= 8'h53;
+				// 29 4d2
+				12'h074:	Data_o <= 8'h01;
+				12'h075:	Data_o <= 8'hF4;
+				12'h076:	Data_o <= 8'h03;
+				12'h077:	Data_o <= 8'h53;
 
-				// 16#c2
-				8'h78:		Data_o <= 8'h00;
-				8'h79:		Data_o <= 8'h7D;
-				8'h7A:		Data_o <= 8'h03;
-				8'h7B:		Data_o <= 8'h85;
+				// 30 16#c2
+				12'h078:	Data_o <= 8'h00;
+				12'h079:	Data_o <= 8'h7D;
+				12'h07A:	Data_o <= 8'h03;
+				12'h07B:	Data_o <= 8'h85;
 
-				// 16c2
-				8'h7C:		Data_o <= 8'h00;
-				8'h7D:		Data_o <= 8'h7D;
-				8'h7E:		Data_o <= 8'h03;
-				8'h7F:		Data_o <= 8'hBB;
+				// 31 16c2
+				12'h07C:	Data_o <= 8'h00;
+				12'h07D:	Data_o <= 8'h7D;
+				12'h07E:	Data_o <= 8'h03;
+				12'h07F:	Data_o <= 8'hBB;
 
-				// 16b1
-				8'h80:		Data_o <= 8'h00;
-				8'h81:		Data_o <= 8'h7D;
-				8'h82:		Data_o <= 8'h03;
-				8'h83:		Data_o <= 8'hF4;
+				// 32 16b1
+				12'h080:	Data_o <= 8'h00;
+				12'h081:	Data_o <= 8'h7D;
+				12'h082:	Data_o <= 8'h03;
+				12'h083:	Data_o <= 8'hF4;
 
-				// 4c2
-				8'h84:		Data_o <= 8'h01;
-				8'h85:		Data_o <= 8'hF4;
-				8'h86:		Data_o <= 8'h03;
-				8'h87:		Data_o <= 8'hBB;
+				// 33 4c2
+				12'h084:	Data_o <= 8'h01;
+				12'h085:	Data_o <= 8'hF4;
+				12'h086:	Data_o <= 8'h03;
+				12'h087:	Data_o <= 8'hBB;
 
-				// 8f1
-				8'h88:		Data_o <= 8'h00;
-				8'h89:		Data_o <= 8'hFA;
-				8'h8A:		Data_o <= 8'h05;
-				8'h8B:		Data_o <= 8'h97;
+				// 34 8f1
+				12'h088:	Data_o <= 8'h00;
+				12'h089:	Data_o <= 8'hFA;
+				12'h08A:	Data_o <= 8'h05;
+				12'h08B:	Data_o <= 8'h97;
 
-				// 4#g1
-				8'h8C:		Data_o <= 8'h01;
-				8'h8D:		Data_o <= 8'hF4;
-				8'h8E:		Data_o <= 8'h04;
-				8'h8F:		Data_o <= 8'hB3;
+				// 35 4#g1
+				12'h08C:	Data_o <= 8'h01;
+				12'h08D:	Data_o <= 8'hF4;
+				12'h08E:	Data_o <= 8'h04;
+				12'h08F:	Data_o <= 8'hB3;
 
-				// 4f1
-				8'h90:		Data_o <= 8'h01;
-				8'h91:		Data_o <= 8'hF4;
-				8'h92:		Data_o <= 8'h05;
-				8'h93:		Data_o <= 8'h97;
+				// 36 4f1
+				12'h090:	Data_o <= 8'h01;
+				12'h091:	Data_o <= 8'hF4;
+				12'h092:	Data_o <= 8'h05;
+				12'h093:	Data_o <= 8'h97;
 
-				// 16#g1
-				8'h94:		Data_o <= 8'h00;
-				8'h95:		Data_o <= 8'h7D;
-				8'h96:		Data_o <= 8'h04;
-				8'h97:		Data_o <= 8'hB3;
+				// 37 16#g1
+				12'h094:	Data_o <= 8'h00;
+				12'h095:	Data_o <= 8'h7D;
+				12'h096:	Data_o <= 8'h04;
+				12'h097:	Data_o <= 8'hB3;
 
-				// 4c2
-				8'h98:		Data_o <= 8'h01;
-				8'h99:		Data_o <= 8'hF4;
-				8'h9A:		Data_o <= 8'h03;
-				8'h9B:		Data_o <= 8'hBB;
+				// 38 4c2
+				12'h098:	Data_o <= 8'h01;
+				12'h099:	Data_o <= 8'hF4;
+				12'h09A:	Data_o <= 8'h03;
+				12'h09B:	Data_o <= 8'hBB;
 
-				// 4a1
-				8'h9C:		Data_o <= 8'h01;
-				8'h9D:		Data_o <= 8'hF4;
-				8'h9E:		Data_o <= 8'h04;
-				8'h9F:		Data_o <= 8'h70;
+				// 39 4a1
+				12'h09C:	Data_o <= 8'h01;
+				12'h09D:	Data_o <= 8'hF4;
+				12'h09E:	Data_o <= 8'h04;
+				12'h09F:	Data_o <= 8'h70;
 
-				// 16c2
-				8'hA0:		Data_o <= 8'h00;
-				8'hA1:		Data_o <= 8'h7D;
-				8'hA2:		Data_o <= 8'h03;
-				8'hA3:		Data_o <= 8'hBB;
+				// 40 16c2
+				12'h0A0:	Data_o <= 8'h00;
+				12'h0A1:	Data_o <= 8'h7D;
+				12'h0A2:	Data_o <= 8'h03;
+				12'h0A3:	Data_o <= 8'hBB;
 
-				// 2e2
-				8'hA4:		Data_o <= 8'h03;
-				8'hA5:		Data_o <= 8'hE8;
-				8'hA6:		Data_o <= 8'h02;
-				8'hA7:		Data_o <= 8'hF6;
+				// 41 2e2
+				12'h0A4:	Data_o <= 8'h03;
+				12'h0A5:	Data_o <= 8'hE8;
+				12'h0A6:	Data_o <= 8'h02;
+				12'h0A7:	Data_o <= 8'hF6;
 
-				// 4a2
-				8'hA8:		Data_o <= 8'h01;
-				8'hA9:		Data_o <= 8'hF4;
-				8'hAA:		Data_o <= 8'h02;
-				8'hAB:		Data_o <= 8'h38;
+				// 42 4a2
+				12'h0A8:	Data_o <= 8'h01;
+				12'h0A9:	Data_o <= 8'hF4;
+				12'h0AA:	Data_o <= 8'h02;
+				12'h0AB:	Data_o <= 8'h38;
 
-				// 4a1
-				8'hAC:		Data_o <= 8'h01;
-				8'hAD:		Data_o <= 8'hF4;
-				8'hAE:		Data_o <= 8'h04;
-				8'hAF:		Data_o <= 8'h70;
+				// 43 4a1
+				12'h0AC:	Data_o <= 8'h01;
+				12'h0AD:	Data_o <= 8'hF4;
+				12'h0AE:	Data_o <= 8'h04;
+				12'h0AF:	Data_o <= 8'h70;
 
-				// 16a1
-				8'hB0:		Data_o <= 8'h00;
-				8'hB1:		Data_o <= 8'h7D;
-				8'hB2:		Data_o <= 8'h04;
-				8'hB3:		Data_o <= 8'h70;
+				// 44 16a1
+				12'h0B0:	Data_o <= 8'h00;
+				12'h0B1:	Data_o <= 8'h7D;
+				12'h0B2:	Data_o <= 8'h04;
+				12'h0B3:	Data_o <= 8'h70;
 
-				// 4a2
-				8'hB4:		Data_o <= 8'h01;
-				8'hB5:		Data_o <= 8'hF4;
-				8'hB6:		Data_o <= 8'h02;
-				8'hB7:		Data_o <= 8'h38;
+				// 45 4a2
+				12'h0B4:	Data_o <= 8'h01;
+				12'h0B5:	Data_o <= 8'hF4;
+				12'h0B6:	Data_o <= 8'h02;
+				12'h0B7:	Data_o <= 8'h38;
 
-				// 4#g2
-				8'hB8:		Data_o <= 8'h01;
-				8'hB9:		Data_o <= 8'hF4;
-				8'hBA:		Data_o <= 8'h02;
-				8'hBB:		Data_o <= 8'h59;
+				// 46 4#g2
+				12'h0B8:	Data_o <= 8'h01;
+				12'h0B9:	Data_o <= 8'hF4;
+				12'h0BA:	Data_o <= 8'h02;
+				12'h0BB:	Data_o <= 8'h59;
 
-				// 16g2
-				8'hBC:		Data_o <= 8'h00;
-				8'hBD:		Data_o <= 8'h7D;
-				8'hBE:		Data_o <= 8'h02;
-				8'hBF:		Data_o <= 8'h7D;
+				// 47 16g2
+				12'h0BC:	Data_o <= 8'h00;
+				12'h0BD:	Data_o <= 8'h7D;
+				12'h0BE:	Data_o <= 8'h02;
+				12'h0BF:	Data_o <= 8'h7D;
 
-				// 16#f2
-				8'hC0:		Data_o <= 8'h00;
-				8'hC1:		Data_o <= 8'h7D;
-				8'hC2:		Data_o <= 8'h02;
-				8'hC3:		Data_o <= 8'hA3;
+				// 48 16#f2
+				12'h0C0:	Data_o <= 8'h00;
+				12'h0C1:	Data_o <= 8'h7D;
+				12'h0C2:	Data_o <= 8'h02;
+				12'h0C3:	Data_o <= 8'hA3;
 
-				// 16f2
-				8'hC4:		Data_o <= 8'h00;
-				8'hC5:		Data_o <= 8'h7D;
-				8'hC6:		Data_o <= 8'h02;
-				8'hC7:		Data_o <= 8'hCB;
+				// 49 16f2
+				12'h0C4:	Data_o <= 8'h00;
+				12'h0C5:	Data_o <= 8'h7D;
+				12'h0C6:	Data_o <= 8'h02;
+				12'h0C7:	Data_o <= 8'hCB;
 
 				default:	Data_o <= 8'h00;
 			endcase

@@ -73,8 +73,8 @@ with open("test.v", "w") as file:
     file.write("	input wire Clock,\n")
     file.write("	input wire Reset,\n")
     file.write("	input wire ReadEnable_i,\n")
-    file.write("	input wire [7:0] Address_i,\n")
-    file.write("	output reg [7:0] Data_o\n")
+    file.write("	input wire [11:0] Address_i,\n")
+    file.write("	output reg [ 7:0] Data_o\n")
     file.write(");\n")
     file.write("\n")
     file.write("	always @(posedge Clock) begin\n")
@@ -85,41 +85,41 @@ with open("test.v", "w") as file:
     file.write("\n")
     
     # Parse note and find its frequency and half period values
+    counter = 0
     for note in notes:
         
-        print(f"Processing note: {note}")
-        file.write(f"				// {note}\n")
+        print(f"{counter}\t{note:6s}\t", end="")
+        file.write(f"				// {counter} {note}\n")
+        counter += 1
         
         half_period_hex = None;
         duration_hex = None;
         
         for frequency in frequency_dict:
             if frequency in note:
-                print(f"- Found note {frequency}")
                 note = note.replace(frequency, "")
                 half_period_hex = frequency_dict[frequency]
                 break;
         
         for duration in duration_dict:
             if duration in note:
-                print(f"- Found duration {duration}")
                 duration_hex = duration_dict[duration]
                 break;
                 
-        print(f"-- Result {duration_hex[0]:02X}{duration_hex[1]:02X} {half_period_hex[0]:02X}{half_period_hex[1]:02X}")
+        print(f"{duration_hex[0]:02X}{duration_hex[1]:02X} {half_period_hex[0]:02X}{half_period_hex[1]:02X}")
         
         # Append duration and half period values to the memory
         memory += duration_hex
         memory += half_period_hex
         
         # Save results to the file
-        file.write(f"				8'h{address:02X}:		Data_o <= 8'h{duration_hex[0]:02X};\n")
+        file.write(f"				12'h{address:03X}:	Data_o <= 8'h{duration_hex[0]:02X};\n")
         address += 1
-        file.write(f"				8'h{address:02X}:		Data_o <= 8'h{duration_hex[1]:02X};\n")
+        file.write(f"				12'h{address:03X}:	Data_o <= 8'h{duration_hex[1]:02X};\n")
         address += 1
-        file.write(f"				8'h{address:02X}:		Data_o <= 8'h{half_period_hex[0]:02X};\n")
+        file.write(f"				12'h{address:03X}:	Data_o <= 8'h{half_period_hex[0]:02X};\n")
         address += 1
-        file.write(f"				8'h{address:02X}:		Data_o <= 8'h{half_period_hex[1]:02X};\n")
+        file.write(f"				12'h{address:03X}:	Data_o <= 8'h{half_period_hex[1]:02X};\n")
         address += 1
         file.write("\n")
             
