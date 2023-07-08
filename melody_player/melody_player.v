@@ -23,8 +23,8 @@ module MelodyPlayer #(
 	
 	// Melody memory
 	reg        ReadEnable;
-	reg  [7:0] Address;
-	wire [7:0] Data;
+	reg  [11:0] Address;
+	wire [ 7:0] Data;
 	ROM MusicMemory(
 		.Clock(Clock),
 		.Reset(Reset),
@@ -57,27 +57,27 @@ module MelodyPlayer #(
 			case(State)
 				IDLE: begin
 					if(Play_i) begin
-						Address    <= 0;
-						ReadEnable <= 1'b1;
-						State      <= DUMMY;
+						Address         <= 0;
+						ReadEnable      <= 1'b1;
+						State           <= DUMMY;
 					end
 				end
 				
 				DUMMY: begin
-					Address           <= Address + 1'b1;
-					State             <= READ_DURATION_H;
+					Address             <= Address + 1'b1;
+					State               <= READ_DURATION_H;
 				end
 				
 				READ_DURATION_H: begin
-					Duration_ms[15:8] <= Data;
-					Address           <= Address + 1'b1;
-					State             <= READ_DURATION_L;
+					Duration_ms[15:8]   <= Data;
+					Address             <= Address + 1'b1;
+					State               <= READ_DURATION_L;
 				end
 				
 				READ_DURATION_L: begin
-					Duration_ms[7:0]  <= Data;
-					Address           <= Address + 1'b1;
-					State             <= READ_HPERIOD_H;
+					Duration_ms[7:0]    <= Data;
+					Address             <= Address + 1'b1;
+					State               <= READ_HPERIOD_H;
 				end
 				
 				READ_HPERIOD_H: begin
@@ -96,16 +96,16 @@ module MelodyPlayer #(
 				
 				PLAYING: begin
 					Request <= 1'b0;
-					if(Duration_ms == 16'd0)
-						State      <= IDLE;
-					else if(Stop_i)
-						State      <= IDLE;
-					else if(SoundGeneratorDone) begin
-						ReadEnable <= 1'b1;
-						State      <= READ_DURATION_H;
+					if(Duration_ms == 16'd0) begin
+						State           <= IDLE;
+					end else if(Stop_i) begin
+						State           <= IDLE;
+						Duration_ms     <= 16'd0;
+						HalfPeriod_us   <= 16'd0;
+					end else if(SoundGeneratorDone) begin
+						ReadEnable      <= 1'b1;
+						State           <= READ_DURATION_H;
 					end
-					
-					// TODO Stop
 				end
 			endcase
 		end
@@ -126,7 +126,7 @@ module MelodyPlayer #(
 		.Done_o(SoundGeneratorDone)
 	);
 	
-	// Debug only
+	// For debug only (to show duration and half period on the display)
 	assign Duration_o   = Duration_ms;
 	assign HalfPeriod_o = HalfPeriod_us;
 	

@@ -1,14 +1,14 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Thu Jul 06 19:38:25 2023
+[*] Sat Jul 08 16:48:19 2023
 [*]
-[dumpfile] "C:\verilog\melody_player\melody_player.vcd"
-[dumpfile_mtime] "Thu Jul 06 19:36:27 2023"
-[dumpfile_size] 11144962
-[savefile] "C:\verilog\melody_player\melody_player.gtkw"
+[dumpfile] "melody_player.vcd"
+[dumpfile_mtime] "Sat Jul 08 16:47:24 2023"
+[dumpfile_size] 11144966
+[savefile] "melody_player.gtkw"
 [timestart] 0
 [size] 1920 1009
-[pos] -1 -1
+[pos] -9 -9
 *-21.492579 1750 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] MelodyPlayer_tb.
 [treeopen] MelodyPlayer_tb.DUT.
@@ -30,7 +30,7 @@ MelodyPlayer_tb.DUT.Stop_i
 @200
 -State machine
 @2028
-^1 C:\verilog\melody_player\melody_player_state.gtkw
+^1 melody_player_state.gtkw
 MelodyPlayer_tb.DUT.State[2:0]
 @200
 -Strobes
@@ -43,6 +43,7 @@ MelodyPlayer_tb.DUT.SoundGenerator_inst.TickMicro
 @28
 MelodyPlayer_tb.DUT.MusicMemory.ReadEnable_i
 @22
+MelodyPlayer_tb.DUT.MusicMemory.Address_i[11:0]
 MelodyPlayer_tb.DUT.MusicMemory.Data_o[7:0]
 @200
 -Sound Generator
