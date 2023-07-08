@@ -1,7 +1,8 @@
-melody = "1a2 2a1 64c1 64.c1 2.-"
+melody = "4g2 8.#a2 16g2 16- 16g2 8c3 8g2 8f2 4g2 8.d3 16g2 16- 16g2 8#d3 8d3 8#a2 8g2 8d3 8g3 16g2 16f2 16- 16f2 8d2 8a2 2g2"
 notes = melody.split(" ")
 
 memory = bytearray()
+address = 0;
 
 duration_dict = {
     "64.": b'\x00\x30',
@@ -77,11 +78,13 @@ with open("test.v", "w") as file:
     file.write("		else if(ReadEnable_i) begin\n")
     file.write("			case(Address_i)\n")
     file.write("\n")
-
+    
+    # Parse note and find its frequency and half period values
     for note in notes:
         
-        # Parse note and find its frequency and half period values
         print(f"Processing note: {note}")
+        file.write(f"				// {note}\n")
+        
         half_period_hex = None;
         duration_hex = None;
         
@@ -104,33 +107,18 @@ with open("test.v", "w") as file:
         memory += duration_hex
         memory += half_period_hex
         
-    # Convert memory bytearray to Verilog file
-    for byte in memory:
-        print(f"{byte:02X}", end=" ")
+        # Save results to the file
+        file.write(f"				8'h{address:02X}:		Data_o <= 8'h{duration_hex[0]:02X};\n")
+        address += 1
+        file.write(f"				8'h{address:02X}:		Data_o <= 8'h{duration_hex[1]:02X};\n")
+        address += 1
+        file.write(f"				8'h{address:02X}:		Data_o <= 8'h{half_period_hex[0]:02X};\n")
+        address += 1
+        file.write(f"				8'h{address:02X}:		Data_o <= 8'h{half_period_hex[1]:02X};\n")
+        address += 1
+        file.write("\n")
             
   
-with open("test.v", "w") as file:
-    file.write("`default_nettype none\n")
-    file.write("module ROM(\n")
-    file.write("	input wire Clock,\n")
-    file.write("	input wire Reset,\n")
-    file.write("	input wire ReadEnable_i,\n")
-    file.write("	input wire [7:0] Address_i,\n")
-    file.write("	output reg [7:0] Data_o\n")
-    file.write(");\n")
-    file.write("\n")
-    file.write("	always @(posedge Clock) begin\n")
-    file.write("		if(!Reset)\n")
-    file.write("			Data_o <= 0;\n")
-    file.write("		else if(ReadEnable_i) begin\n")
-    file.write("			case(Address_i)\n")
-    file.write("\n")
-    file.write("				// 5ms, 5kHz\n")
-    file.write("				8'h00:		Data_o <= 8'h00;\n")
-    file.write("				8'h01:		Data_o <= 8'h05;\n")
-    file.write("				8'h02:		Data_o <= 8'h00;\n")
-    file.write("				8'h03:		Data_o <= 8'h64;\n")
-    file.write("\n")
     file.write("				default:	Data_o <= 8'h00;\n")
     file.write("			endcase\n")
     file.write("		end\n")
