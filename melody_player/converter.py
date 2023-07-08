@@ -1,13 +1,31 @@
+melody = ""
+
+# Debug
+#melody += "64c1 64- 64c2 64- 32c3 "
+
+# Debug 2
+#melody += "64c1 64- 64c1 64.- 64c1 32- 64c1 32.- 64c1 16- 64c1 16.- 64c1 8- 64c1 8.- 64c1 4- 64c1 4.- 64c1 2- 64c1 2.- 64c1 1- 64c1 1.- 64c1 "
 
 # Axel F
-#melody = "4g2 8.#a2 16g2 16- 16g2 8c3 8g2 8f2 4g2 8.d3 16g2 16- 16g2 8#d3 8d3 8#a2 8g2 8d3 8g3 16g2 16f2 16- 16f2 8d2 8a2 2g2"
+melody += "4g2 8.#a2 16g2 16- 16g2 8c3 8g2 8f2 4g2 8.d3 16g2 16- 16g2 8#d3 8d3 8#a2 8g2 8d3 8g3 16g2 16f2 16- 16f2 8d2 8a2 2g2 2- "
 
-# Star Wars
-melody = "4a1 4a1 4a1 4f1 16c2 4a1 4f1 16c2 2a1 4e2 4e2 4e2 4f2 16c2 4#g1 4f1 16c2 2a1 4a2 4a1 16a1 4a2 4#g2 16g2 16#f2 16f2 4#f2 8#a1 4#d2 4d2 16#c2 16c2 16b1 4c2 8f1 4#g1 4f1 16#g1 4c2 4a1 16c2 2e2 4a2 4a1 16a1 4a2 4#g2 16g2 16#f2 16f2"
-notes = melody.split(" ")
+# Star wars
+melody += "4a1 4a1 4a1 4f1 16c2 4a1 4f1 16c2 2a1 4e2 4e2 4e2 4f2 16c2 4#g1 4f1 16c2 2a1 4a2 4a1 16a1 4a2 4#g2 16g2 16#f2 16f2 4#f2 8#a1 4#d2 4d2 16#c2 16c2 16b1 4c2 8f1 4#g1 4f1 16#g1 4c2 4a1 16c2 2e2 2- "
 
-memory = bytearray()
-address = 0;
+# Harry Potter
+melody += "8b1 8.e2 16g2 8#f2 4e2 8b2 4.a2 4.#f2 8.e2 16g2 8#f2 4d2 8f2 2b1 8- 8b1 8.e2 16g2 8#f2 4e2 8b2 4d3 8#c3 4c3 8#g2 8.c3 16b2 8#a2 4#f2 8g2 2e2 8- 8g2 4b2 8g2 4b2 8g2 4c3 8b2 4#a2 8#f2 8.g2 16b2 8#a2 4#a1 2- "
+
+# Pink Panther
+melody += "8#g1 2a1 8b1 2c2 8#g1 8a1 8b1 8c2 8f2 8e2 8a1 8c2 8e2 2#d2 16d2 16c2 16a1 8g1 1a1 8#g1 2a1 8b1 2c2 8#g1 8a1 8b1 8c2 8f2 8e2 8c2 8e2 8a2 1#g2 8#g1 2a1 8b1 2c2 16#g1 8a1 8b1 8c2 8f2 8e2 8a1 8c2 8e2 2#d2 8d2 16c2 16a1 2- "
+
+# Star Wars 2
+melody += "8#c1 8#c1 16#c1 2#f1 2#c2 8b1 16#a1 8#g1 2#f2 4#c2 8b1 16#a1 8#g1 2#f2 4#c2 8b1 16#a1 8b1 2#g1 8#c1 8#c1 16#c1 2#f1 2#c2 8b1 16#a1 8#g1 2#f2 4#c2 8b1 16#a1 8#g1 2#f2 4#c2 8b1 16#a1 8b1 2#g1 4#c1 16#c1 2#d1 8#c2 8b1 8#a1 8#g1 8#f1 16#f1 8#g1 16#a1 4#g1 2- "
+
+# Final countdown
+melody += "4- 8- 16b2 16a2 4b2 4e2 4- 8- 16c3 16b2 8c3 8b2 4a2 4- 8- 16c3 16b2 4c3 4e2 4- 8- 16a2 16g2 8a2 8g2 8#f2 8a2 4g2 8- 16#f2 16g2 4a2 8- 16g2 16a2 8b2 8a2 8g2 8#f2 4e2 4c3 2b2 4- 16b2 16c3 16b2 16a2 1b2 2- "
+
+# Phanthom of the Opera
+melody += "4e1 4a1 4e1 4g1 8f1 2f1 4d1 4g1 8d1 1e1 4e1 4a1 4e1 4g1 8f1 2f1 4d1 4g1 8d1 1e1 4e1 4a1 4c2 4e2 8d2 2d2 4d2 4g2 8d2 1e2 4e2 1a2 8g2 8f2 8e2 8d2 8c2 8b1 8a1 1#g1 4f1 4f1 8e1 1e1 2- "
 
 duration_dict = {
     "64.": b'\x00\x30',
@@ -66,7 +84,12 @@ frequency_dict = {
     "-":   b'\x00\x00',
 }
 
-with open("test.v", "w") as file:
+melody = melody.strip()
+notes = melody.split(" ")
+memory = bytearray()
+address = 0;
+
+with open("rom.v", "w") as file:
     # Create Verilog file and save all data 
     file.write("`default_nettype none\n")
     file.write("module ROM(\n")

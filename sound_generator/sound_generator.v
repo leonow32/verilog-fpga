@@ -91,6 +91,8 @@ module SoundGenerator #(
 						HalfPeriodTimer <= HalfPeriodTimer - 1'b1;
 					end
 				end
+			end else begin
+				Signal <= 1'b0;
 			end
 		end
 	end
