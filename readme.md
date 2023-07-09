@@ -28,12 +28,12 @@ This module is superior to the `SoundGenerator` module, which can only play a si
 
 **Port description**
 
-+ **CLOCK_HZ** - clock signal frequency [Hz]
-+ **Clock** - clock signal, active rising edge.
-+ **Reset** - asynchronous reset, active low.
-+ **Play_i** - a high pulse triggers the start of melody playback.
-+ **Stop_i** - a high pulse stops the operation.
-+ **SoundWave_o** - connect to the speaker.
++ **CLOCK_HZ** - Clock signal frequency [Hz]
++ **Clock** - Clock signal, active rising edge.
++ **Reset** - Asynchronous reset, active low.
++ **Play_i** - A high pulse triggers the start of melody playback.
++ **Stop_i** - A high pulse stops the operation.
++ **SoundWave_o** - Connect to the speaker.
 
 **Simulation**
 
@@ -70,10 +70,10 @@ This is very a simple implementation of ROM memory using `case` instruction. It 
 
 **Port description**
 
-* **Clock** - clock signal, active rising edge.
-* **ReadEnable_i** - if 1 then on the next clock edge the requested data is ready.
-* **Address_i** - address of the byte requested to be read on the next clock edge.
-* **Data_o** - value of the requested byte.
++ **Clock** - Clock signal, active rising edge.
++ **ReadEnable_i** - If 1 then on the next clock edge the requested data is ready.
++ **Address_i** - Address of the byte requested to be read on the next clock edge.
++ **Data_o** - Value of the requested byte.
     
 **Simulation**
 
@@ -137,20 +137,56 @@ TODO
 
 TODO
 
+**Console output**
+
+TODO
+
 ## Strobe Generator
 
->**Status**: code ready, documentation to be updated
+>**Status**: ready
 
-This is the most useful code in Verilog I've ever made. I use it almost in every project.
+This is a very simple yet very useful module.. I use it almost in every project.
+
+The strobe signal assumes a high state for one clock cycle. This module generates periodic page signals. The period of the strobes is defined by the `PERIOD_US` parameter. Based on the `CLOCK_HZ` parameter, the module itself calculates how many clock cycles to wait between strobe signals to occur at the desired intervals. The module also calculates by itself the number of bits of the Counter register, used to count clock ticks, in such a way that FPGA resources are not wasted on unnecessary register bits.
 
 **Instantiation**
 
-TODO
+    StrobeGenerator #(
+        .CLOCK_HZ(CLOCK_HZ),
+        .PERIOD_US()
+    ) StrobeGenerator_inst(
+        .Clock(Clock),
+        .Reset(Reset),
+        .Enable_i(),
+        .Strobe_o()
+    );
 
 **Port description**
 
-TODO
++ **CLOCK_HZ** - Clock signal frequency [Hz]
++ **PERIOD_US** - Period of strobe signals [us]
++ **Clock** - Clock signal, active rising edge.
++ **Reset** - Asynchronous reset, active low.
++ **Enable_i** - If 0 then pause. If 1 then start operation. This input can be used as a synchronous reset.
++ **Strobe_o** - Output of the strobe periodic strobe signal.
 
 **Simulation**
 
-TODO
+![Simulation](strobe_generator/simulation.png "Simulation")
+
+**Console output**
+
+    VCD info: dumpfile strobe_generator.vcd opened for output.
+    ===== START =====
+    CLOCK_HZ  =  10000000
+    PERIOD_US =         2
+    DELAY     =        19
+    WIDTH     =         5
+    Strobe detected at    2.000us
+    Strobe detected at    4.000us
+    Strobe detected at    8.100us
+    Strobe detected at   10.100us
+    Strobe detected at   13.200us
+    Strobe detected at   15.200us
+    ===== END =====
+    strobe_generator_tb.v:82: $finish called at 15201000 (1ps)
