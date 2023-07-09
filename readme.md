@@ -6,110 +6,17 @@ I decided to publish these peripherals because I think they may be useful for ot
 
 # Modules
 
-Just for fun:
-+ **Melody Player** - This module is superior to the `SoundGenerator` module, which can only play a single sound at the desired frequency for the desired duration. The `MelodyPlayer` module is equipped with a ROM that contains music notes and their length of time. After starting the module with the `Play` signal, the module reads consecutive sounds from the memory and pushes them to the SoundGenerator. This way, a melody player with capabilities similar to the ringtone composer from the Nokia 3310 can be realized.
+**Memories:**
 
-## ROM - case implementation
++ Rom - Case implementation - This is very a simple implementation of ROM memory using `case` instruction. It has no practical sense - but can be used for educational purposes.
 
->**Status**: ready
+**Just for fun:**
 
-This is very a simple implementation of ROM memory using `case` instruction. It has no practical sense - but can be used for educational purposes.
++ Sound Generator - generates sound of the desired frequency and duration.
++ Melody Player - This module is superior to the `SoundGenerator` module, which can only play a single sound at the desired frequency for the desired duration. The `MelodyPlayer` module is equipped with a ROM that contains music notes and their length of time. After starting the module with the `Play` signal, the module reads consecutive sounds from the memory and pushes them to the SoundGenerator. This way, a melody player with capabilities similar to the ringtone composer from the Nokia 3310 can be realized.
 
-**Instantiation**
 
-    ROM ROM_inst(
-        .Clock(Clock),
-        .ReadEnable_i(),
-        .Address_i(),
-        .Data_o()
-    );
 
-**Port description**
-
-+ **Clock** - Clock signal, active rising edge.
-+ **ReadEnable_i** - If 1 then on the next clock edge the requested data is ready.
-+ **Address_i** - Address of the byte requested to be read on the next clock edge.
-+ **Data_o** - Value of the requested byte.
-    
-**Simulation**
-
-![Simulation](rom_case/simulation.png "Simulation")
-
-**Console output**
-
-    VCD info: dumpfile rom.vcd opened for output.
-    ===== START =====
-            Time Ad Data
-         0.400us 0: 00
-         0.700us 1: 10
-         1.000us 2: 02
-         1.300us 3: 30
-         1.600us 4: 04
-         1.900us 5: 55
-         2.200us 6: 60
-         2.500us 7: 07
-         2.800us 8: 88
-         3.100us 9: 90
-         3.400us a: 0a
-         3.700us b: b0
-         4.000us c: cc
-         4.300us d: 0d
-         4.600us e: e0
-         4.900us f: ff
-    ===== END =====
-    rom_tb.v:69: $finish called at 7502 (1ns)
-
-## Sound Generator
-
->**Status**: ready
-
-The `SoundGenerator` module generates sound of the desired frequency and duration. Together with the `Player` module, you can easily build a simple melody player with capabilities similar to Nokia 3310.
-
-**Instantiation**
-
-    SoundGenerator #(
-        .CLOCK_HZ(CLOCK_HZ)
-    ) DUT(
-        .Clock(Clock),
-        .Reset(Reset),
-        .Start_i(),
-        .Finish_i(),
-        .Duration_ms_i(),
-        .HalfPeriod_us_i(),
-        .SoundWave_o(),
-        .Busy_o(),
-        .Done_o()
-    );
-
-**Port description**
-
-+ **CLOCK_HZ** - Clock signal frequency [Hz].
-+ **Clock** - Clock signal, active rising edge.
-+ **Reset** - Asynchronous reset, active low.
-+ **Start_i** - A high strobe causes begin of the operation.
-+ **Finish_i** - A high strobe causes immediate break the operation.
-+ **Duration_ms_i[15:0]** - How long the sound has to be played [ms].
-+ **HalfPeriod_us_i[15:0]** - Required half wave period of the sound signal.
-+ **SoundWave_o** - Output sound signal.
-+ **Busy_o** - This signal is set to high as long as the sound is being played.
-+ **Done_o** - A single high pulse signals the end of the operation.
-
-**Simulation**
-
-![Simulation](sound_generator/simulation.png "Simulation")
-
-**Console output**
-
-	VCD info: dumpfile sound_generator.vcd opened for output.
-	===== START =====
-			Time Durat HaPer        Freq
-		 1.100us     1    10       50000
-	  1001.200us     2     0           x
-	  3001.200us     3     1      500000
-	  6001.200us     0    99        5050
-	  6001.800us    10   500        1000
-	===== END =====
-	sound_generator_tb.v:116: $finish called at 11003002 (1ns)
 
 ## Strobe Generator
 
