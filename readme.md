@@ -10,7 +10,7 @@ Described in the alphabetical order.
 
 ## Melody Player
 
->**Status**: during development
+>**Status**: ready
 
 This module is superior to the `SoundGenerator` module, which can only play a single sound at the desired frequency for the desired duration. The `MelodyPlayer` module is equipped with a ROM that contains music notes and their length of time. After starting the module with the `Play` signal, the module reads consecutive sounds from the memory and pushes them to the SoundGenerator. This way, a melody player with capabilities similar to the ringtone composer from the Nokia 3310 can be realized.
 
@@ -28,7 +28,7 @@ This module is superior to the `SoundGenerator` module, which can only play a si
 
 **Port description**
 
-+ **CLOCK_HZ** - Clock signal frequency [Hz]
++ **CLOCK_HZ** - Clock signal frequency [Hz].
 + **Clock** - Clock signal, active rising edge.
 + **Reset** - Asynchronous reset, active low.
 + **Play_i** - A high pulse triggers the start of melody playback.
@@ -105,7 +105,7 @@ This is very a simple implementation of ROM memory using `case` instruction. It 
 
 ## Sound Generator
 
->**Status**: during development
+>**Status**: ready
 
 The `SoundGenerator` module generates sound of the desired frequency and duration. Together with the `Player` module, you can easily build a simple melody player with capabilities similar to Nokia 3310.
 
@@ -113,7 +113,7 @@ The `SoundGenerator` module generates sound of the desired frequency and duratio
 
     SoundGenerator #(
         .CLOCK_HZ(CLOCK_HZ)
-    ) SoundGenerator_inst(
+    ) DUT(
         .Clock(Clock),
         .Reset(Reset),
         .Start_i(),
@@ -125,21 +125,35 @@ The `SoundGenerator` module generates sound of the desired frequency and duratio
         .Done_o()
     );
 
-**Instantiation**
-
-TODO
-
 **Port description**
 
-TODO
++ **CLOCK_HZ** - Clock signal frequency [Hz].
++ **Clock** - Clock signal, active rising edge.
++ **Reset** - Asynchronous reset, active low.
++ **Start_i** - A high strobe causes begin of the operation.
++ **Finish_i** - A high strobe causes immediate break the operation.
++ **Duration_ms_i[15:0]** - How long the sound has to be played [ms].
++ **HalfPeriod_us_i[15:0]** - Required half wave period of the sound signal.
++ **SoundWave_o** - Output sound signal.
++ **Busy_o** - This signal is set to high as long as the sound is being played.
++ **Done_o** - A single high pulse signals the end of the operation.
 
 **Simulation**
 
-TODO
+![Simulation](sound_generator/simulation.png "Simulation")
 
 **Console output**
 
-TODO
+	VCD info: dumpfile sound_generator.vcd opened for output.
+	===== START =====
+			Time Durat HaPer        Freq
+		 1.100us     1    10       50000
+	  1001.200us     2     0           x
+	  3001.200us     3     1      500000
+	  6001.200us     0    99        5050
+	  6001.800us    10   500        1000
+	===== END =====
+	sound_generator_tb.v:116: $finish called at 11003002 (1ns)
 
 ## Strobe Generator
 
@@ -147,7 +161,7 @@ TODO
 
 This is a very simple yet very useful module.. I use it almost in every project.
 
-The strobe signal assumes a high state for one clock cycle. This module generates periodic page signals. The period of the strobes is defined by the `PERIOD_US` parameter. Based on the `CLOCK_HZ` parameter, the module itself calculates how many clock cycles to wait between strobe signals to occur at the desired intervals. The module also calculates by itself the number of bits of the Counter register, used to count clock ticks, in such a way that FPGA resources are not wasted on unnecessary register bits.
+The strobe signal is set to high state for one clock cycle and then it is set low. This kind of signal is very common to drice `ClockEnale` inputs. This module generates periodic page signals. The period of the strobes is defined by the `PERIOD_US` parameter. Based on the `CLOCK_HZ` parameter, the module itself calculates how many clock cycles to wait between strobe signals to occur at the desired intervals. The module also calculates by itself the number of bits of the Counter register, used to count clock ticks, in such a way that FPGA resources are not wasted on unnecessary register bits.
 
 **Instantiation**
 
@@ -163,8 +177,8 @@ The strobe signal assumes a high state for one clock cycle. This module generate
 
 **Port description**
 
-+ **CLOCK_HZ** - Clock signal frequency [Hz]
-+ **PERIOD_US** - Period of strobe signals [us]
++ **CLOCK_HZ** - Clock signal frequency [Hz].
++ **PERIOD_US** - Period of strobe signals [us].
 + **Clock** - Clock signal, active rising edge.
 + **Reset** - Asynchronous reset, active low.
 + **Enable_i** - If 0 then pause. If 1 then start operation. This input can be used as a synchronous reset.
