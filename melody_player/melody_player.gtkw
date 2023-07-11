@@ -2,10 +2,10 @@
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
 [*] Tue Jul 11 15:08:45 2023
 [*]
-[dumpfile] "C:\verilog\melody_player\melody_player.vcd"
+[dumpfile] "melody_player.vcd"
 [dumpfile_mtime] "Tue Jul 11 15:01:41 2023"
 [dumpfile_size] 73475661
-[savefile] "C:\verilog\melody_player\melody_player.gtkw"
+[savefile] "melody_player.gtkw"
 [timestart] 0
 [size] 1920 1009
 [pos] -1 -1
@@ -30,7 +30,7 @@ MelodyPlayer_tb.DUT.Stop_i
 @200
 -State machine
 @2029
-^1 C:\verilog\melody_player\melody_player_state.gtkw
+^1 melody_player_state.gtkw
 MelodyPlayer_tb.DUT.State[2:0]
 @200
 -Strobes
