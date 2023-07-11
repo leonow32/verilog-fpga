@@ -6,6 +6,10 @@ I decided to publish these peripherals because I think they may be useful for ot
 
 ## Modules
 
+**Displays**
+
++ [Decoder 7seg](/decoder_7seg) - Simple module to convert 4-bit binary data into 7-segment code that can drive a 7-segment display. Supports displaying digits from 0 to 9 and hexadecimal values from A to F.Made as a fully combinational logic without any clock and reset signals. Can be used with common cathode and common anode displays.
+
 **Timing:**
 
 + [Strobe Generator](/strobe_generator) - This is a very simple yet very useful module. I use it almost in every project. The strobe signal is set to high state for one clock cycle and then it is set low. This kind of signal is very common to drice `ClockEnale` inputs. This module generates periodic page signals. The period of the strobes is defined by the `PERIOD_US` parameter. Based on the `CLOCK_HZ` parameter, the module itself calculates how many clock cycles to wait between strobe signals to occur at the desired intervals. The module also calculates by itself the number of bits of the Counter register, used to count clock ticks, in such a way that FPGA resources are not wasted on unnecessary register bits.
