@@ -2,7 +2,7 @@
 
 >**Status**: ready
 
-This is a very simple yet very useful module.. I use it almost in every project.
+This is a very simple yet very useful module. I use it almost in every project.
 
 The strobe signal is set to high state for one clock cycle and then it is set low. This kind of signal is very common to drice `ClockEnale` inputs. This module generates periodic page signals. The period of the strobes is defined by the `PERIOD_US` parameter. Based on the `CLOCK_HZ` parameter, the module itself calculates how many clock cycles to wait between strobe signals to occur at the desired intervals. The module also calculates by itself the number of bits of the Counter register, used to count clock ticks, in such a way that FPGA resources are not wasted on unnecessary register bits.
 

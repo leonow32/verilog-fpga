@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sat Jul 08 16:48:19 2023
+[*] Tue Jul 11 13:29:32 2023
 [*]
-[dumpfile] "melody_player.vcd"
-[dumpfile_mtime] "Sat Jul 08 16:47:24 2023"
-[dumpfile_size] 11144966
-[savefile] "melody_player.gtkw"
+[dumpfile] "C:\verilog\melody_player\melody_player.vcd"
+[dumpfile_mtime] "Tue Jul 11 10:39:51 2023"
+[dumpfile_size] 4488
+[savefile] "C:\verilog\melody_player\melody_player.gtkw"
 [timestart] 0
 [size] 1920 1009
-[pos] -9 -9
-*-21.492579 1750 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 -1
+*-8.838162 1595 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] MelodyPlayer_tb.
 [treeopen] MelodyPlayer_tb.DUT.
 [treeopen] MelodyPlayer_tb.DUT.SoundGenerator_inst.
@@ -30,7 +30,7 @@ MelodyPlayer_tb.DUT.Stop_i
 @200
 -State machine
 @2028
-^1 melody_player_state.gtkw
+^1 C:\verilog\melody_player\melody_player_state.gtkw
 MelodyPlayer_tb.DUT.State[2:0]
 @200
 -Strobes
@@ -40,22 +40,25 @@ MelodyPlayer_tb.DUT.SoundGenerator_inst.TickMilli
 MelodyPlayer_tb.DUT.SoundGenerator_inst.TickMicro
 @200
 -Memory
-@28
-MelodyPlayer_tb.DUT.MusicMemory.ReadEnable_i
 @22
 MelodyPlayer_tb.DUT.MusicMemory.Address_i[11:0]
 MelodyPlayer_tb.DUT.MusicMemory.Data_o[7:0]
 @200
 -Sound Generator
 @22
+[color] 2
 MelodyPlayer_tb.DUT.SoundGenerator_inst.Duration_ms_i[15:0]
+[color] 2
+MelodyPlayer_tb.DUT.SoundGenerator_inst.HalfPeriod_us_i[15:0]
+MelodyPlayer_tb.DUT.SoundGenerator_inst.HalfPeriodCopy[15:0]
 @8022
 MelodyPlayer_tb.DUT.SoundGenerator_inst.DurationTimer[15:0]
 @20000
 -
-@22
-MelodyPlayer_tb.DUT.SoundGenerator_inst.HalfPeriod_us_i[15:0]
-MelodyPlayer_tb.DUT.SoundGenerator_inst.HalfPeriodCopy[15:0]
+@8023
+MelodyPlayer_tb.DUT.SoundGenerator_inst.HalfPeriodTimer[15:0]
+@20000
+-
 @28
 MelodyPlayer_tb.DUT.SoundGenerator_inst.Busy_o
 MelodyPlayer_tb.DUT.SoundGenerator_inst.Done_o

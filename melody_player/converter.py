@@ -1,12 +1,13 @@
 melody = ""
 
 # Debug
-#melody += "64c1 64- 64c2 64- 32c3 "
+melody += "64c1 64- 64c2 64- 32c3 "
 
 # Debug 2
 #melody += "64c1 64- 64c1 64.- 64c1 32- 64c1 32.- 64c1 16- 64c1 16.- 64c1 8- 64c1 8.- 64c1 4- 64c1 4.- 64c1 2- 64c1 2.- 64c1 1- 64c1 1.- 64c1 "
 
 # Axel F
+"""
 melody += "4g2 8.#a2 16g2 16- 16g2 8c3 8g2 8f2 4g2 8.d3 16g2 16- 16g2 8#d3 8d3 8#a2 8g2 8d3 8g3 16g2 16f2 16- 16f2 8d2 8a2 2g2 2- "
 
 # Star wars
@@ -26,6 +27,7 @@ melody += "4- 8- 16b2 16a2 4b2 4e2 4- 8- 16c3 16b2 8c3 8b2 4a2 4- 8- 16c3 16b2 4
 
 # Phanthom of the Opera
 melody += "4e1 4a1 4e1 4g1 8f1 2f1 4d1 4g1 8d1 1e1 4e1 4a1 4e1 4g1 8f1 2f1 4d1 4g1 8d1 1e1 4e1 4a1 4c2 4e2 8d2 2d2 4d2 4g2 8d2 1e2 4e2 1a2 8g2 8f2 8e2 8d2 8c2 8b1 8a1 1#g1 4f1 4f1 8e1 1e1 2- "
+"""
 
 duration_dict = {
     "64.": b'\x00\x30',
@@ -95,7 +97,6 @@ with open("rom.v", "w") as file:
     file.write("module ROM(\n")
     file.write("	input wire Clock,\n")
     file.write("	input wire Reset,\n")
-    file.write("	input wire ReadEnable_i,\n")
     file.write("	input wire [11:0] Address_i,\n")
     file.write("	output reg [ 7:0] Data_o\n")
     file.write(");\n")
@@ -103,7 +104,7 @@ with open("rom.v", "w") as file:
     file.write("	always @(posedge Clock) begin\n")
     file.write("		if(!Reset)\n")
     file.write("			Data_o <= 0;\n")
-    file.write("		else if(ReadEnable_i) begin\n")
+    file.write("		else begin\n")
     file.write("			case(Address_i)\n")
     file.write("\n")
     

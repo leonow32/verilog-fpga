@@ -22,13 +22,11 @@ module MelodyPlayer #(
 	wire SoundGeneratorDone;
 	
 	// Melody memory
-	reg        ReadEnable;
 	reg  [11:0] Address;
 	wire [ 7:0] Data;
 	ROM MusicMemory(
-		.Clock(Clock),
-		.Reset(Reset),
-		.ReadEnable_i(ReadEnable),
+//		.Clock(Clock),
+//		.Reset(Reset),
 		.Address_i(Address),
 		.Data_o(Data)
 	);
@@ -41,7 +39,8 @@ module MelodyPlayer #(
 	localparam READ_DURATION_L	= 3'd3;
 	localparam READ_HPERIOD_H	= 3'd4;
 	localparam READ_HPERIOD_L	= 3'd5;
-	localparam PLAYING			= 3'd6;
+	localparam REQUEST			= 3'd6;
+	localparam PLAYING			= 3'd7;
 	
 	// State machine to read data from memory
 	// and push it to the sound generator
@@ -50,23 +49,21 @@ module MelodyPlayer #(
 			State         <= IDLE;
 			Request       <= 0;
 			Duration_ms   <= 0;
-			HalfPeriod_us <= 0;
-			ReadEnable    <= 0;
-			Address       <= 0;
+			HalfPeriod_us <= 0;			Address       <= 0;
 		end else begin
 			case(State)
 				IDLE: begin
 					if(Play_i) begin
 						Address         <= 0;
-						ReadEnable      <= 1'b1;
 						State           <= DUMMY;
+						State 			<= READ_DURATION_H;
 					end
 				end
 				
-				DUMMY: begin
-					Address             <= Address + 1'b1;
-					State               <= READ_DURATION_H;
-				end
+				// DUMMY: begin
+					// Address             <= Address + 1'b1;
+					// State               <= READ_DURATION_H;
+				// end
 				
 				READ_DURATION_H: begin
 					Duration_ms[15:8]   <= Data;
@@ -89,10 +86,14 @@ module MelodyPlayer #(
 				READ_HPERIOD_L: begin
 					HalfPeriod_us[7:0]  <= Data;
 					Address             <= Address + 1'b1;
-					ReadEnable          <= 1'b0;
 					Request             <= 1'b1;
 					State               <= PLAYING;
 				end
+				
+				// REQUEST: begin
+					// Request             <= 1'b1;
+					// State               <= PLAYING;
+				// end
 				
 				PLAYING: begin
 					Request <= 1'b0;
@@ -103,7 +104,6 @@ module MelodyPlayer #(
 						Duration_ms     <= 16'd0;
 						HalfPeriod_us   <= 16'd0;
 					end else if(SoundGeneratorDone) begin
-						ReadEnable      <= 1'b1;
 						State           <= READ_DURATION_H;
 					end
 				end
