@@ -1,0 +1,26 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Wed Mar 29 12:52:43 2023
+[*]
+[dumpfile] "decoder_7seg.vcd"
+[dumpfile_mtime] "Wed Mar 29 12:51:56 2023"
+[dumpfile_size] 1083
+[savefile] "decoder_7seg.gtkw"
+[timestart] 0
+[size] 1920 1017
+[pos] -35 -35
+*-2.057955 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] Decoder7seg_tb.
+[sst_width] 197
+[signals_width] 134
+[sst_expanded] 1
+[sst_vpaned_height] 300
+@22
+Decoder7seg_tb.DUT.Data_i[3:0]
+@29
+Decoder7seg_tb.DUT.Enable_i
+@22
+Decoder7seg_tb.DUT.Temp[6:0]
+Decoder7seg_tb.DUT.Segments_o[6:0]
+[pattern_trace] 1
+[pattern_trace] 0
