@@ -11,7 +11,7 @@ module ROM #(
 	output reg [   DATA_WIDTH-1:0] Data_o
 );
 	
-	reg [DATA_WIDTH-1:0] Memory [0:2**ADDRESS_WIDTH-1] ;
+	reg [DATA_WIDTH-1:0] Memory [0:2**ADDRESS_WIDTH-1] /* synthesis syn_romstyle = "EBR" */;
 	
 	initial begin
 		$readmemh(MEMORY_FILE, Memory);

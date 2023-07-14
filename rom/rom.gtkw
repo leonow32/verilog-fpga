@@ -1,10 +1,10 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Mon Jul 03 19:18:30 2023
+[*] Fri Jul 14 07:53:57 2023
 [*]
 [dumpfile] "rom.vcd"
-[dumpfile_mtime] "Mon Jul 03 19:16:56 2023"
-[dumpfile_size] 3965
+[dumpfile_mtime] "Fri Jul 14 07:49:40 2023"
+[dumpfile_size] 4338
 [savefile] "rom.gtkw"
 [timestart] 0
 [size] 1920 1009
@@ -14,8 +14,10 @@
 [sst_width] 197
 [signals_width] 190
 [sst_expanded] 1
-[sst_vpaned_height] 297
+[sst_vpaned_height] 168
 @28
+ROM_tb.Reset
+@29
 ROM_tb.DUT.Clock
 @200
 -Inputs
