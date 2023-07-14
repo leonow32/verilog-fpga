@@ -1,36 +1,30 @@
-// 230703
-
 `default_nettype none
-module ROM(
+module ROM #(
+	parameter ADDRESS_WIDTH = 16,
+	parameter DATA_WIDTH    = 8,
+	parameter MEMORY_FILE   = "data.mem"
+)(
 	input wire Clock,
+	input wire Reset,
 	input wire ReadEnable_i,
-	input wire [3:0] Address_i,
-	output reg [7:0] Data_o
+	input wire [ADDRESS_WIDTH-1:0] Address_i,
+	output reg [   DATA_WIDTH-1:0] Data_o
 );
 	
-	always @(posedge Clock) begin
-		if(ReadEnable_i) begin
-			case(Address_i)
-				4'h0:		Data_o <= 8'h00;
-				4'h1:		Data_o <= 8'h10;
-				4'h2:		Data_o <= 8'h02;
-				4'h3:		Data_o <= 8'h30;
-				4'h4:		Data_o <= 8'h04;
-				4'h5:		Data_o <= 8'h55;
-				4'h6:		Data_o <= 8'h60;
-				4'h7:		Data_o <= 8'h07;
-				4'h8:		Data_o <= 8'h88;
-				4'h9:		Data_o <= 8'h90;
-				4'hA:		Data_o <= 8'h0A;
-				4'hB:		Data_o <= 8'hB0;
-				4'hC:		Data_o <= 8'hCC;
-				4'hD:		Data_o <= 8'h0D;
-				4'hE:		Data_o <= 8'hE0;
-				4'hF:		Data_o <= 8'hFF;
-				default:	Data_o <= 8'hXX;
-			endcase
-		end
+	reg [DATA_WIDTH-1:0] Memory [0:2**ADDRESS_WIDTH-1] /* synthesis syn_romstyle = "EBR" */;
+	
+	initial begin
+		$readmemh(MEMORY_FILE, Memory);
 	end
 	
+	always @(posedge Clock, negedge Reset) begin
+		if(!Reset)
+			Data_o <= 0;
+		else begin
+			if(ReadEnable_i)
+				Data_o <= Memory[Address_i];
+		end
+	end
+
 endmodule
 `default_nettype wire

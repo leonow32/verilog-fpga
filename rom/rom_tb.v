@@ -13,13 +13,19 @@ module ROM_tb();
 	end
 	
 	// Variables
-	reg        ReadEnable;
+	reg        Reset      = 1'b0;
+	reg        ReadEnable = 1'b0;
 	reg  [3:0] Address;
 	wire [7:0] Data;
 	
 	// Instantiate device under test
-	ROM DUT(
+	ROM #(
+		.ADDRESS_WIDTH(4),
+		.DATA_WIDTH(8),
+		.MEMORY_FILE("data.mem")
+	) DUT(
 		.Clock(Clock),
+		.Reset(Reset),
 		.ReadEnable_i(ReadEnable),
 		.Address_i(Address),
 		.Data_o(Data)
@@ -37,6 +43,9 @@ module ROM_tb();
 		$timeformat(-6, 3, "us", 12);
 		$display("===== START =====");
 		$display("        Time Ad Data");
+		
+		@(posedge Clock);
+		Reset <= 1'b1;
 		
 		// Slow read
 		@(posedge Clock);
