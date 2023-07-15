@@ -1,0 +1,26 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sat Jul 15 19:06:43 2023
+[*]
+[dumpfile] "C:\verilog\edge_detector\edge_detector.vcd"
+[dumpfile_mtime] "Sat Jul 15 19:06:18 2023"
+[dumpfile_size] 1706
+[savefile] "C:\verilog\edge_detector\edge_detector.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -1 -1
+*-5.986521 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] EdgeDetector_tb.
+[sst_width] 197
+[signals_width] 179
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+EdgeDetector_tb.Reset
+EdgeDetector_tb.Clock
+[color] 2
+EdgeDetector_tb.DUT.Signal_i
+EdgeDetector_tb.DUT.RisingEdge_o
+EdgeDetector_tb.DUT.FallingEdge_o
+[pattern_trace] 1
+[pattern_trace] 0
