@@ -7,12 +7,12 @@ A simple module that is used to detect the rising and falling edge of any signal
 ## Instantiation
 
     EdgeDetector EdgeDetector_inst(
-		.Clock(Clock),
-		.Reset(Reset),
-		.Signal_i(),
-		.RisingEdge_o(),
-		.FallingEdge_o()
-	);
+        .Clock(Clock),
+        .Reset(Reset),
+        .Signal_i(),
+        .RisingEdge_o(),
+        .FallingEdge_o()
+    );
 
 ## Port description
 
@@ -28,7 +28,7 @@ A simple module that is used to detect the rising and falling edge of any signal
 
 ## Console output
 
-	VCD info: dumpfile edge_detector.vcd opened for output.
-	===== START =====
-	====== END ======
-	edge_detector_tb.v:53: $finish called at 472 (1ns)
+    VCD info: dumpfile edge_detector.vcd opened for output.
+    ===== START =====
+    ====== END ======
+    edge_detector_tb.v:53: $finish called at 472 (1ns)
