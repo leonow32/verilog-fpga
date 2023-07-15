@@ -14,6 +14,10 @@ I decided to publish these peripherals because I think they may be useful for ot
 
 + [Strobe Generator](/strobe_generator) - This is a very simple yet very useful module. I use it almost in every project. The strobe signal is set to high state for one clock cycle and then it is set low. This kind of signal is very common to drice `ClockEnale` inputs. This module generates periodic page signals. The period of the strobes is defined by the `PERIOD_US` parameter. Based on the `CLOCK_HZ` parameter, the module itself calculates how many clock cycles to wait between strobe signals to occur at the desired intervals. The module also calculates by itself the number of bits of the Counter register, used to count clock ticks, in such a way that FPGA resources are not wasted on unnecessary register bits.
 
+**Input/Ouptut:**
+
++ [Edge Detector](/edge_detector) - A simple module that is used to detect the rising and falling edge of any signal. If a change in the signal is detected, a pulse of one clock cycle length will be generated on the `RisingEdge_o` and `FallingEdge_o` outputs. Important - the signal under test must be synchronized with the clock.
+
 **Memories:**
 
 + [ROM](/rom) - Read only memory. This module can be used to store permanent information, such as the code of a program executed by the processor, for example.
