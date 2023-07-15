@@ -1,7 +1,7 @@
 melody = ""
 
 # Debug
-#melody += "64c1 64- 64c2 64- 32c3 "
+#melody += "64c1 64c2 32c3 "
 
 # Debug 2
 #melody += "64c1 64- 64c1 64.- 64c1 32- 64c1 32.- 64c1 16- 64c1 16.- 64c1 8- 64c1 8.- 64c1 4- 64c1 4.- 64c1 2- 64c1 2.- 64c1 1- 64c1 1.- 64c1 "
@@ -95,7 +95,6 @@ with open("rom.v", "w") as file:
     file.write("module ROM(\n")
     file.write("	input wire Clock,\n")
     file.write("	input wire Reset,\n")
-    file.write("	input wire ReadEnable_i,\n")
     file.write("	input wire [11:0] Address_i,\n")
     file.write("	output reg [ 7:0] Data_o\n")
     file.write(");\n")
@@ -103,7 +102,7 @@ with open("rom.v", "w") as file:
     file.write("	always @(posedge Clock) begin\n")
     file.write("		if(!Reset)\n")
     file.write("			Data_o <= 0;\n")
-    file.write("		else if(ReadEnable_i) begin\n")
+    file.write("		else begin\n")
     file.write("			case(Address_i)\n")
     file.write("\n")
     
