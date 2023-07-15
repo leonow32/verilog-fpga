@@ -22,13 +22,11 @@ module MelodyPlayer #(
 	wire SoundGeneratorDone;
 	
 	// Melody memory
-//	reg        ReadEnable;
 	reg  [11:0] Address;
 	wire [ 7:0] Data;
 	ROM MusicMemory(
 		.Clock(Clock),
 		.Reset(Reset),
-//		.ReadEnable_i(ReadEnable),
 		.Address_i(Address),
 		.Data_o(Data)
 	);
@@ -51,14 +49,12 @@ module MelodyPlayer #(
 			Request       <= 0;
 			Duration_ms   <= 0;
 			HalfPeriod_us <= 0;
-//			ReadEnable    <= 0;
 			Address       <= 0;
 		end else begin
 			case(State)
 				IDLE: begin
 					if(Play_i) begin
 						Address         <= 0;
-//						ReadEnable      <= 1'b1;
 						State           <= DUMMY;
 					end
 				end
@@ -88,8 +84,6 @@ module MelodyPlayer #(
 				
 				READ_HPERIOD_L: begin
 					HalfPeriod_us[7:0]  <= Data;
-//					Address             <= Address + 1'b1;
-//					ReadEnable          <= 1'b0;
 					Request             <= 1'b1;
 					State               <= PLAYING;
 				end
@@ -103,7 +97,6 @@ module MelodyPlayer #(
 						Duration_ms     <= 16'd0;
 						HalfPeriod_us   <= 16'd0;
 					end else if(SoundGeneratorDone) begin
-//						ReadEnable      <= 1'b1;
 						State           <= READ_DURATION_H;
 						Address         <= Address + 1'b1;
 					end
