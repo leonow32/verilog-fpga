@@ -1,4 +1,4 @@
-# ROM - case implementation
+# ROM Memory - case implementation
 
 >**Status**: ready
 
