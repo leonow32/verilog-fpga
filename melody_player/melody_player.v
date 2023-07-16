@@ -24,9 +24,21 @@ module MelodyPlayer #(
 	// Melody memory
 	reg  [11:0] Address;
 	wire [ 7:0] Data;
-	ROM MusicMemory(
+	// ROM MusicMemory(
+		// .Clock(Clock),
+		// .Reset(Reset),
+		// .Address_i(Address),
+		// .Data_o(Data)
+	// );
+	
+	ROM #(
+		.ADDRESS_WIDTH(12),
+		.DATA_WIDTH(8),
+		.MEMORY_FILE("rom.mem")
+	) ROM_inst(
 		.Clock(Clock),
 		.Reset(Reset),
+		.ReadEnable_i(1'b1),
 		.Address_i(Address),
 		.Data_o(Data)
 	);
