@@ -1,4 +1,4 @@
-// 230704
+// 230716
 
 `default_nettype none
 module MelodyPlayer #(
@@ -23,14 +23,7 @@ module MelodyPlayer #(
 	
 	// Melody memory
 	reg  [11:0] Address;
-	wire [ 7:0] Data;
-	// ROM MusicMemory(
-		// .Clock(Clock),
-		// .Reset(Reset),
-		// .Address_i(Address),
-		// .Data_o(Data)
-	// );
-	
+	wire [ 7:0] Data;	
 	ROM #(
 		.ADDRESS_WIDTH(12),
 		.DATA_WIDTH(8),

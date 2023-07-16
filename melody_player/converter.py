@@ -93,7 +93,6 @@ with open("rom.mem", "w") as file:
     for note in notes:
         
         print(f"{counter}\t{note:6s}\t", end="")
-        note_str = note
         counter += 1
         
         half_period_hex = None;
@@ -101,12 +100,12 @@ with open("rom.mem", "w") as file:
         
         for frequency in frequency_dict:
             if frequency in note:
-                note = note.replace(frequency, "")
+                note_without_frequency = note.replace(frequency, "")
                 half_period_hex = frequency_dict[frequency]
                 break;
         
         for duration in duration_dict:
-            if duration in note:
+            if duration in note_without_frequency:
                 duration_hex = duration_dict[duration]
                 break;
                 
@@ -117,7 +116,7 @@ with open("rom.mem", "w") as file:
         file.write(f"{duration_hex[1]:02X} ")
         file.write(f"{half_period_hex[0]:02X} ")
         file.write(f"{half_period_hex[1]:02X} ")
-        file.write(f"// {note_str:6s}\n")
+        file.write(f"// {note:6s}\n")
 
     file.write("00 00 00 00 // end\n")
 
