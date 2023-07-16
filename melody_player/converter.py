@@ -86,32 +86,13 @@ frequency_dict = {
 
 melody = melody.strip()
 notes = melody.split(" ")
-memory = bytearray()
-address = 0;
+counter = 0
 
-with open("rom.v", "w") as file:
-    # Create Verilog file and save all data 
-    file.write("`default_nettype none\n")
-    file.write("module ROM(\n")
-    file.write("	input wire Clock,\n")
-    file.write("	input wire Reset,\n")
-    file.write("	input wire [11:0] Address_i,\n")
-    file.write("	output reg [ 7:0] Data_o\n")
-    file.write(");\n")
-    file.write("\n")
-    file.write("	always @(posedge Clock) begin\n")
-    file.write("		if(!Reset)\n")
-    file.write("			Data_o <= 0;\n")
-    file.write("		else begin\n")
-    file.write("			case(Address_i)\n")
-    file.write("\n")
-    
+with open("rom.mem", "w") as file:
     # Parse note and find its frequency and half period values
-    counter = 0
     for note in notes:
         
         print(f"{counter}\t{note:6s}\t", end="")
-        file.write(f"				// {counter} {note}\n")
         counter += 1
         
         half_period_hex = None;
@@ -119,40 +100,23 @@ with open("rom.v", "w") as file:
         
         for frequency in frequency_dict:
             if frequency in note:
-                note = note.replace(frequency, "")
+                note_without_frequency = note.replace(frequency, "")
                 half_period_hex = frequency_dict[frequency]
                 break;
         
         for duration in duration_dict:
-            if duration in note:
+            if duration in note_without_frequency:
                 duration_hex = duration_dict[duration]
                 break;
                 
         print(f"{duration_hex[0]:02X}{duration_hex[1]:02X} {half_period_hex[0]:02X}{half_period_hex[1]:02X}")
         
-        # Append duration and half period values to the memory
-        memory += duration_hex
-        memory += half_period_hex
-        
         # Save results to the file
-        file.write(f"				12'h{address:03X}:	Data_o <= 8'h{duration_hex[0]:02X};\n")
-        address += 1
-        file.write(f"				12'h{address:03X}:	Data_o <= 8'h{duration_hex[1]:02X};\n")
-        address += 1
-        file.write(f"				12'h{address:03X}:	Data_o <= 8'h{half_period_hex[0]:02X};\n")
-        address += 1
-        file.write(f"				12'h{address:03X}:	Data_o <= 8'h{half_period_hex[1]:02X};\n")
-        address += 1
-        file.write("\n")
-            
-  
-    file.write("				default:	Data_o <= 8'h00;\n")
-    file.write("			endcase\n")
-    file.write("		end\n")
-    file.write("	end\n")
-    file.write("\n")
-    file.write("endmodule\n")
-    file.write("`default_nettype wire\n")
-    file.write("\n")
-    
+        file.write(f"{duration_hex[0]:02X} ")
+        file.write(f"{duration_hex[1]:02X} ")
+        file.write(f"{half_period_hex[0]:02X} ")
+        file.write(f"{half_period_hex[1]:02X} ")
+        file.write(f"// {note:6s}\n")
+
+    file.write("00 00 00 00 // end\n")
 
