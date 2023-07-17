@@ -1,0 +1,51 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Mon Jul 17 11:12:20 2023
+[*]
+[dumpfile] "debouncer.vcd"
+[dumpfile_mtime] "Mon Jul 17 07:39:05 2023"
+[dumpfile_size] 38508
+[savefile] "debouncer.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -9 -9
+*-14.181946 7610 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] Debouncer_tb.
+[sst_width] 197
+[signals_width] 190
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+Debouncer_tb.Reset_r
+Debouncer_tb.Clock
+@200
+-Input
+@28
+[color] 3
+Debouncer_tb.DUT.NoisySignal_i
+@24
+Debouncer_tb.DUT.DELAY
+@200
+-Internal
+@c00024
+Debouncer_tb.DUT.Counter_r[5:0]
+@28
+(0)Debouncer_tb.DUT.Counter_r[5:0]
+(1)Debouncer_tb.DUT.Counter_r[5:0]
+(2)Debouncer_tb.DUT.Counter_r[5:0]
+(3)Debouncer_tb.DUT.Counter_r[5:0]
+(4)Debouncer_tb.DUT.Counter_r[5:0]
+(5)Debouncer_tb.DUT.Counter_r[5:0]
+@1401200
+-group_end
+@8022
+Debouncer_tb.DUT.Counter_r[5:0]
+@20000
+-
+@200
+-Output
+@28
+[color] 3
+Debouncer_tb.DUT.FilteredSignal_o
+[pattern_trace] 1
+[pattern_trace] 0
