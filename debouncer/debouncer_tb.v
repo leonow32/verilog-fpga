@@ -44,7 +44,7 @@ module Debouncer_tb();
 		Reset = 1'b1;
 		
 		// Toggle state of Button signal and wait longer tine in each loop
-		for(i = 1; i<=20; i = i + 1) begin
+		for(i=1; i<=20; i=i+1) begin
 			Delay_us(i);
 			Button <= ~Button;
 		end
