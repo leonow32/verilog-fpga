@@ -43,13 +43,14 @@ module Debouncer_tb();
 		@(posedge Clock)
 		Reset = 1'b1;
 		
+		// Toggle state of Button signal and wait longer tine in each loop
 		for(i = 1; i<=20; i = i + 1) begin
 			Delay_us(i);
 			Button <= ~Button;
 		end
 		
 		@(posedge Clock)
-		$display("===== END =====");
+		$display("====== END ======");
 		$finish;
 	end
 
