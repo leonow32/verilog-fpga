@@ -1,0 +1,41 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Mon Jul 17 19:42:11 2023
+[*]
+[dumpfile] "debouncer.vcd"
+[dumpfile_mtime] "Mon Jul 17 19:41:15 2023"
+[dumpfile_size] 68035
+[savefile] "debouncer.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -1 -1
+*-14.809017 74800 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] Debouncer_tb.
+[sst_width] 197
+[signals_width] 207
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+Debouncer_tb.Clock
+@200
+-Input
+@28
+[color] 3
+Debouncer_tb.DUT.NoisySignal_i
+@24
+Debouncer_tb.DUT.DELAY
+@200
+-Internal
+@25
+Debouncer_tb.DUT.Counter[6:0]
+@8022
+Debouncer_tb.DUT.Counter[6:0]
+@20000
+-
+@200
+-Output
+@28
+[color] 3
+Debouncer_tb.DUT.FilteredSignal_o
+[pattern_trace] 1
+[pattern_trace] 0
