@@ -17,7 +17,7 @@ module Debouncer(
 
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
-			Counter          <= 1;
+			Counter          <= 0;
 			FilteredSignal_o <= 0;
 		end else if(NoisySignal_i != FilteredSignal_o && Counter < DELAY) begin
 			Counter <= Counter + 1'b1; 
