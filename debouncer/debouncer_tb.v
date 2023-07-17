@@ -13,6 +13,12 @@ module Debouncer_tb();
 		Clock = !Clock;
 	end
 	
+	// Delay task
+	task Delay_us(input integer DelayTime_us);
+		repeat((CLOCK_HZ / 1_000_000) * DelayTime_us)
+			@(posedge Clock);
+	endtask
+	
 	// Variable dump
 	initial begin
 		$dumpfile("debouncer.vcd");
@@ -25,6 +31,7 @@ module Debouncer_tb();
 	wire Out;
 	
 	// Test sequence
+	integer i;
 	initial begin
 		$timeformat(-6, 3, "us", 10);
 		$display("===== START =====");
@@ -33,25 +40,23 @@ module Debouncer_tb();
 		$display("DELAY     = %9d", DUT.DELAY);
 		$display("WIDTH     = %9d", DUT.WIDTH);
 
-		#1 Reset = 1'b1; #9;
-
-		Button   = 1'b1; #100    Button   = 1'b0; #100 
-		Button   = 1'b1; #200    Button   = 1'b0; #200 
-		Button   = 1'b1; #500    Button   = 1'b0; #500 
-		Button   = 1'b1; #1000   Button   = 1'b0; #1000
-		Button   = 1'b1; #2000   Button   = 1'b0; #2000
-		Button   = 1'b1; #5000   Button   = 1'b0; #5000
-		Button   = 1'b1; #10000  Button   = 1'b0; #10000
-		Button   = 1'b1; #20000  Button   = 1'b0; #20000
-		Button   = 1'b1; #50000  Button   = 1'b0; #10000
+		@(posedge Clock)
+		Reset = 1'b1;
+		
+		for(i = 1; i<=20; i = i + 1) begin
+			Delay_us(i);
+			Button <= ~Button;
+		end
+		
+		@(posedge Clock)
 		$display("===== END =====");
-		#20 $finish;
+		$finish;
 	end
 
 	// Instantiate device under test
 	Debouncer #(
 		.CLOCK_HZ(CLOCK_HZ),
-		.PERIOD_US(5)
+		.PERIOD_US(10)
 	) DUT(
 		.Clock(Clock),
 		.Reset(Reset),

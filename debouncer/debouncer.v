@@ -10,22 +10,22 @@ module Debouncer(
 
 	parameter  CLOCK_HZ 	= 10_000_000;
 	parameter  PERIOD_US	= 100;
-	localparam DELAY		= (CLOCK_HZ / 1_000_000) * PERIOD_US;
+	localparam DELAY		= (CLOCK_HZ / 1_000_000) * PERIOD_US - 1;
 	localparam WIDTH		= $clog2(DELAY + 1);
 
-	reg [WIDTH-1:0] Counter_r = 0;
+	reg [WIDTH-1:0] Counter = 0;
 
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
-			Counter_r        <= 1;
+			Counter          <= 1;  // ?
 			FilteredSignal_o <= 0;
-		end else if(NoisySignal_i != FilteredSignal_o && Counter_r < DELAY) begin
-			Counter_r <= Counter_r + 1'b1; 
-		end else if(Counter_r == DELAY) begin
-			Counter_r <= 0; 
+		end else if(NoisySignal_i != FilteredSignal_o && Counter < DELAY) begin
+			Counter <= Counter + 1'b1; 
+		end else if(Counter == DELAY) begin
+			Counter          <= 0; 
 			FilteredSignal_o <= NoisySignal_i; 
 		end else begin
-			Counter_r <= 0;
+			Counter <= 0;
 		end
 	end
 
