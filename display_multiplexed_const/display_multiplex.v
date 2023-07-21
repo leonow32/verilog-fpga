@@ -10,7 +10,8 @@ module DisplayMultiplex #(
 	input  wire [31:0] Data_i,
 	input  wire [ 7:0] DecimalPoints_i,
 	output wire [ 7:0] Cathodes_o,
-	output wire [ 7:0] Segments_o
+	output wire [ 7:0] Segments_o,
+	output wire        SwitchCathode
 );
 	
 	// Blank leading zeros
@@ -25,7 +26,6 @@ module DisplayMultiplex #(
 	assign Visible[0] = 1'b1;
 	
 	// Strobe signal to change active cathode and actually displayed digit
-	wire SwitchCathode;
 	StrobeGenerator #(
 		.CLOCK_HZ(CLOCK_HZ),
 		.PERIOD_US(SWITCH_PERIOD_US)
