@@ -1,26 +1,27 @@
-// 230329
+// 230721
 
+`default_nettype none
 module DisplayMultiplex #(
-	parameter CLOCK_HZ			= 10_000_000,
-	parameter SWITCH_PERIOD_US	= 1000
+	parameter CLOCK_HZ         = 10_000_000,
+	parameter SWITCH_PERIOD_US = 1000
 )(
-	input			Clock,
-	input			Reset,
-	input	[31:0]	Data,
-	input	[ 7:0]	DecimalPoints,
-	output	[ 7:0]	Cathodes,
-	output	[ 7:0]	Segments
+	input  wire        Clock,
+	input  wire        Reset,
+	input  wire [31:0] Data_i,
+	input  wire [ 7:0] DecimalPoints_i,
+	output wire [ 7:0] Cathodes_o,
+	output wire [ 7:0] Segments_o
 );
 	
 	// Blank leading zeros
 	wire [7:0] Visible;
-	assign Visible[7] = |Data[31:28];
-	assign Visible[6] = |Data[27:24] || Visible[7] ;
-	assign Visible[5] = |Data[23:20] || Visible[6] ;
-	assign Visible[4] = |Data[19:16] || Visible[5] ;
-	assign Visible[3] = |Data[15:12] || Visible[4] ;
-	assign Visible[2] = |Data[11: 8] || Visible[3] ;
-	assign Visible[1] = |Data[ 7: 4] || Visible[2] ;
+	assign Visible[7] = |Data_i[31:28];
+	assign Visible[6] = |Data_i[27:24] || Visible[7] ;
+	assign Visible[5] = |Data_i[23:20] || Visible[6] ;
+	assign Visible[4] = |Data_i[19:16] || Visible[5] ;
+	assign Visible[3] = |Data_i[15:12] || Visible[4] ;
+	assign Visible[2] = |Data_i[11: 8] || Visible[3] ;
+	assign Visible[1] = |Data_i[ 7: 4] || Visible[2] ;
 	assign Visible[0] = 1'b1;
 	
 	// Strobe signal to change active cathode and actually displayed digit
@@ -48,17 +49,17 @@ module DisplayMultiplex #(
 		end
 	end
 	
-	// Select one of cathodes
-	assign Cathodes = (1'b1 << Selector);
+	// Select one of Cathodes_o
+	assign Cathodes_o = (1'b1 << Selector);
 	
-	// Select data to be displayed
-	wire [3:0] TempData = Data[(Selector*4+3)-:4];
+	// Select Data_i to be displayed
+	wire [3:0] TempData = Data_i[(Selector*4+3)-:4];
 	
 	// Check if this digit has to be visible
 	wire Enable = Visible[Selector];
 	
 	// Decimal point enable
-	assign Segments[7] = DecimalPoints[Selector];
+	assign Segments_o[7] = DecimalPoints_i[Selector];
 
 	// 7 segment decoder instance
 	Decoder7seg #(
@@ -66,7 +67,8 @@ module DisplayMultiplex #(
 	) Decoder7seg0(
 		.Enable_i(Enable),
 		.Data_i(TempData),
-		.Segments_o(Segments[6:0])
+		.Segments_o(Segments_o[6:0])
 	);
 	
 endmodule
+`default_nettype wire

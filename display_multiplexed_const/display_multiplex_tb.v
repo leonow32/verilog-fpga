@@ -1,11 +1,11 @@
-// 230329
+// 230721
 
 `timescale 1ns/1ns	// time-unit, precision
+`default_nettype none
+module DisplayMultiplex_tb();
 
-module DisplayMultiplex_tb;
-
-	parameter CLOCK_HZ			= 10_000_000;
-	parameter HALF_PERIOD_NS	= 1_000_000_000 / (2 * CLOCK_HZ);
+	parameter CLOCK_HZ       = 10_000_000;
+	parameter HALF_PERIOD_NS = 1_000_000_000 / (2 * CLOCK_HZ);
 
 	// Clock generator
 	reg Clock = 1'b1;
@@ -28,14 +28,14 @@ module DisplayMultiplex_tb;
 	) DUT(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Data(Data),
-		.DecimalPoints(DecimalPoints),
-		.Cathodes(Cathodes),
-		.Segments(Segments)
+		.Data_i(Data),
+		.DecimalPoints_i(DecimalPoints),
+		.Cathodes_o(Cathodes),
+		.Segments_o(Segments)
 	);
 	
 	// Variable dump
-	wire SegmentDecimal = DUT.DecimalPoints[DUT.Selector];
+	wire SegmentDecimal = DUT.DecimalPoints_i[DUT.Selector];
 	initial begin
 		$dumpfile("display_multiplex.vcd");
 		$dumpvars(0, DisplayMultiplex_tb);
