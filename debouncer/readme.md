@@ -9,7 +9,7 @@ A module used to filter the vibration of mechanical button contacts. After chang
 	Debouncer #(
 		.CLOCK_HZ(CLOCK_HZ),
 		.PERIOD_US()
-	) DUT(
+	) Debouncer_inst(
 		.Clock(Clock),
 		.Reset(Reset),
 		.NoisySignal_i(),

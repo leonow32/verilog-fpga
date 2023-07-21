@@ -1,13 +1,14 @@
 // 230628
 
+`default_nettype none
 module StrobeGenerator #(
 	parameter	CLOCK_HZ	= 10_000_000,
 	parameter	PERIOD_US	= 100
 )(
-	input		Clock,
-	input		Reset,
-	input		Enable_i,
-	output reg	Strobe_o
+	input wire  Clock,
+	input wire  Reset,
+	input wire  Enable_i,
+	output reg  Strobe_o
 );
 	
 	localparam DELAY = (CLOCK_HZ / 1_000_000) * PERIOD_US - 1;
@@ -38,3 +39,4 @@ module StrobeGenerator #(
 	end
 	
 endmodule
+`default_nettype wire
