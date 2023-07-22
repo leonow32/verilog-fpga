@@ -17,8 +17,8 @@ This is very a simple implementation of ROM memory using `case` instruction. It 
 
 + **Clock** - Clock signal, active rising edge.
 + **ReadEnable_i** - If 1 then on the next clock edge the requested data is ready.
-+ **Address_i** - Address of the byte requested to be read on the next clock edge.
-+ **Data_o** - Value of the requested byte.
++ **Address_i[3:0]** - Address of the byte requested to be read on the next clock edge.
++ **Data_o[7:0]** - Value of the requested byte.
     
 ## Simulation
 

@@ -1,0 +1,51 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Fri Jul 21 16:51:09 2023
+[*]
+[dumpfile] "display_multiplex.vcd"
+[dumpfile_mtime] "Fri Jul 21 16:50:10 2023"
+[dumpfile_size] 9408
+[savefile] "display_multiplex.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -9 -9
+*-11.418289 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] DisplayMultiplex_tb.
+[treeopen] DisplayMultiplex_tb.DUT.
+[sst_width] 197
+[signals_width] 202
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+DisplayMultiplex_tb.Reset
+DisplayMultiplex_tb.Clock
+@200
+-Input data
+@22
+[color] 3
+DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+DisplayMultiplex_tb.DUT.DecimalPoints_i[7:0]
+@200
+-Internals
+@28
+DisplayMultiplex_tb.DUT.SwitchCathode
+@24
+DisplayMultiplex_tb.DUT.Selector[2:0]
+@8029
+DisplayMultiplex_tb.DUT.Selector[2:0]
+@20000
+-
+@28
+DisplayMultiplex_tb.DUT.Visible[7:0]
+DisplayMultiplex_tb.SegmentDecimal
+@22
+DisplayMultiplex_tb.DUT.TempData[3:0]
+@28
+DisplayMultiplex_tb.DUT.Enable
+@200
+-Output
+@22
+DisplayMultiplex_tb.DUT.Segments_o[7:0]
+[pattern_trace] 1
+[pattern_trace] 0

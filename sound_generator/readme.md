@@ -8,7 +8,7 @@ The `SoundGenerator` module generates sound of the desired frequency and duratio
 
     SoundGenerator #(
         .CLOCK_HZ(CLOCK_HZ)
-    ) DUT(
+    ) SoundGenerator_inst(
         .Clock(Clock),
         .Reset(Reset),
         .Start_i(),

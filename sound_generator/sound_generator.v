@@ -99,18 +99,18 @@ module SoundGenerator #(
 	
 	assign SoundWave_o = Busy_o ? Signal : 1'b0;
 	
-	// Print debug message with frquency and other params
+	// Print debug message with frequency and other params
 	task DebugMessage(); 
-	begin: message
-		integer Frequency;
-		Frequency = 1_000_000 / (HalfPeriod_us_i * 2);
-		$display("%t %d %d %d", 
-			$realtime, 
-			Duration_ms_i,
-			HalfPeriod_us_i,
-			Frequency
-		);
-	end
+		begin: message
+			integer Frequency;
+			Frequency = 1_000_000 / (HalfPeriod_us_i * 2);
+			$display("%t %d %d %d", 
+				$realtime, 
+				Duration_ms_i,
+				HalfPeriod_us_i,
+				Frequency
+			);
+		end
 	endtask
 	
 endmodule

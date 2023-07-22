@@ -26,8 +26,8 @@ Read only memory. This module can be used to store permanent information, such a
 + **Clock** - Clock signal, active rising edge.
 + **Reset** - Asynchronous reset, active low.
 + **ReadEnable_i** - If 1 then on the next clock edge the requested data is ready.
-+ **Address_i** - Address of the byte requested to be read on the next clock edge.
-+ **Data_o** - Value of the requested byte.
++ **Address_i[ADDRESS_WIDTH-1:0]** - Address of the byte requested to be read on the next clock edge.
++ **Data_o[DATA_WIDTH-1:0]** - Value of the requested byte.
     
 ## Simulation
 
