@@ -2,10 +2,10 @@
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
 [*] Fri Jul 21 16:51:09 2023
 [*]
-[dumpfile] "C:\verilog\display_multiplexed_const\display_multiplex.vcd"
+[dumpfile] "display_multiplex.vcd"
 [dumpfile_mtime] "Fri Jul 21 16:50:10 2023"
 [dumpfile_size] 9408
-[savefile] "C:\verilog\display_multiplexed_const\display_multiplex.gtkw"
+[savefile] "display_multiplex.gtkw"
 [timestart] 0
 [size] 1920 1009
 [pos] -9 -9

@@ -8,6 +8,8 @@ Multiplexing means switching the displayed digits very quickly. At any given tim
 
 The module has an option to blank out unnecessary zeros. This means that instead of `00123400` it will display ` 123400`. In addition, it is possible to light a decimal point in any place, or even several decimal points if desired.
 
+You can adjust the multiplexing speed by changing the `SWITCH_PERIOD_US` parameter. This is the time in microseconds that determines how long a digit is displayed before switching to the next digit. This parameter should be adjusted experimentally. If you see the digits flashing then you need to decrease it. On the other hand, if you see "ghosting" of neighboring digits, it means that multiplexing is happening too fast and you need to increase this parameter.
+
 The display should be connected to the FPGA chip as shown in the schematic below.
 
 ![Schematic](schematic.png "Schematic")
