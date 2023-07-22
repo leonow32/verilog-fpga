@@ -10,6 +10,7 @@ I decided to publish these peripherals because I think they may be useful for ot
 
 + [Decoder 7seg](/decoder_7seg) - Simple module to convert 4-bit binary data into 7-segment code that can drive a 7-segment display. Supports displaying digits from 0 to 9 and hexadecimal values from A to F. Made as a fully combinational logic without any clock and reset signals. Can be used with common cathode and common anode displays.
 + [Display Multiplexed Const](/display_multiplexed_const) - Module that controls an 8-digit LED display with a common cathode. Supports blanking out unnecessary zeros and adjustable multiplexing period.
++ [Display Multiplexed Variable](/display_multiplexed_variable) - Module that controls an n-digit LED display with a common cathode. The number of digits in the display is controlled with a parameter. Supports blanking out unnecessary zeros and adjustable multiplexing period.
 
 **Timing:**
 
