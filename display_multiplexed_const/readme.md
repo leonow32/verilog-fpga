@@ -34,7 +34,7 @@ The display should be connected to the FPGA chip as shown in the schematic below
 + **SWITCH_PERIOD_US** - The time how long each cathode is active in [us].
 + **Clock** - Clock signal, active rising edge.
 + **Reset** - Asynchronous reset, active low.
-+ **Data_i[63:0]** - Input in HEX; 4 bits for each digit.
++ **Data_i[31:0]** - Input in HEX; 4 bits for each digit.
 + **DecimalPoints[7:0]** - Each bit determines whether to light a decimal point on the corresponding digit.
 + **Cathodes_o[7:0]** - GPIO pins controlling the display cathodes.
 + **Segments_o[7:0]** - GPIO pins controlling the display segments.
