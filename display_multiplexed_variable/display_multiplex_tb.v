@@ -1,4 +1,4 @@
-// 230721
+// 230722
 
 `timescale 1ns/1ns	// time-unit, precision
 `default_nettype none
@@ -6,7 +6,8 @@ module DisplayMultiplex_tb();
 
 	parameter CLOCK_HZ       = 10_000_000;
 	parameter HALF_PERIOD_NS = 1_000_000_000 / (2 * CLOCK_HZ);
-
+	parameter DIGITS = 8;
+	
 	// Clock generator
 	reg Clock = 1'b1;
 	always begin
@@ -15,16 +16,17 @@ module DisplayMultiplex_tb();
 	end
 	
 	// Signals
-	reg				Reset			= 1'b0;
-	reg		[31:0]	Data			= 'h0000BEEF;		// Change displayed number here
-	reg		[ 7:0]	DecimalPoints	= 'b00000001;
-	wire	[ 7:0]	Cathodes;
-	wire	[ 7:0]	Segments;
-
+	reg						Reset			= 1'b0;
+	reg		[4*DIGITS-1:0]	Data			= 'h0000BEEF;	// Change displayed number here
+	reg		[  DIGITS-1:0]	DecimalPoints	= 'b00000001;
+	wire	[  DIGITS-1:0]	Cathodes;
+	wire	[         7:0]	Segments;
+	
 	// Instantiate device under test
 	DisplayMultiplex #(
 		.CLOCK_HZ(CLOCK_HZ),
-		.SWITCH_PERIOD_US(1)
+		.SWITCH_PERIOD_US(1),
+		.DIGITS(DIGITS)
 	) DUT(
 		.Clock(Clock),
 		.Reset(Reset),
@@ -40,7 +42,7 @@ module DisplayMultiplex_tb();
 		$dumpfile("display_multiplex.vcd");
 		$dumpvars(0, DisplayMultiplex_tb);
 	end
-	
+
 	// Test sequence
 	initial begin
 		$timeformat(-6, 0, "us", 10);
@@ -70,3 +72,4 @@ module DisplayMultiplex_tb();
 	end
 
 endmodule
+`default_nettype wire

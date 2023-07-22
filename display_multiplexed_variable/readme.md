@@ -1,8 +1,8 @@
-# LED Multiplexed display (fixed number of digits)
+# LED Multiplexed display (variable number of digits)
 
 >**Status**: ready
 
-Module that controls an 8-digit LED display with a common cathode. If you need a module that controls a display with an adjustable number of digits, see the `display_multiplex_variable` module.
+Module that controls a LED display with a common cathode. The nuber of digits is set using `DIGITS` parameter. 
 
 Multiplexing means switching the displayed digits very quickly. At any given time, only one of them is lit, and all the others remain blank. In this module, multiplexing starts with the digit on the right side of the display and is called digit number 0. The digit on the left side is number 7.
 
@@ -18,7 +18,8 @@ The display should be connected to the FPGA chip as shown in the schematic below
 
     DisplayMultiplex #(
         .CLOCK_HZ(CLOCK_HZ),
-        .SWITCH_PERIOD_US(1000)
+        .SWITCH_PERIOD_US(1000),
+		.DIGITS(DIGITS)
     ) DisplayMultiplex_inst(
         .Clock(Clock),
         .Reset(Reset),
@@ -32,11 +33,12 @@ The display should be connected to the FPGA chip as shown in the schematic below
 
 + **CLOCK_HZ** - Clock signal frequency [Hz].
 + **SWITCH_PERIOD_US** - The time how long each cathode is active in [us].
++ **DIGITS** - The number of digits in the display.
 + **Clock** - Clock signal, active rising edge.
 + **Reset** - Asynchronous reset, active low.
-+ **Data_i[31:0]** - Input in HEX; 4 bits for each digit.
-+ **DecimalPoints[7:0]** - Each bit determines whether to light a decimal point on the corresponding digit.
-+ **Cathodes_o[7:0]** - GPIO pins controlling the display cathodes.
++ **Data_i[DIGITS*4-1:0]** - Input in HEX; 4 bits for each digit.
++ **DecimalPoints[DIGITS-1:0]** - Each bit determines whether to light a decimal point on the corresponding digit.
++ **Cathodes_o[DIGITS-1:0]** - GPIO pins controlling the display cathodes.
 + **Segments_o[7:0]** - GPIO pins controlling the display segments.
 + **SwitchCathode_o** - Optional output used by the `MatrixKeboard` module.
 

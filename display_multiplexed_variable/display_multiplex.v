@@ -1,29 +1,32 @@
-// 230721
+// 230722
 
 `default_nettype none
 module DisplayMultiplex #(
-	parameter CLOCK_HZ         = 10_000_000,
-	parameter SWITCH_PERIOD_US = 1000
+	parameter CLOCK_HZ			= 10_000_000,
+	parameter SWITCH_PERIOD_US	= 1000,
+	parameter DIGITS			= 8
 )(
-	input  wire        Clock,
-	input  wire        Reset,
-	input  wire [31:0] Data_i,
-	input  wire [ 7:0] DecimalPoints_i,
-	output wire [ 7:0] Cathodes_o,
-	output wire [ 7:0] Segments_o,
-	output wire        SwitchCathode_o
+	input wire                 Clock,
+	input wire                 Reset,
+	input wire  [DIGITS*4-1:0] Data_i,
+	input wire  [  DIGITS-1:0] DecimalPoints_i,
+	output wire [  DIGITS-1:0] Cathodes_o,
+	output wire [         7:0] Segments_o,
+	output wire                SwitchCathode_o
 );
 	
 	// Blank leading zeros
-	wire [7:0] Visible;
-	assign Visible[7] = |Data_i[31:28];
-	assign Visible[6] = |Data_i[27:24] || Visible[7] ;
-	assign Visible[5] = |Data_i[23:20] || Visible[6] ;
-	assign Visible[4] = |Data_i[19:16] || Visible[5] ;
-	assign Visible[3] = |Data_i[15:12] || Visible[4] ;
-	assign Visible[2] = |Data_i[11: 8] || Visible[3] ;
-	assign Visible[1] = |Data_i[ 7: 4] || Visible[2] ;
-	assign Visible[0] = 1'b1;
+	wire [DIGITS-1:0] Visible;
+	generate
+		genvar i;
+		for(i=0; i<DIGITS; i=i+1) begin
+			case(i)
+				0:			assign Visible[i] = 1'b1;
+				DIGITS-1:	assign Visible[i] = |Data_i[i*4+3:i*4];
+				default:	assign Visible[i] = |Data_i[i*4+3:i*4] || Visible[i+1];
+			endcase
+		end
+	endgenerate
 	
 	// Strobe signal to change active cathode and actually displayed digit
 	StrobeGenerator #(
@@ -37,12 +40,13 @@ module DisplayMultiplex #(
 	);
 	
 	// Change cathode
-	reg [2:0] Selector;
+	localparam CNT_WIDTH = $clog2(DIGITS);
+	reg [CNT_WIDTH-1:0] Selector;
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) 
 			Selector <= 0;
 		else if(SwitchCathode_o) begin
-			if(Selector == 7)
+			if(Selector == DIGITS - 1)
 				Selector <= 0;
 			else
 				Selector <= Selector + 1'b1; 
