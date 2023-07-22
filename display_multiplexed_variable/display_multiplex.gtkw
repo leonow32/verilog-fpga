@@ -1,38 +1,122 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Wed Mar 29 13:38:06 2023
+[*] Sat Jul 22 15:35:23 2023
 [*]
 [dumpfile] "display_multiplex.vcd"
-[dumpfile_mtime] "Wed Mar 29 13:32:23 2023"
-[dumpfile_size] 9372
+[dumpfile_mtime] "Sat Jul 22 15:31:47 2023"
+[dumpfile_size] 10507
 [savefile] "display_multiplex.gtkw"
 [timestart] 0
-[size] 1920 1017
-[pos] -1 -1
+[size] 1920 1009
+[pos] -9 -9
 *-11.418289 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] DisplayMultiplex_tb.
 [treeopen] DisplayMultiplex_tb.DUT.
 [sst_width] 197
 [signals_width] 202
 [sst_expanded] 1
-[sst_vpaned_height] 300
+[sst_vpaned_height] 297
 @28
 DisplayMultiplex_tb.Reset
 DisplayMultiplex_tb.Clock
 @200
 -Input data
-@22
-DisplayMultiplex_tb.Data[31:0]
-DisplayMultiplex_tb.DecimalPoints[7:0]
+@c00022
+[color] 3
+DisplayMultiplex_tb.DUT.Data_i[31:0]
+@28
+[color] 3
+(0)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(1)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(2)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(3)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(4)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(5)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(6)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(7)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(8)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(9)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(10)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(11)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(12)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(13)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(14)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(15)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(16)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(17)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(18)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(19)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(20)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(21)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(22)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(23)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(24)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(25)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(26)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(27)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(28)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(29)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(30)DisplayMultiplex_tb.DUT.Data_i[31:0]
+[color] 3
+(31)DisplayMultiplex_tb.DUT.Data_i[31:0]
+@1401200
+-group_end
+@c00022
+[color] 3
+DisplayMultiplex_tb.DUT.DecimalPoints_i[7:0]
+@28
+(0)DisplayMultiplex_tb.DUT.DecimalPoints_i[7:0]
+(1)DisplayMultiplex_tb.DUT.DecimalPoints_i[7:0]
+(2)DisplayMultiplex_tb.DUT.DecimalPoints_i[7:0]
+(3)DisplayMultiplex_tb.DUT.DecimalPoints_i[7:0]
+(4)DisplayMultiplex_tb.DUT.DecimalPoints_i[7:0]
+(5)DisplayMultiplex_tb.DUT.DecimalPoints_i[7:0]
+(6)DisplayMultiplex_tb.DUT.DecimalPoints_i[7:0]
+(7)DisplayMultiplex_tb.DUT.DecimalPoints_i[7:0]
+@1401200
+-group_end
 @200
 -Internals
 @28
-DisplayMultiplex_tb.DUT.SwitchCathode
+DisplayMultiplex_tb.DUT.SwitchCathode_o
 @24
 DisplayMultiplex_tb.DUT.Selector[2:0]
-@29
-DisplayMultiplex_tb.DUT.Visible[7:0]
+@8028
+DisplayMultiplex_tb.DUT.Selector[2:0]
+@20000
+-
 @28
+DisplayMultiplex_tb.DUT.Visible[7:0]
 DisplayMultiplex_tb.SegmentDecimal
 @22
 DisplayMultiplex_tb.DUT.TempData[3:0]
@@ -42,7 +126,5 @@ DisplayMultiplex_tb.DUT.Enable
 -Output
 @22
 DisplayMultiplex_tb.Segments[7:0]
-@28
-DisplayMultiplex_tb.DUT.Cathodes[7:0]
 [pattern_trace] 1
 [pattern_trace] 0

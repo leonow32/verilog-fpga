@@ -33,7 +33,7 @@ module DisplayMultiplex #(
 		.Clock(Clock),
 		.Reset(Reset),
 		.Enable_i(1'b1),
-		.Strobe_o(SwitchCathode)
+		.Strobe_o(SwitchCathode_o)
 	);
 	
 	// Change cathode
@@ -41,7 +41,7 @@ module DisplayMultiplex #(
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) 
 			Selector <= 0;
-		else if(SwitchCathode) begin
+		else if(SwitchCathode_o) begin
 			if(Selector == 7)
 				Selector <= 0;
 			else
@@ -49,10 +49,10 @@ module DisplayMultiplex #(
 		end
 	end
 	
-	// Select one of Cathodes_o
+	// Select one of cathodes
 	assign Cathodes_o = (1'b1 << Selector);
 	
-	// Select Data_i to be displayed
+	// Select data to be displayed
 	wire [3:0] TempData = Data_i[(Selector*4+3)-:4];
 	
 	// Check if this digit has to be visible

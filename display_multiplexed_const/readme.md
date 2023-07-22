@@ -75,6 +75,6 @@ Example of displaying `    BEEF` on the display. First four digits are intention
           18us  1   e    1
           19us  2   e    1
           20us  3   b    1
-    ===== END =====
+    ====== END ======
     display_multiplex_tb.v:69: $finish called at 20101 (1ns)
 

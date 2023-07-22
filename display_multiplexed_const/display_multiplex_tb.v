@@ -65,7 +65,7 @@ module DisplayMultiplex_tb();
 		
 		#100;
 		
-		$display("===== END =====");
+		$display("====== END ======");
 		#1 $finish;
 	end
 
