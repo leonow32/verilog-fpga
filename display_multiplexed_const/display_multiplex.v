@@ -11,7 +11,7 @@ module DisplayMultiplex #(
 	input  wire [ 7:0] DecimalPoints_i,
 	output wire [ 7:0] Cathodes_o,
 	output wire [ 7:0] Segments_o,
-	output wire        SwitchCathode
+	output wire        SwitchCathode_o
 );
 	
 	// Blank leading zeros
