@@ -54,7 +54,7 @@ module DisplayMultiplex_tb();
 		
 		$display("      time\tSel\tData\tVisible");
 		repeat(20) begin
-			@(posedge DUT.SwitchCathode);
+			@(posedge DUT.SwitchCathode_o);
 			$display("%t\t%d\t%H\t%d", 
 				$realtime, 
 				DUT.Selector, 
