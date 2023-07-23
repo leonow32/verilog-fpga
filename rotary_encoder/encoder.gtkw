@@ -1,20 +1,20 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sat Jun 17 10:26:19 2023
+[*] Sun Jul 23 19:07:48 2023
 [*]
 [dumpfile] "encoder.vcd"
-[dumpfile_mtime] "Sat Jun 17 10:13:22 2023"
+[dumpfile_mtime] "Sun Jul 23 18:59:42 2023"
 [dumpfile_size] 9287
 [savefile] "encoder.gtkw"
 [timestart] 0
 [size] 1920 1009
-[pos] -1 -1
-*-12.077706 4300 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -9 -9
+*-11.985503 2665 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Encoder_tb.
 [sst_width] 197
-[signals_width] 277
+[signals_width] 185
 [sst_expanded] 1
-[sst_vpaned_height] 297
+[sst_vpaned_height] 184
 @28
 Encoder_tb.Reset
 Encoder_tb.Clock
@@ -32,13 +32,15 @@ Encoder_tb.DUT.A
 Encoder_tb.DUT.B
 @200
 -State machine
-@2025
+@2024
 ^1 encoder_state.gtkw
 Encoder_tb.DUT.State[1:0]
 @200
 -Outputs
 @28
+[color] 2
 Encoder_tb.DUT.Increment_o
+[color] 2
 Encoder_tb.DUT.Decrement_o
 [pattern_trace] 1
 [pattern_trace] 0
