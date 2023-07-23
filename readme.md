@@ -1,4 +1,3 @@
-
 # Verilog FPGA
 This is my repo with various peripherals coded in Verilog that I use in my FPGA projects. I use this as a code base and a library of many useful things that I can just copy-paste into something more advanced. 
 
@@ -20,6 +19,7 @@ I decided to publish these peripherals because I think they may be useful for ot
 
 + [Edge Detector](/edge_detector) - A simple module that is used to detect the rising and falling edge of any signal. If a change in the signal is detected, a pulse of one clock cycle length will be generated on the `RisingEdge_o` and `FallingEdge_o` outputs. Important - the signal under test must be synchronized with the clock.
 + [Debouncer](/debouncer) - A module used to filter the vibration of mechanical button contacts. After changing the state of the input `NoisySignal_i`, the module waits the time specified by the parameter . If the input state is stable during this time, then the output state `FilteredSignal_o` changes.
++ [Rotary Encoder](/rotary_encoder) - Module supporting a rotary encoder. Allows recognition of increment and decrement signals of ecoders, which have four pulses per click.
 
 **Memories:**
 

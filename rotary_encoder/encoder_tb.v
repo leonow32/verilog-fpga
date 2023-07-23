@@ -24,7 +24,7 @@ module Encoder_tb();
 		$dumpvars(0, Encoder_tb);
 	end
 
-	// 
+	// Test sequence
 	initial begin
 		$timeformat(-6, 3, "us", 12);
 		$display("===== START =====");
