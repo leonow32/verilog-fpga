@@ -23,103 +23,103 @@ LCD_tb.Clock
 -Input data to display
 @28
 [color] 7
-LCD_tb.Digit0_r[7:0]
+LCD_tb.Digit0[7:0]
 @c00028
 [color] 7
-LCD_tb.Digit1_r[7:0]
+LCD_tb.Digit1[7:0]
 @28
 [color] 7
-(0)LCD_tb.Digit1_r[7:0]
+(0)LCD_tb.Digit1[7:0]
 [color] 7
-(1)LCD_tb.Digit1_r[7:0]
+(1)LCD_tb.Digit1[7:0]
 [color] 7
-(2)LCD_tb.Digit1_r[7:0]
+(2)LCD_tb.Digit1[7:0]
 [color] 7
-(3)LCD_tb.Digit1_r[7:0]
+(3)LCD_tb.Digit1[7:0]
 [color] 7
-(4)LCD_tb.Digit1_r[7:0]
+(4)LCD_tb.Digit1[7:0]
 [color] 7
-(5)LCD_tb.Digit1_r[7:0]
+(5)LCD_tb.Digit1[7:0]
 [color] 7
-(6)LCD_tb.Digit1_r[7:0]
+(6)LCD_tb.Digit1[7:0]
 [color] 7
-(7)LCD_tb.Digit1_r[7:0]
+(7)LCD_tb.Digit1[7:0]
 @1401200
 -group_end
 @28
 [color] 7
-LCD_tb.Digit2_r[7:0]
+LCD_tb.Digit2[7:0]
 [color] 7
-LCD_tb.Digit3_r[7:0]
+LCD_tb.Digit3[7:0]
 @200
 -PWM signals
 @c00028
-LCD_tb.DUT.LCD_PWM_inst.State_r[1:0]
+LCD_tb.DUT.LCD_PWM_inst.State[1:0]
 @28
-(0)LCD_tb.DUT.LCD_PWM_inst.State_r[1:0]
-(1)LCD_tb.DUT.LCD_PWM_inst.State_r[1:0]
+(0)LCD_tb.DUT.LCD_PWM_inst.State[1:0]
+(1)LCD_tb.DUT.LCD_PWM_inst.State[1:0]
 @1401200
 -group_end
 @800022
-LCD_tb.DUT.Voltage_w[3:0]
+LCD_tb.DUT.Voltage[3:0]
 @28
-(0)LCD_tb.DUT.Voltage_w[3:0]
-(1)LCD_tb.DUT.Voltage_w[3:0]
-(2)LCD_tb.DUT.Voltage_w[3:0]
-(3)LCD_tb.DUT.Voltage_w[3:0]
+(0)LCD_tb.DUT.Voltage[3:0]
+(1)LCD_tb.DUT.Voltage[3:0]
+(2)LCD_tb.DUT.Voltage[3:0]
+(3)LCD_tb.DUT.Voltage[3:0]
 @1001200
 -group_end
 @200
 -State Machine
 @28
-LCD_tb.DUT.ChangeState_w
+LCD_tb.DUT.ChangeState
 @2025
 ^1 D:\Lattice\Icarus\LCD 4 Digit\lcd_state.gtkw
-LCD_tb.DUT.State_r[2:0]
+LCD_tb.DUT.State[2:0]
 @200
 -Analog waveforms
 @c08024
 [color] 3
-LCD_tb.DUT.\ComAnalog_r[3][1:0]
+LCD_tb.DUT.\ComAnalog[3][1:0]
 @28
-(0)LCD_tb.DUT.\ComAnalog_r[3][1:0]
-(1)LCD_tb.DUT.\ComAnalog_r[3][1:0]
+(0)LCD_tb.DUT.\ComAnalog[3][1:0]
+(1)LCD_tb.DUT.\ComAnalog[3][1:0]
 @1401200
 -group_end
 @8024
 [color] 3
-LCD_tb.DUT.\ComAnalog_r[2][1:0]
+LCD_tb.DUT.\ComAnalog[2][1:0]
 [color] 3
-LCD_tb.DUT.\ComAnalog_r[1][1:0]
+LCD_tb.DUT.\ComAnalog[1][1:0]
 @c08024
 [color] 3
-LCD_tb.DUT.\ComAnalog_r[0][1:0]
+LCD_tb.DUT.\ComAnalog[0][1:0]
 @28
-(0)LCD_tb.DUT.\ComAnalog_r[0][1:0]
-(1)LCD_tb.DUT.\ComAnalog_r[0][1:0]
+(0)LCD_tb.DUT.\ComAnalog[0][1:0]
+(1)LCD_tb.DUT.\ComAnalog[0][1:0]
 @1401200
 -group_end
 @8024
 [color] 2
-LCD_tb.DUT.\SegAnalog_r[7][1:0]
+LCD_tb.DUT.\SegAnalog[7][1:0]
 [color] 2
-LCD_tb.DUT.\SegAnalog_r[6][1:0]
+LCD_tb.DUT.\SegAnalog[6][1:0]
 [color] 2
-LCD_tb.DUT.\SegAnalog_r[5][1:0]
+LCD_tb.DUT.\SegAnalog[5][1:0]
 [color] 2
-LCD_tb.DUT.\SegAnalog_r[4][1:0]
+LCD_tb.DUT.\SegAnalog[4][1:0]
 [color] 2
-LCD_tb.DUT.\SegAnalog_r[3][1:0]
+LCD_tb.DUT.\SegAnalog[3][1:0]
 [color] 2
-LCD_tb.DUT.\SegAnalog_r[2][1:0]
+LCD_tb.DUT.\SegAnalog[2][1:0]
 [color] 2
-LCD_tb.DUT.\SegAnalog_r[1][1:0]
+LCD_tb.DUT.\SegAnalog[1][1:0]
 @c08024
 [color] 2
-LCD_tb.DUT.\SegAnalog_r[0][1:0]
+LCD_tb.DUT.\SegAnalog[0][1:0]
 @28
-(0)LCD_tb.DUT.\SegAnalog_r[0][1:0]
-(1)LCD_tb.DUT.\SegAnalog_r[0][1:0]
+(0)LCD_tb.DUT.\SegAnalog[0][1:0]
+(1)LCD_tb.DUT.\SegAnalog[0][1:0]
 @1401200
 -group_end
 @200
