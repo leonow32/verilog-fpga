@@ -1,0 +1,164 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Tue May 16 12:18:37 2023
+[*]
+[dumpfile] "lcd.vcd"
+[dumpfile_mtime] "Tue May 16 12:18:27 2023"
+[dumpfile_size] 36163
+[savefile] "lcd.gtkw"
+[timestart] 0
+[size] 1920 1017
+[pos] -1 -1
+*-15.827243 400100 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] LCD_tb.
+[treeopen] LCD_tb.DUT.
+[sst_width] 219
+[signals_width] 273
+[sst_expanded] 1
+[sst_vpaned_height] 124
+@28
+LCD_tb.Reset
+LCD_tb.Clock
+@200
+-Input data to display
+@28
+[color] 7
+LCD_tb.Digit0_r[7:0]
+@c00028
+[color] 7
+LCD_tb.Digit1_r[7:0]
+@28
+[color] 7
+(0)LCD_tb.Digit1_r[7:0]
+[color] 7
+(1)LCD_tb.Digit1_r[7:0]
+[color] 7
+(2)LCD_tb.Digit1_r[7:0]
+[color] 7
+(3)LCD_tb.Digit1_r[7:0]
+[color] 7
+(4)LCD_tb.Digit1_r[7:0]
+[color] 7
+(5)LCD_tb.Digit1_r[7:0]
+[color] 7
+(6)LCD_tb.Digit1_r[7:0]
+[color] 7
+(7)LCD_tb.Digit1_r[7:0]
+@1401200
+-group_end
+@28
+[color] 7
+LCD_tb.Digit2_r[7:0]
+[color] 7
+LCD_tb.Digit3_r[7:0]
+@200
+-PWM signals
+@c00028
+LCD_tb.DUT.LCD_PWM_inst.State_r[1:0]
+@28
+(0)LCD_tb.DUT.LCD_PWM_inst.State_r[1:0]
+(1)LCD_tb.DUT.LCD_PWM_inst.State_r[1:0]
+@1401200
+-group_end
+@800022
+LCD_tb.DUT.Voltage_w[3:0]
+@28
+(0)LCD_tb.DUT.Voltage_w[3:0]
+(1)LCD_tb.DUT.Voltage_w[3:0]
+(2)LCD_tb.DUT.Voltage_w[3:0]
+(3)LCD_tb.DUT.Voltage_w[3:0]
+@1001200
+-group_end
+@200
+-State Machine
+@28
+LCD_tb.DUT.ChangeState_w
+@2025
+^1 D:\Lattice\Icarus\LCD 4 Digit\lcd_state.gtkw
+LCD_tb.DUT.State_r[2:0]
+@200
+-Analog waveforms
+@c08024
+[color] 3
+LCD_tb.DUT.\ComAnalog_r[3][1:0]
+@28
+(0)LCD_tb.DUT.\ComAnalog_r[3][1:0]
+(1)LCD_tb.DUT.\ComAnalog_r[3][1:0]
+@1401200
+-group_end
+@8024
+[color] 3
+LCD_tb.DUT.\ComAnalog_r[2][1:0]
+[color] 3
+LCD_tb.DUT.\ComAnalog_r[1][1:0]
+@c08024
+[color] 3
+LCD_tb.DUT.\ComAnalog_r[0][1:0]
+@28
+(0)LCD_tb.DUT.\ComAnalog_r[0][1:0]
+(1)LCD_tb.DUT.\ComAnalog_r[0][1:0]
+@1401200
+-group_end
+@8024
+[color] 2
+LCD_tb.DUT.\SegAnalog_r[7][1:0]
+[color] 2
+LCD_tb.DUT.\SegAnalog_r[6][1:0]
+[color] 2
+LCD_tb.DUT.\SegAnalog_r[5][1:0]
+[color] 2
+LCD_tb.DUT.\SegAnalog_r[4][1:0]
+[color] 2
+LCD_tb.DUT.\SegAnalog_r[3][1:0]
+[color] 2
+LCD_tb.DUT.\SegAnalog_r[2][1:0]
+[color] 2
+LCD_tb.DUT.\SegAnalog_r[1][1:0]
+@c08024
+[color] 2
+LCD_tb.DUT.\SegAnalog_r[0][1:0]
+@28
+(0)LCD_tb.DUT.\SegAnalog_r[0][1:0]
+(1)LCD_tb.DUT.\SegAnalog_r[0][1:0]
+@1401200
+-group_end
+@200
+-LCD pins
+@800022
+[color] 3
+LCD_tb.DUT.ComPWM_o[3:0]
+@28
+[color] 3
+(0)LCD_tb.DUT.ComPWM_o[3:0]
+[color] 3
+(1)LCD_tb.DUT.ComPWM_o[3:0]
+[color] 3
+(2)LCD_tb.DUT.ComPWM_o[3:0]
+[color] 3
+(3)LCD_tb.DUT.ComPWM_o[3:0]
+@1001200
+-group_end
+@800022
+[color] 2
+LCD_tb.DUT.SegPWM_o[7:0]
+@28
+[color] 2
+(0)LCD_tb.DUT.SegPWM_o[7:0]
+[color] 2
+(1)LCD_tb.DUT.SegPWM_o[7:0]
+[color] 2
+(2)LCD_tb.DUT.SegPWM_o[7:0]
+[color] 2
+(3)LCD_tb.DUT.SegPWM_o[7:0]
+[color] 2
+(4)LCD_tb.DUT.SegPWM_o[7:0]
+[color] 2
+(5)LCD_tb.DUT.SegPWM_o[7:0]
+[color] 2
+(6)LCD_tb.DUT.SegPWM_o[7:0]
+[color] 2
+(7)LCD_tb.DUT.SegPWM_o[7:0]
+@1001200
+-group_end
+[pattern_trace] 1
+[pattern_trace] 0
