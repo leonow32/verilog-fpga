@@ -21,8 +21,8 @@ module LCD_tb();
 	reg  [7:0] Digit2 = 8'b00000000;
 	reg  [7:0] Digit1 = 8'b00010000;
 	reg  [7:0] Digit0 = 8'b00000000;
-	wire [3:0] ComPWM_w;
-	wire [7:0] SegPWM_w;
+	wire [3:0] ComPWM;
+	wire [7:0] SegPWM;
 	
 	// Instantiate device under test
 	LCD #(
@@ -35,8 +35,8 @@ module LCD_tb();
 		.Digit2_i(Digit2),
 		.Digit1_i(Digit1),
 		.Digit0_i(Digit0),
-		.ComPWM_o(ComPWM_w),
-		.SegPWM_o(SegPWM_w)
+		.ComPWM_o(ComPWM),
+		.SegPWM_o(SegPWM)
 	);
 	
 	// Variable dump
