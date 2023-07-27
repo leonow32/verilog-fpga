@@ -1,21 +1,21 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Thu Jul 06 18:21:30 2023
+[*] Thu Jul 27 18:10:07 2023
 [*]
 [dumpfile] "sound_generator.vcd"
-[dumpfile_mtime] "Thu Jul 06 18:19:40 2023"
-[dumpfile_size] 6013198
+[dumpfile_mtime] "Thu Jul 27 18:01:02 2023"
+[dumpfile_size] 6019162
 [savefile] "sound_generator.gtkw"
 [timestart] 0
 [size] 1920 1009
-[pos] -1 -1
-*-20.638645 11001961 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -5 -345
+*-20.638645 4252000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] SoundGenerator_tb.
 [treeopen] SoundGenerator_tb.DUT.
 [sst_width] 221
 [signals_width] 299
 [sst_expanded] 1
-[sst_vpaned_height] 297
+[sst_vpaned_height] 298
 @28
 SoundGenerator_tb.Reset
 SoundGenerator_tb.Clock
@@ -34,13 +34,10 @@ SoundGenerator_tb.DUT.StrobeGeneratorMilli.Enable_i
 @28
 [color] 3
 SoundGenerator_tb.DUT.Start_i
-@29
 [color] 3
 SoundGenerator_tb.DUT.Finish_i
 @24
-[color] 3
 SoundGenerator_tb.DUT.HalfPeriod_us_i[15:0]
-[color] 3
 SoundGenerator_tb.DUT.Duration_ms_i[15:0]
 @200
 -Duration

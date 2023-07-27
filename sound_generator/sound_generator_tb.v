@@ -60,8 +60,8 @@ module SoundGenerator_tb();
 		HalfPeriod_us <= 16'd10;
 		Start         <= 1'b1;
 		@(posedge Clock);
-		Duration_ms   <= 16'd0;
-		HalfPeriod_us <= 16'd0;
+		Duration_ms   <= 16'dX;
+		HalfPeriod_us <= 16'dX;
 		Start         <= 1'b0;
 		@(posedge Done);
 		
@@ -70,18 +70,18 @@ module SoundGenerator_tb();
 		HalfPeriod_us <= 16'd0;
 		Start         <= 1'b1;
 		@(posedge Clock);
-		Duration_ms	  <= 16'd0;
-		HalfPeriod_us <= 16'd0;
+		Duration_ms	  <= 16'dX;
+		HalfPeriod_us <= 16'dX;
 		Start         <= 1'b0;
 		@(posedge Done);
 		
-		// 3ms, 500kHz
+		// 3ms, 10kHz
 		Duration_ms   <= 16'd3;
-		HalfPeriod_us <= 16'd1;
+		HalfPeriod_us <= 16'd50;
 		Start         <= 1'b1;
 		@(posedge Clock);
-		Duration_ms   <= 16'd0;
-		HalfPeriod_us <= 16'd0;
+		Duration_ms   <= 16'dX;
+		HalfPeriod_us <= 16'dX;
 		Start         <= 1'b0;
 		@(posedge Done);
 		
@@ -90,8 +90,8 @@ module SoundGenerator_tb();
 		HalfPeriod_us <= 16'd99;
 		Start         <= 1'b1;
 		@(posedge Clock);
-		Duration_ms   <= 16'd0;
-		HalfPeriod_us <= 16'd0;
+		Duration_ms   <= 16'dX;
+		HalfPeriod_us <= 16'dX;
 		Start         <= 1'b0;
 		repeat(5) @(posedge Clock);
 		
@@ -100,8 +100,8 @@ module SoundGenerator_tb();
 		HalfPeriod_us <= 16'd500;
 		Start         <= 1'b1;
 		@(posedge Clock);
-		Duration_ms	  <= 16'd0;
-		HalfPeriod_us <= 16'd0;
+		Duration_ms	  <= 16'dX;
+		HalfPeriod_us <= 16'dX;
 		Start         <= 1'b0;
 		repeat(50000) @(posedge Clock);
 		
