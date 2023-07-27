@@ -36,16 +36,18 @@ The `SoundGenerator` module generates sound of the desired frequency and duratio
 ## Simulation
 
 ![Simulation](simulation.png "Simulation")
+![Simulation](simulation2.png "Simulation")
 
 ## Console output
 
-	VCD info: dumpfile sound_generator.vcd opened for output.
-	===== START =====
-			Time Durat HaPer        Freq
-		 1.100us     1    10       50000
-	  1001.200us     2     0           x
-	  3001.200us     3     1      500000
-	  6001.200us     0    99        5050
-	  6001.800us    10   500        1000
-	===== END =====
-	sound_generator_tb.v:116: $finish called at 11003002 (1ns)
+    VCD info: dumpfile sound_generator.vcd opened for output.
+    ===== START =====
+            Time Durat HaPer        Freq
+         1.100us     1    10       50000
+      1001.200us     2     0           x
+      3001.200us     3    50       10000
+      6001.200us     0    99        5050
+      6001.800us    10   500        1000
+    ===== END =====
+    sound_generator_tb.v:116: $finish called at 11003002 (1ns)
+
