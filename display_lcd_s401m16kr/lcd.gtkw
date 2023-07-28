@@ -74,7 +74,7 @@ LCD_tb.DUT.Voltage[3:0]
 @28
 LCD_tb.DUT.ChangeState
 @2025
-^1 D:\Lattice\Icarus\LCD 4 Digit\lcd_state.gtkw
+^1 lcd_state.gtkw
 LCD_tb.DUT.State[2:0]
 @200
 -Analog waveforms
