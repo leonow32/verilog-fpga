@@ -103,7 +103,10 @@ module SoundGenerator #(
 	task DebugMessage(); 
 		begin: message
 			integer Frequency;
-			Frequency = 1_000_000 / (HalfPeriod_us_i * 2);
+			if(HalfPeriod_us_i == 16'd0)
+				Frequency = 0;
+			else
+				Frequency = 1_000_000 / ((HalfPeriod_us_i + 1) * 2);
 			$display("%t %d %d %d", 
 				$realtime, 
 				Duration_ms_i,
