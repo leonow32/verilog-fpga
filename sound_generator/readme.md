@@ -44,7 +44,7 @@ The `SoundGenerator` module generates sound of the desired frequency and duratio
     ===== START =====
             Time Durat HaPer        Freq
          1.100us     1     9       50000
-      1001.200us     2     0      500000
+      1001.200us     2     0           0
       3001.200us     3    49       10000
       6001.200us     0    99        5000
       6001.800us    10   499        1000
