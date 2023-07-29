@@ -57,7 +57,7 @@ module SoundGenerator_tb();
 		
 		// 1ms, 50kHz
 		Duration_ms   <= 16'd1;
-		HalfPeriod_us <= 16'd10;
+		HalfPeriod_us <= 16'd9;
 		Start         <= 1'b1;
 		@(posedge Clock);
 		Duration_ms   <= 16'dX;
@@ -77,7 +77,7 @@ module SoundGenerator_tb();
 		
 		// 3ms, 10kHz
 		Duration_ms   <= 16'd3;
-		HalfPeriod_us <= 16'd50;
+		HalfPeriod_us <= 16'd49;
 		Start         <= 1'b1;
 		@(posedge Clock);
 		Duration_ms   <= 16'dX;
@@ -85,7 +85,7 @@ module SoundGenerator_tb();
 		Start         <= 1'b0;
 		@(posedge Done);
 		
-		// 0ms, 500kHz
+		// 0ms, 5kHz
 		Duration_ms   <= 16'd0;
 		HalfPeriod_us <= 16'd99;
 		Start         <= 1'b1;
@@ -97,7 +97,7 @@ module SoundGenerator_tb();
 		
 		// 1ms, 100Hz
 		Duration_ms	  <= 16'd10;
-		HalfPeriod_us <= 16'd500;
+		HalfPeriod_us <= 16'd499;
 		Start         <= 1'b1;
 		@(posedge Clock);
 		Duration_ms	  <= 16'dX;
@@ -112,7 +112,7 @@ module SoundGenerator_tb();
 		@(posedge Clock);
 		repeat(10) @(posedge Clock);
 		
-		#1 $display("===== END =====");
+		#1 $display("====== END ======");
 		#1 $finish;
 	end
 
