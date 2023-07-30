@@ -95,7 +95,7 @@ module SoundGenerator_tb();
 		Start         <= 1'b0;
 		repeat(5) @(posedge Clock);
 		
-		// 1ms, 100Hz
+		// 10ms, 100Hz
 		Duration_ms	  <= 16'd10;
 		HalfPeriod_us <= 16'd499;
 		Start         <= 1'b1;
