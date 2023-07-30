@@ -1,21 +1,21 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sat Jul 29 17:58:06 2023
+[*] Sun Jul 30 10:33:36 2023
 [*]
-[dumpfile] "C:\verilog\sound_generator\sound_generator.vcd"
+[dumpfile] "sound_generator.vcd"
 [dumpfile_mtime] "Sat Jul 29 17:57:17 2023"
 [dumpfile_size] 1392519
-[savefile] "C:\verilog\sound_generator\sound_generator.gtkw"
+[savefile] "sound_generator.gtkw"
 [timestart] 0
-[size] 1920 626
-[pos] -1 -1
+[size] 1920 1009
+[pos] -9 -61
 *-20.823772 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] SoundGenerator_tb.
 [treeopen] SoundGenerator_tb.DUT.
 [sst_width] 221
 [signals_width] 299
 [sst_expanded] 1
-[sst_vpaned_height] 163
+[sst_vpaned_height] 299
 @28
 SoundGenerator_tb.Reset
 SoundGenerator_tb.Clock
