@@ -3,7 +3,7 @@
 `default_nettype none
 module SoundGenerator_tb();
 
-	parameter CLOCK_HZ	= 10_000_000;
+	parameter CLOCK_HZ	= 2_000_000;
 	parameter HALF_PERIOD_NS = 1_000_000_000 / (2 * CLOCK_HZ);
 	
 	// Clock generator
@@ -95,7 +95,7 @@ module SoundGenerator_tb();
 		Start         <= 1'b0;
 		repeat(5) @(posedge Clock);
 		
-		// 1ms, 100Hz
+		// 10ms, 100Hz
 		Duration_ms	  <= 16'd10;
 		HalfPeriod_us <= 16'd499;
 		Start         <= 1'b1;
@@ -103,14 +103,13 @@ module SoundGenerator_tb();
 		Duration_ms	  <= 16'dX;
 		HalfPeriod_us <= 16'dX;
 		Start         <= 1'b0;
-		repeat(50000) @(posedge Clock);
+		repeat(12500) @(posedge Clock);
 		
 		// Break operation
 		Finish        <= 1'b1;
 		@(posedge Clock);
 		Finish        <= 1'b0;
-		@(posedge Clock);
-		repeat(10) @(posedge Clock);
+		repeat(500) @(posedge Clock);
 		
 		#1 $display("====== END ======");
 		#1 $finish;
