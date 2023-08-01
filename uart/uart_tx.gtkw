@@ -1,0 +1,22 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Tue Aug 01 13:49:23 2023
+[*]
+[dumpfile] "C:\verilog\uart\uart_tx.vcd"
+[dumpfile_mtime] "Tue Aug 01 13:47:38 2023"
+[dumpfile_size] 1021
+[savefile] "C:\verilog\uart\uart_tx.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -165 -165
+*-6.242340 2 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 197
+[signals_width] 78
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+UART_TX_tb.Reset
+@29
+UART_TX_tb.Clock
+[pattern_trace] 1
+[pattern_trace] 0
