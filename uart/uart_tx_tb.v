@@ -13,8 +13,10 @@ module UART_TX_tb();
 	end
 	
 	// Variables
-	reg       Reset = 1'b0;
-	reg       Start = 1'b0;
+	wire Busy;
+	wire Done;
+	reg Reset = 1'b0;
+	reg Start = 1'b0;
 	reg [7:0] DataToSend;
 	
 	// Instantiate device under test
@@ -27,7 +29,7 @@ module UART_TX_tb();
 		.Start_i(Start),
 		.Data_i(DataToSend),
 		.Busy_o(),
-		.Done_o(),
+		.Done_o(Done),
 		.Tx_o()
 	);
 	
@@ -48,14 +50,27 @@ module UART_TX_tb();
 		
 		repeat(10) @(posedge Clock);
 		Start      <= 1'b1;
-		DataToSend <= 8'b10101010;
+//		DataToSend <= 8'b10101010;
+//		DataToSend <= 8'b01010101;
+		DataToSend <= 8'b11110000;
 		@(posedge Clock);
 		Start      <= 1'b0;
 		DataToSend <= 8'bX;
 		
 		
 		// Pause
-		repeat(10) @(posedge DUT.NextBit);
+		@(posedge DUT.Done_o);
+		Start      <= 1'b1;
+//		DataToSend <= 8'b10101010;
+//		DataToSend <= 8'b01010101;
+//		DataToSend <= 8'b11110000;
+		DataToSend <= 8'b00001111;
+		@(posedge Clock);
+		Start      <= 1'b0;
+		DataToSend <= 8'bX;
+		
+		@(posedge DUT.Done_o);
+		repeat(100) @(posedge Clock);
 		
 		#1 $display("====== END ======");
 		#1 $finish;

@@ -12,7 +12,7 @@ module UART_TX #(
 	output wire Tx_o
 );
 	
-	wire NextBit;
+	wire ChangeBit;
 	StrobeGenerator #(
 		.CLOCK_HZ(CLOCK_HZ),
 		.PERIOD_US(9)
@@ -20,25 +20,45 @@ module UART_TX #(
 		.Clock(Clock),
 		.Reset(Reset),
 		//.Enable_i(Busy_o || Start_i),
-		.Enable_i(1'b1),
-		.Strobe_o(NextBit)
+		.Enable_i(Busy),
+		.Strobe_o(ChangeBit)
 	);
 	
-	reg [7:0] ByteCopy;
+	reg Busy;
 	reg [3:0] Pointer;
+	reg [7:0] ByteCopy;
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
-			ByteCopy <= 0;
+			Busy     <= 0;
 			Pointer  <= 0;
+			ByteCopy <= 0;
+		end else if(Start_i) begin
+			Busy     <= 1'b1;
+			Pointer  <= 0;
+			ByteCopy <= Data_i;
+		end else if(Busy && ChangeBit) begin
+			if(Pointer == 4'd9) begin
+				Busy <= 1'b0;
+			end else begin
+				Pointer <= Pointer + 1'b1;
+			end
+		end
+	end
+	
+	reg BusyPrevious;
+	always @(posedge Clock, negedge Reset) begin
+		if(!Reset) begin
+			BusyPrevious <= 1'b0;
 		end else begin
-			if(Start_i)
-				ByteCopy <= ByteCopy;
+			BusyPrevious <= Busy;
 		end
 	end
 	
 	wire [9:0] DataToSend;
-	assign DataToSend = {1'b1, DataToSend, 1'b0};
+	assign DataToSend = {1'b1, ByteCopy, 1'b0};
+	assign Tx_o = Busy ? DataToSend[Pointer] : 1'b1;
+	assign Busy_o = Busy;
+	assign Done_o = BusyPrevious && !Busy;
 	
-
 endmodule
 `default_nettype wire
