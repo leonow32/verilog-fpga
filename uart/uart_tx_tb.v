@@ -13,9 +13,9 @@ module UART_TX_tb();
 	end
 	
 	// Variables
-	reg        Reset = 1'b0;
-	reg        Start = 1'b0;
-	wire [7:0] DataToSend;
+	reg       Reset = 1'b0;
+	reg       Start = 1'b0;
+	reg [7:0] DataToSend;
 	
 	// Instantiate device under test
 	UART_TX #(
@@ -46,10 +46,16 @@ module UART_TX_tb();
 		@(posedge Clock);
 		Reset <= 1'b1;
 		
+		repeat(10) @(posedge Clock);
+		Start      <= 1'b1;
+		DataToSend <= 8'b10101010;
+		@(posedge Clock);
+		Start      <= 1'b0;
+		DataToSend <= 8'bX;
 		
 		
 		// Pause
-		repeat(5) @(posedge Clock);
+		repeat(10) @(posedge DUT.NextBit);
 		
 		#1 $display("====== END ======");
 		#1 $finish;

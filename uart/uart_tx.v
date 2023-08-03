@@ -12,15 +12,33 @@ module UART_TX #(
 	output wire Tx_o
 );
 	
-	reg [7:0] Data;
+	wire NextBit;
+	StrobeGenerator #(
+		.CLOCK_HZ(CLOCK_HZ),
+		.PERIOD_US(9)
+	) StrobeGeneratorMilli(
+		.Clock(Clock),
+		.Reset(Reset),
+		//.Enable_i(Busy_o || Start_i),
+		.Enable_i(1'b1),
+		.Strobe_o(NextBit)
+	);
+	
+	reg [7:0] ByteCopy;
+	reg [3:0] Pointer;
 	always @(posedge Clock, negedge Reset) begin
-		if(!Reset)
-			Data <= 0;
-		else begin
+		if(!Reset) begin
+			ByteCopy <= 0;
+			Pointer  <= 0;
+		end else begin
 			if(Start_i)
-				Data <= Data;
+				ByteCopy <= ByteCopy;
 		end
 	end
+	
+	wire [9:0] DataToSend;
+	assign DataToSend = {1'b1, DataToSend, 1'b0};
+	
 
 endmodule
 `default_nettype wire
