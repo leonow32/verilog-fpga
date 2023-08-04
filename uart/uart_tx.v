@@ -12,17 +12,33 @@ module UART_TX #(
 	output wire Tx_o
 );
 	
-	wire ChangeBit;
-	StrobeGenerator #(
-		.CLOCK_HZ(CLOCK_HZ),
-		.PERIOD_US(9)
-	) StrobeGeneratorMilli(
-		.Clock(Clock),
-		.Reset(Reset),
-		//.Enable_i(Busy_o || Start_i),
-		.Enable_i(Busy),
-		.Strobe_o(ChangeBit)
-	);
+	localparam DELAY = CLOCK_HZ / BAUD;
+	localparam WIDTH = $clog2(DELAY + 1);
+	
+	initial begin
+		if(DELAY <= 0)
+			$fatal(0, "Wrong DELAY value: %d", DELAY);
+	end
+	
+	reg ChangeBit;
+	reg [WIDTH-1:0] Counter;
+	
+	always @(posedge Clock, negedge Reset) begin
+		if(!Reset) begin
+			Counter      <= DELAY;
+			ChangeBit     <= 1'b0;
+		end else if(Busy) begin
+			if(!Counter) begin
+				Counter  <= DELAY;
+				ChangeBit <= 1'b1;
+			end else begin
+				Counter  <= Counter - 1'b1;
+				ChangeBit <= 1'b0;
+			end 
+		end else begin
+			Counter <= DELAY;
+		end
+	end
 	
 	reg Busy;
 	reg [3:0] Pointer;

@@ -44,6 +44,8 @@ module UART_TX_tb();
 	initial begin
 		$timeformat(-6, 3, "us", 12);
 		$display("===== START =====");
+		$display("DELAY = %9d", DUT.DELAY);
+		$display("WIDTH = %9d", DUT.WIDTH);
 		
 		@(posedge Clock);
 		Reset <= 1'b1;
@@ -64,7 +66,8 @@ module UART_TX_tb();
 //		DataToSend <= 8'b10101010;
 //		DataToSend <= 8'b01010101;
 //		DataToSend <= 8'b11110000;
-		DataToSend <= 8'b00001111;
+//		DataToSend <= 8'b00001111;
+		DataToSend <= 8'b00110001;
 		@(posedge Clock);
 		Start      <= 1'b0;
 		DataToSend <= 8'bX;
