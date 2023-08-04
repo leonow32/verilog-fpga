@@ -1,10 +1,10 @@
-// 230428
+// 230804
 
 `timescale 1ns/1ps	// time-unit, precision
 
 module StrobeGenerator_tb();
 	
-	parameter CLOCK_HZ	= 10_000_000;
+	parameter CLOCK_HZ	= 1_000_000;
 	parameter HALF_PERIOD_NS = 1_000_000_000 / (2 * CLOCK_HZ);
 	
 	// Clock generator
@@ -15,22 +15,17 @@ module StrobeGenerator_tb();
 	end
 	
 	reg	Reset = 1'b0;
-	reg EnableSync = 1'b1;
-	reg EnableAsync = 1'b1;
+	reg Enable = 1'b0;
 	wire Strobe;
-	
-	always @(posedge Clock) begin
-		EnableSync <= EnableAsync;
-	end
 	
 	// Instantiate device under test
 	StrobeGenerator #(
 		.CLOCK_HZ(CLOCK_HZ),
-		.PERIOD_US(2)
+		.PERIOD_NS(2_900)
 	) DUT(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Enable_i(EnableSync),
+		.Enable_i(Enable),
 		.Strobe_o(Strobe)
 	);
 	
@@ -45,39 +40,22 @@ module StrobeGenerator_tb();
 		$timeformat(-6, 3, "us", 10);
 		$display("===== START =====");
 		$display("CLOCK_HZ  = %9d", DUT.CLOCK_HZ);
-		$display("PERIOD_US = %9d", DUT.PERIOD_US);
+		$display("PERIOD_NS = %9d", DUT.PERIOD_NS);
+		$display("DELAY_REAL = %f ticks", DUT.DELAY_REAL);
 		$display("DELAY     = %9d", DUT.DELAY);
 		$display("WIDTH     = %9d", DUT.WIDTH);
 		
-		#1 Reset = 1'b1;
+		@(posedge Clock)
+		Reset <= 1'b1;
+		@(posedge Clock)
+		Enable <= 1'b1;
 		
-		repeat(2) begin
+		repeat(4) begin
 			@(posedge Strobe);
 			$display("Strobe detected at %t", $realtime);
 		end
-		
-		@(negedge Strobe);
-		#1000;
-		
-		EnableAsync = 1'b0;
-		#1000;
-		EnableAsync = 1'b1;
-		
-		repeat(2) begin
-			@(posedge Strobe);
-			$display("Strobe detected at %t", $realtime);
-		end
-		
-		#512;
-		EnableAsync = 1'b0;
-		#525;
-		EnableAsync = 1'b1;
-		
-		repeat(2) begin
-			@(posedge Strobe);
-			$display("Strobe detected at %t", $realtime);
-		end
-		
+	
+
 		$display("===== END =====");
 		#1 $finish;
 	end

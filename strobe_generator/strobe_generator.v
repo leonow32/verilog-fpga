@@ -1,9 +1,9 @@
-// 230628
+// 230804
 
 `default_nettype none
 module StrobeGenerator #(
 	parameter	CLOCK_HZ	= 10_000_000,
-	parameter	PERIOD_US	= 100
+	parameter	PERIOD_NS	= 100_000
 )(
 	input wire  Clock,
 	input wire  Reset,
@@ -11,7 +11,11 @@ module StrobeGenerator #(
 	output reg  Strobe_o
 );
 	
-	localparam DELAY = (CLOCK_HZ / 1_000_000) * PERIOD_US - 1;
+	localparam real CLOCK_HZ_REAL = $itor(CLOCK_HZ);
+	localparam real PERIOD_NS_REAL = $itor(PERIOD_NS);
+	localparam real DELAY_REAL = (CLOCK_HZ_REAL * PERIOD_NS_REAL / 1_000_000_000.0) - 1.0;
+	localparam DELAY = $rtoi(DELAY_REAL);
+	//localparam DELAY = (CLOCK_HZ * PERIOD_NS / 1_000_000_000) - 1;
 	localparam WIDTH = $clog2(DELAY + 1);
 	
 	initial begin
