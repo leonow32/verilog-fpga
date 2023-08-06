@@ -4,7 +4,7 @@
 
 module StrobeGenerator_tb();
 	
-	parameter CLOCK_HZ	= 1_000_000;
+	parameter CLOCK_HZ	= 14_000_000;
 	parameter HALF_PERIOD_NS = 1_000_000_000 / (2 * CLOCK_HZ);
 	
 	// Clock generator
@@ -21,7 +21,7 @@ module StrobeGenerator_tb();
 	// Instantiate device under test
 	StrobeGenerator #(
 		.CLOCK_HZ(CLOCK_HZ),
-		.PERIOD_NS(2_900)
+		.PERIOD_NS(1_000_000_000)
 	) DUT(
 		.Clock(Clock),
 		.Reset(Reset),
@@ -41,7 +41,7 @@ module StrobeGenerator_tb();
 		$display("===== START =====");
 		$display("CLOCK_HZ  = %9d", DUT.CLOCK_HZ);
 		$display("PERIOD_NS = %9d", DUT.PERIOD_NS);
-		$display("DELAY_REAL = %f ticks", DUT.DELAY_REAL);
+		//$display("DELAY_REAL = %f ticks", DUT.DELAY_REAL);
 		$display("DELAY     = %9d", DUT.DELAY);
 		$display("WIDTH     = %9d", DUT.WIDTH);
 		

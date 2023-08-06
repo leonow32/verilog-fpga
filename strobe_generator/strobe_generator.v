@@ -11,14 +11,15 @@ module StrobeGenerator #(
 	output reg  Strobe_o
 );
 	
-	localparam real CLOCK_HZ_REAL = $itor(CLOCK_HZ);
-	localparam real PERIOD_NS_REAL = $itor(PERIOD_NS);
-	localparam real DELAY_REAL = (CLOCK_HZ_REAL * PERIOD_NS_REAL / 1_000_000_000.0) - 1.0;
-	localparam DELAY = $rtoi(DELAY_REAL);
-	//localparam DELAY = (CLOCK_HZ * PERIOD_NS / 1_000_000_000) - 1;
+	//localparam real CLOCK_HZ_REAL = $itor(CLOCK_HZ);
+	//localparam real PERIOD_NS_REAL = $itor(PERIOD_NS);
+	//localparam real DELAY_REAL = (CLOCK_HZ_REAL * PERIOD_NS_REAL / 1_000_000_000.0) - 1.0;
+	//localparam DELAY = $rtoi(DELAY_REAL);
+	localparam DELAY = (CLOCK_HZ * PERIOD_NS / 1_000_000_000) - 1;
 	localparam WIDTH = $clog2(DELAY + 1);
 	
 	initial begin
+		$display("DELAY     = %9d", DELAY);
 		if(DELAY <= 0)
 			$fatal(0, "Wrong DELAY value: %d", DELAY);
 	end
