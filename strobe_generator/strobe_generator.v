@@ -11,35 +11,35 @@ module StrobeGenerator #(
 	output reg  Strobe_o
 );
 	
-	//localparam real CLOCK_HZ_REAL = $itor(CLOCK_HZ);
-	//localparam real PERIOD_NS_REAL = $itor(PERIOD_NS);
-	//localparam real DELAY_REAL = (CLOCK_HZ_REAL * PERIOD_NS_REAL / 1_000_000_000.0) - 1.0;
-	//localparam DELAY = $rtoi(DELAY_REAL);
-	localparam DELAY = (CLOCK_HZ * PERIOD_NS / 1_000_000_000) - 1;
-	localparam WIDTH = $clog2(DELAY + 1);
+	localparam TICKS = (CLOCK_HZ * PERIOD_NS / 1_000_000_000) - 1;
+	localparam WIDTH = $clog2(TICKS + 1);
+	
+	localparam real PERIOD_REAL_NS = (TICKS + 1) * (1_000_000_000.0 / CLOCK_HZ);
 	
 	initial begin
-		$display("DELAY     = %9d", DELAY);
-		if(DELAY <= 0)
-			$fatal(0, "Wrong DELAY value: %d", DELAY);
+		$display("TICKS     = %9d", TICKS);
+		if(TICKS <= 0)
+			$fatal(0, "Wrong TICKS value: %d", TICKS);
+			
+		$display("PERIOD_REAL_NS     = %f", PERIOD_REAL_NS);
 	end
 	
 	reg [WIDTH-1:0] Counter;
 	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
-			Counter      <= DELAY;
+			Counter      <= TICKS;
 			Strobe_o     <= 1'b0;
 		end else if(Enable_i) begin
 			if(!Counter) begin
-				Counter  <= DELAY;
+				Counter  <= TICKS;
 				Strobe_o <= 1'b1;
 			end else begin
 				Counter  <= Counter - 1'b1;
 				Strobe_o <= 1'b0;
 			end 
 		end else begin
-			Counter <= DELAY;
+			Counter <= TICKS;
 		end
 	end
 	
