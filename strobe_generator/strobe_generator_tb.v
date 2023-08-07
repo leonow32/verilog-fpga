@@ -21,7 +21,7 @@ module StrobeGenerator_tb();
 	// Instantiate device under test
 	StrobeGenerator #(
 		.CLOCK_HZ(CLOCK_HZ),
-		.PERIOD_NS(1100)
+		.PERIOD_NS(1000)
 	) DUT(
 		.Clock(Clock),
 		.Reset(Reset),
@@ -37,16 +37,19 @@ module StrobeGenerator_tb();
 
 	// Test sequence
 	initial begin
+		
+		
+		
 		$timeformat(-9, 3, "ns", 10);
 		$display("===== START =====");
 		$display("Clock");
-		$display(" - Frequency: %9d Hz", DUT.CLOCK_HZ);
-		$display(" - Period: %f ns", DUT.CLOCK_PERIOD_NS);
+		$display(" - Frequency:          %f MHz", DUT.CLOCK_HZ / 1_000_000.0);
+		$display(" - Period:             %f ns", DUT.CLOCK_PERIOD_NS);
 		$display("Strobe");
-		$display(" - Period requested: %9d ns", DUT.PERIOD_NS);
-		$display(" - Period achieved:  %9d ns", DUT.REAL_PERIOD_NS);
-		$display(" - Clock ticks: %9d", DUT.TICKS);
-		$display(" - Counter width: %9d", DUT.WIDTH);
+		$display(" - Period requested: %d ns", DUT.PERIOD_NS);
+		$display(" - Period achieved:   %f ns", DUT.REAL_PERIOD_NS);
+		$display(" - Clock ticks:               %d", DUT.TICKS);
+		$display(" - Counter width:    %d", DUT.WIDTH);
 		
 		
 		

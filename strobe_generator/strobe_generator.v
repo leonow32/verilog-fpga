@@ -12,12 +12,9 @@ module StrobeGenerator #(
 );
 	
 	localparam real CLOCK_PERIOD_NS = 1_000_000_000.0 / CLOCK_HZ;
-	
-	
-	localparam TICKS = (CLOCK_HZ * PERIOD_NS / 1_000_000_000) - 1;
-	localparam WIDTH = $clog2(TICKS + 1);
-	
+	localparam TICKS = PERIOD_NS / CLOCK_PERIOD_NS;
 	localparam real REAL_PERIOD_NS = TICKS * CLOCK_PERIOD_NS;
+	localparam WIDTH = $clog2(TICKS);
 	
 	initial begin
 		if(TICKS <= 0)
@@ -28,18 +25,18 @@ module StrobeGenerator #(
 	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
-			Counter      <= TICKS;
+			Counter      <= TICKS - 1'b1;
 			Strobe_o     <= 1'b0;
 		end else if(Enable_i) begin
 			if(!Counter) begin
-				Counter  <= TICKS;
+				Counter  <= TICKS - 1'b1;
 				Strobe_o <= 1'b1;
 			end else begin
 				Counter  <= Counter - 1'b1;
 				Strobe_o <= 1'b0;
 			end 
 		end else begin
-			Counter <= TICKS;
+			Counter <= TICKS - 1'b1;
 		end
 	end
 	
