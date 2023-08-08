@@ -1,6 +1,6 @@
 # LCD Multiplexed display - driver for S401M16KR display
 
->**Status**: ready
+![Status](https://img.shields.io/badge/STATUS-READY-green.svg)
 
 Multiplexing an LCD display is much more difficult than for an LED display. This controller works with the S401M16KR display from Lumex. This display works with 1/4 duty, that is, it has four electrodes in common COM and 1/3 bias, that is, the control voltage of the electrodes can have 4 different values.
 

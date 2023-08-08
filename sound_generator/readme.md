@@ -1,6 +1,6 @@
 # Sound Generator
 
->**Status**: ready
+![Status](https://img.shields.io/badge/STATUS-READY-green.svg)
 
 The `SoundGenerator` module generates sound of the desired frequency and duration. Together with the `Player` module, you can easily build a simple melody player with capabilities similar to Nokia 3310.
 

@@ -1,6 +1,6 @@
 # Rotary Encoder
 
->**Status**: ready
+![Status](https://img.shields.io/badge/STATUS-READY-green.svg)
 
 Module supporting a rotary encoder. Allows recognition of increment and decrement signals of ecoders, which have four pulses per click. 
 

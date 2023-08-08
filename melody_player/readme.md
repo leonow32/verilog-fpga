@@ -1,6 +1,6 @@
 # Melody Player
 
->**Status**: ready
+![Status](https://img.shields.io/badge/STATUS-READY-green.svg)
 
 This module is superior to the `SoundGenerator` module, which can only play a single sound at the desired frequency for the desired duration. The `MelodyPlayer` module is equipped with a ROM that contains music notes and their length of time. After starting the module with the `Play` signal, the module reads consecutive sounds from the memory and pushes them to the SoundGenerator. This way, a melody player with capabilities similar to the ringtone composer from the Nokia 3310 can be realized.
 

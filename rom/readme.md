@@ -1,6 +1,6 @@
 # ROM Memory
 
->**Status**: ready
+![Status](https://img.shields.io/badge/STATUS-READY-green.svg)
 
 Read only memory. This module can be used to store permanent information, such as the code of a program executed by the processor, for example.
 

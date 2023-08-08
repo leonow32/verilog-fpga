@@ -11,6 +11,7 @@ I decided to publish these peripherals because I think they may be useful for ot
 + [LED Display Multiplexed Const](/display_multiplexed_const) - Module that controls an 8-digit LED display with a common cathode. Supports blanking out unnecessary zeros and adjustable multiplexing period.
 + [LED Display Multiplexed Variable](/display_multiplexed_variable) - Module that controls an n-digit LED display with a common cathode. The number of digits in the display is controlled with a parameter. Supports blanking out unnecessary zeros and adjustable multiplexing period.
 + [LCD Display Multiplexed S401M16KR](/display_lcd_s401m16kr) - Multiplexing an LCD display is much more difficult than for an LED display. This controller works with the S401M16KR display from Lumex. This display works with 1/4 duty, that is, it has four electrodes in common COM and 1/3 bias, that is, the control voltage of the electrodes can have 4 different values.
++ [VGA](/vga) - During development. VGA driver that will display some text on a monitor.
 
 **Timing:**
 
