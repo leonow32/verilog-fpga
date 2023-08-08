@@ -1,6 +1,6 @@
 # Strobe Generator
 
->**Status**: ready
+![Status](https://img.shields.io/badge/STATUS-READY-green.svg)
 
 This is a very simple yet very useful module.. I use it almost in every project.
 
@@ -8,15 +8,17 @@ The strobe signal is set to high state for one clock cycle and then it is set lo
 
 ## Instantiation
 
-    StrobeGenerator #(
-        .CLOCK_HZ(CLOCK_HZ),
-        .PERIOD_US()
-    ) StrobeGenerator_inst(
-        .Clock(Clock),
-        .Reset(Reset),
-        .Enable_i(),
-        .Strobe_o()
-    );
+```verilog
+StrobeGenerator #(
+	.CLOCK_HZ(CLOCK_HZ),
+	.PERIOD_US()
+) StrobeGenerator_inst(
+	.Clock(Clock),
+	.Reset(Reset),
+	.Enable_i(),
+	.Strobe_o()
+);
+```
 
 ## Port description
 
