@@ -1,6 +1,6 @@
 # Strobe Generator
 
-![Status](https://img.shields.io/badge/STATUS-READY-green.svg)]
+![Status](https://img.shields.io/badge/STATUS-READY-green.svg)
 
 This is a very simple yet very useful module.. I use it almost in every project.
 
