@@ -1,6 +1,6 @@
 # LED Multiplexed display (fixed number of digits)
 
->**Status**: ready
+![Status](https://img.shields.io/badge/STATUS-READY-green.svg)
 
 Module that controls an 8-digit LED display with a common cathode. If you need a module that controls a display with an adjustable number of digits, see the `display_multiplex_variable` module.
 

@@ -1,6 +1,6 @@
 # LED Multiplexed display (variable number of digits)
 
->**Status**: ready
+![Status](https://img.shields.io/badge/STATUS-READY-green.svg)
 
 Module that controls a LED display with a common cathode. The nuber of digits is set using `DIGITS` parameter. 
 

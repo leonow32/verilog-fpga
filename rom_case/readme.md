@@ -1,6 +1,6 @@
 # ROM Memory - case implementation
 
->**Status**: ready
+![Status](https://img.shields.io/badge/STATUS-READY-green.svg)
 
 This is very a simple implementation of ROM memory using `case` instruction. It has no practical sense - but can be used for educational purposes.
 
