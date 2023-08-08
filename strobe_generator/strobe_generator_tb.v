@@ -5,7 +5,7 @@
 module StrobeGenerator_tb();
 	
 	parameter CLOCK_HZ	= 10_000_000;
-	parameter real HALF_PERIOD_NS = 1_000_000_000.0 / (2 * CLOCK_HZ);
+	parameter HALF_PERIOD_NS = 1_000_000_000 / (2 * CLOCK_HZ);
 	
 	// Clock generator
 	reg Clock = 1'b1;
@@ -15,17 +15,22 @@ module StrobeGenerator_tb();
 	end
 	
 	reg	Reset = 1'b0;
-	reg Enable = 1'b0;
+	reg EnableSync = 1'b1;
+	reg EnableAsync = 1'b1;
 	wire Strobe;
+	
+	always @(posedge Clock) begin
+		EnableSync <= EnableAsync;
+	end
 	
 	// Instantiate device under test
 	StrobeGenerator #(
 		.CLOCK_HZ(CLOCK_HZ),
-		.PERIOD_NS(1000)
+		.PERIOD_US(2)
 	) DUT(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Enable_i(Enable),
+		.Enable_i(EnableSync),
 		.Strobe_o(Strobe)
 	);
 	
@@ -37,37 +42,22 @@ module StrobeGenerator_tb();
 
 	// Test sequence
 	initial begin
-		
-		
-		
-		$timeformat(-9, 3, "ns", 10);
+		$timeformat(-6, 3, "us", 10);
 		$display("===== START =====");
-		$display("Clock");
-		$display(" - Frequency:          %f MHz", DUT.CLOCK_HZ / 1_000_000.0);
-		$display(" - Period:             %f ns", DUT.CLOCK_PERIOD_NS);
-		$display("Strobe");
-		$display(" - Period requested: %d ns", DUT.PERIOD_NS);
-		$display(" - Period achieved:   %f ns", DUT.REAL_PERIOD_NS);
-		$display(" - Clock ticks:               %d", DUT.TICKS);
-		$display(" - Counter width:    %d", DUT.WIDTH);
+		$display("CLOCK_HZ  = %9d", DUT.CLOCK_HZ);
+		$display("PERIOD_US = %9d", DUT.PERIOD_US);
+		$display("DELAY     = %9d", DUT.DELAY);
+		$display("WIDTH     = %9d", DUT.WIDTH);
 		
+		#1 Reset = 1'b1;
 		
-		
-		
-		@(posedge Clock)
-		Reset <= 1'b1;
-		
-		@(posedge Clock)
-		Enable <= 1'b1;
-		
-		repeat(4) begin
+		repeat(2) begin
 			@(posedge Strobe);
 			$display("Strobe detected at %t", $realtime);
 		end
 		
-		
-		//@(negedge Strobe);
-		/*#1000;
+		@(negedge Strobe);
+		#1000;
 		
 		EnableAsync = 1'b0;
 		#1000;
@@ -87,9 +77,9 @@ module StrobeGenerator_tb();
 			@(posedge Strobe);
 			$display("Strobe detected at %t", $realtime);
 		end
-		*/
+		
 		$display("===== END =====");
-		$finish;
+		#1 $finish;
 	end
 
 endmodule

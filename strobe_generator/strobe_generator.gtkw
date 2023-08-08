@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Mon Aug 07 19:48:34 2023
+[*] Sun Jun 25 17:52:14 2023
 [*]
-[dumpfile] "C:\verilog\strobe_generator\strobe_generator.vcd"
-[dumpfile_mtime] "Mon Aug 07 19:48:25 2023"
-[dumpfile_size] 2439
-[savefile] "C:\verilog\strobe_generator\strobe_generator.gtkw"
+[dumpfile] "strobe_generator.vcd"
+[dumpfile_mtime] "Sun Jun 25 17:51:26 2023"
+[dumpfile_size] 6566
+[savefile] "strobe_generator.gtkw"
 [timestart] 0
 [size] 1920 1009
 [pos] -1 -1
-*-19.044235 1200000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-20.948851 15200000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] StrobeGenerator_tb.
 [treeopen] StrobeGenerator_tb.DUT.
 [sst_width] 197
@@ -19,7 +19,12 @@
 @28
 StrobeGenerator_tb.DUT.Reset
 StrobeGenerator_tb.DUT.Clock
+@29
 StrobeGenerator_tb.DUT.Enable_i
+@22
+StrobeGenerator_tb.DUT.Counter[4:0]
+@8022
+StrobeGenerator_tb.DUT.Counter[4:0]
 @20000
 -
 -
