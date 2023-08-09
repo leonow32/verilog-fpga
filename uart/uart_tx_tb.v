@@ -4,12 +4,13 @@
 module UART_TX_tb();
 
 	parameter CLOCK_HZ	     = 10_000_000;
-	parameter HALF_PERIOD_NS = 1_000_000_000 / (2 * CLOCK_HZ);
+	parameter real HALF_PERIOD_NS = 1_000_000_000.0 / (2 * CLOCK_HZ);
 	
 	// Clock generator
 	reg Clock = 1'b1;
 	always begin
-		#HALF_PERIOD_NS Clock = !Clock;
+		#HALF_PERIOD_NS;
+		Clock = !Clock;
 	end
 	
 	// Variables
@@ -44,8 +45,8 @@ module UART_TX_tb();
 	initial begin
 		$timeformat(-6, 3, "us", 12);
 		$display("===== START =====");
-		$display("DELAY = %9d", DUT.DELAY);
-		$display("WIDTH = %9d", DUT.WIDTH);
+		$display("TICKS = %9d", DUT.StrobeGeneratorTicks_inst.TICKS);
+		// $display("WIDTH = %9d", DUT.WIDTH);
 		
 		@(posedge Clock);
 		Reset <= 1'b1;
@@ -61,7 +62,8 @@ module UART_TX_tb();
 		
 		
 		// Pause
-		@(posedge DUT.Done_o);
+		@(negedge DUT.Done_o);
+		//@(posedge Clock);
 		Start      <= 1'b1;
 //		DataToSend <= 8'b10101010;
 //		DataToSend <= 8'b01010101;
@@ -72,7 +74,7 @@ module UART_TX_tb();
 		Start      <= 1'b0;
 		DataToSend <= 8'bX;
 		
-		@(posedge DUT.Done_o);
+		@(negedge DUT.Done_o);
 		repeat(100) @(posedge Clock);
 		
 		#1 $display("====== END ======");

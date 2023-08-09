@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Fri Aug 04 13:02:56 2023
+[*] Wed Aug 09 13:52:29 2023
 [*]
 [dumpfile] "C:\verilog\uart\uart_tx.vcd"
-[dumpfile_mtime] "Fri Aug 04 12:49:14 2023"
-[dumpfile_size] 66215
+[dumpfile_mtime] "Wed Aug 09 13:51:00 2023"
+[dumpfile_size] 65948
 [savefile] "C:\verilog\uart\uart_tx.gtkw"
 [timestart] 0
 [size] 1920 1009
 [pos] -1 -1
-*-14.669206 18600 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-14.655138 86833 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] UART_TX_tb.
 [treeopen] UART_TX_tb.DUT.
 [sst_width] 197
@@ -21,14 +21,14 @@ UART_TX_tb.Reset
 UART_TX_tb.Clock
 @200
 -Inputs
-@28
+@29
 UART_TX_tb.DUT.Start_i
 @22
 UART_TX_tb.DUT.Data_i[7:0]
-@28
-UART_TX_tb.DUT.ChangeBit
 @200
 -Internals
+@28
+UART_TX_tb.DUT.NextBit
 @22
 UART_TX_tb.DUT.ByteCopy[7:0]
 @c00028
@@ -52,9 +52,7 @@ UART_TX_tb.DUT.Pointer[3:0]
 -Outputs
 @28
 UART_TX_tb.DUT.Busy_o
-@29
 UART_TX_tb.DUT.Done_o
-@28
 UART_TX_tb.DUT.Tx_o
 [pattern_trace] 1
 [pattern_trace] 0
