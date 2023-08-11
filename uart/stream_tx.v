@@ -19,19 +19,42 @@ module Stream(
 		Memory[7] = 8'b10000000;
 	end
 	
+	reg State;
+	localparam IDLE = 1'b0;
+	localparam WORK = 1'b1;
+	
 	wire Done;
 	wire Busy;
-	reg State;
+	
 	reg [2:0] Pointer;
 	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
 			State <= 0;
 			Pointer <= 0;
-		end else if(Button_i && !Busy) begin
-			State <= 1'b1;
+		end else begin
+			case(State)
+				
+				IDLE: begin
+					if(Button_i) begin
+						State <= WORK;
+						Pointer <= 0;
+					end
+				end
+				
+				WORK: begin
+					if(
+				end
+			endcase
+		
+			
 		end
 	end
+	
+	wire [7:0] DataToSend;
+	assign DataToSend = ;
+	
+	
 	
 	UART_TX #(
 		.CLOCK_HZ(CLOCK_HZ),
@@ -40,7 +63,7 @@ module Stream(
 		.Clock(Clock),
 		.Reset(Reset),
 		.Start_i(Start),
-		.Data_i(),
+		.Data_i(Memory[Pointer]),
 		.Busy_o(),
 		.Done_o(Done),
 		.Tx_o(Tx_o)
