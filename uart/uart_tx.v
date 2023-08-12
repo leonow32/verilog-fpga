@@ -47,22 +47,13 @@ module UART_TX #(
 		end
 	end
 	
-	// Edge detector of Busy signal
-	/*
-	EdgeDetector EdgeDetector_inst(
-		.Clock(Clock),
-		.Reset(Reset),
-		.Signal_i(Busy),
-		.RisingEdge_o(),
-		.FallingEdge_o(Done_o)
-	);*/
-	
 	wire [9:0] DataToSend;
 	assign DataToSend = {1'b1, ByteCopy, 1'b0};
+	
+	// Outputs
 	assign Tx_o = Busy ? DataToSend[Pointer] : 1'b1;
 	assign Busy_o = Busy;
-	
-	assign Done_o = NextBit && Pointer == 4'd9;
+	assign Done_o = NextBit && (Pointer == 4'd9);
 	
 endmodule
 `default_nettype wire

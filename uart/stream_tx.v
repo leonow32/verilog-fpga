@@ -31,8 +31,6 @@ module StreamTx #(
 		end
 	end
 	
-	//wire Start = 
-	
 	UART_TX #(
 		.CLOCK_HZ(CLOCK_HZ),
 		.BAUD(100000)
