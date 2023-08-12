@@ -3,7 +3,7 @@
 `default_nettype none
 module UART_TX_tb();
 
-	parameter CLOCK_HZ	     = 10_000_000;
+	parameter CLOCK_HZ	          = 10_000_000;
 	parameter real HALF_PERIOD_NS = 1_000_000_000.0 / (2 * CLOCK_HZ);
 	
 	// Clock generator

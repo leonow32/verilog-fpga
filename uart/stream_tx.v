@@ -1,5 +1,7 @@
 `default_nettype none
-module Stream(
+module StreamTx #(
+	parameter CLOCK_HZ = 10_000_000
+)(
 	input wire Clock,
 	input wire Reset,
 	input wire Button_i,
@@ -9,60 +11,35 @@ module Stream(
 	reg [7:0] Memory [0:7];
 	
 	initial begin
-		Memory[0] = 8'b00000000;
-		Memory[1] = 8'b00000001;
-		Memory[2] = 8'b00000011;
-		Memory[3] = 8'b00001111;
-		Memory[4] = 8'b11111111;
-		Memory[5] = 8'b11110000;
-		Memory[6] = 8'b11000000;
-		Memory[7] = 8'b10000000;
+		Memory[0] = "H";
+		Memory[1] = "e";
+		Memory[2] = "l";
+		Memory[3] = "l";
+		Memory[4] = "o";
+		Memory[5] = "!";
+		Memory[6] = "!";
+		Memory[7] = 8'd0;
 	end
 	
-	reg State;
-	localparam IDLE = 1'b0;
-	localparam WORK = 1'b1;
-	
 	wire Done;
-	wire Busy;
-	
-	reg [2:0] Pointer;
-	
+	reg [2:0] Pointer;	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
-			State <= 0;
 			Pointer <= 0;
-		end else begin
-			case(State)
-				
-				IDLE: begin
-					if(Button_i) begin
-						State <= WORK;
-						Pointer <= 0;
-					end
-				end
-				
-				WORK: begin
-					if(
-				end
-			endcase
-		
-			
+		end else if(Button_i || Done) begin
+			Pointer <= Pointer + 1'b1;
 		end
 	end
 	
-	wire [7:0] DataToSend;
-	assign DataToSend = ;
-	
-	
+	//wire Start = 
 	
 	UART_TX #(
 		.CLOCK_HZ(CLOCK_HZ),
-		.BAUD(115200)
-	) DUT(
+		.BAUD(100000)
+	) UartTx(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Start_i(Start),
+		.Start_i(Button_i || (Done && (Memory[Pointer] != 8'd0))),
 		.Data_i(Memory[Pointer]),
 		.Busy_o(),
 		.Done_o(Done),

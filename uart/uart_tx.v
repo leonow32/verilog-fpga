@@ -33,7 +33,7 @@ module UART_TX #(
 			ByteCopy <= 0;
 			Busy     <= 0;
 			Pointer  <= 0;
-		end else if(Start_i) begin
+		end else if(Start_i && !Busy) begin
 			ByteCopy <= Data_i;
 			Busy     <= 1'b1;
 			Pointer  <= 0;
