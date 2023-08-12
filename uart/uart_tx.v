@@ -33,34 +33,36 @@ module UART_TX #(
 			ByteCopy <= 0;
 			Busy     <= 0;
 			Pointer  <= 0;
-		end else if(Start_i && !Busy) begin
+		end else if(Start_i) begin
 			ByteCopy <= Data_i;
 			Busy     <= 1'b1;
 			Pointer  <= 0;
 		end else if(NextBit) begin
-			Pointer <= Pointer + 1'b1;
 			if(Pointer == 4'd9) begin
 				Busy <= 1'b0;
+				Pointer <= 4'd0;
+			end else begin
+				Pointer <= Pointer + 1'b1;
 			end 
 		end
 	end
 	
 	// Edge detector of Busy signal
-	
+	/*
 	EdgeDetector EdgeDetector_inst(
 		.Clock(Clock),
 		.Reset(Reset),
 		.Signal_i(Busy),
 		.RisingEdge_o(),
 		.FallingEdge_o(Done_o)
-	);
+	);*/
 	
 	wire [9:0] DataToSend;
 	assign DataToSend = {1'b1, ByteCopy, 1'b0};
 	assign Tx_o = Busy ? DataToSend[Pointer] : 1'b1;
 	assign Busy_o = Busy;
 	
-	//assign Done_o = NextBit && Pointer == 4'd9;
+	assign Done_o = NextBit && Pointer == 4'd9;
 	
 endmodule
 `default_nettype wire
