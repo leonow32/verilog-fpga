@@ -1,3 +1,6 @@
+
+// Po zakończeniu transmisji pointer nie jest zerowany
+
 `default_nettype none
 module StreamTx #(
 	parameter CLOCK_HZ = 10_000_000
@@ -5,6 +8,7 @@ module StreamTx #(
 	input wire Clock,
 	input wire Reset,
 	input wire Button_i,
+	output wire Busy_o,
 	output wire Tx_o
 );
 	
@@ -17,7 +21,7 @@ module StreamTx #(
 		Memory[3] = "l";
 		Memory[4] = "o";
 		Memory[5] = "!";
-		Memory[6] = "!";
+		Memory[6] = " ";
 		Memory[7] = 8'd0;
 	end
 	
@@ -39,7 +43,7 @@ module StreamTx #(
 		.Reset(Reset),
 		.Start_i(Button_i || (Done && (Memory[Pointer] != 8'd0))),
 		.Data_i(Memory[Pointer]),
-		.Busy_o(),
+		.Busy_o(Busy_o),
 		.Done_o(Done),
 		.Tx_o(Tx_o)
 	);

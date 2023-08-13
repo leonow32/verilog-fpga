@@ -25,6 +25,7 @@ module StreamTx_tb();
 		.Clock(Clock),
 		.Reset(Reset),
 		.Button_i(Button),
+		.Busy_o(),
 		.Tx_o(Tx)
 	);
 	
