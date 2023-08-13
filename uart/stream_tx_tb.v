@@ -43,13 +43,18 @@ module StreamTx_tb();
 		
 		@(posedge Clock);
 		Reset <= 1'b1;
-		
 		repeat(10) @(posedge Clock);
+		
 		Button <= 1'b1;
 		@(posedge Clock);
 		Button <= 1'b0;
+		repeat(500) @(posedge Clock);
+		
+		Button <= 1'b1;
+		@(posedge Clock);
+		Button <= 1'b0;
+		repeat(500) @(posedge Clock);
 
-		repeat(1000) @(posedge Clock);
 		
 		$display("====== END ======");
 		$finish;

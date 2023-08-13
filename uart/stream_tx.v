@@ -3,7 +3,8 @@
 
 `default_nettype none
 module StreamTx #(
-	parameter CLOCK_HZ = 10_000_000
+	parameter CLOCK_HZ = 10_000_000,
+	parameter BAUD     = 115_200
 )(
 	input wire Clock,
 	input wire Reset,
@@ -20,8 +21,8 @@ module StreamTx #(
 		Memory[2] = "l";
 		Memory[3] = "l";
 		Memory[4] = "o";
-		Memory[5] = "!";
-		Memory[6] = " ";
+		Memory[5] = 8'd0;
+		Memory[6] = 8'd0;
 		Memory[7] = 8'd0;
 	end
 	
@@ -32,12 +33,16 @@ module StreamTx #(
 			Pointer <= 0;
 		end else if(Button_i || Done) begin
 			Pointer <= Pointer + 1'b1;
+		//end else if(Memory[Pointer] == 8'd0) begin
+			//Pointer <= 0;
+		end else if(!Busy_o) begin
+			Pointer <= 0;
 		end
 	end
 	
 	UART_TX #(
 		.CLOCK_HZ(CLOCK_HZ),
-		.BAUD(100000)
+		.BAUD(BAUD)
 	) UartTx(
 		.Clock(Clock),
 		.Reset(Reset),

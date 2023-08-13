@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sat Aug 12 20:14:20 2023
+[*] Sun Aug 13 19:16:40 2023
 [*]
 [dumpfile] "C:\verilog\uart\stream_tx.vcd"
-[dumpfile_mtime] "Sat Aug 12 20:13:57 2023"
-[dumpfile_size] 34753
+[dumpfile_mtime] "Sun Aug 13 19:04:26 2023"
+[dumpfile_size] 36139
 [savefile] "C:\verilog\uart\stream_tx.gtkw"
-[timestart] 277600
+[timestart] 0
 [size] 1920 1009
 [pos] -1 -1
-*-15.034909 393000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-17.074425 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] StreamTx_tb.
 [treeopen] StreamTx_tb.DUT.
 [treeopen] StreamTx_tb.DUT.UartTx.
@@ -25,11 +25,11 @@ StreamTx_tb.Clock
 @28
 [color] 3
 StreamTx_tb.Button
-@24
+@25
 StreamTx_tb.DUT.Pointer[2:0]
 @200
 -UartTx
-@22
+@820
 StreamTx_tb.DUT.UartTx.Data_i[7:0]
 StreamTx_tb.DUT.UartTx.ByteCopy[7:0]
 @28
@@ -38,9 +38,8 @@ StreamTx_tb.DUT.UartTx.Start_i
 StreamTx_tb.DUT.UartTx.NextBit
 @22
 StreamTx_tb.DUT.UartTx.Pointer[3:0]
-@29
-StreamTx_tb.DUT.UartTx.Busy
 @28
+StreamTx_tb.DUT.UartTx.Busy
 [color] 3
 StreamTx_tb.DUT.Done
 StreamTx_tb.DUT.Tx_o
