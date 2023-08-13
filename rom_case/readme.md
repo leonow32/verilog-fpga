@@ -6,12 +6,14 @@ This is very a simple implementation of ROM memory using `case` instruction. It 
 
 ## Instantiation
 
-    ROM ROM_inst(
-        .Clock(Clock),
-        .ReadEnable_i(),
-        .Address_i(),
-        .Data_o()
-    );
+```verilog
+	ROM ROM_inst(
+		.Clock(Clock),
+		.ReadEnable_i(),
+		.Address_i(),
+		.Data_o()
+	);
+```
 
 ## Port description
 

@@ -16,18 +16,20 @@ The display should be connected to the FPGA chip as shown in the schematic below
 
 ## Instantiation
 
-    DisplayMultiplex #(
-        .CLOCK_HZ(CLOCK_HZ),
-        .SWITCH_PERIOD_US(1000)
-    ) DisplayMultiplex_inst(
-        .Clock(Clock),
-        .Reset(Reset),
-        .Data_i(),
-        .DecimalPoints_i(),
-        .Cathodes_o(),
-        .Segments_o()
-    );
-    
+```verilog
+	DisplayMultiplex #(
+		.CLOCK_HZ(CLOCK_HZ),
+		.SWITCH_PERIOD_US(1000)
+	) DisplayMultiplex_inst(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Data_i(),
+		.DecimalPoints_i(),
+		.Cathodes_o(),
+		.Segments_o()
+	);
+```
+
 ## Port description
 
 + **CLOCK_HZ** - Clock signal frequency [Hz].

@@ -9,15 +9,15 @@ The strobe signal is set to high state for one clock cycle and then it is set lo
 ## Instantiation
 
 ```verilog
-StrobeGenerator #(
-	.CLOCK_HZ(CLOCK_HZ),
-	.PERIOD_US()
-) StrobeGenerator_inst(
-	.Clock(Clock),
-	.Reset(Reset),
-	.Enable_i(),
-	.Strobe_o()
-);
+	StrobeGenerator #(
+		.CLOCK_HZ(CLOCK_HZ),
+		.PERIOD_US()
+	) StrobeGenerator_inst(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Enable_i(),
+		.Strobe_o()
+	);
 ```
 
 ## Port description

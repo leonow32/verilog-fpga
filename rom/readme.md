@@ -5,18 +5,20 @@
 Read only memory. This module can be used to store permanent information, such as the code of a program executed by the processor, for example.
 
 ## Instantiation
-    
-    ROM #(
-        .ADDRESS_WIDTH(),
-        .DATA_WIDTH(),
-        .MEMORY_FILE("data.mem")
-    ) ROM_inst(
-        .Clock(Clock),
-        .Reset(Reset),
-        .ReadEnable_i(),
-        .Address_i(),
-        .Data_o()
-    );
+
+```verilog
+	ROM #(
+		.ADDRESS_WIDTH(),
+		.DATA_WIDTH(),
+		.MEMORY_FILE("data.mem")
+	) ROM_inst(
+		.Clock(Clock),
+		.Reset(Reset),
+		.ReadEnable_i(),
+		.Address_i(),
+		.Data_o()
+	);
+```
 
 ## Port description
 

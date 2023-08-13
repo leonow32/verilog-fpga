@@ -6,6 +6,7 @@ A module used to filter the vibration of mechanical button contacts. After chang
 
 ## Instantiation
 
+```verilog
 	Debouncer #(
 		.CLOCK_HZ(CLOCK_HZ),
 		.PERIOD_US()
@@ -15,6 +16,7 @@ A module used to filter the vibration of mechanical button contacts. After chang
 		.NoisySignal_i(),
 		.FilteredSignal_o()
 	);
+```
 
 ## Port description
 
