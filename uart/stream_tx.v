@@ -33,12 +33,12 @@ module StreamTx #(
 			Pointer <= 0;
 		end else if(Button_i || Done) begin
 			Pointer <= Pointer + 1'b1;
-		//end else if(Memory[Pointer] == 8'd0) begin
-			//Pointer <= 0;
 		end else if(!Busy_o) begin
 			Pointer <= 0;
 		end
 	end
+	
+	wire Request = Button_i || (Done && (Memory[Pointer] != 8'd0));
 	
 	UART_TX #(
 		.CLOCK_HZ(CLOCK_HZ),
@@ -46,7 +46,7 @@ module StreamTx #(
 	) UartTx(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Start_i(Button_i || (Done && (Memory[Pointer] != 8'd0))),
+		.Start_i(Request),
 		.Data_i(Memory[Pointer]),
 		.Busy_o(Busy_o),
 		.Done_o(Done),
