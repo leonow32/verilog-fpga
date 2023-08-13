@@ -6,13 +6,16 @@ A simple module that is used to detect the rising and falling edge of any signal
 
 ## Instantiation
 
-    EdgeDetector EdgeDetector_inst(
-        .Clock(Clock),
-        .Reset(Reset),
-        .Signal_i(),
-        .RisingEdge_o(),
-        .FallingEdge_o()
-    );
+```verilog
+	EdgeDetector EdgeDetector_inst(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Signal_i(),
+		.RisingEdge_o(),
+		.FallingEdge_o()
+	);
+```
+
 
 ## Port description
 
