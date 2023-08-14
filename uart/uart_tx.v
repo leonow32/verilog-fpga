@@ -1,3 +1,5 @@
+// 230814
+
 `default_nettype none
 module UART_TX #(
 	parameter CLOCK_HZ = 10_000_000,
@@ -27,7 +29,7 @@ module UART_TX #(
 
 	// Shift register
 	reg Busy;
-	reg [3:0] Pointer;
+	reg [3:0] Pointer /* synthesis syn_encoding = "sequential" */;
 	reg [7:0] ByteCopy;
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
