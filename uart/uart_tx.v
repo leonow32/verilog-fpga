@@ -14,13 +14,14 @@ module UART_TX #(
 	
 	// Timing
 	wire NextBit;
+	localparam TICKS_PER_BIT = CLOCK_HZ / BAUD;
 	
 	StrobeGeneratorTicks #(
-		.TICKS(CLOCK_HZ / BAUD)
+		.TICKS(TICKS_PER_BIT)
 	) StrobeGeneratorTicks_inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Enable_i(Busy),
+		.Enable_i(Busy || Start_i),
 		.Strobe_o(NextBit)
 	);
 
@@ -39,7 +40,7 @@ module UART_TX #(
 			Pointer  <= 0;
 		end else if(NextBit) begin
 			if(Pointer == 4'd9) begin
-				Busy <= 1'b0;
+				Busy    <= 1'b0;
 				Pointer <= 4'd0;
 			end else begin
 				Pointer <= Pointer + 1'b1;

@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Wed Aug 09 13:52:29 2023
+[*] Mon Aug 14 19:59:12 2023
 [*]
-[dumpfile] "C:\verilog\uart\uart_tx.vcd"
-[dumpfile_mtime] "Wed Aug 09 13:51:00 2023"
-[dumpfile_size] 65948
-[savefile] "C:\verilog\uart\uart_tx.gtkw"
+[dumpfile] "uart_tx.vcd"
+[dumpfile_mtime] "Mon Aug 14 19:58:53 2023"
+[dumpfile_size] 24596
+[savefile] "uart_tx.gtkw"
 [timestart] 0
 [size] 1920 1009
 [pos] -1 -1
-*-14.655138 86833 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-16.585121 500000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] UART_TX_tb.
 [treeopen] UART_TX_tb.DUT.
 [sst_width] 197
@@ -20,16 +20,37 @@
 UART_TX_tb.Reset
 UART_TX_tb.Clock
 @200
--Inputs
-@29
+-Testbench
+@28
+[color] 3
+UART_TX_tb.ManualRequest
+[color] 3
+UART_TX_tb.ByteTransmitRequest
+UART_TX_tb.ByteTransmitBusy
+UART_TX_tb.ByteTransmitDone
+@24
+UART_TX_tb.Pointer[2:0]
+@c00820
+UART_TX_tb.DUT.Data_i[7:0]
+@28
+(0)UART_TX_tb.DUT.Data_i[7:0]
+(1)UART_TX_tb.DUT.Data_i[7:0]
+(2)UART_TX_tb.DUT.Data_i[7:0]
+(3)UART_TX_tb.DUT.Data_i[7:0]
+(4)UART_TX_tb.DUT.Data_i[7:0]
+(5)UART_TX_tb.DUT.Data_i[7:0]
+(6)UART_TX_tb.DUT.Data_i[7:0]
+(7)UART_TX_tb.DUT.Data_i[7:0]
+@1401200
+-group_end
+@200
+-UartTx
+@28
 UART_TX_tb.DUT.Start_i
 @22
 UART_TX_tb.DUT.Data_i[7:0]
-@200
--Internals
-@28
-UART_TX_tb.DUT.NextBit
-@22
+@820
+UART_TX_tb.DUT.Data_i[7:0]
 UART_TX_tb.DUT.ByteCopy[7:0]
 @c00028
 UART_TX_tb.DUT.DataToSend[9:0]
@@ -46,13 +67,27 @@ UART_TX_tb.DUT.DataToSend[9:0]
 (9)UART_TX_tb.DUT.DataToSend[9:0]
 @1401200
 -group_end
+@28
+UART_TX_tb.DUT.NextBit
 @24
 UART_TX_tb.DUT.Pointer[3:0]
-@200
--Outputs
 @28
+[color] 3
+UART_TX_tb.DUT.Tx_o
 UART_TX_tb.DUT.Busy_o
 UART_TX_tb.DUT.Done_o
-UART_TX_tb.DUT.Tx_o
+@200
+-StrobeGenerator
+@28
+UART_TX_tb.DUT.StrobeGeneratorTicks_inst.Enable_i
+@22
+UART_TX_tb.DUT.StrobeGeneratorTicks_inst.Counter[3:0]
+@8022
+UART_TX_tb.DUT.StrobeGeneratorTicks_inst.Counter[3:0]
+@20000
+-
+-
+@28
+UART_TX_tb.DUT.StrobeGeneratorTicks_inst.Strobe_o
 [pattern_trace] 1
 [pattern_trace] 0

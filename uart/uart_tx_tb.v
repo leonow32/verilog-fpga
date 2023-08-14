@@ -27,24 +27,24 @@ module UART_TX_tb();
 	end
 	
 	// Variables
-	wire Busy;
-	wire Done;
-	reg Reset = 1'b0;
-	reg Run   = 1'b0;
-	reg [7:0] DataToSend;
+	wire ByteTransmitBusy;
+	wire ByteTransmitDone;
+	reg Reset         = 1'b0;
+	reg ManualRequest = 1'b0;
 	
+	// Pointer that selects a byte in memory to be transmitted next
 	reg [2:0] Pointer;	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
 			Pointer <= 0;
-		end else if(Run || Done) begin
+		end else if(ManualRequest || ByteTransmitDone) begin
 			Pointer <= Pointer + 1'b1;
-		end else if(!Busy) begin
+		end else if(!ByteTransmitBusy) begin
 			Pointer <= 0;
 		end
 	end
 	
-	wire Request = Run || (Done && (Memory[Pointer] != 8'd0));
+	wire ByteTransmitRequest = ManualRequest || (ByteTransmitDone && (Memory[Pointer] != 8'd0));
 	
 	// Instantiate device under test
 	UART_TX #(
@@ -53,10 +53,10 @@ module UART_TX_tb();
 	) DUT(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Start_i(Request),
+		.Start_i(ByteTransmitRequest),
 		.Data_i(Memory[Pointer]),
-		.Busy_o(Busy),
-		.Done_o(Done),
+		.Busy_o(ByteTransmitBusy),
+		.Done_o(ByteTransmitDone),
 		.Tx_o()
 	);
 	
@@ -71,46 +71,19 @@ module UART_TX_tb();
 	initial begin
 		$timeformat(-6, 3, "us", 12);
 		$display("===== START =====");
-		$display("TICKS = %9d", DUT.StrobeGeneratorTicks_inst.TICKS);
-		// $display("WIDTH = %9d", DUT.WIDTH);
+		$display("Ticks per bit = %9d", DUT.StrobeGeneratorTicks_inst.TICKS);
 		
 		@(posedge Clock);
 		Reset <= 1'b1;
 		
-		repeat(10) @(posedge Clock);
-		Run <= 1'b1;
+		repeat(99) @(posedge Clock);
+		ManualRequest <= 1'b1;
 		@(posedge Clock);
-		Run <= 1'b0;
+		ManualRequest <= 1'b0;
 		
-		repeat(800) @(posedge Clock);
-		
-		/*
-		repeat(10) @(posedge Clock);
-		Start      <= 1'b1;
-//		DataToSend <= 8'b10101010;
-//		DataToSend <= 8'b01010101;
-		DataToSend <= 8'b11110000;
-		@(posedge Clock);
-		Start      <= 1'b0;
-		DataToSend <= 8'bX;
-		
-		
-		// Pause
-		@(negedge DUT.Done_o);
-		//@(posedge Clock);
-		Start      <= 1'b1;
-//		DataToSend <= 8'b10101010;
-//		DataToSend <= 8'b01010101;
-//		DataToSend <= 8'b11110000;
-//		DataToSend <= 8'b00001111;
-		DataToSend <= 8'b00110001;
-		@(posedge Clock);
-		Start      <= 1'b0;
-		DataToSend <= 8'bX;
-		
-		@(negedge DUT.Done_o);
+		wait(Memory[Pointer] == 8'd0);
+		@(posedge ByteTransmitDone);
 		repeat(100) @(posedge Clock);
-		*/
 		
 		$display("====== END ======");
 		$finish;
