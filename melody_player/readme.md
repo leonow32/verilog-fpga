@@ -6,15 +6,17 @@ This module is superior to the `SoundGenerator` module, which can only play a si
 
 ## Instantiation
 
-    MelodyPlayer #(
-        .CLOCK_HZ(CLOCK_HZ)
-    ) DUT(
-        .Clock(Clock),
-        .Reset(Reset),
-        .Play_i(),
-        .Stop_i(),
-        .SoundWave_o()
-    );
+```verilog
+	MelodyPlayer #(
+		.CLOCK_HZ(CLOCK_HZ)
+	) DUT(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Play_i(),
+		.Stop_i(),
+		.SoundWave_o()
+	);
+```
 
 ## Port description
 

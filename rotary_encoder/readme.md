@@ -10,14 +10,16 @@ The rotary encoder should be connected as shown in the schematic. The FPGA chip 
 
 ## Instantiation
 
-    Encoder Encoder_inst(
-        .Clock(Clock),
-        .Reset(Reset),
-        .AsyncA_i(),
-        .AsyncB_i(),
-        .Increment_o(),
-        .Decrement_o()
-    );
+```verilog
+	Encoder Encoder_inst(
+		.Clock(Clock),
+		.Reset(Reset),
+		.AsyncA_i(),
+		.AsyncB_i(),
+		.Increment_o(),
+		.Decrement_o()
+	);
+```
 
 ## Port description
 
