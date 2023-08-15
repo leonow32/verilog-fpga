@@ -1,6 +1,3 @@
-
-// Po zakończeniu transmisji pointer nie jest zerowany
-
 `default_nettype none
 module StreamTx #(
 	parameter CLOCK_HZ = 10_000_000,

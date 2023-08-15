@@ -2,10 +2,10 @@
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
 [*] Sun Aug 13 19:19:37 2023
 [*]
-[dumpfile] "C:\verilog\uart\stream_tx.vcd"
+[dumpfile] "stream_tx.vcd"
 [dumpfile_mtime] "Sun Aug 13 19:04:26 2023"
 [dumpfile_size] 36139
-[savefile] "C:\verilog\uart\stream_tx.gtkw"
+[savefile] "stream_tx.gtkw"
 [timestart] 0
 [size] 1920 1009
 [pos] -1 -1
