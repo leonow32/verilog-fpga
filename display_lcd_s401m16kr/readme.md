@@ -28,20 +28,22 @@ To make the selected segment visible (black), you need to activate the correspon
 
 ## Instantiation
 
-    LCD #(
-        .CLOCK_HZ(CLOCK_HZ),
-        .CHANGE_COM_US(50)
-    ) LCD_inst(
-        .Clock(Clock),
-        .Reset(Reset),
-        .Digit3_i(),
-        .Digit2_i(),
-        .Digit1_i(),
-        .Digit0_i(),
-        .ComPWM_o(),
-        .SegPWM_o()
-    );
-    
+```verilog
+	LCD #(
+		.CLOCK_HZ(CLOCK_HZ),
+		.CHANGE_COM_US(50)
+	) LCD_inst(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Digit3_i(),
+		.Digit2_i(),
+		.Digit1_i(),
+		.Digit0_i(),
+		.ComPWM_o(),
+		.SegPWM_o()
+	);
+```
+
 ## Port description
 
 + **CLOCK_HZ** - Clock signal frequency [Hz].

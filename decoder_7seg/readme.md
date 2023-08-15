@@ -8,13 +8,15 @@ Made as a fully combinational logic without any clock and reset signals. Can be 
 
 ## Instantiation
 
-    Decoder7seg #(
-        .COMMON_CATHODE(1)
-    ) Decoder7seg_inst(
-        .Enable_i(),
-        .Data_i(),
-        .Segments_o()
-    );
+```verilog
+	Decoder7seg #(
+		.COMMON_CATHODE(1)
+	) Decoder7seg_inst(
+		.Enable_i(),
+		.Data_i(),
+		.Segments_o()
+	);
+```
 
 ## Port description
 

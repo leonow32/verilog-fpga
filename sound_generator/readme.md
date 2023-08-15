@@ -6,19 +6,21 @@ The `SoundGenerator` module generates sound of the desired frequency and duratio
 
 ## Instantiation
 
-    SoundGenerator #(
-        .CLOCK_HZ(CLOCK_HZ)
-    ) SoundGenerator_inst(
-        .Clock(Clock),
-        .Reset(Reset),
-        .Start_i(),
-        .Finish_i(),
-        .Duration_ms_i(),
-        .HalfPeriod_us_i(),
-        .SoundWave_o(),
-        .Busy_o(),
-        .Done_o()
-    );
+```verilog
+	SoundGenerator #(
+		.CLOCK_HZ(CLOCK_HZ)
+	) SoundGenerator_inst(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Start_i(),
+		.Finish_i(),
+		.Duration_ms_i(),
+		.HalfPeriod_us_i(),
+		.SoundWave_o(),
+		.Busy_o(),
+		.Done_o()
+	);
+```
 
 ## Port description
 
