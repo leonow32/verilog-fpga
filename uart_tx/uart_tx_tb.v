@@ -90,6 +90,12 @@ module UART_TX_tb();
 		$display("====== END ======");
 		$finish;
 	end
+	
+	// Display trasmitted bytes
+	always begin
+		@(posedge ByteTransmitRequest)
+		$display("%t Transmitting byte %d: %s", $realtime, Pointer, Memory[Pointer]);
+	end
 
 endmodule
 `default_nettype wire

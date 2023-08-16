@@ -7,11 +7,9 @@ module UART_RX #(
 )(
 	input wire Clock,
 	input wire Reset,
-	input wire Start_i,
-	input wire [7:0] Data_i,
-	output wire Busy_o,
+	input wire Rx_i
 	output wire Done_o,
-	output wire Tx_o
+	output wire [7:0] Data_o
 );
 	
 	// Timing
