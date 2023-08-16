@@ -73,7 +73,10 @@ module UART_TX_tb();
 	initial begin
 		$timeformat(-6, 3, "us", 12);
 		$display("===== START =====");
-		$display("Ticks per bit = %9d", DUT.StrobeGeneratorTicks_inst.TICKS);
+		$display("Clock:         %9d", CLOCK_HZ);
+		$display("Baud rate:     %9d", DUT.BAUD);
+		$display("Ticks per bit: %9d", DUT.StrobeGeneratorTicks_inst.TICKS);
+		
 		
 		@(posedge Clock);
 		Reset <= 1'b1;

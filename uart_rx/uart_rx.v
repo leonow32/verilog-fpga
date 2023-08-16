@@ -8,21 +8,21 @@ module UART_RX #(
 	input wire Clock,
 	input wire Reset,
 	input wire Rx_i
-	output wire Done_o,
-	output wire [7:0] Data_o
+	output reg Done_o,
+	output reg [7:0] Data_o
 );
 	
 	// Timing
-	wire NextBit;
-	localparam TICKS_PER_BIT = CLOCK_HZ / BAUD;
+	wire Next;
+	localparam TICKS_PER_BIT = CLOCK_HZ / (BAUD * 2);
 	
 	StrobeGeneratorTicks #(
 		.TICKS(TICKS_PER_BIT)
 	) StrobeGeneratorTicks_inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Enable_i(Busy || Start_i),
-		.Strobe_o(NextBit)
+		.Enable_i(),	//
+		.Strobe_o(Next)
 	);
 
 	// Shift register
