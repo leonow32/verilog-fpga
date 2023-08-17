@@ -1,18 +1,18 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Thu Aug 17 12:16:11 2023
+[*] Thu Aug 17 20:06:00 2023
 [*]
 [dumpfile] "C:\verilog\uart_rx\uart_rx.vcd"
-[dumpfile_mtime] "Thu Aug 17 12:12:42 2023"
-[dumpfile_size] 13790
+[dumpfile_mtime] "Thu Aug 17 19:49:49 2023"
+[dumpfile_size] 13181
 [savefile] "C:\verilog\uart_rx\uart_rx.gtkw"
 [timestart] 0
 [size] 1920 1009
 [pos] -1 -1
-*-15.709502 301000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-15.294465 131000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] UART_RX_tb.
 [sst_width] 197
-[signals_width] 178
+[signals_width] 218
 [sst_expanded] 1
 [sst_vpaned_height] 297
 @28
@@ -32,5 +32,16 @@ UART_RX_tb.UartTx_Inst.Done_o
 UART_RX_tb.UartTx_Inst.Tx_o
 @200
 -Receiver
+@28
+UART_RX_tb.UartRx_Inst.Rx_i
+UART_RX_tb.UartRx_Inst.RxRisingEdge
+UART_RX_tb.UartRx_Inst.RxFallingEdge
+@29
+UART_RX_tb.UartRx_Inst.Strobe
+@28
+UART_RX_tb.UartRx_Inst.State[1:0]
+UART_RX_tb.UartRx_Inst.Done_o
+@22
+UART_RX_tb.UartRx_Inst.Data_o[7:0]
 [pattern_trace] 1
 [pattern_trace] 0

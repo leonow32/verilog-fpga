@@ -79,12 +79,14 @@ module UART_RX_tb();
 		TxRequest <= 1'b0;
 		
 		// Sending 2nd byte
+		/*
 		@(posedge TxDone);
 		TxData <= 8'b10101010;
 		TxRequest <= 1'b1;
 		@(posedge Clock);
 		TxData <= 8'bxxxxxxxx;
 		TxRequest <= 1'b0;
+		*/
 		
 		@(posedge TxDone);
 		repeat(100) @(posedge Clock);

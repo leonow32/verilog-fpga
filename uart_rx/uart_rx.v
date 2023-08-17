@@ -13,7 +13,7 @@ module UART_RX #(
 );
 	
 	// Timing
-	wire Next;
+	wire Strobe;
 	localparam TICKS_PER_BIT = CLOCK_HZ / (BAUD * 2);
 	
 	StrobeGeneratorTicks #(
@@ -21,25 +21,52 @@ module UART_RX #(
 	) StrobeGeneratorTicks_inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Enable_i(),	//
-		.Strobe_o(Next)
+		.Enable_i(State == RECEIVING),	//
+		.Strobe_o(Strobe)
 	);
 
 	// Start of frame detection (start bit is always 0)
-	wire StartBitDetected;
+	wire RxRisingEdge;
+	wire RxFallingEdge;
 	EdgeDetector DUT(
 		.Clock(Clock),
 		.Reset(Reset),
 		.Signal_i(Rx_i),
-		.RisingEdge_o(),
-		.FallingEdge_o(StartBitDetected)
+		.RisingEdge_o(RxRisingEdge),
+		.FallingEdge_o(RxFallingEdge)
 	);
 	
-	// State machine
+	/*
+	reg RxPrev;
+	always @(posedge Clock, negedge Reset) begin
+		if(!Reset) begin
+			RxPrev <= 1'b0;
+		end else begin
+			RxPrev <= Rx_i;
+		end
+	end
+	*/
 	
+	
+	// State machine
+	reg [1:0] State;
 	parameter IDLE = 0;
-	parameter WORK = 1;
+	parameter RECEIVING = 1;
 	parameter RETURN = 2;
+	
+	always @(posedge Clock, negedge Reset) begin
+		if(!Reset) begin
+			State <= IDLE;
+		end else begin
+			case(State)
+				IDLE: begin
+					if(RxFallingEdge) begin
+						State <= RECEIVING;
+					end
+				end
+			endcase
+		end
+	end
 	
 endmodule
 `default_nettype wire
