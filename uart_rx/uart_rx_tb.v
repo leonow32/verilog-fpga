@@ -15,57 +15,49 @@ module UART_RX_tb();
 		Clock = !Clock;
 	end
 	
-	// Message to send
-	reg [7:0] Memory [0:7];
-	initial begin
-		Memory[0] = "H";
-		Memory[1] = "e";
-		Memory[2] = "l";
-		Memory[3] = "l";
-		Memory[4] = "o";
-		Memory[5] = 8'd0;
-		Memory[6] = 8'd0;
-		Memory[7] = 8'd0;
-	end
-	
 	// Variables
-	wire ByteTransmitBusy;
-	wire ByteTransmitDone;
-	reg Reset         = 1'b0;
-	reg ManualRequest = 1'b0;
+	reg  Reset         = 1'b0;
 	
-	// Pointer that selects a byte in memory to be transmitted next
-	reg [2:0] Pointer;	
-	always @(posedge Clock, negedge Reset) begin
-		if(!Reset) begin
-			Pointer <= 0;
-		end else if(ManualRequest || ByteTransmitDone) begin
-			Pointer <= Pointer + 1'b1;
-		end else if(!ByteTransmitBusy) begin
-			Pointer <= 0;
-		end
-	end
+	reg  [7:0] TxData;
+	wire       TxBusy;
+	wire       TxDone;
+	reg        TxRequest = 1'b0;
 	
-	wire ByteTransmitRequest = ManualRequest || (ByteTransmitDone && (Memory[Pointer] != 8'd0));
+	wire [7:0] RxData;
+	wire       RxDone;
 	
-	// Instantiate device under test
+	wire       TxRxCommon;
+	
+	// UART Transmitter
 	UART_TX #(
 		.CLOCK_HZ(CLOCK_HZ),
 		.BAUD(100_000)
-	) DUT(
+	) UartTx_Inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Start_i(ByteTransmitRequest),
-		.Data_i(Memory[Pointer]),
-		.Busy_o(ByteTransmitBusy),
-		.Done_o(ByteTransmitDone),
-		.Tx_o()
+		.Start_i(TxRequest),
+		.Data_i(TxData),
+		.Busy_o(),
+		.Done_o(TxDone),
+		.Tx_o(TxRxCommon)
+	);
+	
+	// UART Receiver
+	UART_RX #(
+		.CLOCK_HZ(CLOCK_HZ),
+		.BAUD(100_000)
+	) UartRx_Inst(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Rx_i(TxRxCommon),
+		.Done_o(RxDone),
+		.Data_o(RxData)
 	);
 	
 	// Variable dump
 	initial begin
-		$dumpfile("uart_tx.vcd");
-		$dumpvars(0, UART_TX_tb);
+		$dumpfile("uart_rx.vcd");
+		$dumpvars(0, UART_RX_tb);
 	end
 
 	// Test sequence
@@ -73,22 +65,38 @@ module UART_RX_tb();
 	initial begin
 		$timeformat(-6, 3, "us", 12);
 		$display("===== START =====");
-		$display("Ticks per bit = %9d", DUT.StrobeGeneratorTicks_inst.TICKS);
+		//$display("Ticks per bit = %9d", DUT.StrobeGeneratorTicks_inst.TICKS);
 		
 		@(posedge Clock);
 		Reset <= 1'b1;
 		
+		// Sending 1st byte
 		repeat(99) @(posedge Clock);
-		ManualRequest <= 1'b1;
+		TxData <= 8'b01010101;
+		TxRequest <= 1'b1;
 		@(posedge Clock);
-		ManualRequest <= 1'b0;
+		TxData <= 8'bxxxxxxxx;
+		TxRequest <= 1'b0;
 		
-		wait(Memory[Pointer] == 8'd0);
-		@(posedge ByteTransmitDone);
+		// Sending 2nd byte
+		@(posedge TxDone);
+		TxData <= 8'b10101010;
+		TxRequest <= 1'b1;
+		@(posedge Clock);
+		TxData <= 8'bxxxxxxxx;
+		TxRequest <= 1'b0;
+		
+		@(posedge TxDone);
 		repeat(100) @(posedge Clock);
 		
 		$display("====== END ======");
 		$finish;
+	end
+	
+	// Display trasmitted bytes
+	always begin
+		@(posedge TxRequest)
+		$display("%t Transmitting byte: %s", $realtime, UartTx_Inst.Data_i);
 	end
 
 endmodule

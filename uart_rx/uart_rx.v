@@ -7,7 +7,7 @@ module UART_RX #(
 )(
 	input wire Clock,
 	input wire Reset,
-	input wire Rx_i
+	input wire Rx_i,
 	output reg Done_o,
 	output reg [7:0] Data_o
 );
@@ -25,36 +25,21 @@ module UART_RX #(
 		.Strobe_o(Next)
 	);
 
-	// Shift register
-	reg Busy;
-	reg [3:0] Pointer /* synthesis syn_encoding = "sequential" */;
-	reg [7:0] ByteCopy;
-	always @(posedge Clock, negedge Reset) begin
-		if(!Reset) begin
-			ByteCopy <= 0;
-			Busy     <= 0;
-			Pointer  <= 0;
-		end else if(Start_i) begin
-			ByteCopy <= Data_i;
-			Busy     <= 1'b1;
-			Pointer  <= 0;
-		end else if(NextBit) begin
-			if(Pointer == 4'd9) begin
-				Busy    <= 1'b0;
-				Pointer <= 4'd0;
-			end else begin
-				Pointer <= Pointer + 1'b1;
-			end 
-		end
-	end
+	// Start of frame detection (start bit is always 0)
+	wire StartBitDetected;
+	EdgeDetector DUT(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Signal_i(Rx_i),
+		.RisingEdge_o(),
+		.FallingEdge_o(StartBitDetected)
+	);
 	
-	wire [9:0] DataToSend;
-	assign DataToSend = {1'b1, ByteCopy, 1'b0};
+	// State machine
 	
-	// Outputs
-	assign Tx_o = Busy ? DataToSend[Pointer] : 1'b1;
-	assign Busy_o = Busy;
-	assign Done_o = NextBit && (Pointer == 4'd9);
+	parameter IDLE = 0;
+	parameter WORK = 1;
+	parameter RETURN = 2;
 	
 endmodule
 `default_nettype wire
