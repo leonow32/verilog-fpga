@@ -21,7 +21,7 @@ module UART_RX #(
 	) StrobeGeneratorTicks_inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Enable_i(State == RECEIVING),	//
+		.Enable_i(State == RECEIVING || !Rx_i),	//
 		.Strobe_o(Strobe)
 	);
 
@@ -36,23 +36,15 @@ module UART_RX #(
 		.FallingEdge_o(RxFallingEdge)
 	);
 	
-	/*
-	reg RxPrev;
-	always @(posedge Clock, negedge Reset) begin
-		if(!Reset) begin
-			RxPrev <= 1'b0;
-		end else begin
-			RxPrev <= Rx_i;
-		end
-	end
-	*/
-	
-	
 	// State machine
 	reg [1:0] State;
 	parameter IDLE = 0;
 	parameter RECEIVING = 1;
 	parameter RETURN = 2;
+	
+	reg [3:0] Counter;
+	wire [2:0] BitNumber = Counter[3:1];
+	wire Flag = Counter[0];
 	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
@@ -62,7 +54,18 @@ module UART_RX #(
 				IDLE: begin
 					if(RxFallingEdge) begin
 						State <= RECEIVING;
+						Counter <= 4'd0;
 					end
+				end
+				
+				RECEIVING: begin
+					if(Strobe) begin
+						Counter <= Counter + 1'b1;
+					end
+				end
+				
+				RETURN: begin
+				
 				end
 			endcase
 		end
