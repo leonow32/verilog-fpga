@@ -1,9 +1,9 @@
-// 230814
+// 230819
 
 `timescale 1ns/1ns  // time-unit, precision
 
 `default_nettype none
-module UART_RX_tb();
+module UartRx_tb();
 
 	parameter CLOCK_HZ	          = 1_000_000;
 	parameter real HALF_PERIOD_NS = 1_000_000_000.0 / (2 * CLOCK_HZ);
@@ -16,7 +16,7 @@ module UART_RX_tb();
 	end
 	
 	// Variables
-	reg  Reset         = 1'b0;
+	reg  Reset = 1'b0;
 	
 	reg  [7:0] TxData;
 	wire       TxBusy;
@@ -43,7 +43,7 @@ module UART_RX_tb();
 	);
 	
 	// UART Receiver
-	UART_RX #(
+	UartRx #(
 		.CLOCK_HZ(CLOCK_HZ),
 		.BAUD(100_000)
 	) UartRx_Inst(
@@ -57,37 +57,35 @@ module UART_RX_tb();
 	// Variable dump
 	initial begin
 		$dumpfile("uart_rx.vcd");
-		$dumpvars(0, UART_RX_tb);
+		$dumpvars(0, UartRx_tb);
 	end
 
 	// Test sequence
-	integer i;
 	initial begin
 		$timeformat(-6, 3, "us", 12);
 		$display("===== START =====");
-		$display("Ticks per half bit = %9d", UartRx_Inst.TICKS_PER_HALF_BIT);
+		$display("Ticks per half bit = %0d", UartRx_Inst.TICKS_PER_HALF_BIT);
 		
 		@(posedge Clock);
-		Reset <= 1'b1;
+		Reset     <= 1'b1;
 		
 		// Sending 1st byte
 		repeat(99) @(posedge Clock);
-		TxData <= 8'hAB;
+		TxData    <= 8'hAB;
 		TxRequest <= 1'b1;
 		@(posedge Clock);
-		TxData <= 8'bxxxxxxxx;
+		TxData    <= 8'bxxxxxxxx;
 		TxRequest <= 1'b0;
 		
 		// Sending 2nd byte
-		
 		@(posedge TxDone);
-		TxData <= 8'hCD;
+		TxData    <= 8'hCD;
 		TxRequest <= 1'b1;
 		@(posedge Clock);
-		TxData <= 8'bxxxxxxxx;
+		TxData    <= 8'bxxxxxxxx;
 		TxRequest <= 1'b0;
 		
-		
+		// Wait for end of the transmission
 		@(posedge TxDone);
 		repeat(100) @(posedge Clock);
 		
@@ -95,7 +93,7 @@ module UART_RX_tb();
 		$finish;
 	end
 	
-	// Display trasmitted bytes
+	// Display the byte being sent when transmission begins
 	always begin
 		@(posedge TxRequest)
 		$display("%t Transmitting byte: %H %s", 
@@ -105,6 +103,7 @@ module UART_RX_tb();
 		);
 	end
 	
+	// Display received byte after transmission is complete
 	always begin
 		@(posedge RxDone)
 		$display("%t Received byte:     %H %s", 

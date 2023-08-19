@@ -1,7 +1,7 @@
-// 230814
+// 230819
 
 `default_nettype none
-module UART_RX #(
+module UartRx #(
 	parameter CLOCK_HZ = 10_000_000,
 	parameter BAUD     = 115200
 )(
@@ -21,7 +21,7 @@ module UART_RX #(
 	) StrobeGeneratorTicks_inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Enable_i(Receiving || !Rx_i),	//
+		.Enable_i(Busy || !Rx_i),
 		.Strobe_o(Strobe)
 	);
 
@@ -36,27 +36,27 @@ module UART_RX #(
 	);
 	
 	// State machine
-	reg Receiving;
-	reg [8:0] ReceivedData;
+	reg Busy;
+	reg [8:0] RxBuffer;
 	reg [4:0] Counter;
 	wire SampleEnable = Strobe && !Counter[0];
 	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
-			Receiving <= 0;
-			Counter <= 5'd0;
-			Data_o <= 0;
-			Done_o <= 0;
-			ReceivedData <= 0;
+			Busy     <= 0;
+			Counter  <= 0;
+			Data_o   <= 0;
+			Done_o   <= 0;
+			RxBuffer <= 0;
 		end else begin
 			
 			// Idle state
-			if(!Receiving) begin
+			if(!Busy) begin
 				if(RxFallingEdge) begin
 					Counter <= 5'd0;
-					Receiving <= 1'b1;
+					Busy    <= 1'b1;
 				end else begin
-					Done_o <= 1'b0;
+					Done_o  <= 1'b0;
 				end
 			end
 			
@@ -67,14 +67,13 @@ module UART_RX #(
 				end
 				
 				if(SampleEnable) begin
-					ReceivedData <= {ReceivedData[7:0], Rx_i};
-					ReceivedData <= {Rx_i, ReceivedData[8:1]};
+					RxBuffer <= {Rx_i, RxBuffer[8:1]};
 				end
 				
 				if(Counter == 5'd17) begin
-					Data_o <= ReceivedData[8:1];
+					Data_o <= RxBuffer[8:1];
 					Done_o <= 1'b1;
-					Receiving <= 1'b0;
+					Busy   <= 1'b0;
 				end
 			end
 		end
