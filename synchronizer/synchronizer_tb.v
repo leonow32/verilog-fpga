@@ -26,7 +26,10 @@ module Synchronizer_tb();
 
 	// Test sequence
 	initial begin
+		$timeformat(-6, 3, "us", 10);
 		$display("===== START =====");
+		$display("      Time Reset AsynchInput SyncOutput");
+		$monitor("%t     %d           %d          %d", $realtime, Reset, AsynchInput, SyncOutput);
 
 		#5 Reset = 1'b0; 
 		#5 Reset = 1'b1;
@@ -41,8 +44,8 @@ module Synchronizer_tb();
 		#456 AsynchInput = 1'b0;
 		#500;
 
-		$display("===== END =====");
-		#1 $finish;
+		$display("====== END ======");
+		$finish;
 	end
   
 	// AsyncInstantiate device under test
