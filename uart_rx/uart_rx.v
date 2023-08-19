@@ -12,6 +12,15 @@ module UartRx #(
 	output reg [7:0] Data_o
 );
 	
+	// Synchronize Rx input with clock domain
+	wire RxSync;
+	Synchronizer DUT(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Async_i(Rx_i),
+		.Sync_o(RxSync)
+	);
+	
 	// Timing
 	wire Strobe;
 	localparam TICKS_PER_HALF_BIT = CLOCK_HZ / (BAUD * 2);
@@ -21,7 +30,7 @@ module UartRx #(
 	) StrobeGeneratorTicks_inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Enable_i(Busy || !Rx_i),
+		.Enable_i(Busy || !RxSync),
 		.Strobe_o(Strobe)
 	);
 
@@ -30,7 +39,7 @@ module UartRx #(
 	EdgeDetector EdgeDetector_inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Signal_i(Rx_i),
+		.Signal_i(RxSync),
 		.RisingEdge_o(),
 		.FallingEdge_o(RxFallingEdge)
 	);
@@ -67,7 +76,7 @@ module UartRx #(
 				end
 				
 				if(SampleEnable) begin
-					RxBuffer <= {Rx_i, RxBuffer[8:1]};
+					RxBuffer <= {RxSync, RxBuffer[8:1]};
 				end
 				
 				if(Counter == 5'd17) begin
