@@ -1,0 +1,25 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sat Aug 19 20:13:06 2023
+[*]
+[dumpfile] "synchronizer.vcd"
+[dumpfile_mtime] "Sat Aug 19 19:59:02 2023"
+[dumpfile_size] 1265
+[savefile] "synchronizer.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -113 -113
+*-8.177183 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] Synchronizer_tb.
+[sst_width] 197
+[signals_width] 173
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+Synchronizer_tb.Reset
+Synchronizer_tb.Clock
+[color] 3
+Synchronizer_tb.AsynchInput
+Synchronizer_tb.SyncOutput
+[pattern_trace] 1
+[pattern_trace] 0
