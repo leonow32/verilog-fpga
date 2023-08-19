@@ -19,6 +19,7 @@ I decided to publish these peripherals because I think they may be useful for ot
 
 **Input/Ouptut:**
 
++ [Syncronizer](/syncronizer) - A module for synchronizing asynchronous inputs with the clock domain of an FPGA. The implementation of this module at the GPIO input pins solves the problem of metastability. Changes in the state of the asynchronous input are visible on the synchronous output, but are delayed by a maximum of 2 clock cycles.
 + [Edge Detector](/edge_detector) - A simple module that is used to detect the rising and falling edge of any signal. If a change in the signal is detected, a pulse of one clock cycle length will be generated on the `RisingEdge_o` and `FallingEdge_o` outputs. Important - the signal under test must be synchronized with the clock.
 + [Debouncer](/debouncer) - A module used to filter the vibration of mechanical button contacts. After changing the state of the input `NoisySignal_i`, the module waits the time specified by the parameter . If the input state is stable during this time, then the output state `FilteredSignal_o` changes.
 + [Rotary Encoder](/rotary_encoder) - Module supporting a rotary encoder. Allows recognition of increment and decrement signals of ecoders, which have four pulses per click.

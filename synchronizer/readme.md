@@ -7,7 +7,7 @@ A module for synchronizing asynchronous inputs with the clock domain of an FPGA.
 ## Instantiation
 
 ```verilog
-	Synchronizer DUT(
+	Synchronizer Synchronizer_inst(
 		.Clock(Clock),
 		.Reset(Reset),
 		.Async_i(),
