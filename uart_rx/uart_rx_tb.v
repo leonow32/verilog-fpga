@@ -65,28 +65,28 @@ module UART_RX_tb();
 	initial begin
 		$timeformat(-6, 3, "us", 12);
 		$display("===== START =====");
-		//$display("Ticks per bit = %9d", DUT.StrobeGeneratorTicks_inst.TICKS);
+		$display("Ticks per half bit = %9d", UartRx_Inst.TICKS_PER_HALF_BIT);
 		
 		@(posedge Clock);
 		Reset <= 1'b1;
 		
 		// Sending 1st byte
 		repeat(99) @(posedge Clock);
-		TxData <= 8'b01010101;
+		TxData <= 8'hAB;
 		TxRequest <= 1'b1;
 		@(posedge Clock);
 		TxData <= 8'bxxxxxxxx;
 		TxRequest <= 1'b0;
 		
 		// Sending 2nd byte
-		/*
+		
 		@(posedge TxDone);
-		TxData <= 8'b10101010;
+		TxData <= 8'hCD;
 		TxRequest <= 1'b1;
 		@(posedge Clock);
 		TxData <= 8'bxxxxxxxx;
 		TxRequest <= 1'b0;
-		*/
+		
 		
 		@(posedge TxDone);
 		repeat(100) @(posedge Clock);
@@ -98,7 +98,20 @@ module UART_RX_tb();
 	// Display trasmitted bytes
 	always begin
 		@(posedge TxRequest)
-		$display("%t Transmitting byte: %s", $realtime, UartTx_Inst.Data_i);
+		$display("%t Transmitting byte: %H %s", 
+			$realtime, 
+			UartTx_Inst.Data_i,
+			UartTx_Inst.Data_i
+		);
+	end
+	
+	always begin
+		@(posedge RxDone)
+		$display("%t Received byte:     %H %s", 
+			$realtime, 
+			UartRx_Inst.Data_o,
+			UartRx_Inst.Data_o
+		);
 	end
 
 endmodule

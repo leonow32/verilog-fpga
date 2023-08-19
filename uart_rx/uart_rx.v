@@ -14,10 +14,10 @@ module UART_RX #(
 	
 	// Timing
 	wire Strobe;
-	localparam TICKS_PER_BIT = CLOCK_HZ / (BAUD * 2);
+	localparam TICKS_PER_HALF_BIT = CLOCK_HZ / (BAUD * 2);
 	
 	StrobeGeneratorTicks #(
-		.TICKS(TICKS_PER_BIT)
+		.TICKS(TICKS_PER_HALF_BIT)
 	) StrobeGeneratorTicks_inst(
 		.Clock(Clock),
 		.Reset(Reset),
@@ -26,13 +26,12 @@ module UART_RX #(
 	);
 
 	// Start of frame detection (start bit is always 0)
-	wire RxRisingEdge;
 	wire RxFallingEdge;
-	EdgeDetector DUT(
+	EdgeDetector EdgeDetector_inst(
 		.Clock(Clock),
 		.Reset(Reset),
 		.Signal_i(Rx_i),
-		.RisingEdge_o(RxRisingEdge),
+		.RisingEdge_o(),
 		.FallingEdge_o(RxFallingEdge)
 	);
 	
@@ -42,19 +41,25 @@ module UART_RX #(
 	parameter RECEIVING = 1;
 	parameter RETURN = 2;
 	
-	reg [3:0] Counter;
-	wire [2:0] BitNumber = Counter[3:1];
-	wire Flag = Counter[0];
+	reg [8:0] ReceivedData;
+	reg [4:0] Counter;
+	wire SampleEnable = Strobe && !Counter[0];
 	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
 			State <= IDLE;
+			Counter <= 5'd0;
+			Data_o <= 0;
+			Done_o <= 0;
+			ReceivedData <= 0;
 		end else begin
 			case(State)
 				IDLE: begin
 					if(RxFallingEdge) begin
+						Counter <= 5'd0;
 						State <= RECEIVING;
-						Counter <= 4'd0;
+					end else begin
+						Done_o <= 1'b0;
 					end
 				end
 				
@@ -62,11 +67,23 @@ module UART_RX #(
 					if(Strobe) begin
 						Counter <= Counter + 1'b1;
 					end
+					
+					if(SampleEnable) begin
+						ReceivedData <= {ReceivedData[7:0], Rx_i};
+						ReceivedData <= {Rx_i, ReceivedData[8:1]};
+					end
+					
+					if(Counter == 5'd17) begin
+						Data_o <= ReceivedData[8:1];
+						Done_o <= 1'b1;
+						State <= IDLE;
+					end
 				end
 				
-				RETURN: begin
-				
-				end
+				/*RETURN: begin
+					Done_o <= 1'b0;
+					State <= IDLE;
+				end*/
 			endcase
 		end
 	end

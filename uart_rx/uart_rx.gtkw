@@ -1,10 +1,10 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Fri Aug 18 20:21:37 2023
+[*] Sat Aug 19 09:50:40 2023
 [*]
 [dumpfile] "C:\verilog\uart_rx\uart_rx.vcd"
-[dumpfile_mtime] "Fri Aug 18 20:00:39 2023"
-[dumpfile_size] 13917
+[dumpfile_mtime] "Sat Aug 19 09:48:00 2023"
+[dumpfile_size] 13956
 [savefile] "C:\verilog\uart_rx\uart_rx.gtkw"
 [timestart] 80900
 [size] 1920 1009
@@ -12,7 +12,7 @@
 *-14.186981 106000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] UART_RX_tb.
 [sst_width] 197
-[signals_width] 218
+[signals_width] 253
 [sst_expanded] 1
 [sst_vpaned_height] 297
 @28
@@ -42,10 +42,22 @@ UART_RX_tb.UartRx_Inst.Strobe
 UART_RX_tb.UartRx_Inst.State[1:0]
 @22
 UART_RX_tb.UartRx_Inst.Counter[3:0]
-@28
-UART_RX_tb.UartRx_Inst.Flag
 @29
-UART_RX_tb.UartRx_Inst.BitNumber[2:0]
+UART_RX_tb.UartRx_Inst.SampleEnable
+@800022
+UART_RX_tb.UartRx_Inst.ReceivedData[8:0]
+@28
+(0)UART_RX_tb.UartRx_Inst.ReceivedData[8:0]
+(1)UART_RX_tb.UartRx_Inst.ReceivedData[8:0]
+(2)UART_RX_tb.UartRx_Inst.ReceivedData[8:0]
+(3)UART_RX_tb.UartRx_Inst.ReceivedData[8:0]
+(4)UART_RX_tb.UartRx_Inst.ReceivedData[8:0]
+(5)UART_RX_tb.UartRx_Inst.ReceivedData[8:0]
+(6)UART_RX_tb.UartRx_Inst.ReceivedData[8:0]
+(7)UART_RX_tb.UartRx_Inst.ReceivedData[8:0]
+(8)UART_RX_tb.UartRx_Inst.ReceivedData[8:0]
+@1001200
+-group_end
 @28
 UART_RX_tb.UartRx_Inst.Done_o
 @22
