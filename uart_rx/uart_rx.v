@@ -21,7 +21,7 @@ module UART_RX #(
 	) StrobeGeneratorTicks_inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Enable_i(State == RECEIVING || !Rx_i),	//
+		.Enable_i(Receiving || !Rx_i),	//
 		.Strobe_o(Strobe)
 	);
 
@@ -36,55 +36,47 @@ module UART_RX #(
 	);
 	
 	// State machine
-	reg [1:0] State;
-	parameter IDLE = 0;
-	parameter RECEIVING = 1;
-	parameter RETURN = 2;
-	
+	reg Receiving;
 	reg [8:0] ReceivedData;
 	reg [4:0] Counter;
 	wire SampleEnable = Strobe && !Counter[0];
 	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
-			State <= IDLE;
+			Receiving <= 0;
 			Counter <= 5'd0;
 			Data_o <= 0;
 			Done_o <= 0;
 			ReceivedData <= 0;
 		end else begin
-			case(State)
-				IDLE: begin
-					if(RxFallingEdge) begin
-						Counter <= 5'd0;
-						State <= RECEIVING;
-					end else begin
-						Done_o <= 1'b0;
-					end
-				end
-				
-				RECEIVING: begin
-					if(Strobe) begin
-						Counter <= Counter + 1'b1;
-					end
-					
-					if(SampleEnable) begin
-						ReceivedData <= {ReceivedData[7:0], Rx_i};
-						ReceivedData <= {Rx_i, ReceivedData[8:1]};
-					end
-					
-					if(Counter == 5'd17) begin
-						Data_o <= ReceivedData[8:1];
-						Done_o <= 1'b1;
-						State <= IDLE;
-					end
-				end
-				
-				/*RETURN: begin
+			
+			// Idle state
+			if(!Receiving) begin
+				if(RxFallingEdge) begin
+					Counter <= 5'd0;
+					Receiving <= 1'b1;
+				end else begin
 					Done_o <= 1'b0;
-					State <= IDLE;
-				end*/
-			endcase
+				end
+			end
+			
+			// Transmission in progress
+			else begin
+				if(Strobe) begin
+					Counter <= Counter + 1'b1;
+				end
+				
+				if(SampleEnable) begin
+					ReceivedData <= {ReceivedData[7:0], Rx_i};
+					ReceivedData <= {Rx_i, ReceivedData[8:1]};
+				end
+				
+				if(Counter == 5'd17) begin
+					Data_o <= ReceivedData[8:1];
+					Done_o <= 1'b1;
+					Receiving <= 1'b0;
+				end
+			end
 		end
 	end
 	

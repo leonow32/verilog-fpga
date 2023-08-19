@@ -1,16 +1,18 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sat Aug 19 09:50:40 2023
+[*] Sat Aug 19 16:56:35 2023
 [*]
 [dumpfile] "C:\verilog\uart_rx\uart_rx.vcd"
-[dumpfile_mtime] "Sat Aug 19 09:48:00 2023"
-[dumpfile_size] 13956
+[dumpfile_mtime] "Sat Aug 19 16:18:04 2023"
+[dumpfile_size] 17401
 [savefile] "C:\verilog\uart_rx\uart_rx.gtkw"
-[timestart] 80900
+[timestart] 0
 [size] 1920 1009
 [pos] -1 -1
-*-14.186981 106000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-15.783858 135100 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] UART_RX_tb.
+[treeopen] UART_RX_tb.UartRx_Inst.
+[treeopen] UART_RX_tb.UartTx_Inst.
 [sst_width] 197
 [signals_width] 253
 [sst_expanded] 1
@@ -28,23 +30,20 @@ UART_RX_tb.UartTx_Inst.ByteCopy[7:0]
 @28
 UART_RX_tb.UartTx_Inst.Busy_o
 UART_RX_tb.UartTx_Inst.NextBit
+[color] 3
 UART_RX_tb.UartTx_Inst.Done_o
 UART_RX_tb.UartTx_Inst.Tx_o
 @200
 -Receiver
 @28
 UART_RX_tb.UartRx_Inst.Rx_i
-UART_RX_tb.UartRx_Inst.RxRisingEdge
 UART_RX_tb.UartRx_Inst.RxFallingEdge
+UART_RX_tb.UartRx_Inst.Receiving
 UART_RX_tb.UartRx_Inst.Strobe
-@100002028
-^1 C:\verilog\uart_rx\uart_rx_state.gtkw
-UART_RX_tb.UartRx_Inst.State[1:0]
-@22
-UART_RX_tb.UartRx_Inst.Counter[3:0]
-@29
 UART_RX_tb.UartRx_Inst.SampleEnable
-@800022
+@24
+UART_RX_tb.UartRx_Inst.Counter[4:0]
+@c00022
 UART_RX_tb.UartRx_Inst.ReceivedData[8:0]
 @28
 (0)UART_RX_tb.UartRx_Inst.ReceivedData[8:0]
@@ -56,9 +55,10 @@ UART_RX_tb.UartRx_Inst.ReceivedData[8:0]
 (6)UART_RX_tb.UartRx_Inst.ReceivedData[8:0]
 (7)UART_RX_tb.UartRx_Inst.ReceivedData[8:0]
 (8)UART_RX_tb.UartRx_Inst.ReceivedData[8:0]
-@1001200
+@1401200
 -group_end
 @28
+[color] 3
 UART_RX_tb.UartRx_Inst.Done_o
 @22
 UART_RX_tb.UartRx_Inst.Data_o[7:0]
