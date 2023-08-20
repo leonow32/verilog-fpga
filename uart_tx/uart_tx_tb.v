@@ -3,7 +3,7 @@
 `timescale 1ns/1ns  // time-unit, precision
 
 `default_nettype none
-module UART_TX_tb();
+module UartTx_tb();
 
 	parameter CLOCK_HZ	          = 1_000_000;
 	parameter real HALF_PERIOD_NS = 1_000_000_000.0 / (2 * CLOCK_HZ);
@@ -49,7 +49,7 @@ module UART_TX_tb();
 	wire ByteTransmitRequest = ManualRequest || (ByteTransmitDone && (Memory[Pointer] != 8'd0));
 	
 	// Instantiate device under test
-	UART_TX #(
+	UartTx #(
 		.CLOCK_HZ(CLOCK_HZ),
 		.BAUD(100_000)
 	) DUT(
@@ -65,7 +65,7 @@ module UART_TX_tb();
 	// Variable dump
 	initial begin
 		$dumpfile("uart_tx.vcd");
-		$dumpvars(0, UART_TX_tb);
+		$dumpvars(0, UartTx_tb);
 	end
 
 	// Test sequence

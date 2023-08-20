@@ -29,7 +29,7 @@ module UartRx_tb();
 	wire       TxRxCommon;
 	
 	// UART Transmitter
-	UART_TX #(
+	UartTx #(
 		.CLOCK_HZ(CLOCK_HZ),
 		.BAUD(100_000)
 	) UartTx_Inst(

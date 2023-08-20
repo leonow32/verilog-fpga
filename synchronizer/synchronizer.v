@@ -2,10 +2,10 @@
 
 `default_nettype none
 module Synchronizer(
-	input Clock,
-	input Reset,
-	input Async_i,
-	output Sync_o
+	input wire Clock,
+	input wire Reset,
+	input wire Async_i,
+	output wire Sync_o
 );
 
 	reg [1:0] Buffer;

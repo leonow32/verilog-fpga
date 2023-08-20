@@ -9,7 +9,7 @@ To start the transmission, feed the data to be sent to the `Data_i` input and se
 ## Instantiation
 
 ```verilog
-	UART_TX #(
+	UartTx #(
 		.CLOCK_HZ(CLOCK_HZ),
 		.BAUD(115200)
 	) DUT(
