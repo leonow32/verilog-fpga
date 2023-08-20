@@ -1,0 +1,69 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sat Aug 19 20:37:07 2023
+[*]
+[dumpfile] "uart_rx.vcd"
+[dumpfile_mtime] "Sat Aug 19 20:35:59 2023"
+[dumpfile_size] 17891
+[savefile] "uart_rx.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -1 -1
+*-15.783858 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] UartRx_tb.
+[treeopen] UartRx_tb.UartRx_Inst.
+[treeopen] UartRx_tb.UartTx_Inst.
+[sst_width] 197
+[signals_width] 253
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+UartRx_tb.Reset
+UartRx_tb.Clock
+@200
+-Transmitter
+@28
+UartRx_tb.UartTx_Inst.Start_i
+@22
+UartRx_tb.UartTx_Inst.Data_i[7:0]
+UartRx_tb.UartTx_Inst.ByteCopy[7:0]
+@28
+UartRx_tb.UartTx_Inst.Busy_o
+UartRx_tb.UartTx_Inst.NextBit
+[color] 3
+UartRx_tb.UartTx_Inst.Done_o
+UartRx_tb.UartTx_Inst.Tx_o
+@200
+-Receiver
+@28
+UartRx_tb.UartRx_Inst.Rx_i
+@29
+UartRx_tb.UartRx_Inst.RxSync
+@28
+UartRx_tb.UartRx_Inst.RxFallingEdge
+UartRx_tb.UartRx_Inst.Busy
+UartRx_tb.UartRx_Inst.Strobe
+UartRx_tb.UartRx_Inst.SampleEnable
+@24
+UartRx_tb.UartRx_Inst.Counter[4:0]
+@c00022
+UartRx_tb.UartRx_Inst.RxBuffer[8:0]
+@28
+(0)UartRx_tb.UartRx_Inst.RxBuffer[8:0]
+(1)UartRx_tb.UartRx_Inst.RxBuffer[8:0]
+(2)UartRx_tb.UartRx_Inst.RxBuffer[8:0]
+(3)UartRx_tb.UartRx_Inst.RxBuffer[8:0]
+(4)UartRx_tb.UartRx_Inst.RxBuffer[8:0]
+(5)UartRx_tb.UartRx_Inst.RxBuffer[8:0]
+(6)UartRx_tb.UartRx_Inst.RxBuffer[8:0]
+(7)UartRx_tb.UartRx_Inst.RxBuffer[8:0]
+(8)UartRx_tb.UartRx_Inst.RxBuffer[8:0]
+@1401200
+-group_end
+@28
+[color] 3
+UartRx_tb.UartRx_Inst.Done_o
+@22
+UartRx_tb.UartRx_Inst.Data_o[7:0]
+[pattern_trace] 1
+[pattern_trace] 0

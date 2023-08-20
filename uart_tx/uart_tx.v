@@ -1,7 +1,7 @@
 // 230814
 
 `default_nettype none
-module UART_TX #(
+module UartTx #(
 	parameter CLOCK_HZ = 10_000_000,
 	parameter BAUD     = 115200
 )(
