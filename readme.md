@@ -31,7 +31,9 @@ I decided to publish these peripherals because I think they may be useful for ot
 
 **Communication**
 
-+ [UART Transmitter](/uart_tx) - UART transceiver developed to be as easy to use as possible. It supports 8-bit data transmission with one stop bit and no parity bit - the most common configuration.
++ [UART Transmitter](/uart_tx) - UART transmitter developed to be as easy to use as possible. It supports 8-bit data transmission with one stop bit and no parity bit - the most common configuration.
++ [UART Receiver](/uart_rx) - Simple UART receiver. Supports the most common configuration, that is, 8-bit data transmission with one stop bit and no parity bit.
+
 
 **Just for fun:**
 

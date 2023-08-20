@@ -2,7 +2,7 @@
 
 ![Status](https://img.shields.io/badge/STATUS-READY-green.svg)
 
-UART transceiver developed to be as easy to use as possible. It supports 8-bit data transmission with one stop bit and no parity bit - the most common configuration.
+UART transmitter developed to be as easy to use as possible. It supports 8-bit data transmission with one stop bit and no parity bit - the most common configuration.
 
 To start the transmission, feed the data to be sent to the `Data_i` input and set the `Start_i` input high for the length of one clock cycle. You can then set the next byte to be sent, but wait until the `Done_o` output is high. Then you can transmit the next byte. To speed up communication, you can loop the `Done_o` output with the `Start_i` input so that the completion of sending a byte starts sending the next one.
 
