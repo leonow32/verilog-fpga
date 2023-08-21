@@ -71,10 +71,6 @@ module UartRx #(
 			
 			// Transmission in progress
 			else begin
-				if(Strobe) begin
-					Counter <= Counter + 1'b1;
-				end
-				
 				if(SampleEnable) begin
 					RxBuffer <= {RxSync, RxBuffer[8:1]};
 				end
@@ -83,6 +79,10 @@ module UartRx #(
 					Data_o <= RxBuffer[8:1];
 					Done_o <= 1'b1;
 					Busy   <= 1'b0;
+				end
+				
+				if(Strobe) begin
+					Counter <= Counter + 1'b1;
 				end
 			end
 		end
