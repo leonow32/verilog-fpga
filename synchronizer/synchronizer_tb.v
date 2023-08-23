@@ -57,8 +57,6 @@ module Synchronizer_tb();
 		$display("====== END ======");
 		$finish;
 	end
-  
-	
 
 endmodule
 `default_nettype wire

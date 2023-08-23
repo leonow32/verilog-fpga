@@ -12,8 +12,8 @@ A module for synchronizing asynchronous inputs with the clock domain of an FPGA.
 	) Synchronizer_inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Async_i(AsynchInput),
-		.Sync_o(SyncOutput)
+		.Async_i(),
+		.Sync_o()
 	);
 ```
 
@@ -26,6 +26,8 @@ A module for synchronizing asynchronous inputs with the clock domain of an FPGA.
 + **Sync_o[WIDTH-1:0]** - Syncronous output.
 
 ## Simulation
+
+Example of synchronizing of 4-bit bus with clock domain.
 
 ![Simulation](simulation.png "Simulation")
 
