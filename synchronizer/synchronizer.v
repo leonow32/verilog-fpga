@@ -1,23 +1,33 @@
 // 230425
 
 `default_nettype none
-module Synchronizer(
-	input wire Clock,
-	input wire Reset,
-	input wire Async_i,
-	output wire Sync_o
+module Synchronizer #(
+	parameter WIDTH = 1
+)(
+	input  wire Clock,
+	input  wire Reset,
+	input  wire [WIDTH-1:0] Async_i,
+	output wire [WIDTH-1:0] Sync_o
 );
 
-	reg [1:0] Buffer;
+	reg [WIDTH-1:0] R1;
+	reg [WIDTH-1:0] R2;
+	//reg [1:0] Buffer;
 
 	always @(posedge Clock, negedge Reset) begin
-		if(!Reset)
-			Buffer <= 0;
-		else
-			Buffer[1:0] <= {Buffer[0], Async_i};
+		if(!Reset) begin
+			// Buffer <= 0;
+			R1 <= 0;
+			R2 <= 0;
+		end else begin
+			// Buffer[1:0] <= {Buffer[0], Async_i};
+			R1 <= Async_i;
+			R2 <= R1;
+		end
 	end
 
-	assign Sync_o = Buffer[1];
+	//assign Sync_o = Buffer[1];
+	assign Sync_o = R2;
 
 endmodule
 `default_nettype wire

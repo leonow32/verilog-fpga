@@ -14,9 +14,19 @@ module Synchronizer_tb();
 	end
   
 	// Variables
-	reg  Reset;
-	reg  AsynchInput = 1'b0;
-	wire SyncOutput;
+	reg        Reset;
+	reg  [3:0] AsynchInput = 4'b0000;
+	wire [3:0] SyncOutput;
+	
+	// Instantiate device under test
+	Synchronizer #(
+		.WIDTH(4)
+	) DUT(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Async_i(AsynchInput),
+		.Sync_o(SyncOutput)
+	);
 	
 	// Variable dump
 	initial begin
@@ -29,32 +39,26 @@ module Synchronizer_tb();
 		$timeformat(-6, 3, "us", 10);
 		$display("===== START =====");
 		$display("      Time Reset AsynchInput SyncOutput");
-		$monitor("%t     %d           %d          %d", $realtime, Reset, AsynchInput, SyncOutput);
+		$monitor("%t     %d        %b       %b", $realtime, Reset, AsynchInput, SyncOutput);
 
 		#5 Reset = 1'b0; 
 		#5 Reset = 1'b1;
 
 		@(posedge Clock);
-		#75  AsynchInput = 1'b1;
-		#353 AsynchInput = 1'b0;
+		#75  AsynchInput = 4'b0001;
+		#353 AsynchInput = 4'b0000;
 		#500
 
 		@(posedge Clock);
-		#110 AsynchInput = 1'b1;
-		#456 AsynchInput = 1'b0;
+		#110 AsynchInput = 4'b0011;
+		#456 AsynchInput = 4'b0000;
 		#500;
 
 		$display("====== END ======");
 		$finish;
 	end
   
-	// AsyncInstantiate device under test
-	Synchronizer DUT(
-		.Clock(Clock),
-		.Reset(Reset),
-		.Async_i(AsynchInput),
-		.Sync_o(SyncOutput)
-	);
+	
 
 endmodule
 `default_nettype wire
