@@ -7,20 +7,23 @@ A module for synchronizing asynchronous inputs with the clock domain of an FPGA.
 ## Instantiation
 
 ```verilog
-	Synchronizer Synchronizer_inst(
+	Synchronizer #(
+		.WIDTH()
+	) Synchronizer_inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Async_i(),
-		.Sync_o()
+		.Async_i(AsynchInput),
+		.Sync_o(SyncOutput)
 	);
 ```
 
 ## Port description
 
++ **WIDTH** - The width of the input and output in bits.
 + **Clock** - Clock signal, active rising edge.
 + **Reset** - Asynchronous reset, active low.
-+ **Async_i** - Asynchronous input.
-+ **Sync_o** - Syncronous output.
++ **Async_i[WIDTH-1:0]** - Asynchronous input.
++ **Sync_o[WIDTH-1:0]** - Syncronous output.
 
 ## Simulation
 
@@ -28,19 +31,19 @@ A module for synchronizing asynchronous inputs with the clock domain of an FPGA.
 
 ## Console output
 
-    VCD info: dumpfile synchronizer.vcd opened for output.
-    ===== START =====
-          Time Reset AsynchInput SyncOutput
-       0.000us     x           0          x
-       0.005us     0           0          0
-       0.010us     1           0          0
-       0.175us     1           1          0
-       0.300us     1           1          1
-       0.528us     1           0          1
-       0.700us     1           0          0
-       1.210us     1           1          0
-       1.400us     1           1          1
-       1.666us     1           0          1
-       1.800us     1           0          0
-    ====== END ======
-    synchronizer_tb.v:48: $finish called at 2166 (1ns)
+	VCD info: dumpfile synchronizer.vcd opened for output.
+	===== START =====
+		  Time Reset AsynchInput SyncOutput
+	   0.000us     x        0000       xxxx
+	   0.005us     0        0000       0000
+	   0.010us     1        0000       0000
+	   0.175us     1        0001       0000
+	   0.300us     1        0001       0001
+	   0.528us     1        0000       0001
+	   0.700us     1        0000       0000
+	   1.210us     1        0011       0000
+	   1.400us     1        0011       0011
+	   1.666us     1        0000       0011
+	   1.800us     1        0000       0000
+	====== END ======
+	synchronizer_tb.v:58: $finish called at 2166 (1ns)
