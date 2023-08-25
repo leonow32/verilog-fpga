@@ -1,0 +1,28 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Fri Aug 25 13:53:39 2023
+[*]
+[dumpfile] "C:\verilog\pwm_simple\pwm_simple.vcd"
+[dumpfile_mtime] "Fri Aug 25 13:40:30 2023"
+[dumpfile_size] 2368
+[savefile] "C:\verilog\pwm_simple\pwm_simple.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -1 -1
+*-12.766395 1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] SimplePWM_tb.
+[sst_width] 197
+[signals_width] 207
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+SimplePWM_tb.Clock
+SimplePWM_tb.Reset
+@22
+SimplePWM_tb.DUT.Compare_i[3:0]
+@25
+SimplePWM_tb.DUT.Counter[3:0]
+@28
+SimplePWM_tb.DUT.Signal_o
+[pattern_trace] 1
+[pattern_trace] 0
