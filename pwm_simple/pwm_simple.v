@@ -7,7 +7,7 @@ module SimplePWM #(
 	input wire Clock,
 	input wire Reset,
 	input wire [WIDTH-1:0] Compare_i,
-	output wire Signal_o
+	output wire SignalA_o
 );
 	
 	reg [WIDTH-1:0] Counter;
@@ -19,7 +19,7 @@ module SimplePWM #(
 		end
 	end
 	
-	assign Signal_o = Counter > Compare_i;
+	assign SignalA_o = Counter > Compare_i;
 	
 endmodule
 `default_nettype wire
