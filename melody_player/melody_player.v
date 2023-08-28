@@ -18,7 +18,6 @@ module MelodyPlayer #(
 	reg [15:0] Duration_ms;
 	reg [15:0] HalfPeriod_us;
 	reg Request;
-	wire SoundGeneratorBusy;
 	wire SoundGeneratorDone;
 	
 	// Melody memory
@@ -121,7 +120,7 @@ module MelodyPlayer #(
 		.Duration_ms_i(Duration_ms),
 		.HalfPeriod_us_i(HalfPeriod_us),
 		.SoundWave_o(SoundWave_o),
-		.Busy_o(SoundGeneratorBusy),
+		.Busy_o(),
 		.Done_o(SoundGeneratorDone)
 	);
 	
