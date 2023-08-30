@@ -1,4 +1,4 @@
-// 230616
+// 230830
 
 `default_nettype none
 module Encoder #(
@@ -11,23 +11,23 @@ module Encoder #(
 	output reg  Increment_o,
 	output reg  Decrement_o
 );
+
+	// Synchronize asynchronous inputs with clock domain
+	wire A;
+	Synchronizer SynchronizerA(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Async_i(AsyncA_i),
+		.Sync_o(A)
+	);
 	
-	// Synchronizer
-	reg [1:0] SyncA;
-	reg [1:0] SyncB;
-	always @(posedge Clock, negedge Reset) begin
-		if(!Reset) begin
-			SyncA <= 0;
-			SyncB <= 0;
-		end else begin
-			SyncA <= {SyncA[0], AsyncA_i};
-			SyncB <= {SyncB[0], AsyncB_i};
-		end
-	end
-	
-	// Synchronized input signals
-	wire A = SyncA[1];
-	wire B = SyncB[1];
+	wire B;
+	Synchronizer SynchronizerB(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Async_i(AsyncB_i),
+		.Sync_o(B)
+	);
 	
 	// State machine defines
 	localparam IDLE           = 0;
