@@ -1,9 +1,9 @@
-`timescale 1ns/1ns  // time-unit, precision
+`timescale 1ns/1ns
 
 `default_nettype none
 module Encoder_tb();
 
-	parameter CLOCK_HZ	= 10_000_000;
+	parameter CLOCK_HZ	     = 10_000_000;
 	parameter HALF_PERIOD_NS = 1_000_000_000 / (2 * CLOCK_HZ);
 	
 	// Clock generator
