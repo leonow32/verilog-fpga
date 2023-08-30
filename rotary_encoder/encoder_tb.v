@@ -79,7 +79,7 @@ module Encoder_tb();
 			#1000;
 		end
 		
-		#1 $display("===== END =====");
+		#1 $display("====== END ======");
 		#1 $finish;
 	end
 

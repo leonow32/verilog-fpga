@@ -14,9 +14,7 @@ module Encoder #(
 
 	// Synchronize asynchronous inputs with clock domain
 	wire A;
-	Synchronizer #(
-		.WIDTH(1)
-	) SynchronizerA(
+	Synchronizer SynchronizerA(
 		.Clock(Clock),
 		.Reset(Reset),
 		.Async_i(AsyncA_i),
@@ -24,9 +22,7 @@ module Encoder #(
 	);
 	
 	wire B;
-	Synchronizer #(
-		.WIDTH(1)
-	) SynchronizerB(
+	Synchronizer SynchronizerB(
 		.Clock(Clock),
 		.Reset(Reset),
 		.Async_i(AsyncB_i),
