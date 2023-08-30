@@ -56,8 +56,8 @@ module MelodyPlayer_tb();
 		wait(DUT.State == DUT.IDLE);
 		repeat(10) @(posedge Clock);
 		
-		#1 $display("====== END ======");
-		#1 $finish;
+		$display("====== END ======");
+		$finish;
 	end
 
 endmodule

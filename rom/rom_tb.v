@@ -42,40 +42,30 @@ module ROM_tb();
 	initial begin
 		$timeformat(-6, 3, "us", 12);
 		$display("===== START =====");
-		$display("        Time Ad Data");
+		$display("        Time Address Data");
 		
 		@(posedge Clock);
 		Reset <= 1'b1;
 		
-		// Slow read
-		@(posedge Clock);
-		for(i=0; i<=15; i=i+1) begin
-			Address <= i;
-			@(posedge Clock);
-			ReadEnable <= 1'b1;
-			@(posedge Clock);
-			ReadEnable <= 1'b0;
-			@(posedge Clock);
-			$display("%t %H: %H", $realtime, Address, Data);
-		end
-		
 		// Pause
-		repeat(5) @(posedge Clock);
+		@(posedge Clock);
 		
 		// Fast read
 		for(i=0; i<=15; i=i+1) begin
 			Address <= i;
 			ReadEnable <= 1'b1;
 			@(posedge Clock);
+			$display("%t       %H   %H", $realtime, Address, Data);
+
 		end
 		
 		ReadEnable <= 1'b0;
 		
 		// Pause
-		repeat(5) @(posedge Clock);
+		repeat(2) @(posedge Clock);
 		
-		#1 $display("===== END =====");
-		#1 $finish;
+		$display("===== END =====");
+		$finish;
 	end
 
 endmodule
