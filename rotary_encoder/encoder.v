@@ -86,7 +86,7 @@ module Encoder #(
 	end
 	
 	// Analyze button press
-	EdgeDetector DUT(
+	EdgeDetector EdgeDetector_inst(
 		.Clock(Clock),
 		.Reset(Reset),
 		.Signal_i(S),

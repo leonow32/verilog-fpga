@@ -49,7 +49,7 @@ module Encoder_tb();
 		
 		#2025;
 		
-		// Press the button
+		// Press the button twice
 		repeat(2) begin
 			#1000 AsyncS = 1'b0;
 			#1000 AsyncS = 1'b1;
@@ -57,7 +57,7 @@ module Encoder_tb();
 		
 		#2000;
 		
-		// Three turns right (increment)
+		// Two turns right (increment)
 		repeat(2) begin
 			#500 AsyncA = 1'b0;
 			#500 AsyncB = 1'b0;
@@ -68,7 +68,7 @@ module Encoder_tb();
 			
 		#2000;
 		
-		// Three turns left (decrement)
+		// Two turns left (decrement)
 		repeat(2) begin
 			#500 AsyncB = 1'b0;
 			#500 AsyncA = 1'b0;
@@ -100,8 +100,8 @@ module Encoder_tb();
 			#1000;
 		end
 		
-		#1 $display("====== END ======");
-		#1 $finish;
+		$display("====== END ======");
+		$finish;
 	end
 
 endmodule
