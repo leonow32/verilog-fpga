@@ -14,9 +14,24 @@ module Encoder_tb();
 	end
 	
 	// Variables
-	reg Reset 	= 1'b1;
+	reg Reset 	= 1'b0;
 	reg AsyncA	= 1'b1;
 	reg AsyncB	= 1'b1;
+	reg AsyncS	= 1'b1;
+	
+	// Instantiate device under test
+	Encoder DUT(
+		.Clock(Clock),
+		.Reset(Reset),
+		.AsyncA_i(AsyncA),
+		.AsyncB_i(AsyncB),
+		.AsyncS_i(AsyncS),
+		.Increment_o(),
+		.Decrement_o(),
+		.ButtonPress_o(),
+		.ButtonRelease_o(),
+		.ButtonState_o()
+	);
 	
 	// Variable dump
 	initial begin
@@ -30,13 +45,19 @@ module Encoder_tb();
 		$display("===== START =====");
 
 		@(posedge Clock);
-		Reset = 1'b0;
-		#1;
 		Reset = 1'b1;
 		
 		#2025;
 		
-		// Three turns right (increment)
+		// Press the button twice
+		repeat(2) begin
+			#1000 AsyncS = 1'b0;
+			#1000 AsyncS = 1'b1;
+		end
+		
+		#2000;
+		
+		// Two turns right (increment)
 		repeat(2) begin
 			#500 AsyncA = 1'b0;
 			#500 AsyncB = 1'b0;
@@ -47,7 +68,7 @@ module Encoder_tb();
 			
 		#2000;
 		
-		// Three turns left (decrement)
+		// Two turns left (decrement)
 		repeat(2) begin
 			#500 AsyncB = 1'b0;
 			#500 AsyncA = 1'b0;
@@ -79,19 +100,9 @@ module Encoder_tb();
 			#1000;
 		end
 		
-		#1 $display("====== END ======");
-		#1 $finish;
+		$display("====== END ======");
+		$finish;
 	end
-
-	// Instantiate device under test
-	Encoder DUT(
-		.Clock(Clock),
-		.Reset(Reset),
-		.AsyncA_i(AsyncA),
-		.AsyncB_i(AsyncB),
-		.Increment_o(),
-		.Decrement_o()
-	);
 
 endmodule
 `default_nettype wire
