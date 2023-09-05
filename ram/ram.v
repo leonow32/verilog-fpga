@@ -1,8 +1,7 @@
 `default_nettype none
 module RAM #(
 	parameter ADDRESS_WIDTH = 16,
-	parameter DATA_WIDTH    = 8//,
-	//parameter MEMORY_FILE   = "data.mem"
+	parameter DATA_WIDTH    = 8
 )(
 	input wire Clock,
 	input wire Reset,
@@ -17,16 +16,15 @@ module RAM #(
 	
 	integer i;
 	initial begin
-		//$readmemh(MEMORY_FILE, Memory);
 		for(i = 0; i < 2**ADDRESS_WIDTH; i = i+1) begin
-			Memory[i] = 8'hFF;
+			Memory[i] = 8'hAB;
 		end
 	end
 	
 	always @(posedge Clock, negedge Reset) begin
-		if(!Reset)
+		if(!Reset) begin
 			Data_o <= 0;
-		else begin
+		end else begin
 			if(ReadEnable_i)
 				Data_o <= Memory[Address_i];
 			if(WriteEnable_i)
