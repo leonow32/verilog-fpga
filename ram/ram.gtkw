@@ -1,0 +1,35 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Tue Sep 05 12:50:51 2023
+[*]
+[dumpfile] "C:\verilog\ram\ram.vcd"
+[dumpfile_mtime] "Tue Sep 05 12:49:15 2023"
+[dumpfile_size] 2339
+[savefile] "C:\verilog\ram\ram.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -1 -1
+*-8.279546 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] RAM_tb.
+[sst_width] 197
+[signals_width] 190
+[sst_expanded] 1
+[sst_vpaned_height] 184
+@28
+RAM_tb.Reset
+RAM_tb.DUT.Clock
+@200
+-Inputs
+@22
+RAM_tb.DUT.Address_i[3:0]
+RAM_tb.DUT.Data_i[7:0]
+@28
+RAM_tb.DUT.ReadEnable_i
+@29
+RAM_tb.DUT.WriteEnable_i
+@200
+-Output
+@22
+RAM_tb.DUT.Data_o[7:0]
+[pattern_trace] 1
+[pattern_trace] 0
