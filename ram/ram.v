@@ -17,7 +17,7 @@ module RAM #(
 	integer i;
 	initial begin
 		for(i = 0; i < 2**ADDRESS_WIDTH; i = i+1) begin
-			Memory[i] = 8'hAB;
+			Memory[i] = 8'h00;
 		end
 	end
 	

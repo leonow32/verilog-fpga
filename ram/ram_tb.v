@@ -56,27 +56,14 @@ module RAM_tb();
 		
 		@(posedge Clock);
 		Reset <= 1'b1;
-		
-		// Pause
 		@(posedge Clock);
+		ReadEnable <= 1'b1;
 		
 		// Save AA to 0A
-		Address     <= 8'h0A;
-		DataIn      <= 8'hAA;
-		WriteEnable <= 1'b1;
-		@(posedge Clock);
-		
-		// Save 33 to 03
-		Address     <= 8'h03;
-		DataIn      <= 8'h33;
-		WriteEnable <= 1'b1;
-		@(posedge Clock);
-		
-		// Deactivate write
-		Address     <= 8'hX;
-		DataIn      <= 8'hX;
-		WriteEnable <= 1'b0;
-		@(posedge Clock);
+		WriteData(4'hA, 8'hAA);
+		WriteData(4'h3, 8'h33);
+		WriteData(4'h7, 8'h77);
+		WriteEnd();
 		
 		// Fast read
 		ReadEnable <= 1'b1;
@@ -93,6 +80,24 @@ module RAM_tb();
 		$display("===== END =====");
 		$finish;
 	end
+	
+	task WriteData(input [3:0] Adr, input [7:0] Dat); 
+		begin
+			Address     <= Adr;
+			DataIn      <= Dat;
+			WriteEnable <= 1'b1;
+			@(posedge Clock);
+		end
+	endtask
+	
+	task WriteEnd(); 
+		begin
+			Address     <= 4'dX;
+			DataIn      <= 8'dX;
+			WriteEnable <= 1'b0;
+			@(posedge Clock);
+		end
+	endtask
 
 endmodule
 `default_nettype wire
