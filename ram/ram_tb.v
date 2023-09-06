@@ -19,12 +19,12 @@ module RAM_tb();
 	reg  [3:0] Address;
 	reg  [7:0] DataIn      = 8'hX;
 	wire [7:0] DataOut;
+	integer    i;
 	
 	// Instantiate device under test
 	RAM #(
 		.ADDRESS_WIDTH(4),
-		.DATA_WIDTH(8)//,
-		//.MEMORY_FILE("data.mem")
+		.DATA_WIDTH(8)
 	) DUT(
 		.Clock(Clock),
 		.Reset(Reset),
@@ -39,10 +39,14 @@ module RAM_tb();
 	initial begin
 		$dumpfile("ram.vcd");
 		$dumpvars(0, RAM_tb);
+		
+		// Dump all data from the memory
+		for(i = 0; i <= 15; i = i + 1) begin
+			$dumpvars(2, DUT.Memory[i]);
+		end
 	end
 
 	// Test sequence
-	integer i;
 	initial begin
 		$timeformat(-6, 3, "us", 12);
 		$display("===== START =====");
@@ -57,17 +61,16 @@ module RAM_tb();
 		@(posedge Clock);
 		Reset <= 1'b1;
 		@(posedge Clock);
-		ReadEnable <= 1'b1;
 		
-		// Save AA to 0A
-		WriteData(4'hA, 8'hAA);
-		WriteData(4'h3, 8'h33);
-		WriteData(4'h7, 8'h77);
+		// Save some data
+		for(i=0; i<=15; i=i+1) begin
+			WriteData(i, $urandom_range(0, 255));
+		end
 		WriteEnd();
 		
 		// Fast read
 		ReadEnable <= 1'b1;
-		for(i=0; i<=16; i=i+1) begin
+		for(i=0; i<=15; i=i+1) begin
 			Address <= i;
 			@(posedge Clock);
 		end
