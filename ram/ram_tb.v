@@ -1,15 +1,16 @@
-`timescale 1ns/1ns  // time-unit, precision
+`timescale 1ns/1ns
 
 `default_nettype none
 module RAM_tb();
 
-	parameter CLOCK_HZ	= 10_000_000;
-	parameter HALF_PERIOD_NS = 1_000_000_000 / (2 * CLOCK_HZ);
+	parameter CLOCK_HZ	          = 10_000_000;
+	parameter real HALF_PERIOD_NS = 1_000_000_000.0 / (2 * CLOCK_HZ);
 	
 	// Clock generator
 	reg Clock = 1'b1;
 	always begin
-		#HALF_PERIOD_NS Clock = !Clock;
+		#HALF_PERIOD_NS;
+		Clock = !Clock;
 	end
 	
 	// Variables
@@ -17,7 +18,7 @@ module RAM_tb();
 	reg        ReadEnable  = 1'b0;
 	reg        WriteEnable = 1'b0;
 	reg  [3:0] Address;
-	reg  [7:0] DataIn      = 8'hX;
+	reg  [7:0] DataIn;
 	wire [7:0] DataOut;
 	integer    i;
 	
@@ -51,7 +52,7 @@ module RAM_tb();
 		$timeformat(-6, 3, "us", 12);
 		$display("===== START =====");
 		$display("        Time Address DataIn DataOut");
-		$monitor("%t       %H   %H    %H", 
+		$monitor("%t       %H     %H      %H", 
 			$realtime, 
 			Address, 
 			DataIn,
@@ -62,13 +63,13 @@ module RAM_tb();
 		Reset <= 1'b1;
 		@(posedge Clock);
 		
-		// Save some data
+		// Write some data
 		for(i=0; i<=15; i=i+1) begin
-			WriteData(i, $urandom_range(0, 255));
+			WriteData(i, $urandom_range(8'h00, 8'hFF));
 		end
 		WriteEnd();
 		
-		// Fast read
+		// Read the data
 		ReadEnable <= 1'b1;
 		for(i=0; i<=15; i=i+1) begin
 			Address <= i;
