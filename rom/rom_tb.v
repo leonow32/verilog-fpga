@@ -50,7 +50,7 @@ module ROM_tb();
 		// Pause
 		@(posedge Clock);
 		
-		// Fast read
+		// Read the data
 		for(i=0; i<=15; i=i+1) begin
 			Address <= i;
 			ReadEnable <= 1'b1;
