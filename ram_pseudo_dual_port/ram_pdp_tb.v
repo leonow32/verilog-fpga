@@ -42,7 +42,7 @@ module PseudoDualPortRAM_tb();
 		$dumpvars(0, PseudoDualPortRAM_tb);
 		
 		// Dump all data from the memory
-		for(i = 0; i <= 15; i = i + 1) begin
+		for(i=0; i<=15; i=i+1) begin
 			$dumpvars(2, DUT.Memory[i]);
 		end
 	end
