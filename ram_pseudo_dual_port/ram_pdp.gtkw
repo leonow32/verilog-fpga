@@ -1,31 +1,30 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Thu Sep 07 09:49:53 2023
+[*] Sun Sep 10 20:00:00 2023
 [*]
 [dumpfile] "ram_pdp.vcd"
-[dumpfile_mtime] "Thu Sep 07 09:34:26 2023"
-[dumpfile_size] 6102
+[dumpfile_mtime] "Sun Sep 10 19:50:41 2023"
+[dumpfile_size] 7117
 [savefile] "ram_pdp.gtkw"
 [timestart] 0
 [size] 1920 1009
 [pos] -1 -1
-*-8.965199 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-8.320048 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] PseudoDualPortRAM_tb.
-[sst_width] 197
-[signals_width] 190
+[sst_width] 213
+[signals_width] 231
 [sst_expanded] 1
-[sst_vpaned_height] 187
+[sst_vpaned_height] 97
 @28
-PseudoDualPortRAM_tb.Clock
 PseudoDualPortRAM_tb.Reset
 @200
--Inputs
-@22
-PseudoDualPortRAM_tb.DUT.Address_i[3:0]
-PseudoDualPortRAM_tb.DUT.Data_i[7:0]
+-Write Data
 @28
-PseudoDualPortRAM_tb.DUT.ReadEnable_i
+PseudoDualPortRAM_tb.DUT.ClockWrite
 PseudoDualPortRAM_tb.DUT.WriteEnable_i
+@22
+PseudoDualPortRAM_tb.DUT.AddressWrite_i[3:0]
+PseudoDualPortRAM_tb.DUT.Data_i[7:0]
 @200
 -Memory
 @22
@@ -46,8 +45,12 @@ PseudoDualPortRAM_tb.DUT.\Memory[13][7:0]
 PseudoDualPortRAM_tb.DUT.\Memory[14][7:0]
 PseudoDualPortRAM_tb.DUT.\Memory[15][7:0]
 @200
--Output
+-Read Data
+@28
+PseudoDualPortRAM_tb.DUT.ClockRead
+PseudoDualPortRAM_tb.DUT.ReadEnable_i
 @22
+PseudoDualPortRAM_tb.DUT.AddressRead_i[3:0]
 PseudoDualPortRAM_tb.DUT.Data_o[7:0]
 [pattern_trace] 1
 [pattern_trace] 0

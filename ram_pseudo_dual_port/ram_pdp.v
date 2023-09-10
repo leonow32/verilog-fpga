@@ -5,11 +5,13 @@ module PseudoDualPortRAM #(
 	parameter ADDRESS_WIDTH = 16,
 	parameter DATA_WIDTH    = 8
 )(
-	input wire Clock,
+	input wire ClockRead,
+	input wire ClockWrite,
 	input wire Reset,
 	input wire ReadEnable_i,
 	input wire WriteEnable_i,
-	input wire [ADDRESS_WIDTH-1:0] Address_i,
+	input wire [ADDRESS_WIDTH-1:0] AddressRead_i,
+	input wire [ADDRESS_WIDTH-1:0] AddressWrite_i,
 	input wire [   DATA_WIDTH-1:0] Data_i,
 	output reg [   DATA_WIDTH-1:0] Data_o
 );
@@ -23,15 +25,18 @@ module PseudoDualPortRAM #(
 		end
 	end
 	
-	always @(posedge Clock, negedge Reset) begin
-		if(!Reset) begin
+	always @(posedge ClockRead, negedge Reset) begin
+		if(!Reset)
 			Data_o <= 0;
-		end else begin
-			if(ReadEnable_i)
-				Data_o <= Memory[Address_i];
-			if(WriteEnable_i)
-				Memory[Address_i] <= Data_i;
-		end
+		else if(ReadEnable_i)
+			Data_o <= Memory[AddressRead_i];
+	end
+	
+	always @(posedge ClockWrite, negedge Reset) begin
+		if(!Reset)
+			Data_o <= 0;
+		else if(WriteEnable_i)
+			Memory[AddressWrite_i] <= Data_i;
 	end
 
 endmodule
