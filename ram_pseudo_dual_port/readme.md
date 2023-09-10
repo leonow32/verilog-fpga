@@ -1,4 +1,4 @@
-# RAM Memory
+# Pseudo Dual Port RAM Memory
 
 ![Status](https://img.shields.io/badge/STATUS-READY-green.svg)
 
@@ -6,16 +6,18 @@ Single port RAM.
 
 ## Instantiation
 
-```verilog
-	RAM #(
+```verilog	
+	PseudoDualPortRAM #(
 		.ADDRESS_WIDTH(),
 		.DATA_WIDTH(8)
-	) RAM_inst(
-		.Clock(Clock),
+	) DUT(
+		.ClockRead(ClockRead),
+		.ClockWrite(ClockWrite),
 		.Reset(Reset),
 		.ReadEnable_i(),
 		.WriteEnable_i(),
-		.Address_i(),
+		.AddressRead_i(),
+		.AddressWrite_i(),
 		.Data_i(),
 		.Data_o()
 	);
@@ -39,59 +41,59 @@ Single port RAM.
 
 ## Console output
 
-    VCD info: dumpfile ram.vcd opened for output.
-    VCD warning: array word RAM_tb.DUT.Memory[0] will conflict with an escaped identifier.
-    VCD warning: array word RAM_tb.DUT.Memory[1] will conflict with an escaped identifier.
-    VCD warning: array word RAM_tb.DUT.Memory[2] will conflict with an escaped identifier.
-    VCD warning: array word RAM_tb.DUT.Memory[3] will conflict with an escaped identifier.
-    VCD warning: array word RAM_tb.DUT.Memory[4] will conflict with an escaped identifier.
-    VCD warning: array word RAM_tb.DUT.Memory[5] will conflict with an escaped identifier.
-    VCD warning: array word RAM_tb.DUT.Memory[6] will conflict with an escaped identifier.
-    VCD warning: array word RAM_tb.DUT.Memory[7] will conflict with an escaped identifier.
-    VCD warning: array word RAM_tb.DUT.Memory[8] will conflict with an escaped identifier.
-    VCD warning: array word RAM_tb.DUT.Memory[9] will conflict with an escaped identifier.
-    VCD warning: array word RAM_tb.DUT.Memory[10] will conflict with an escaped identifier.
-    VCD warning: array word RAM_tb.DUT.Memory[11] will conflict with an escaped identifier.
-    VCD warning: array word RAM_tb.DUT.Memory[12] will conflict with an escaped identifier.
-    VCD warning: array word RAM_tb.DUT.Memory[13] will conflict with an escaped identifier.
-    VCD warning: array word RAM_tb.DUT.Memory[14] will conflict with an escaped identifier.
-    VCD warning: array word RAM_tb.DUT.Memory[15] will conflict with an escaped identifier.
+    VCD info: dumpfile ram_pdp.vcd opened for output.
+    VCD warning: array word PseudoDualPortRAM_tb.DUT.Memory[0] will conflict with an escaped identifier.
+    VCD warning: array word PseudoDualPortRAM_tb.DUT.Memory[1] will conflict with an escaped identifier.
+    VCD warning: array word PseudoDualPortRAM_tb.DUT.Memory[2] will conflict with an escaped identifier.
+    VCD warning: array word PseudoDualPortRAM_tb.DUT.Memory[3] will conflict with an escaped identifier.
+    VCD warning: array word PseudoDualPortRAM_tb.DUT.Memory[4] will conflict with an escaped identifier.
+    VCD warning: array word PseudoDualPortRAM_tb.DUT.Memory[5] will conflict with an escaped identifier.
+    VCD warning: array word PseudoDualPortRAM_tb.DUT.Memory[6] will conflict with an escaped identifier.
+    VCD warning: array word PseudoDualPortRAM_tb.DUT.Memory[7] will conflict with an escaped identifier.
+    VCD warning: array word PseudoDualPortRAM_tb.DUT.Memory[8] will conflict with an escaped identifier.
+    VCD warning: array word PseudoDualPortRAM_tb.DUT.Memory[9] will conflict with an escaped identifier.
+    VCD warning: array word PseudoDualPortRAM_tb.DUT.Memory[10] will conflict with an escaped identifier.
+    VCD warning: array word PseudoDualPortRAM_tb.DUT.Memory[11] will conflict with an escaped identifier.
+    VCD warning: array word PseudoDualPortRAM_tb.DUT.Memory[12] will conflict with an escaped identifier.
+    VCD warning: array word PseudoDualPortRAM_tb.DUT.Memory[13] will conflict with an escaped identifier.
+    VCD warning: array word PseudoDualPortRAM_tb.DUT.Memory[14] will conflict with an escaped identifier.
+    VCD warning: array word PseudoDualPortRAM_tb.DUT.Memory[15] will conflict with an escaped identifier.
     ===== START =====
-            Time Address DataIn DataOut
-         0.000us       x     xx      00
-         0.200us       0     92      00
-         0.300us       1     40      00
-         0.400us       2     04      00
-         0.500us       3     31      00
-         0.600us       4     86      00
-         0.700us       5     c6      00
-         0.800us       6     32      00
-         0.900us       7     09      00
-         1.000us       8     80      00
-         1.100us       9     86      00
-         1.200us       a     bb      00
-         1.300us       b     9e      00
-         1.400us       c     f6      00
-         1.500us       d     c6      00
-         1.600us       e     fc      00
-         1.700us       f     63      00
-         1.800us       x     xx      00
-         1.900us       0     xx      00
-         2.000us       1     xx      92
-         2.100us       2     xx      40
-         2.200us       3     xx      04
-         2.300us       4     xx      31
-         2.400us       5     xx      86
-         2.500us       6     xx      c6
-         2.600us       7     xx      32
-         2.700us       8     xx      09
-         2.800us       9     xx      80
-         2.900us       a     xx      86
-         3.000us       b     xx      bb
-         3.100us       c     xx      9e
-         3.200us       d     xx      f6
-         3.300us       e     xx      c6
-         3.400us       f     xx      fc
-         3.500us       f     xx      63
+            Time AddressWrite DataIn AddressRead DataOut
+         0.000us            x     xx           x      00
+         0.132us            0     92           x      00
+         0.198us            1     40           x      00
+         0.264us            2     04           x      00
+         0.330us            3     31           x      00
+         0.396us            4     86           x      00
+         0.462us            5     c6           x      00
+         0.500us            5     c6           0      00
+         0.528us            6     32           0      00
+         0.594us            7     09           0      00
+         0.600us            7     09           1      92
+         0.660us            8     80           1      92
+         0.700us            8     80           2      40
+         0.726us            9     86           2      40
+         0.792us            a     bb           2      40
+         0.800us            a     bb           3      04
+         0.858us            b     9e           3      04
+         0.900us            b     9e           4      31
+         0.924us            c     f6           4      31
+         0.990us            d     c6           4      31
+         1.000us            d     c6           5      86
+         1.056us            e     fc           5      86
+         1.100us            e     fc           6      c6
+         1.122us            f     63           6      c6
+         1.188us            x     xx           6      c6
+         1.200us            x     xx           7      32
+         1.300us            x     xx           8      09
+         1.400us            x     xx           9      80
+         1.500us            x     xx           a      86
+         1.600us            x     xx           b      bb
+         1.700us            x     xx           c      9e
+         1.800us            x     xx           d      f6
+         1.900us            x     xx           e      c6
+         2.000us            x     xx           f      fc
+         2.100us            x     xx           x      63
     ===== END =====
-    ram_tb.v:85: $finish called at 3700 (1ns)
+    ram_pdp_tb.v:106: $finish called at 2300 (1ns)
