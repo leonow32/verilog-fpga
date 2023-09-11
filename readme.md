@@ -29,6 +29,7 @@ I decided to publish these peripherals because I think they may be useful for ot
 + [ROM](/rom) - Read only memory. This module can be used to store permanent information, such as the code of a program executed by the processor, for example.
 + [ROM - Case implementation](/rom_case) - This is very a simple implementation of ROM memory using `case` instruction. It has no practical sense - but can be used for educational purposes.
 + [RAM](/ram) - Single port RAM.
++ [Pseudo Dual Port RAM](/ram_pseudo_dual_port) - RAM memory with a separate address port for reading data and a separate one for writing. Moreover, the write and read ports can be connected to completely different clock signals.
 
 **Communication**
 

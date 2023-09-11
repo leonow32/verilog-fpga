@@ -2,7 +2,7 @@
 
 ![Status](https://img.shields.io/badge/STATUS-READY-green.svg)
 
-Single port RAM.
+RAM memory with a separate address port for reading data and a separate one for writing. Moreover, the write and read ports can be connected to completely different clock signals.
 
 ## Instantiation
 
@@ -27,11 +27,13 @@ Single port RAM.
 
 + **ADDRESS_WIDTH** - Number of address bus bits. Determines the size of the memory. The memory size is equal to 2^ADDRESS_WIDTH.
 + **DATA_WIDTH** - Number of data bus bits. Most common values are 8, 16 and 32. 
-+ **Clock** - Clock signal, active rising edge.
++ **ClockRead** - Clock signal for read port, active rising edge.
++ **ClockWrite** - Clock signal for write port, active rising edge.
 + **Reset** - Asynchronous reset, active low.
 + **ReadEnable_i** - If 1 then on the next clock edge the requested data is output on `Data_o`.
 + **WriteEnable_i** - If 1 then on the next clock edge the data delivered on `Data_i` is written to selected address.
-+ **Address_i[ADDRESS_WIDTH-1:0]** - Address of the byte requested to be read/written on the next clock edge.
++ **AddressRead_i[ADDRESS_WIDTH-1:0]** - Address of the byte requested to be read on the next clock edge.
++ **AddressWrite_i[ADDRESS_WIDTH-1:0]** - Address of the byte requested to be written on the next clock edge.
 + **Data_i[DATA_WIDTH-1:0]** - Data to be written to the requestred address.
 + **Data_o[DATA_WIDTH-1:0]** - Data read from the requested address.
     
