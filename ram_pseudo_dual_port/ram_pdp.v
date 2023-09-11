@@ -16,8 +16,10 @@ module PseudoDualPortRAM #(
 	output reg [   DATA_WIDTH-1:0] Data_o
 );
 	
+	// Memory registers
 	reg [DATA_WIDTH-1:0] Memory [0:2**ADDRESS_WIDTH-1];
 	
+	// Initialize the memory with zeros
 	integer i;
 	initial begin
 		for(i=0; i<2**ADDRESS_WIDTH; i=i+1) begin
@@ -25,6 +27,7 @@ module PseudoDualPortRAM #(
 		end
 	end
 	
+	// Read operation
 	always @(posedge ReadClock, negedge Reset) begin
 		if(!Reset)
 			Data_o <= 0;
@@ -32,6 +35,7 @@ module PseudoDualPortRAM #(
 			Data_o <= Memory[ReadAddress_i];
 	end
 	
+	// Write operation
 	always @(posedge WriteClock, negedge Reset) begin
 		if(!Reset)
 			Data_o <= 0;
