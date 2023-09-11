@@ -10,25 +10,25 @@ module PseudoDualPortRAM_tb();
 	parameter real HALF_PERIOD_WRITE_NS = 1_000_000_000.0 / (2 * CLOCK_WRITE_HZ);
 	
 	// Clock generator for read port
-	reg ClockRead = 1'b1;
+	reg ReadClock = 1'b1;
 	always begin
 		#HALF_PERIOD_READ_NS;
-		ClockRead = !ClockRead;
+		ReadClock = !ReadClock;
 	end
 	
 	// Clock generator for write port
-	reg ClockWrite = 1'b1;
+	reg WriteClock = 1'b1;
 	always begin
 		#HALF_PERIOD_WRITE_NS;
-		ClockWrite = !ClockWrite;
+		WriteClock = !WriteClock;
 	end
 	
 	// Variables
 	reg        Reset       = 1'b0;
 	reg        ReadEnable  = 1'b0;
 	reg        WriteEnable = 1'b0;
-	reg  [3:0] AddressRead;
-	reg  [3:0] AddressWrite;
+	reg  [3:0] ReadAddress;
+	reg  [3:0] WriteAddress;
 	reg  [7:0] DataIn;
 	wire [7:0] DataOut;
 	integer    r;
@@ -39,13 +39,13 @@ module PseudoDualPortRAM_tb();
 		.ADDRESS_WIDTH(4),
 		.DATA_WIDTH(8)
 	) DUT(
-		.ClockRead(ClockRead),
-		.ClockWrite(ClockWrite),
+		.ReadClock(ReadClock),
+		.WriteClock(WriteClock),
 		.Reset(Reset),
 		.ReadEnable_i(ReadEnable),
 		.WriteEnable_i(WriteEnable),
-		.AddressRead_i(AddressRead),
-		.AddressWrite_i(AddressWrite),
+		.ReadAddress_i(ReadAddress),
+		.WriteAddress_i(WriteAddress),
 		.Data_i(DataIn),
 		.Data_o(DataOut)
 	);
@@ -65,18 +65,18 @@ module PseudoDualPortRAM_tb();
 	initial begin
 		$timeformat(-6, 3, "us", 12);
 		$display("===== START =====");
-		$display("        Time AddressWrite DataIn AddressRead DataOut");
+		$display("        Time WriteAddress DataIn ReadAddress DataOut");
 		$monitor("%t            %H     %H           %H      %H", 
 			$realtime, 
-			AddressWrite, 
+			WriteAddress, 
 			DataIn,
-			AddressRead,
+			ReadAddress,
 			DataOut
 		);
 		
-		@(posedge ClockWrite);
+		@(posedge WriteClock);
 		Reset <= 1'b1;
-		@(posedge ClockWrite);
+		@(posedge WriteClock);
 		
 		// Write some data
 		for(w=0; w<=15; w=w+1) begin
@@ -87,20 +87,20 @@ module PseudoDualPortRAM_tb();
 	
 	// Test sequence for read
 	initial begin
-		repeat(5) @(posedge ClockRead);
+		repeat(5) @(posedge ReadClock);
 		
 		// Read the data
 		ReadEnable <= 1'b1;
 		for(r=0; r<=15; r=r+1) begin
-			AddressRead <= r;
-			@(posedge ClockRead);
+			ReadAddress <= r;
+			@(posedge ReadClock);
 		end
 		
-		AddressRead <= 4'dX;
+		ReadAddress <= 4'dX;
 		ReadEnable  <= 1'b0;
 		
 		// Pause
-		repeat(2) @(posedge ClockRead);
+		repeat(2) @(posedge ReadClock);
 		
 		$display("===== END =====");
 		$finish;
@@ -108,19 +108,19 @@ module PseudoDualPortRAM_tb();
 	
 	task WriteData(input [3:0] Adr, input [7:0] Dat); 
 		begin
-			AddressWrite <= Adr;
+			WriteAddress <= Adr;
 			DataIn       <= Dat;
 			WriteEnable  <= 1'b1;
-			@(posedge ClockWrite);
+			@(posedge WriteClock);
 		end
 	endtask
 	
 	task WriteEnd(); 
 		begin
-			AddressWrite <= 4'dX;
+			WriteAddress <= 4'dX;
 			DataIn       <= 8'dX;
 			WriteEnable  <= 1'b0;
-			@(posedge ClockWrite);
+			@(posedge WriteClock);
 		end
 	endtask
 

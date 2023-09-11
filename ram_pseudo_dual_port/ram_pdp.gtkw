@@ -20,10 +20,10 @@ PseudoDualPortRAM_tb.Reset
 @200
 -Write Data
 @28
-PseudoDualPortRAM_tb.DUT.ClockWrite
+PseudoDualPortRAM_tb.DUT.WriteClock
 PseudoDualPortRAM_tb.DUT.WriteEnable_i
 @22
-PseudoDualPortRAM_tb.DUT.AddressWrite_i[3:0]
+PseudoDualPortRAM_tb.DUT.WriteAddress_i[3:0]
 PseudoDualPortRAM_tb.DUT.Data_i[7:0]
 @200
 -Memory
@@ -47,10 +47,10 @@ PseudoDualPortRAM_tb.DUT.\Memory[15][7:0]
 @200
 -Read Data
 @28
-PseudoDualPortRAM_tb.DUT.ClockRead
+PseudoDualPortRAM_tb.DUT.ReadClock
 PseudoDualPortRAM_tb.DUT.ReadEnable_i
 @22
-PseudoDualPortRAM_tb.DUT.AddressRead_i[3:0]
+PseudoDualPortRAM_tb.DUT.ReadAddress_i[3:0]
 PseudoDualPortRAM_tb.DUT.Data_o[7:0]
 [pattern_trace] 1
 [pattern_trace] 0

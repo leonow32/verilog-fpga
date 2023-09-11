@@ -11,13 +11,13 @@ RAM memory with a separate address port for reading data and a separate one for 
 		.ADDRESS_WIDTH(),
 		.DATA_WIDTH(8)
 	) DUT(
-		.ClockRead(ClockRead),
-		.ClockWrite(ClockWrite),
+		.ReadClock(ReadClock),
+		.WriteClock(WriteClock),
 		.Reset(Reset),
 		.ReadEnable_i(),
 		.WriteEnable_i(),
-		.AddressRead_i(),
-		.AddressWrite_i(),
+		.ReadAddress_i(),
+		.WriteAddress_i(),
 		.Data_i(),
 		.Data_o()
 	);
@@ -27,13 +27,13 @@ RAM memory with a separate address port for reading data and a separate one for 
 
 + **ADDRESS_WIDTH** - Number of address bus bits. Determines the size of the memory. The memory size is equal to 2^ADDRESS_WIDTH.
 + **DATA_WIDTH** - Number of data bus bits. Most common values are 8, 16 and 32. 
-+ **ClockRead** - Clock signal for read port, active rising edge.
-+ **ClockWrite** - Clock signal for write port, active rising edge.
++ **ReadClock** - Clock signal for read port, active rising edge.
++ **WriteClock** - Clock signal for write port, active rising edge.
 + **Reset** - Asynchronous reset, active low.
 + **ReadEnable_i** - If 1 then on the next clock edge the requested data is output on `Data_o`.
 + **WriteEnable_i** - If 1 then on the next clock edge the data delivered on `Data_i` is written to selected address.
-+ **AddressRead_i[ADDRESS_WIDTH-1:0]** - Address of the byte requested to be read on the next clock edge.
-+ **AddressWrite_i[ADDRESS_WIDTH-1:0]** - Address of the byte requested to be written on the next clock edge.
++ **ReadAddress_i[ADDRESS_WIDTH-1:0]** - Address of the byte requested to be read on the next clock edge.
++ **WriteAddress_i[ADDRESS_WIDTH-1:0]** - Address of the byte requested to be written on the next clock edge.
 + **Data_i[DATA_WIDTH-1:0]** - Data to be written to the requestred address.
 + **Data_o[DATA_WIDTH-1:0]** - Data read from the requested address.
     
@@ -61,7 +61,7 @@ RAM memory with a separate address port for reading data and a separate one for 
     VCD warning: array word PseudoDualPortRAM_tb.DUT.Memory[14] will conflict with an escaped identifier.
     VCD warning: array word PseudoDualPortRAM_tb.DUT.Memory[15] will conflict with an escaped identifier.
     ===== START =====
-            Time AddressWrite DataIn AddressRead DataOut
+            Time WriteAddress DataIn ReadAddress DataOut
          0.000us            x     xx           x      00
          0.132us            0     92           x      00
          0.198us            1     40           x      00
