@@ -58,7 +58,7 @@ module ROM_tb();
 		// Read the data
 		ReadEnable <= 1'b1;
 		for(i=0; i<DUT.MEMORY_DEPTH; i=i+1) begin
-			Address    <= i;
+			Address <= i;
 		end
 		
 		ReadEnable <= 1'b0;
