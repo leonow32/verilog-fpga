@@ -16,7 +16,7 @@ module RAM #(
 );
 	
 	// Create the memory array
-	reg [DATA_WIDTH-1:0] Memory [0:MEMORY_DEPTH-1];
+	reg [DATA_WIDTH-1:0] Memory [0:MEMORY_DEPTH-1] /* synthesis syn_ramstyle = "block_ram" */;
 	
 	// Check memory depth and address space
 	initial begin
@@ -36,10 +36,12 @@ module RAM #(
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
 			Data_o <= 0;
-		end if(ReadEnable_i)
-			Data_o <= Memory[Address_i];
-		else if(WriteEnable_i)
-			Memory[Address_i] <= Data_i;
+		end else begin
+			if(ReadEnable_i)
+				Data_o <= Memory[Address_i];
+			if(WriteEnable_i)
+				Memory[Address_i] <= Data_i;
+		end
 	end
 
 endmodule
