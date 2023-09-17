@@ -45,6 +45,7 @@ module ROM_tb();
 		$display("===== START =====");
 		$display("MEMORY_DEPTH: %0d", DUT.MEMORY_DEPTH);
 		
+		// Print all the memory contents
 		for(i=0; i<DUT.MEMORY_DEPTH; i=i+1) begin
 			$display("Memory[%d] = %h", i, DUT.Memory[i]);
 		end
@@ -59,6 +60,7 @@ module ROM_tb();
 		ReadEnable <= 1'b1;
 		for(i=0; i<DUT.MEMORY_DEPTH; i=i+1) begin
 			Address <= i;
+			@(posedge Clock);
 		end
 		
 		ReadEnable <= 1'b0;

@@ -18,7 +18,7 @@ module ROM #(
 	// Check memory depth and address space
 	initial begin
 		if(MEMORY_DEPTH > 2**ADDRESS_WIDTH)
-			$fatal(0, "Reqired memory depth is larger than address space");
+			$fatal(0, "Required memory depth is larger than address space");
 	end
 	
 	// Initialize memory with values from a file
