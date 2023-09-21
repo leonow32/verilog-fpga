@@ -3,7 +3,8 @@
 `default_nettype none
 module PseudoDualPortRAM #(
 	parameter ADDRESS_WIDTH = 16,
-	parameter DATA_WIDTH    = 8
+	parameter DATA_WIDTH    = 8,
+	parameter MEMORY_DEPTH  = 2**ADDRESS_WIDTH
 )(
 	input wire ReadClock,
 	input wire WriteClock,
@@ -16,8 +17,14 @@ module PseudoDualPortRAM #(
 	output reg [   DATA_WIDTH-1:0] Data_o
 );
 	
-	// Memory registers
+	// Create the memory array
 	reg [DATA_WIDTH-1:0] Memory [0:2**ADDRESS_WIDTH-1];
+	
+	// Check memory depth and address space
+	initial begin
+		if(MEMORY_DEPTH > 2**ADDRESS_WIDTH)
+			$fatal(0, "Required memory depth is larger than address space");
+	end
 	
 	// Initialize the memory with zeros
 	integer i;
@@ -36,10 +43,8 @@ module PseudoDualPortRAM #(
 	end
 	
 	// Write operation
-	always @(posedge WriteClock, negedge Reset) begin
-		if(!Reset)
-			Data_o <= 0;
-		else if(WriteEnable_i)
+	always @(posedge WriteClock) begin
+		if(WriteEnable_i)
 			Memory[WriteAddress_i] <= Data_i;
 	end
 

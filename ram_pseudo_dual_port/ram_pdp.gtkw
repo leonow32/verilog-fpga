@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sun Sep 10 20:00:00 2023
+[*] Thu Sep 21 09:55:40 2023
 [*]
 [dumpfile] "ram_pdp.vcd"
-[dumpfile_mtime] "Sun Sep 10 19:50:41 2023"
-[dumpfile_size] 7117
+[dumpfile_mtime] "Wed Sep 20 20:58:54 2023"
+[dumpfile_size] 7166
 [savefile] "ram_pdp.gtkw"
 [timestart] 0
 [size] 1920 1009
-[pos] -1 -1
-*-8.320048 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -9 -9
+*-8.336168 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] PseudoDualPortRAM_tb.
 [sst_width] 213
 [signals_width] 231
@@ -20,6 +20,7 @@ PseudoDualPortRAM_tb.Reset
 @200
 -Write Data
 @28
+[color] 3
 PseudoDualPortRAM_tb.DUT.WriteClock
 PseudoDualPortRAM_tb.DUT.WriteEnable_i
 @22
@@ -47,6 +48,7 @@ PseudoDualPortRAM_tb.DUT.\Memory[15][7:0]
 @200
 -Read Data
 @28
+[color] 3
 PseudoDualPortRAM_tb.DUT.ReadClock
 PseudoDualPortRAM_tb.DUT.ReadEnable_i
 @22
