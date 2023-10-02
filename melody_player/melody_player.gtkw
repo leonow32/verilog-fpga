@@ -1,22 +1,22 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Tue Jul 11 15:08:45 2023
+[*] Sun Oct 01 19:27:55 2023
 [*]
 [dumpfile] "melody_player.vcd"
-[dumpfile_mtime] "Tue Jul 11 15:01:41 2023"
-[dumpfile_size] 73475661
+[dumpfile_mtime] "Sun Oct 01 18:38:51 2023"
+[dumpfile_size] 73476143
 [savefile] "melody_player.gtkw"
 [timestart] 0
 [size] 1920 1009
-[pos] -1 -1
-*-24.162825 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -9 -9
+*-24.170334 41620000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] MelodyPlayer_tb.
 [treeopen] MelodyPlayer_tb.DUT.
 [treeopen] MelodyPlayer_tb.DUT.SoundGenerator_inst.
 [sst_width] 197
 [signals_width] 315
 [sst_expanded] 1
-[sst_vpaned_height] 297
+[sst_vpaned_height] 296
 @28
 MelodyPlayer_tb.Reset
 MelodyPlayer_tb.Clock
@@ -29,7 +29,7 @@ MelodyPlayer_tb.DUT.Play_i
 MelodyPlayer_tb.DUT.Stop_i
 @200
 -State machine
-@2029
+@2028
 ^1 melody_player_state.gtkw
 MelodyPlayer_tb.DUT.State[2:0]
 @200
@@ -41,10 +41,12 @@ MelodyPlayer_tb.DUT.SoundGenerator_inst.TickMicro
 @200
 -Memory
 @22
-MelodyPlayer_tb.DUT.MusicMemory.Address_i[11:0]
-MelodyPlayer_tb.DUT.MusicMemory.Data_o[7:0]
+MelodyPlayer_tb.DUT.ROM_inst.Address_i[11:0]
+MelodyPlayer_tb.DUT.ROM_inst.Data_o[7:0]
 @200
 -Sound Generator
+@29
+MelodyPlayer_tb.DUT.SoundGenerator_inst.Start_i
 @22
 MelodyPlayer_tb.DUT.SoundGenerator_inst.Duration_ms_i[15:0]
 MelodyPlayer_tb.DUT.SoundGenerator_inst.HalfPeriod_us_i[15:0]
