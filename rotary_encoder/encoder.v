@@ -1,4 +1,4 @@
-// 230616
+// 230901
 
 `default_nettype none
 module Encoder #(
@@ -8,26 +8,26 @@ module Encoder #(
 	input  wire Reset,
 	input  wire AsyncA_i,
 	input  wire AsyncB_i,
+	input  wire AsyncS_i,
 	output reg  Increment_o,
-	output reg  Decrement_o
+	output reg  Decrement_o,
+	output wire ButtonPress_o,
+	output wire ButtonRelease_o,
+	output wire ButtonState_o
 );
-	
-	// Synchronizer
-	reg [1:0] SyncA;
-	reg [1:0] SyncB;
-	always @(posedge Clock, negedge Reset) begin
-		if(!Reset) begin
-			SyncA <= 0;
-			SyncB <= 0;
-		end else begin
-			SyncA <= {SyncA[0], AsyncA_i};
-			SyncB <= {SyncB[0], AsyncB_i};
-		end
-	end
-	
-	// Synchronized input signals
-	wire A = SyncA[1];
-	wire B = SyncB[1];
+
+	// Synchronize asynchronous inputs with clock domain
+	wire A;
+	wire B;
+	wire S;
+	Synchronizer #(
+		.WIDTH(3)
+	) SynchronizerA(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Async_i({AsyncA_i, AsyncB_i, !AsyncS_i}),
+		.Sync_o({A, B, S})
+	);
 	
 	// State machine defines
 	localparam IDLE           = 0;
@@ -36,6 +36,7 @@ module Encoder #(
 	localparam WAIT_FOR_IDLE  = 3;
 	reg [1:0] State;
 	
+	// Analyze the rotation
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
 			Increment_o <= 0;
@@ -83,6 +84,17 @@ module Encoder #(
 			endcase
 		end
 	end
+	
+	// Analyze button press
+	EdgeDetector EdgeDetector_inst(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Signal_i(S),
+		.RisingEdge_o(ButtonPress_o),
+		.FallingEdge_o(ButtonRelease_o)
+	);
+	
+	assign ButtonState_o = S;
 	
 endmodule
 `default_nettype wire

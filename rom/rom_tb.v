@@ -3,8 +3,8 @@
 `default_nettype none
 module ROM_tb();
 
-	parameter CLOCK_HZ	= 10_000_000;
-	parameter HALF_PERIOD_NS = 1_000_000_000 / (2 * CLOCK_HZ);
+	parameter      CLOCK_HZ       = 10_000_000;
+	parameter real HALF_PERIOD_NS = 1_000_000_000.0 / (2 * CLOCK_HZ);
 	
 	// Clock generator
 	reg Clock = 1'b1;
@@ -22,6 +22,7 @@ module ROM_tb();
 	ROM #(
 		.ADDRESS_WIDTH(4),
 		.DATA_WIDTH(8),
+		.MEMORY_DEPTH(16),
 		.MEMORY_FILE("data.mem")
 	) DUT(
 		.Clock(Clock),
@@ -42,40 +43,33 @@ module ROM_tb();
 	initial begin
 		$timeformat(-6, 3, "us", 12);
 		$display("===== START =====");
-		$display("        Time Ad Data");
+		$display("MEMORY_DEPTH: %0d", DUT.MEMORY_DEPTH);
+		
+		// Print all the memory contents
+		for(i=0; i<DUT.MEMORY_DEPTH; i=i+1) begin
+			$display("Memory[%d] = %h", i, DUT.Memory[i]);
+		end
 		
 		@(posedge Clock);
 		Reset <= 1'b1;
 		
-		// Slow read
-		@(posedge Clock);
-		for(i=0; i<=15; i=i+1) begin
-			Address <= i;
-			@(posedge Clock);
-			ReadEnable <= 1'b1;
-			@(posedge Clock);
-			ReadEnable <= 1'b0;
-			@(posedge Clock);
-			$display("%t %H: %H", $realtime, Address, Data);
-		end
-		
 		// Pause
-		repeat(5) @(posedge Clock);
+		@(posedge Clock);
 		
-		// Fast read
-		for(i=0; i<=15; i=i+1) begin
+		// Read the data
+		ReadEnable <= 1'b1;
+		for(i=0; i<DUT.MEMORY_DEPTH; i=i+1) begin
 			Address <= i;
-			ReadEnable <= 1'b1;
 			@(posedge Clock);
 		end
 		
 		ReadEnable <= 1'b0;
 		
 		// Pause
-		repeat(5) @(posedge Clock);
+		repeat(2) @(posedge Clock);
 		
-		#1 $display("===== END =====");
-		#1 $finish;
+		$display("===== END =====");
+		$finish;
 	end
 
 endmodule

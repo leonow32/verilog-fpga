@@ -10,6 +10,7 @@ Read only memory. This module can be used to store permanent information, such a
 	ROM #(
 		.ADDRESS_WIDTH(),
 		.DATA_WIDTH(),
+		.MEMORY_DEPTH(),
 		.MEMORY_FILE("data.mem")
 	) ROM_inst(
 		.Clock(Clock),
@@ -24,6 +25,7 @@ Read only memory. This module can be used to store permanent information, such a
 
 + **ADDRESS_WIDTH** - Number of address bus bits. Determines the size of the memory. The memory size is equal to 2^ADDRESS_WIDTH.
 + **DATA_WIDTH** - Number of data bus bits. Most common values are 8, 16 and 32. 
++ **MEMORY_DEPTH** - Number of words in the memory array.
 + **MEMORY_FILE** - A file with the contents of the memory to be loaded as soon as the device starts up.
 + **Clock** - Clock signal, active rising edge.
 + **Reset** - Asynchronous reset, active low.
@@ -37,24 +39,24 @@ Read only memory. This module can be used to store permanent information, such a
 
 ## Console output
 
-    VCD info: dumpfile rom.vcd opened for output.
-    ===== START =====
-            Time Ad Data
-         0.500us 0: 0f
-         0.800us 1: 1e
-         1.100us 2: 2d
-         1.400us 3: 3c
-         1.700us 4: 4b
-         2.000us 5: 5a
-         2.300us 6: 69
-         2.600us 7: 78
-         2.900us 8: 87
-         3.200us 9: 96
-         3.500us a: a5
-         3.800us b: b4
-         4.100us c: c3
-         4.400us d: d2
-         4.700us e: e1
-         5.000us f: f0
-    ===== END =====
-    rom_tb.v:78: $finish called at 7602 (1ns)
+	VCD info: dumpfile rom.vcd opened for output.
+	===== START =====
+	MEMORY_DEPTH: 16
+	Memory[          0] = 0f
+	Memory[          1] = 1e
+	Memory[          2] = 2d
+	Memory[          3] = 3c
+	Memory[          4] = 4b
+	Memory[          5] = 5a
+	Memory[          6] = 69
+	Memory[          7] = 78
+	Memory[          8] = 87
+	Memory[          9] = 96
+	Memory[         10] = a5
+	Memory[         11] = b4
+	Memory[         12] = c3
+	Memory[         13] = d2
+	Memory[         14] = e1
+	Memory[         15] = f0
+	===== END =====
+	rom_tb.v:70: $finish called at 400 (1ns)

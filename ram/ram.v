@@ -1,21 +1,22 @@
-// 230916
+// 230907
 
 `default_nettype none
-module ROM #(
+module RAM #(
 	parameter ADDRESS_WIDTH = 16,
 	parameter DATA_WIDTH    = 8,
-	parameter MEMORY_DEPTH  = 2**ADDRESS_WIDTH,
-	parameter MEMORY_FILE   = "data.mem"
+	parameter MEMORY_DEPTH  = 2**ADDRESS_WIDTH
 )(
 	input wire Clock,
 	input wire Reset,
 	input wire ReadEnable_i,
+	input wire WriteEnable_i,
 	input wire [ADDRESS_WIDTH-1:0] Address_i,
+	input wire [   DATA_WIDTH-1:0] Data_i,
 	output reg [   DATA_WIDTH-1:0] Data_o
 );
 	
 	// Create the memory array
-	reg [DATA_WIDTH-1:0] Memory [0:MEMORY_DEPTH-1] /* synthesis syn_romstyle = "EBR" */;
+	reg [DATA_WIDTH-1:0] Memory [0:MEMORY_DEPTH-1] /* synthesis syn_ramstyle = "block_ram" */;
 	
 	// Check memory depth and address space
 	initial begin
@@ -23,17 +24,24 @@ module ROM #(
 			$fatal(0, "Required memory depth is larger than address space");
 	end
 	
-	// Initialize memory with values from a file
+	// Initialize memory with zeros
+	integer i;
 	initial begin
-		$readmemh(MEMORY_FILE, Memory);
+		for(i=0; i<2**ADDRESS_WIDTH; i=i+1) begin
+			Memory[i] = 0;
+		end
 	end
 	
 	// Memory logic
 	always @(posedge Clock, negedge Reset) begin
-		if(!Reset)
+		if(!Reset) begin
 			Data_o <= 0;
-		else if(ReadEnable_i)
-			Data_o <= Memory[Address_i];
+		end else begin
+			if(ReadEnable_i)
+				Data_o <= Memory[Address_i];
+			if(WriteEnable_i)
+				Memory[Address_i] <= Data_i;
+		end
 	end
 
 endmodule
