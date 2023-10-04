@@ -1,9 +1,7 @@
-// 230901
+// 231004
 
 `default_nettype none
-module Encoder #(
-	parameter	CLOCK_HZ	= 10_000_000
-)(
+module Encoder(
 	input  wire Clock,
 	input  wire Reset,
 	input  wire AsyncA_i,
