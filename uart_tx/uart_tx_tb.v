@@ -94,7 +94,7 @@ module UartTx_tb();
 		$finish;
 	end
 	
-	// Display trasmitted bytes
+	// Display transmitted bytes
 	always begin
 		@(posedge ByteTransmitRequest)
 		$display("%t Transmitting byte %d: %s", $realtime, Pointer, Memory[Pointer]);

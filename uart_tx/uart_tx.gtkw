@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Mon Aug 14 19:59:12 2023
+[*] Thu Oct 12 18:53:15 2023
 [*]
 [dumpfile] "uart_tx.vcd"
-[dumpfile_mtime] "Mon Aug 14 19:58:53 2023"
-[dumpfile_size] 24596
+[dumpfile_mtime] "Fri Oct 06 19:16:45 2023"
+[dumpfile_size] 24595
 [savefile] "uart_tx.gtkw"
 [timestart] 0
 [size] 1920 1009
-[pos] -1 -1
-*-16.585121 500000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -9 -9
+*-16.585121 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] UartTx_tb.
 [treeopen] UartTx_tb.DUT.
 [sst_width] 197
@@ -30,25 +30,10 @@ UartTx_tb.ByteTransmitBusy
 UartTx_tb.ByteTransmitDone
 @24
 UartTx_tb.Pointer[2:0]
-@c00820
-UartTx_tb.DUT.Data_i[7:0]
-@28
-(0)UartTx_tb.DUT.Data_i[7:0]
-(1)UartTx_tb.DUT.Data_i[7:0]
-(2)UartTx_tb.DUT.Data_i[7:0]
-(3)UartTx_tb.DUT.Data_i[7:0]
-(4)UartTx_tb.DUT.Data_i[7:0]
-(5)UartTx_tb.DUT.Data_i[7:0]
-(6)UartTx_tb.DUT.Data_i[7:0]
-(7)UartTx_tb.DUT.Data_i[7:0]
-@1401200
--group_end
 @200
 -UartTx
 @28
 UartTx_tb.DUT.Start_i
-@22
-UartTx_tb.DUT.Data_i[7:0]
 @820
 UartTx_tb.DUT.Data_i[7:0]
 UartTx_tb.DUT.ByteCopy[7:0]
@@ -72,10 +57,10 @@ UartTx_tb.DUT.NextBit
 @24
 UartTx_tb.DUT.Pointer[3:0]
 @28
-[color] 3
-UartTx_tb.DUT.Tx_o
 UartTx_tb.DUT.Busy_o
 UartTx_tb.DUT.Done_o
+[color] 2
+UartTx_tb.DUT.Tx_o
 @200
 -StrobeGenerator
 @28
