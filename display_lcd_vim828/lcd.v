@@ -7,12 +7,24 @@ module LCD #(
 )(
 	input  wire       Clock,
 	input  wire       Reset,
-	input  wire [7:0] Digit3_i, // pgfedcba
-	input  wire [7:0] Digit2_i,
-	input  wire [7:0] Digit1_i,
-	input  wire [7:0] Digit0_i,
-	output wire [3:0] ComPWM_o,
-	output wire [7:0] SegPWM_o
+	
+	// Rightmost character = 0
+	// Leftmost character  = 7
+	// Segment order in each input = pnmlkjihgfedcba
+	input  wire [14:0] Character7_i,
+	input  wire [14:0] Character6_i,
+	input  wire [14:0] Character5_i,
+	input  wire [14:0] Character4_i,
+	input  wire [14:0] Character3_i,
+	input  wire [14:0] Character2_i,
+	input  wire [14:0] Character1_i,
+	input  wire [14:0] Character0_i, 
+	
+	// Connect this output to LCD pins
+	// Each line needs a RC filter to smooth PWM signal
+	// R = 4k7
+	// C = 10n
+	output wire [36:1] Pin_o
 );
 	
 	// PWM generator to create 0, 1/3, 2/3 and 1 voltage levels
@@ -58,6 +70,7 @@ module LCD #(
 	
 	reg [1:0] ComAnalog[0:3];
 	reg [1:0] SegAnalog[0:7];
+	reg [1:0] PinAnalog[
 	
 	// Part H
 	// - Active COM: 3
@@ -211,7 +224,12 @@ module LCD #(
 	end
 	
 	// Assign outputs
-	assign ComPWM_o[0] = Voltage[ComAnalog[0]];
+	assign Pin_o[ 1] = Voltage[ComAnalog[3]];
+	assign Pin_o[18] = Voltage[ComAnalog[2]];
+	assign Pin_o[19] = Voltage[ComAnalog[0]];
+	assign Pin_o[36] = Voltage[ComAnalog[]];
+	
+	assign ComPWM_o[0] = 
 	assign ComPWM_o[1] = Voltage[ComAnalog[1]];
 	assign ComPWM_o[2] = Voltage[ComAnalog[2]];
 	assign ComPWM_o[3] = Voltage[ComAnalog[3]];
