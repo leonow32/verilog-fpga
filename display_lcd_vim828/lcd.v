@@ -40,6 +40,7 @@ module LCD #(
 	
 	// Strobe for changing the state
 	wire ChangeState;
+	
 	StrobeGenerator #(
 		.CLOCK_HZ(CLOCK_HZ),
 		.PERIOD_US(CHANGE_COM_US)
@@ -68,9 +69,9 @@ module LCD #(
 			State <= State + 1'b1;
 	end
 	
-	reg [1:0] ComAnalog[0:3];
-	reg [1:0] SegAnalog[0:7];
-	reg [1:0] PinAnalog[
+	//reg [1:0] ComAnalog[0:3];
+	//reg [1:0] SegAnalog[0:7];
+	reg [1:0] PinAnalog[36:1];
 	
 	// Part H
 	// - Active COM: 3
