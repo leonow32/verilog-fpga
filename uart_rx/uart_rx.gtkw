@@ -1,10 +1,10 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sat Aug 19 20:37:07 2023
+[*] Fri Oct 20 09:44:35 2023
 [*]
 [dumpfile] "uart_rx.vcd"
-[dumpfile_mtime] "Sat Aug 19 20:35:59 2023"
-[dumpfile_size] 17891
+[dumpfile_mtime] "Fri Oct 20 20:42:34 2023"
+[dumpfile_size] 17814
 [savefile] "uart_rx.gtkw"
 [timestart] 0
 [size] 1920 1009
@@ -13,7 +13,7 @@
 [treeopen] UartRx_tb.
 [treeopen] UartRx_tb.UartRx_Inst.
 [treeopen] UartRx_tb.UartTx_Inst.
-[sst_width] 197
+[sst_width] 259
 [signals_width] 253
 [sst_expanded] 1
 [sst_vpaned_height] 297
@@ -37,9 +37,7 @@ UartRx_tb.UartTx_Inst.Tx_o
 -Receiver
 @28
 UartRx_tb.UartRx_Inst.Rx_i
-@29
 UartRx_tb.UartRx_Inst.RxSync
-@28
 UartRx_tb.UartRx_Inst.RxFallingEdge
 UartRx_tb.UartRx_Inst.Busy
 UartRx_tb.UartRx_Inst.Strobe

@@ -1,4 +1,4 @@
-// 230819
+// 231020
 
 `default_nettype none
 module UartRx #(
@@ -14,11 +14,21 @@ module UartRx #(
 	
 	// Synchronize Rx input with clock domain
 	wire RxSync;
-	Synchronizer DUT(
+	Synchronizer Synchronizer_Rx(
 		.Clock(Clock),
 		.Reset(Reset),
 		.Async_i(Rx_i),
 		.Sync_o(RxSync)
+	);
+	
+	// Start of frame detection (start bit is always 0)
+	wire RxFallingEdge;
+	EdgeDetector EdgeDetector_Rx(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Signal_i(RxSync),
+		.RisingEdge_o(),
+		.FallingEdge_o(RxFallingEdge)
 	);
 	
 	// Timing
@@ -32,16 +42,6 @@ module UartRx #(
 		.Reset(Reset),
 		.Enable_i(Busy || !RxSync),
 		.Strobe_o(Strobe)
-	);
-
-	// Start of frame detection (start bit is always 0)
-	wire RxFallingEdge;
-	EdgeDetector EdgeDetector_inst(
-		.Clock(Clock),
-		.Reset(Reset),
-		.Signal_i(RxSync),
-		.RisingEdge_o(),
-		.FallingEdge_o(RxFallingEdge)
 	);
 	
 	// State machine
