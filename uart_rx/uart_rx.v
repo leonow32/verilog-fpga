@@ -1,4 +1,4 @@
-// 231020
+// 231022
 
 `default_nettype none
 module UartRx #(
@@ -64,9 +64,9 @@ module UartRx #(
 				if(RxFallingEdge) begin
 					Counter <= 5'd0;
 					Busy    <= 1'b1;
-				end else begin
-					Done_o  <= 1'b0;
-				end
+				end 
+				
+				Done_o  <= 1'b0;
 			end
 			
 			// Transmission in progress
