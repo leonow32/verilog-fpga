@@ -19,9 +19,8 @@ module UartRx_tb();
 	reg  Reset = 1'b0;
 	
 	reg  [7:0] TxData;
-	wire       TxBusy;
-	wire       TxDone;
 	reg        TxRequest = 1'b0;
+	wire       TxDone;
 	
 	wire [7:0] RxData;
 	wire       RxDone;
