@@ -5,7 +5,7 @@
 `default_nettype none
 module LCD #(
 	parameter	CLOCK_HZ      = 10_000_000,
-	parameter	CHANGE_COM_US = 10
+	parameter	CHANGE_COM_US = 1000
 )(
 	input  wire       Clock,
 	input  wire       Reset,
@@ -87,102 +87,239 @@ module LCD #(
 	always @(*) begin
 		case(State)
 			COM_0H: begin
-				PinVoltage[`COM0] = 2'd3;						// COM0
-				PinVoltage[`COM1] = 2'd1;						// COM1
-				PinVoltage[`COM2] = 2'd1;						// COM2
-				PinVoltage[`COM3] = 2'd1;						// COM3
+				PinVoltage[`COM0] = 2'd3;
+				PinVoltage[`COM1] = 2'd1;
+				PinVoltage[`COM2] = 2'd1;
+				PinVoltage[`COM3] = 2'd1;
 				
+				PinVoltage[`SEG0_ABCP] = Bitmap0_i[`BIT_A] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG0__FED] = 2'd2;
+				PinVoltage[`SEG0_IJKN] = Bitmap0_i[`BIT_I] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG0_HGLM] = Bitmap0_i[`BIT_H] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG1_ABCP] = Bitmap1_i[`BIT_A] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG1__FED] = 2'd2;
+				PinVoltage[`SEG1_IJKN] = Bitmap1_i[`BIT_I] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG1_HGLM] = Bitmap1_i[`BIT_H] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG2_ABCP] = Bitmap2_i[`BIT_A] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG2__FED] = 2'd2;
+				PinVoltage[`SEG2_IJKN] = Bitmap2_i[`BIT_I] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG2_HGLM] = Bitmap2_i[`BIT_H] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG3_ABCP] = Bitmap3_i[`BIT_A] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG3__FED] = 2'd2;
+				PinVoltage[`SEG3_IJKN] = Bitmap3_i[`BIT_I] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG3_HGLM] = Bitmap3_i[`BIT_H] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG4_ABCP] = Bitmap4_i[`BIT_A] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG4__FED] = 2'd2;
+				PinVoltage[`SEG4_IJKN] = Bitmap4_i[`BIT_I] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG4_HGLM] = Bitmap4_i[`BIT_H] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG5_ABCP] = Bitmap5_i[`BIT_A] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG5__FED] = 2'd2;
+				PinVoltage[`SEG5_IJKN] = Bitmap5_i[`BIT_I] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG5_HGLM] = Bitmap5_i[`BIT_H] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG6_ABCP] = Bitmap6_i[`BIT_A] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG6__FED] = 2'd2;
+				PinVoltage[`SEG6_IJKN] = Bitmap6_i[`BIT_I] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG6_HGLM] = Bitmap6_i[`BIT_H] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG7_ABCP] = Bitmap7_i[`BIT_A] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG7__FED] = 2'd2;
 				PinVoltage[`SEG7_IJKN] = Bitmap7_i[`BIT_I] ? 2'd0 : 2'd2;
-				/*
-				SegAnalog[0] = Digit0_i[7] ? 2'd0 : 2'd2;	// Colon
-				SegAnalog[1] = Digit0_i[3] ? 2'd0 : 2'd2;	// Digit 0, segment D
-				SegAnalog[2] = Digit1_i[7] ? 2'd0 : 2'd2;	// Digit 1, segment P
-				SegAnalog[3] = Digit1_i[3] ? 2'd0 : 2'd2;	// Digit 1, segment D
-				SegAnalog[4] = Digit2_i[7] ? 2'd0 : 2'd2;	// Digit 2, segment P
-				SegAnalog[5] = Digit2_i[3] ? 2'd0 : 2'd2;	// Digit 2, segment D
-				SegAnalog[6] = Digit3_i[7] ? 2'd0 : 2'd2;	// Digit 3, segment P
-				SegAnalog[7] = Digit3_i[3] ? 2'd0 : 2'd2;	// Digit 3, segment D
-				*/
+				PinVoltage[`SEG7_HGLM] = Bitmap7_i[`BIT_H] ? 2'd0 : 2'd2;
 			end
 			
 			COM_1H: begin
-				PinVoltage[`COM0] = 2'd1;						// COM0
-				PinVoltage[`COM1] = 2'd3;						// COM1
-				PinVoltage[`COM2] = 2'd1;						// COM2
-				PinVoltage[`COM3] = 2'd1;						// COM3
+				PinVoltage[`COM0] = 2'd1;
+				PinVoltage[`COM1] = 2'd3;
+				PinVoltage[`COM2] = 2'd1;
+				PinVoltage[`COM3] = 2'd1;
 				
+				PinVoltage[`SEG0_ABCP] = Bitmap0_i[`BIT_B] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG0__FED] = Bitmap0_i[`BIT_F] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG0_IJKN] = Bitmap0_i[`BIT_J] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG0_HGLM] = Bitmap0_i[`BIT_G] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG1_ABCP] = Bitmap1_i[`BIT_B] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG1__FED] = Bitmap1_i[`BIT_F] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG1_IJKN] = Bitmap1_i[`BIT_J] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG1_HGLM] = Bitmap1_i[`BIT_G] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG2_ABCP] = Bitmap2_i[`BIT_B] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG2__FED] = Bitmap2_i[`BIT_F] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG2_IJKN] = Bitmap2_i[`BIT_J] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG2_HGLM] = Bitmap2_i[`BIT_G] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG3_ABCP] = Bitmap3_i[`BIT_B] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG3__FED] = Bitmap3_i[`BIT_F] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG3_IJKN] = Bitmap3_i[`BIT_J] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG3_HGLM] = Bitmap3_i[`BIT_G] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG4_ABCP] = Bitmap4_i[`BIT_B] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG4__FED] = Bitmap4_i[`BIT_F] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG4_IJKN] = Bitmap4_i[`BIT_J] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG4_HGLM] = Bitmap4_i[`BIT_G] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG5_ABCP] = Bitmap5_i[`BIT_B] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG5__FED] = Bitmap5_i[`BIT_F] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG5_IJKN] = Bitmap5_i[`BIT_J] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG5_HGLM] = Bitmap5_i[`BIT_G] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG6_ABCP] = Bitmap6_i[`BIT_B] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG6__FED] = Bitmap6_i[`BIT_F] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG6_IJKN] = Bitmap6_i[`BIT_J] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG6_HGLM] = Bitmap6_i[`BIT_G] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG7_ABCP] = Bitmap7_i[`BIT_B] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG7__FED] = Bitmap7_i[`BIT_F] ? 2'd0 : 2'd2;
 				PinVoltage[`SEG7_IJKN] = Bitmap7_i[`BIT_J] ? 2'd0 : 2'd2;
-				
-				/*
-				SegAnalog[0] = Digit0_i[2] ? 2'd0 : 2'd2;	// Digit 0, segment C
-				SegAnalog[1] = Digit0_i[4] ? 2'd0 : 2'd2;	// Digit 0, segment E
-				SegAnalog[2] = Digit1_i[2] ? 2'd0 : 2'd2;	// Digit 1, segment C
-				SegAnalog[3] = Digit1_i[4] ? 2'd0 : 2'd2;	// Digit 1, segment E
-				SegAnalog[4] = Digit2_i[2] ? 2'd0 : 2'd2;	// Digit 2, segment C
-				SegAnalog[5] = Digit2_i[4] ? 2'd0 : 2'd2;	// Digit 2, segment E
-				SegAnalog[6] = Digit3_i[2] ? 2'd0 : 2'd2;	// Digit 3, segment C
-				SegAnalog[7] = Digit3_i[4] ? 2'd0 : 2'd2;	// Digit 3, segment E
-				*/
+				PinVoltage[`SEG7_HGLM] = Bitmap7_i[`BIT_G] ? 2'd0 : 2'd2;
 			end
 			
 			COM_2H: begin
-				PinVoltage[`COM0] = 2'd1;						// COM0
-				PinVoltage[`COM1] = 2'd1;						// COM1
-				PinVoltage[`COM2] = 2'd3;						// COM2
-				PinVoltage[`COM3] = 2'd1;						// COM3
+				PinVoltage[`COM0] = 2'd1;
+				PinVoltage[`COM1] = 2'd1;
+				PinVoltage[`COM2] = 2'd3;
+				PinVoltage[`COM3] = 2'd1;
 				
+				PinVoltage[`SEG0_ABCP] = Bitmap0_i[`BIT_C] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG0__FED] = Bitmap0_i[`BIT_E] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG0_IJKN] = Bitmap0_i[`BIT_K] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG0_HGLM] = Bitmap0_i[`BIT_L] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG1_ABCP] = Bitmap1_i[`BIT_C] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG1__FED] = Bitmap1_i[`BIT_E] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG1_IJKN] = Bitmap1_i[`BIT_K] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG1_HGLM] = Bitmap1_i[`BIT_L] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG2_ABCP] = Bitmap2_i[`BIT_C] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG2__FED] = Bitmap2_i[`BIT_E] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG2_IJKN] = Bitmap2_i[`BIT_K] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG2_HGLM] = Bitmap2_i[`BIT_L] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG3_ABCP] = Bitmap3_i[`BIT_C] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG3__FED] = Bitmap3_i[`BIT_E] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG3_IJKN] = Bitmap3_i[`BIT_K] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG3_HGLM] = Bitmap3_i[`BIT_L] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG4_ABCP] = Bitmap4_i[`BIT_C] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG4__FED] = Bitmap4_i[`BIT_E] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG4_IJKN] = Bitmap4_i[`BIT_K] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG4_HGLM] = Bitmap4_i[`BIT_L] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG5_ABCP] = Bitmap5_i[`BIT_C] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG5__FED] = Bitmap5_i[`BIT_E] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG5_IJKN] = Bitmap5_i[`BIT_K] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG5_HGLM] = Bitmap5_i[`BIT_L] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG6_ABCP] = Bitmap6_i[`BIT_C] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG6__FED] = Bitmap6_i[`BIT_E] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG6_IJKN] = Bitmap6_i[`BIT_K] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG6_HGLM] = Bitmap6_i[`BIT_L] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG7_ABCP] = Bitmap7_i[`BIT_C] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG7__FED] = Bitmap7_i[`BIT_E] ? 2'd0 : 2'd2;
 				PinVoltage[`SEG7_IJKN] = Bitmap7_i[`BIT_K] ? 2'd0 : 2'd2;
-				
-				/*
-				SegAnalog[0] = Digit0_i[1] ? 2'd0 : 2'd2;	// Digit 0, segment B
-				SegAnalog[1] = Digit0_i[6] ? 2'd0 : 2'd2;	// Digit 0, segment G
-				SegAnalog[2] = Digit1_i[1] ? 2'd0 : 2'd2;	// Digit 1, segment B
-				SegAnalog[3] = Digit1_i[6] ? 2'd0 : 2'd2;	// Digit 1, segment G
-				SegAnalog[4] = Digit2_i[1] ? 2'd0 : 2'd2;	// Digit 2, segment B
-				SegAnalog[5] = Digit2_i[6] ? 2'd0 : 2'd2;	// Digit 2, segment G
-				SegAnalog[6] = Digit3_i[1] ? 2'd0 : 2'd2;	// Digit 3, segment B
-				SegAnalog[7] = Digit3_i[6] ? 2'd0 : 2'd2;	// Digit 3, segment G
-				*/
+				PinVoltage[`SEG7_HGLM] = Bitmap7_i[`BIT_L] ? 2'd0 : 2'd2;
 			end
 			
 			COM_3H: begin
-				PinVoltage[`COM0] = 2'd1;						// COM0
-				PinVoltage[`COM1] = 2'd1;						// COM1
-				PinVoltage[`COM2] = 2'd1;						// COM2
-				PinVoltage[`COM3] = 2'd3;						// COM3
+				PinVoltage[`COM0] = 2'd1;
+				PinVoltage[`COM1] = 2'd1;
+				PinVoltage[`COM2] = 2'd1;
+				PinVoltage[`COM3] = 2'd3;
 				
+				PinVoltage[`SEG0_ABCP] = Bitmap0_i[`BIT_P] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG0__FED] = Bitmap0_i[`BIT_D] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG0_IJKN] = Bitmap0_i[`BIT_N] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG0_HGLM] = Bitmap0_i[`BIT_M] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG1_ABCP] = Bitmap1_i[`BIT_P] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG1__FED] = Bitmap1_i[`BIT_D] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG1_IJKN] = Bitmap1_i[`BIT_N] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG1_HGLM] = Bitmap1_i[`BIT_M] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG2_ABCP] = Bitmap2_i[`BIT_P] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG2__FED] = Bitmap2_i[`BIT_D] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG2_IJKN] = Bitmap2_i[`BIT_N] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG2_HGLM] = Bitmap2_i[`BIT_M] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG3_ABCP] = Bitmap3_i[`BIT_P] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG3__FED] = Bitmap3_i[`BIT_D] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG3_IJKN] = Bitmap3_i[`BIT_N] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG3_HGLM] = Bitmap3_i[`BIT_M] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG4_ABCP] = Bitmap4_i[`BIT_P] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG4__FED] = Bitmap4_i[`BIT_D] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG4_IJKN] = Bitmap4_i[`BIT_N] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG4_HGLM] = Bitmap4_i[`BIT_M] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG5_ABCP] = Bitmap5_i[`BIT_P] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG5__FED] = Bitmap5_i[`BIT_D] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG5_IJKN] = Bitmap5_i[`BIT_N] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG5_HGLM] = Bitmap5_i[`BIT_M] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG6_ABCP] = Bitmap6_i[`BIT_P] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG6__FED] = Bitmap6_i[`BIT_D] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG6_IJKN] = Bitmap6_i[`BIT_N] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG6_HGLM] = Bitmap6_i[`BIT_M] ? 2'd0 : 2'd2;
+				
+				PinVoltage[`SEG7_ABCP] = Bitmap7_i[`BIT_P] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG7__FED] = Bitmap7_i[`BIT_D] ? 2'd0 : 2'd2;
 				PinVoltage[`SEG7_IJKN] = Bitmap7_i[`BIT_N] ? 2'd0 : 2'd2;
-				
-				/*
-				SegAnalog[0] = Digit0_i[0] ? 2'd0 : 2'd2;	// Digit 0, segment A
-				SegAnalog[1] = Digit0_i[5] ? 2'd0 : 2'd2;	// Digit 0, segment F
-				SegAnalog[2] = Digit1_i[0] ? 2'd0 : 2'd2;	// Digit 1, segment A
-				SegAnalog[3] = Digit1_i[5] ? 2'd0 : 2'd2;	// Digit 1, segment F
-				SegAnalog[4] = Digit2_i[0] ? 2'd0 : 2'd2;	// Digit 2, segment A
-				SegAnalog[5] = Digit2_i[5] ? 2'd0 : 2'd2;	// Digit 2, segment F
-				SegAnalog[6] = Digit3_i[0] ? 2'd0 : 2'd2;	// Digit 3, segment A
-				SegAnalog[7] = Digit3_i[5] ? 2'd0 : 2'd2;	// Digit 3, segment F
-				*/
+				PinVoltage[`SEG7_HGLM] = Bitmap7_i[`BIT_M] ? 2'd0 : 2'd2;
 			end
 			
 			COM_0L: begin
-				PinVoltage[`COM0] = 2'd0;						// COM0
-				PinVoltage[`COM1] = 2'd2;						// COM1
-				PinVoltage[`COM2] = 2'd2;						// COM2
-				PinVoltage[`COM3] = 2'd2;						// COM3
+				PinVoltage[`COM0] = 2'd0;
+				PinVoltage[`COM1] = 2'd2;
+				PinVoltage[`COM2] = 2'd2;
+				PinVoltage[`COM3] = 2'd2;
 				
+				PinVoltage[`SEG0_ABCP] = Bitmap0_i[`BIT_A] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG0__FED] = 2'd1;
+				PinVoltage[`SEG0_IJKN] = Bitmap0_i[`BIT_I] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG0_HGLM] = Bitmap0_i[`BIT_H] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG1_ABCP] = Bitmap1_i[`BIT_A] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG1__FED] = 2'd1;
+				PinVoltage[`SEG1_IJKN] = Bitmap1_i[`BIT_I] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG1_HGLM] = Bitmap1_i[`BIT_H] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG2_ABCP] = Bitmap2_i[`BIT_A] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG2__FED] = 2'd1;
+				PinVoltage[`SEG2_IJKN] = Bitmap2_i[`BIT_I] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG2_HGLM] = Bitmap2_i[`BIT_H] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG3_ABCP] = Bitmap3_i[`BIT_A] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG3__FED] = 2'd1;
+				PinVoltage[`SEG3_IJKN] = Bitmap3_i[`BIT_I] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG3_HGLM] = Bitmap3_i[`BIT_H] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG4_ABCP] = Bitmap4_i[`BIT_A] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG4__FED] = 2'd1;
+				PinVoltage[`SEG4_IJKN] = Bitmap4_i[`BIT_I] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG4_HGLM] = Bitmap4_i[`BIT_H] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG5_ABCP] = Bitmap5_i[`BIT_A] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG5__FED] = 2'd1;
+				PinVoltage[`SEG5_IJKN] = Bitmap5_i[`BIT_I] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG5_HGLM] = Bitmap5_i[`BIT_H] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG6_ABCP] = Bitmap6_i[`BIT_A] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG6__FED] = 2'd1;
+				PinVoltage[`SEG6_IJKN] = Bitmap6_i[`BIT_I] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG6_HGLM] = Bitmap6_i[`BIT_H] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG7_ABCP] = Bitmap7_i[`BIT_A] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG7__FED] = 2'd1;
 				PinVoltage[`SEG7_IJKN] = Bitmap7_i[`BIT_I] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG7_HGLM] = Bitmap7_i[`BIT_H] ? 2'd3 : 2'd1;
 				
-				/*
-				SegAnalog[0] = Digit0_i[7] ? 2'd3 : 2'd1;	// Colon
-				SegAnalog[1] = Digit0_i[3] ? 2'd3 : 2'd1;	// Digit 0, segment D
-				SegAnalog[2] = Digit1_i[7] ? 2'd3 : 2'd1;	// Digit 1, segment P
-				SegAnalog[3] = Digit1_i[3] ? 2'd3 : 2'd1;	// Digit 1, segment D
-				SegAnalog[4] = Digit2_i[7] ? 2'd3 : 2'd1;	// Digit 2, segment P
-				SegAnalog[5] = Digit2_i[3] ? 2'd3 : 2'd1;	// Digit 2, segment D
-				SegAnalog[6] = Digit3_i[7] ? 2'd3 : 2'd1;	// Digit 3, segment P
-				SegAnalog[7] = Digit3_i[3] ? 2'd3 : 2'd1;	// Digit 3, segment D
-				*/
 			end
 			
 			COM_1L: begin
@@ -191,18 +328,45 @@ module LCD #(
 				PinVoltage[`COM2] = 2'd2;						// COM2
 				PinVoltage[`COM3] = 2'd2;						// COM3
 				
-				PinVoltage[`SEG7_IJKN] = Bitmap7_i[`BIT_J] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG0_ABCP] = Bitmap0_i[`BIT_B] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG0__FED] = Bitmap0_i[`BIT_F] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG0_IJKN] = Bitmap0_i[`BIT_J] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG0_HGLM] = Bitmap0_i[`BIT_G] ? 2'd3 : 2'd1;
 				
-				/*
-				SegAnalog[0] = Digit0_i[2] ? 2'd3 : 2'd1;	// Digit 0, segment C
-				SegAnalog[1] = Digit0_i[4] ? 2'd3 : 2'd1;	// Digit 0, segment E
-				SegAnalog[2] = Digit1_i[2] ? 2'd3 : 2'd1;	// Digit 1, segment C
-				SegAnalog[3] = Digit1_i[4] ? 2'd3 : 2'd1;	// Digit 1, segment E
-				SegAnalog[4] = Digit2_i[2] ? 2'd3 : 2'd1;	// Digit 2, segment C
-				SegAnalog[5] = Digit2_i[4] ? 2'd3 : 2'd1;	// Digit 2, segment E
-				SegAnalog[6] = Digit3_i[2] ? 2'd3 : 2'd1;	// Digit 3, segment C
-				SegAnalog[7] = Digit3_i[4] ? 2'd3 : 2'd1;	// Digit 3, segment E
-				*/
+				PinVoltage[`SEG1_ABCP] = Bitmap1_i[`BIT_B] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG1__FED] = Bitmap1_i[`BIT_F] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG1_IJKN] = Bitmap1_i[`BIT_J] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG1_HGLM] = Bitmap1_i[`BIT_G] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG2_ABCP] = Bitmap2_i[`BIT_B] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG2__FED] = Bitmap2_i[`BIT_F] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG2_IJKN] = Bitmap2_i[`BIT_J] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG2_HGLM] = Bitmap2_i[`BIT_G] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG3_ABCP] = Bitmap3_i[`BIT_B] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG3__FED] = Bitmap3_i[`BIT_F] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG3_IJKN] = Bitmap3_i[`BIT_J] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG3_HGLM] = Bitmap3_i[`BIT_G] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG4_ABCP] = Bitmap4_i[`BIT_B] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG4__FED] = Bitmap4_i[`BIT_F] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG4_IJKN] = Bitmap4_i[`BIT_J] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG4_HGLM] = Bitmap4_i[`BIT_G] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG5_ABCP] = Bitmap5_i[`BIT_B] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG5__FED] = Bitmap5_i[`BIT_F] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG5_IJKN] = Bitmap5_i[`BIT_J] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG5_HGLM] = Bitmap5_i[`BIT_G] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG6_ABCP] = Bitmap6_i[`BIT_B] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG6__FED] = Bitmap6_i[`BIT_F] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG6_IJKN] = Bitmap6_i[`BIT_J] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG6_HGLM] = Bitmap6_i[`BIT_G] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG7_ABCP] = Bitmap7_i[`BIT_B] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG7__FED] = Bitmap7_i[`BIT_F] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG7_IJKN] = Bitmap7_i[`BIT_J] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG7_HGLM] = Bitmap7_i[`BIT_G] ? 2'd3 : 2'd1;
 			end
 			
 			COM_2L: begin
@@ -211,17 +375,45 @@ module LCD #(
 				PinVoltage[`COM2] = 2'd0;						// COM2
 				PinVoltage[`COM3] = 2'd2;						// COM3
 				
+				PinVoltage[`SEG0_ABCP] = Bitmap0_i[`BIT_C] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG0__FED] = Bitmap0_i[`BIT_E] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG0_IJKN] = Bitmap0_i[`BIT_K] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG0_HGLM] = Bitmap0_i[`BIT_L] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG1_ABCP] = Bitmap1_i[`BIT_C] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG1__FED] = Bitmap1_i[`BIT_E] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG1_IJKN] = Bitmap1_i[`BIT_K] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG1_HGLM] = Bitmap1_i[`BIT_L] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG2_ABCP] = Bitmap2_i[`BIT_C] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG2__FED] = Bitmap2_i[`BIT_E] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG2_IJKN] = Bitmap2_i[`BIT_K] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG2_HGLM] = Bitmap2_i[`BIT_L] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG3_ABCP] = Bitmap3_i[`BIT_C] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG3__FED] = Bitmap3_i[`BIT_E] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG3_IJKN] = Bitmap3_i[`BIT_K] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG3_HGLM] = Bitmap3_i[`BIT_L] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG4_ABCP] = Bitmap4_i[`BIT_C] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG4__FED] = Bitmap4_i[`BIT_E] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG4_IJKN] = Bitmap4_i[`BIT_K] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG4_HGLM] = Bitmap4_i[`BIT_L] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG5_ABCP] = Bitmap5_i[`BIT_C] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG5__FED] = Bitmap5_i[`BIT_E] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG5_IJKN] = Bitmap5_i[`BIT_K] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG5_HGLM] = Bitmap5_i[`BIT_L] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG6_ABCP] = Bitmap6_i[`BIT_C] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG6__FED] = Bitmap6_i[`BIT_E] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG6_IJKN] = Bitmap6_i[`BIT_K] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG6_HGLM] = Bitmap6_i[`BIT_L] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG7_ABCP] = Bitmap7_i[`BIT_C] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG7__FED] = Bitmap7_i[`BIT_E] ? 2'd3 : 2'd1;
 				PinVoltage[`SEG7_IJKN] = Bitmap7_i[`BIT_K] ? 2'd3 : 2'd1;
-				/*
-				SegAnalog[0] = Digit0_i[1] ? 2'd3 : 2'd1;	// Digit 0, segment B
-				SegAnalog[1] = Digit0_i[6] ? 2'd3 : 2'd1;	// Digit 0, segment G
-				SegAnalog[2] = Digit1_i[1] ? 2'd3 : 2'd1;	// Digit 1, segment B
-				SegAnalog[3] = Digit1_i[6] ? 2'd3 : 2'd1;	// Digit 1, segment G
-				SegAnalog[4] = Digit2_i[1] ? 2'd3 : 2'd1;	// Digit 2, segment B
-				SegAnalog[5] = Digit2_i[6] ? 2'd3 : 2'd1;	// Digit 2, segment G
-				SegAnalog[6] = Digit3_i[1] ? 2'd3 : 2'd1;	// Digit 3, segment B
-				SegAnalog[7] = Digit3_i[6] ? 2'd3 : 2'd1;	// Digit 3, segment G
-				*/
+				PinVoltage[`SEG7_HGLM] = Bitmap7_i[`BIT_L] ? 2'd3 : 2'd1;
 			end
 			
 			COM_3L: begin
@@ -230,17 +422,46 @@ module LCD #(
 				PinVoltage[`COM2] = 2'd2;						// COM2
 				PinVoltage[`COM3] = 2'd0;						// COM3
 				
+				PinVoltage[`SEG0_ABCP] = Bitmap0_i[`BIT_P] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG0__FED] = Bitmap0_i[`BIT_D] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG0_IJKN] = Bitmap0_i[`BIT_N] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG0_HGLM] = Bitmap0_i[`BIT_M] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG1_ABCP] = Bitmap1_i[`BIT_P] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG1__FED] = Bitmap1_i[`BIT_D] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG1_IJKN] = Bitmap1_i[`BIT_N] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG1_HGLM] = Bitmap1_i[`BIT_M] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG2_ABCP] = Bitmap2_i[`BIT_P] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG2__FED] = Bitmap2_i[`BIT_D] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG2_IJKN] = Bitmap2_i[`BIT_N] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG2_HGLM] = Bitmap2_i[`BIT_M] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG3_ABCP] = Bitmap3_i[`BIT_P] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG3__FED] = Bitmap3_i[`BIT_D] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG3_IJKN] = Bitmap3_i[`BIT_N] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG3_HGLM] = Bitmap3_i[`BIT_M] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG4_ABCP] = Bitmap4_i[`BIT_P] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG4__FED] = Bitmap4_i[`BIT_D] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG4_IJKN] = Bitmap4_i[`BIT_N] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG4_HGLM] = Bitmap4_i[`BIT_M] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG5_ABCP] = Bitmap5_i[`BIT_P] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG5__FED] = Bitmap5_i[`BIT_D] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG5_IJKN] = Bitmap5_i[`BIT_N] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG5_HGLM] = Bitmap5_i[`BIT_M] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG6_ABCP] = Bitmap6_i[`BIT_P] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG6__FED] = Bitmap6_i[`BIT_D] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG6_IJKN] = Bitmap6_i[`BIT_N] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG6_HGLM] = Bitmap6_i[`BIT_M] ? 2'd3 : 2'd1;
+				
+				PinVoltage[`SEG7_ABCP] = Bitmap7_i[`BIT_P] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG7__FED] = Bitmap7_i[`BIT_D] ? 2'd3 : 2'd1;
 				PinVoltage[`SEG7_IJKN] = Bitmap7_i[`BIT_N] ? 2'd3 : 2'd1;
-				/*
-				SegAnalog[0] = Digit0_i[0] ? 2'd3 : 2'd1;	// Digit 0, segment A
-				SegAnalog[1] = Digit0_i[5] ? 2'd3 : 2'd1;	// Digit 0, segment F
-				SegAnalog[2] = Digit1_i[0] ? 2'd3 : 2'd1;	// Digit 1, segment A
-				SegAnalog[3] = Digit1_i[5] ? 2'd3 : 2'd1;	// Digit 1, segment F
-				SegAnalog[4] = Digit2_i[0] ? 2'd3 : 2'd1;	// Digit 2, segment A
-				SegAnalog[5] = Digit2_i[5] ? 2'd3 : 2'd1;	// Digit 2, segment F
-				SegAnalog[6] = Digit3_i[0] ? 2'd3 : 2'd1;	// Digit 3, segment A
-				SegAnalog[7] = Digit3_i[5] ? 2'd3 : 2'd1;	// Digit 3, segment F
-				*/
+				PinVoltage[`SEG7_HGLM] = Bitmap7_i[`BIT_M] ? 2'd3 : 2'd1;
+				
 			end
 			
 			default: begin
@@ -264,11 +485,26 @@ module LCD #(
 	end
 	
 	// Assign outputs
-	assign Pin_o[ 1] = Voltage[PinVoltage[1]];
+	/*assign Pin_o[ 1] = Voltage[PinVoltage[1]];
 	assign Pin_o[ 3] = Voltage[PinVoltage[3]];
 	assign Pin_o[18] = Voltage[PinVoltage[18]];
 	assign Pin_o[19] = Voltage[PinVoltage[19]];
 	assign Pin_o[36] = Voltage[PinVoltage[36]];
+	*/
+	
+	/*
+	integer i;
+	for(i=1; i<=36; i=i+1) begin
+		assign Pin_o[i] = Voltage[PinVoltage[i]];
+	end
+	*/
+	
+	generate
+		genvar i;
+		for(i=1; i<=36; i=i+1) begin
+			assign Pin_o[i] = Voltage[PinVoltage[i]];
+		end
+	endgenerate
 	
 	/*
 	assign ComPWM_o[0] = 

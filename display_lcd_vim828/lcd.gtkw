@@ -1,10 +1,10 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sun Oct 29 16:24:06 2023
+[*] Sun Oct 29 17:24:07 2023
 [*]
 [dumpfile] "C:\verilog\display_lcd_vim828\lcd.vcd"
-[dumpfile_mtime] "Sun Oct 29 15:28:59 2023"
-[dumpfile_size] 39683
+[dumpfile_mtime] "Sun Oct 29 17:22:58 2023"
+[dumpfile_size] 40193
 [savefile] "C:\verilog\display_lcd_vim828\lcd.gtkw"
 [timestart] 0
 [size] 1920 1009
@@ -80,6 +80,7 @@ LCD_tb.DUT.State[2:0]
 @800022
 LCD_tb.DUT.Pin_o[36:1]
 @28
+[color] 2
 (0)LCD_tb.DUT.Pin_o[36:1]
 (1)LCD_tb.DUT.Pin_o[36:1]
 (2)LCD_tb.DUT.Pin_o[36:1]
@@ -90,9 +91,7 @@ LCD_tb.DUT.Pin_o[36:1]
 (7)LCD_tb.DUT.Pin_o[36:1]
 (8)LCD_tb.DUT.Pin_o[36:1]
 (9)LCD_tb.DUT.Pin_o[36:1]
-@29
 (10)LCD_tb.DUT.Pin_o[36:1]
-@28
 (11)LCD_tb.DUT.Pin_o[36:1]
 (12)LCD_tb.DUT.Pin_o[36:1]
 (13)LCD_tb.DUT.Pin_o[36:1]
@@ -100,7 +99,9 @@ LCD_tb.DUT.Pin_o[36:1]
 (15)LCD_tb.DUT.Pin_o[36:1]
 (16)LCD_tb.DUT.Pin_o[36:1]
 (17)LCD_tb.DUT.Pin_o[36:1]
+[color] 2
 (18)LCD_tb.DUT.Pin_o[36:1]
+[color] 2
 (19)LCD_tb.DUT.Pin_o[36:1]
 (20)LCD_tb.DUT.Pin_o[36:1]
 (21)LCD_tb.DUT.Pin_o[36:1]
@@ -115,8 +116,11 @@ LCD_tb.DUT.Pin_o[36:1]
 (30)LCD_tb.DUT.Pin_o[36:1]
 (31)LCD_tb.DUT.Pin_o[36:1]
 (32)LCD_tb.DUT.Pin_o[36:1]
+@29
 (33)LCD_tb.DUT.Pin_o[36:1]
+@28
 (34)LCD_tb.DUT.Pin_o[36:1]
+[color] 2
 (35)LCD_tb.DUT.Pin_o[36:1]
 @1001200
 -group_end
