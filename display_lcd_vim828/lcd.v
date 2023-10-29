@@ -1,9 +1,6 @@
 // 231029
 
-`define COM0 19
-`define COM1 36
-`define COM2 18
-`define COM3  1
+`include "vim828_defines.vh"
 
 `default_nettype none
 module LCD #(
@@ -49,7 +46,7 @@ module LCD #(
 	StrobeGenerator #(
 		.CLOCK_HZ(CLOCK_HZ),
 		.PERIOD_US(CHANGE_COM_US)
-	) StrobeGenerator0(
+	) StrobeGenerator_inst(
 		.Clock(Clock),
 		.Reset(Reset),
 		.Enable_i(1'b1),
@@ -95,7 +92,7 @@ module LCD #(
 				PinVoltage[`COM2] = 2'd1;						// COM2
 				PinVoltage[`COM3] = 2'd1;						// COM3
 				
-				
+				PinVoltage[`SEG7_IJKN] = Bitmap7_i[`BIT_I] ? 2'd0 : 2'd2;
 				/*
 				SegAnalog[0] = Digit0_i[7] ? 2'd0 : 2'd2;	// Colon
 				SegAnalog[1] = Digit0_i[3] ? 2'd0 : 2'd2;	// Digit 0, segment D
@@ -114,6 +111,7 @@ module LCD #(
 				PinVoltage[`COM2] = 2'd1;						// COM2
 				PinVoltage[`COM3] = 2'd1;						// COM3
 				
+				PinVoltage[`SEG7_IJKN] = Bitmap7_i[`BIT_J] ? 2'd0 : 2'd2;
 				
 				/*
 				SegAnalog[0] = Digit0_i[2] ? 2'd0 : 2'd2;	// Digit 0, segment C
@@ -133,6 +131,7 @@ module LCD #(
 				PinVoltage[`COM2] = 2'd3;						// COM2
 				PinVoltage[`COM3] = 2'd1;						// COM3
 				
+				PinVoltage[`SEG7_IJKN] = Bitmap7_i[`BIT_K] ? 2'd0 : 2'd2;
 				
 				/*
 				SegAnalog[0] = Digit0_i[1] ? 2'd0 : 2'd2;	// Digit 0, segment B
@@ -152,6 +151,7 @@ module LCD #(
 				PinVoltage[`COM2] = 2'd1;						// COM2
 				PinVoltage[`COM3] = 2'd3;						// COM3
 				
+				PinVoltage[`SEG7_IJKN] = Bitmap7_i[`BIT_N] ? 2'd0 : 2'd2;
 				
 				/*
 				SegAnalog[0] = Digit0_i[0] ? 2'd0 : 2'd2;	// Digit 0, segment A
@@ -171,6 +171,7 @@ module LCD #(
 				PinVoltage[`COM2] = 2'd2;						// COM2
 				PinVoltage[`COM3] = 2'd2;						// COM3
 				
+				PinVoltage[`SEG7_IJKN] = Bitmap7_i[`BIT_I] ? 2'd3 : 2'd1;
 				
 				/*
 				SegAnalog[0] = Digit0_i[7] ? 2'd3 : 2'd1;	// Colon
@@ -190,6 +191,7 @@ module LCD #(
 				PinVoltage[`COM2] = 2'd2;						// COM2
 				PinVoltage[`COM3] = 2'd2;						// COM3
 				
+				PinVoltage[`SEG7_IJKN] = Bitmap7_i[`BIT_J] ? 2'd3 : 2'd1;
 				
 				/*
 				SegAnalog[0] = Digit0_i[2] ? 2'd3 : 2'd1;	// Digit 0, segment C
@@ -209,7 +211,7 @@ module LCD #(
 				PinVoltage[`COM2] = 2'd0;						// COM2
 				PinVoltage[`COM3] = 2'd2;						// COM3
 				
-				
+				PinVoltage[`SEG7_IJKN] = Bitmap7_i[`BIT_K] ? 2'd3 : 2'd1;
 				/*
 				SegAnalog[0] = Digit0_i[1] ? 2'd3 : 2'd1;	// Digit 0, segment B
 				SegAnalog[1] = Digit0_i[6] ? 2'd3 : 2'd1;	// Digit 0, segment G
@@ -228,6 +230,7 @@ module LCD #(
 				PinVoltage[`COM2] = 2'd2;						// COM2
 				PinVoltage[`COM3] = 2'd0;						// COM3
 				
+				PinVoltage[`SEG7_IJKN] = Bitmap7_i[`BIT_N] ? 2'd3 : 2'd1;
 				/*
 				SegAnalog[0] = Digit0_i[0] ? 2'd3 : 2'd1;	// Digit 0, segment A
 				SegAnalog[1] = Digit0_i[5] ? 2'd3 : 2'd1;	// Digit 0, segment F
@@ -262,6 +265,7 @@ module LCD #(
 	
 	// Assign outputs
 	assign Pin_o[ 1] = Voltage[PinVoltage[1]];
+	assign Pin_o[ 3] = Voltage[PinVoltage[3]];
 	assign Pin_o[18] = Voltage[PinVoltage[18]];
 	assign Pin_o[19] = Voltage[PinVoltage[19]];
 	assign Pin_o[36] = Voltage[PinVoltage[36]];

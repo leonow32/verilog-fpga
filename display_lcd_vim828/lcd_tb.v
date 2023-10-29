@@ -1,6 +1,10 @@
 // 230419
 
 `timescale 1ns/1ns	// time-unit, precision
+
+`include "vim828_defines.vh"
+`include "vim828_defines.vh"
+
 `default_nettype none
 
 module LCD_tb();
@@ -31,7 +35,8 @@ module LCD_tb();
 	) DUT(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Bitmap7_i(15'd0),
+		             //PNMLK_JIHGF_EDCBA
+		.Bitmap7_i(15'b00000_10000_00000),
 		.Bitmap6_i(15'd0),
 		.Bitmap5_i(15'd0),
 		.Bitmap4_i(15'd0),
