@@ -11,14 +11,14 @@ module LCD #(
 	// Rightmost character = 0
 	// Leftmost character  = 7
 	// Segment order in each input = pnmlkjihgfedcba
-	input  wire [14:0] Character7_i,
-	input  wire [14:0] Character6_i,
-	input  wire [14:0] Character5_i,
-	input  wire [14:0] Character4_i,
-	input  wire [14:0] Character3_i,
-	input  wire [14:0] Character2_i,
-	input  wire [14:0] Character1_i,
-	input  wire [14:0] Character0_i, 
+	input  wire [14:0] Bitmap7_i,
+	input  wire [14:0] Bitmap6_i,
+	input  wire [14:0] Bitmap5_i,
+	input  wire [14:0] Bitmap4_i,
+	input  wire [14:0] Bitmap3_i,
+	input  wire [14:0] Bitmap2_i,
+	input  wire [14:0] Bitmap1_i,
+	input  wire [14:0] Bitmap0_i, 
 	
 	// Connect this output to LCD pins
 	// Each line needs a RC filter to smooth PWM signal
@@ -32,10 +32,10 @@ module LCD #(
 	LCD_PWM LCD_PWM_inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Voltage0_o(Voltage[0]),
-		.Voltage1_o(Voltage[1]),
-		.Voltage2_o(Voltage[2]),
-		.Voltage3_o(Voltage[3])
+		.Voltage0_o(Voltage[0]),  // 0V
+		.Voltage1_o(Voltage[1]),  // 1V
+		.Voltage2_o(Voltage[2]),  // 2V
+		.Voltage3_o(Voltage[3])   // 3V
 	);
 	
 	// Strobe for changing the state
@@ -69,9 +69,7 @@ module LCD #(
 			State <= State + 1'b1;
 	end
 	
-	//reg [1:0] ComAnalog[0:3];
-	//reg [1:0] SegAnalog[0:7];
-	reg [1:0] PinAnalog[36:1];
+	reg [1:0] PinVoltage[36:1];
 	
 	// Part H
 	// - Active COM: 3
@@ -87,10 +85,16 @@ module LCD #(
 	always @(*) begin
 		case(State)
 			COM_0H: begin
+				PinVoltage[19] = 2'd;
+				PinVoltage[36] = 2'd;
+				PinVoltage[18] = 2'd;
+				PinVoltage[ 1] = 2'd;						// COM3
+				
 				ComAnalog[0] = 2'd3;
 				ComAnalog[1] = 2'd1;
 				ComAnalog[2] = 2'd1;
 				ComAnalog[3] = 2'd1;
+				/*
 				SegAnalog[0] = Digit0_i[7] ? 2'd0 : 2'd2;	// Colon
 				SegAnalog[1] = Digit0_i[3] ? 2'd0 : 2'd2;	// Digit 0, segment D
 				SegAnalog[2] = Digit1_i[7] ? 2'd0 : 2'd2;	// Digit 1, segment P
@@ -99,6 +103,7 @@ module LCD #(
 				SegAnalog[5] = Digit2_i[3] ? 2'd0 : 2'd2;	// Digit 2, segment D
 				SegAnalog[6] = Digit3_i[7] ? 2'd0 : 2'd2;	// Digit 3, segment P
 				SegAnalog[7] = Digit3_i[3] ? 2'd0 : 2'd2;	// Digit 3, segment D
+				*/
 			end
 			
 			COM_1H: begin
@@ -106,6 +111,7 @@ module LCD #(
 				ComAnalog[1] = 2'd3;
 				ComAnalog[2] = 2'd1;
 				ComAnalog[3] = 2'd1;
+				/*
 				SegAnalog[0] = Digit0_i[2] ? 2'd0 : 2'd2;	// Digit 0, segment C
 				SegAnalog[1] = Digit0_i[4] ? 2'd0 : 2'd2;	// Digit 0, segment E
 				SegAnalog[2] = Digit1_i[2] ? 2'd0 : 2'd2;	// Digit 1, segment C
@@ -114,6 +120,7 @@ module LCD #(
 				SegAnalog[5] = Digit2_i[4] ? 2'd0 : 2'd2;	// Digit 2, segment E
 				SegAnalog[6] = Digit3_i[2] ? 2'd0 : 2'd2;	// Digit 3, segment C
 				SegAnalog[7] = Digit3_i[4] ? 2'd0 : 2'd2;	// Digit 3, segment E
+				*/
 			end
 			
 			COM_2H: begin
@@ -121,6 +128,7 @@ module LCD #(
 				ComAnalog[1] = 2'd1;
 				ComAnalog[2] = 2'd3;
 				ComAnalog[3] = 2'd1;
+				/*
 				SegAnalog[0] = Digit0_i[1] ? 2'd0 : 2'd2;	// Digit 0, segment B
 				SegAnalog[1] = Digit0_i[6] ? 2'd0 : 2'd2;	// Digit 0, segment G
 				SegAnalog[2] = Digit1_i[1] ? 2'd0 : 2'd2;	// Digit 1, segment B
@@ -129,6 +137,7 @@ module LCD #(
 				SegAnalog[5] = Digit2_i[6] ? 2'd0 : 2'd2;	// Digit 2, segment G
 				SegAnalog[6] = Digit3_i[1] ? 2'd0 : 2'd2;	// Digit 3, segment B
 				SegAnalog[7] = Digit3_i[6] ? 2'd0 : 2'd2;	// Digit 3, segment G
+				*/
 			end
 			
 			COM_3H: begin
@@ -136,6 +145,7 @@ module LCD #(
 				ComAnalog[1] = 2'd1;
 				ComAnalog[2] = 2'd1;
 				ComAnalog[3] = 2'd3;
+				/*
 				SegAnalog[0] = Digit0_i[0] ? 2'd0 : 2'd2;	// Digit 0, segment A
 				SegAnalog[1] = Digit0_i[5] ? 2'd0 : 2'd2;	// Digit 0, segment F
 				SegAnalog[2] = Digit1_i[0] ? 2'd0 : 2'd2;	// Digit 1, segment A
@@ -144,6 +154,7 @@ module LCD #(
 				SegAnalog[5] = Digit2_i[5] ? 2'd0 : 2'd2;	// Digit 2, segment F
 				SegAnalog[6] = Digit3_i[0] ? 2'd0 : 2'd2;	// Digit 3, segment A
 				SegAnalog[7] = Digit3_i[5] ? 2'd0 : 2'd2;	// Digit 3, segment F
+				*/
 			end
 			
 			COM_0L: begin
@@ -151,6 +162,7 @@ module LCD #(
 				ComAnalog[1] = 2'd2;
 				ComAnalog[2] = 2'd2;
 				ComAnalog[3] = 2'd2;
+				/*
 				SegAnalog[0] = Digit0_i[7] ? 2'd3 : 2'd1;	// Colon
 				SegAnalog[1] = Digit0_i[3] ? 2'd3 : 2'd1;	// Digit 0, segment D
 				SegAnalog[2] = Digit1_i[7] ? 2'd3 : 2'd1;	// Digit 1, segment P
@@ -159,6 +171,7 @@ module LCD #(
 				SegAnalog[5] = Digit2_i[3] ? 2'd3 : 2'd1;	// Digit 2, segment D
 				SegAnalog[6] = Digit3_i[7] ? 2'd3 : 2'd1;	// Digit 3, segment P
 				SegAnalog[7] = Digit3_i[3] ? 2'd3 : 2'd1;	// Digit 3, segment D
+				*/
 			end
 			
 			COM_1L: begin
@@ -166,6 +179,7 @@ module LCD #(
 				ComAnalog[1] = 2'd0;
 				ComAnalog[2] = 2'd2;
 				ComAnalog[3] = 2'd2;
+				/*
 				SegAnalog[0] = Digit0_i[2] ? 2'd3 : 2'd1;	// Digit 0, segment C
 				SegAnalog[1] = Digit0_i[4] ? 2'd3 : 2'd1;	// Digit 0, segment E
 				SegAnalog[2] = Digit1_i[2] ? 2'd3 : 2'd1;	// Digit 1, segment C
@@ -174,6 +188,7 @@ module LCD #(
 				SegAnalog[5] = Digit2_i[4] ? 2'd3 : 2'd1;	// Digit 2, segment E
 				SegAnalog[6] = Digit3_i[2] ? 2'd3 : 2'd1;	// Digit 3, segment C
 				SegAnalog[7] = Digit3_i[4] ? 2'd3 : 2'd1;	// Digit 3, segment E
+				*/
 			end
 			
 			COM_2L: begin
@@ -181,6 +196,7 @@ module LCD #(
 				ComAnalog[1] = 2'd2;
 				ComAnalog[2] = 2'd0;
 				ComAnalog[3] = 2'd2;
+				/*
 				SegAnalog[0] = Digit0_i[1] ? 2'd3 : 2'd1;	// Digit 0, segment B
 				SegAnalog[1] = Digit0_i[6] ? 2'd3 : 2'd1;	// Digit 0, segment G
 				SegAnalog[2] = Digit1_i[1] ? 2'd3 : 2'd1;	// Digit 1, segment B
@@ -189,6 +205,7 @@ module LCD #(
 				SegAnalog[5] = Digit2_i[6] ? 2'd3 : 2'd1;	// Digit 2, segment G
 				SegAnalog[6] = Digit3_i[1] ? 2'd3 : 2'd1;	// Digit 3, segment B
 				SegAnalog[7] = Digit3_i[6] ? 2'd3 : 2'd1;	// Digit 3, segment G
+				*/
 			end
 			
 			COM_3L: begin
@@ -196,6 +213,7 @@ module LCD #(
 				ComAnalog[1] = 2'd2;
 				ComAnalog[2] = 2'd2;
 				ComAnalog[3] = 2'd0;
+				/*
 				SegAnalog[0] = Digit0_i[0] ? 2'd3 : 2'd1;	// Digit 0, segment A
 				SegAnalog[1] = Digit0_i[5] ? 2'd3 : 2'd1;	// Digit 0, segment F
 				SegAnalog[2] = Digit1_i[0] ? 2'd3 : 2'd1;	// Digit 1, segment A
@@ -204,9 +222,11 @@ module LCD #(
 				SegAnalog[5] = Digit2_i[5] ? 2'd3 : 2'd1;	// Digit 2, segment F
 				SegAnalog[6] = Digit3_i[0] ? 2'd3 : 2'd1;	// Digit 3, segment A
 				SegAnalog[7] = Digit3_i[5] ? 2'd3 : 2'd1;	// Digit 3, segment F
+				*/
 			end
 			
 			default: begin
+				/*
 				ComAnalog[0] = 2'dX;
 				ComAnalog[1] = 2'dX;
 				ComAnalog[2] = 2'dX;
@@ -219,6 +239,7 @@ module LCD #(
 				SegAnalog[5] = 2'dX;
 				SegAnalog[6] = 2'dX;
 				SegAnalog[7] = 2'dX;
+				*/
 			end
 			
 		endcase
@@ -230,6 +251,7 @@ module LCD #(
 	assign Pin_o[19] = Voltage[ComAnalog[0]];
 	assign Pin_o[36] = Voltage[ComAnalog[]];
 	
+	/*
 	assign ComPWM_o[0] = 
 	assign ComPWM_o[1] = Voltage[ComAnalog[1]];
 	assign ComPWM_o[2] = Voltage[ComAnalog[2]];
@@ -242,6 +264,7 @@ module LCD #(
 	assign SegPWM_o[5] = Voltage[SegAnalog[5]];
 	assign SegPWM_o[6] = Voltage[SegAnalog[6]];
 	assign SegPWM_o[7] = Voltage[SegAnalog[7]];
+	*/
 	
 endmodule
 `default_nettype wire
