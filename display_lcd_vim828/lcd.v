@@ -71,6 +71,7 @@ module LCD #(
 			State <= State + 1'b1;
 	end
 	
+	// A matrix of 36 elements that are 2-bit variables
 	reg [1:0] PinVoltage[36:1];
 	
 	// Part H
@@ -323,10 +324,10 @@ module LCD #(
 			end
 			
 			COM_1L: begin
-				PinVoltage[`COM0] = 2'd2;						// COM0
-				PinVoltage[`COM1] = 2'd0;						// COM1
-				PinVoltage[`COM2] = 2'd2;						// COM2
-				PinVoltage[`COM3] = 2'd2;						// COM3
+				PinVoltage[`COM0] = 2'd2;
+				PinVoltage[`COM1] = 2'd0;
+				PinVoltage[`COM2] = 2'd2;
+				PinVoltage[`COM3] = 2'd2;
 				
 				PinVoltage[`SEG0_ABCP] = Bitmap0_i[`BIT_B] ? 2'd3 : 2'd1;
 				PinVoltage[`SEG0__FED] = Bitmap0_i[`BIT_F] ? 2'd3 : 2'd1;
@@ -370,10 +371,10 @@ module LCD #(
 			end
 			
 			COM_2L: begin
-				PinVoltage[`COM0] = 2'd2;						// COM0
-				PinVoltage[`COM1] = 2'd2;						// COM1
-				PinVoltage[`COM2] = 2'd0;						// COM2
-				PinVoltage[`COM3] = 2'd2;						// COM3
+				PinVoltage[`COM0] = 2'd2;
+				PinVoltage[`COM1] = 2'd2;
+				PinVoltage[`COM2] = 2'd0;
+				PinVoltage[`COM3] = 2'd2;
 				
 				PinVoltage[`SEG0_ABCP] = Bitmap0_i[`BIT_C] ? 2'd3 : 2'd1;
 				PinVoltage[`SEG0__FED] = Bitmap0_i[`BIT_E] ? 2'd3 : 2'd1;
@@ -417,10 +418,10 @@ module LCD #(
 			end
 			
 			COM_3L: begin
-				PinVoltage[`COM0] = 2'd2;						// COM0
-				PinVoltage[`COM1] = 2'd2;						// COM1
-				PinVoltage[`COM2] = 2'd2;						// COM2
-				PinVoltage[`COM3] = 2'd0;						// COM3
+				PinVoltage[`COM0] = 2'd2;
+				PinVoltage[`COM1] = 2'd2;
+				PinVoltage[`COM2] = 2'd2;
+				PinVoltage[`COM3] = 2'd0;
 				
 				PinVoltage[`SEG0_ABCP] = Bitmap0_i[`BIT_P] ? 2'd3 : 2'd1;
 				PinVoltage[`SEG0__FED] = Bitmap0_i[`BIT_D] ? 2'd3 : 2'd1;
@@ -464,62 +465,16 @@ module LCD #(
 				
 			end
 			
-			default: begin
-				/*
-				ComAnalog[0] = 2'dX;
-				ComAnalog[1] = 2'dX;
-				ComAnalog[2] = 2'dX;
-				ComAnalog[3] = 2'dX;
-				SegAnalog[0] = 2'dX;
-				SegAnalog[1] = 2'dX;
-				SegAnalog[2] = 2'dX;
-				SegAnalog[3] = 2'dX;
-				SegAnalog[4] = 2'dX;
-				SegAnalog[5] = 2'dX;
-				SegAnalog[6] = 2'dX;
-				SegAnalog[7] = 2'dX;
-				*/
-			end
-			
 		endcase
 	end
 	
 	// Assign outputs
-	/*assign Pin_o[ 1] = Voltage[PinVoltage[1]];
-	assign Pin_o[ 3] = Voltage[PinVoltage[3]];
-	assign Pin_o[18] = Voltage[PinVoltage[18]];
-	assign Pin_o[19] = Voltage[PinVoltage[19]];
-	assign Pin_o[36] = Voltage[PinVoltage[36]];
-	*/
-	
-	/*
-	integer i;
-	for(i=1; i<=36; i=i+1) begin
-		assign Pin_o[i] = Voltage[PinVoltage[i]];
-	end
-	*/
-	
 	generate
 		genvar i;
 		for(i=1; i<=36; i=i+1) begin
 			assign Pin_o[i] = Voltage[PinVoltage[i]];
 		end
 	endgenerate
-	
-	/*
-	assign ComPWM_o[0] = 
-	assign ComPWM_o[1] = Voltage[ComAnalog[1]];
-	assign ComPWM_o[2] = Voltage[ComAnalog[2]];
-	assign ComPWM_o[3] = Voltage[ComAnalog[3]];
-	assign SegPWM_o[0] = Voltage[SegAnalog[0]];
-	assign SegPWM_o[1] = Voltage[SegAnalog[1]];
-	assign SegPWM_o[2] = Voltage[SegAnalog[2]];
-	assign SegPWM_o[3] = Voltage[SegAnalog[3]];
-	assign SegPWM_o[4] = Voltage[SegAnalog[4]];
-	assign SegPWM_o[5] = Voltage[SegAnalog[5]];
-	assign SegPWM_o[6] = Voltage[SegAnalog[6]];
-	assign SegPWM_o[7] = Voltage[SegAnalog[7]];
-	*/
 	
 endmodule
 `default_nettype wire
