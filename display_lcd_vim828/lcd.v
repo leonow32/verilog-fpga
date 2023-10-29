@@ -1,5 +1,10 @@
 // 231029
 
+`define COM0 19
+`define COM1 36
+`define COM2 18
+`define COM3  1
+
 `default_nettype none
 module LCD #(
 	parameter	CLOCK_HZ      = 10_000_000,
@@ -85,10 +90,10 @@ module LCD #(
 	always @(*) begin
 		case(State)
 			COM_0H: begin
-				PinVoltage[19] = 2'd3;						// COM0
-				PinVoltage[36] = 2'd1;						// COM1
-				PinVoltage[18] = 2'd1;						// COM2
-				PinVoltage[ 1] = 2'd1;						// COM3
+				PinVoltage[`COM0] = 2'd3;						// COM0
+				PinVoltage[`COM1] = 2'd1;						// COM1
+				PinVoltage[`COM2] = 2'd1;						// COM2
+				PinVoltage[`COM3] = 2'd1;						// COM3
 				
 				
 				/*
@@ -104,10 +109,10 @@ module LCD #(
 			end
 			
 			COM_1H: begin
-				PinVoltage[19] = 2'd1;						// COM0
-				PinVoltage[36] = 2'd3;						// COM1
-				PinVoltage[18] = 2'd1;						// COM2
-				PinVoltage[ 1] = 2'd1;						// COM3
+				PinVoltage[`COM0] = 2'd1;						// COM0
+				PinVoltage[`COM1] = 2'd3;						// COM1
+				PinVoltage[`COM2] = 2'd1;						// COM2
+				PinVoltage[`COM3] = 2'd1;						// COM3
 				
 				
 				/*
@@ -123,10 +128,10 @@ module LCD #(
 			end
 			
 			COM_2H: begin
-				PinVoltage[19] = 2'd1;						// COM0
-				PinVoltage[36] = 2'd1;						// COM1
-				PinVoltage[18] = 2'd3;						// COM2
-				PinVoltage[ 1] = 2'd1;						// COM3
+				PinVoltage[`COM0] = 2'd1;						// COM0
+				PinVoltage[`COM1] = 2'd1;						// COM1
+				PinVoltage[`COM2] = 2'd3;						// COM2
+				PinVoltage[`COM3] = 2'd1;						// COM3
 				
 				
 				/*
@@ -142,10 +147,10 @@ module LCD #(
 			end
 			
 			COM_3H: begin
-				PinVoltage[19] = 2'd1;						// COM0
-				PinVoltage[36] = 2'd1;						// COM1
-				PinVoltage[18] = 2'd1;						// COM2
-				PinVoltage[ 1] = 2'd3;						// COM3
+				PinVoltage[`COM0] = 2'd1;						// COM0
+				PinVoltage[`COM1] = 2'd1;						// COM1
+				PinVoltage[`COM2] = 2'd1;						// COM2
+				PinVoltage[`COM3] = 2'd3;						// COM3
 				
 				
 				/*
@@ -161,10 +166,10 @@ module LCD #(
 			end
 			
 			COM_0L: begin
-				PinVoltage[19] = 2'd0;						// COM0
-				PinVoltage[36] = 2'd2;						// COM1
-				PinVoltage[18] = 2'd2;						// COM2
-				PinVoltage[ 1] = 2'd2;						// COM3
+				PinVoltage[`COM0] = 2'd0;						// COM0
+				PinVoltage[`COM1] = 2'd2;						// COM1
+				PinVoltage[`COM2] = 2'd2;						// COM2
+				PinVoltage[`COM3] = 2'd2;						// COM3
 				
 				
 				/*
@@ -180,10 +185,10 @@ module LCD #(
 			end
 			
 			COM_1L: begin
-				PinVoltage[19] = 2'd2;						// COM0
-				PinVoltage[36] = 2'd0;						// COM1
-				PinVoltage[18] = 2'd2;						// COM2
-				PinVoltage[ 1] = 2'd2;						// COM3
+				PinVoltage[`COM0] = 2'd2;						// COM0
+				PinVoltage[`COM1] = 2'd0;						// COM1
+				PinVoltage[`COM2] = 2'd2;						// COM2
+				PinVoltage[`COM3] = 2'd2;						// COM3
 				
 				
 				/*
@@ -199,10 +204,10 @@ module LCD #(
 			end
 			
 			COM_2L: begin
-				PinVoltage[19] = 2'd2;						// COM0
-				PinVoltage[36] = 2'd2;						// COM1
-				PinVoltage[18] = 2'd0;						// COM2
-				PinVoltage[ 1] = 2'd2;						// COM3
+				PinVoltage[`COM0] = 2'd2;						// COM0
+				PinVoltage[`COM1] = 2'd2;						// COM1
+				PinVoltage[`COM2] = 2'd0;						// COM2
+				PinVoltage[`COM3] = 2'd2;						// COM3
 				
 				
 				/*
@@ -218,10 +223,10 @@ module LCD #(
 			end
 			
 			COM_3L: begin
-				PinVoltage[19] = 2'd2;						// COM0
-				PinVoltage[36] = 2'd2;						// COM1
-				PinVoltage[18] = 2'd2;						// COM2
-				PinVoltage[ 1] = 2'd0;						// COM3
+				PinVoltage[`COM0] = 2'd2;						// COM0
+				PinVoltage[`COM1] = 2'd2;						// COM1
+				PinVoltage[`COM2] = 2'd2;						// COM2
+				PinVoltage[`COM3] = 2'd0;						// COM3
 				
 				/*
 				SegAnalog[0] = Digit0_i[0] ? 2'd3 : 2'd1;	// Digit 0, segment A

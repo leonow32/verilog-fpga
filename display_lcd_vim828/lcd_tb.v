@@ -69,6 +69,8 @@ module LCD_tb();
 		$display("CLOCK_HZ = %9d", CLOCK_HZ);
 
 		#1 Reset = 1'b1;
+		
+		
 
 /*
 		$display("      time C0 C1 C2 C3 S0 S1 S2 S3 S4 S5 S6 S7");	
