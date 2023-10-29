@@ -17,12 +17,12 @@ module LCD_tb();
 	
 	// Variables
 	reg        Reset  = 1'b0;
+	/*
 	reg  [7:0] Digit3 = 8'b00000000;
 	reg  [7:0] Digit2 = 8'b00000000;
 	reg  [7:0] Digit1 = 8'b00010000;
 	reg  [7:0] Digit0 = 8'b00000000;
-	wire [3:0] ComPWM;
-	wire [7:0] SegPWM;
+	*/
 	
 	// Instantiate device under test
 	LCD #(
@@ -31,18 +31,22 @@ module LCD_tb();
 	) DUT(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Digit3_i(Digit3),
-		.Digit2_i(Digit2),
-		.Digit1_i(Digit1),
-		.Digit0_i(Digit0),
-		.ComPWM_o(ComPWM),
-		.SegPWM_o(SegPWM)
+		.Bitmap7_i(15'd0),
+		.Bitmap6_i(15'd0),
+		.Bitmap5_i(15'd0),
+		.Bitmap4_i(15'd0),
+		.Bitmap3_i(15'd0),
+		.Bitmap2_i(15'd0),
+		.Bitmap1_i(15'd0),
+		.Bitmap0_i(15'd0),
+		.Pin_o()
 	);
 	
 	// Variable dump
 	initial begin
 		$dumpfile("lcd.vcd");
 		$dumpvars(0, LCD_tb);
+		/*
 		$dumpvars(2, DUT.ComAnalog[0]);
 		$dumpvars(2, DUT.ComAnalog[1]);
 		$dumpvars(2, DUT.ComAnalog[2]);
@@ -55,6 +59,7 @@ module LCD_tb();
 		$dumpvars(2, DUT.SegAnalog[5]);
 		$dumpvars(2, DUT.SegAnalog[6]);
 		$dumpvars(2, DUT.SegAnalog[7]);
+		*/
 	end
 
 	// Test sequence
@@ -65,6 +70,7 @@ module LCD_tb();
 
 		#1 Reset = 1'b1;
 
+/*
 		$display("      time C0 C1 C2 C3 S0 S1 S2 S3 S4 S5 S6 S7");	
 		$monitor("%t  %d  %d  %d  %d  %d  %d  %d  %d  %d  %d  %d  %d", 
 				$realtime, 
@@ -81,6 +87,7 @@ module LCD_tb();
 				DUT.SegAnalog[6],
 				DUT.SegAnalog[7],
 			);
+			*/
 
 		// Wait through all eight states
 		repeat(8) begin
