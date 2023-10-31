@@ -1,7 +1,7 @@
-// 230419
+// 231031
 
 `default_nettype none
-module LCD_PWM(
+module VIM828_PWM(
 	input wire 	Clock,
 	input wire 	Reset,
 	output wire	Voltage0_o,	// Output 0% duty cycle

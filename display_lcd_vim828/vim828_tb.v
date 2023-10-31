@@ -1,15 +1,12 @@
 // 230419
 
 `timescale 1ns/1ns	// time-unit, precision
-
-`include "vim828_defines.vh"
-`include "vim828_defines.vh"
-
 `default_nettype none
+`include "vim828_defines.vh"
 
-module LCD_tb();
+module VIM828_tb();
 	
-	parameter CLOCK_HZ	= 1_000_000;
+	parameter CLOCK_HZ	     = 1_000_000;
 	parameter HALF_PERIOD_NS = 1_000_000_000 / (2 * CLOCK_HZ);
 	
 	// Clock generator
@@ -20,16 +17,10 @@ module LCD_tb();
 	end
 	
 	// Variables
-	reg        Reset  = 1'b0;
-	/*
-	reg  [7:0] Digit3 = 8'b00000000;
-	reg  [7:0] Digit2 = 8'b00000000;
-	reg  [7:0] Digit1 = 8'b00010000;
-	reg  [7:0] Digit0 = 8'b00000000;
-	*/
+	reg Reset  = 1'b0;
 	
 	// Instantiate device under test
-	LCD #(
+	VIM828 #(
 		.CLOCK_HZ(CLOCK_HZ),
 		.CHANGE_COM_US(50)
 	) DUT(
@@ -37,20 +28,20 @@ module LCD_tb();
 		.Reset(Reset),
 		             //PNMLK_JIHGF_EDCBA
 		.Bitmap7_i(15'b00000_10000_00000),
-		.Bitmap6_i(15'd0),
-		.Bitmap5_i(15'd0),
-		.Bitmap4_i(15'd0),
-		.Bitmap3_i(15'd0),
-		.Bitmap2_i(15'd0),
-		.Bitmap1_i(15'd0),
-		.Bitmap0_i(15'd0),
+		.Bitmap6_i(15'b00000_00000_00000),
+		.Bitmap5_i(15'b00000_00000_00000),
+		.Bitmap4_i(15'b00000_00000_00000),
+		.Bitmap3_i(15'b00000_00000_00000),
+		.Bitmap2_i(15'b00000_00000_00000),
+		.Bitmap1_i(15'b00000_00000_00000),
+		.Bitmap0_i(15'b00000_00000_00000),
 		.Pin_o()
 	);
 	
 	// Variable dump
 	initial begin
-		$dumpfile("lcd.vcd");
-		$dumpvars(0, LCD_tb);
+		$dumpfile("vim828.vcd");
+		$dumpvars(0, VIM828_tb);
 		/*
 		$dumpvars(2, DUT.ComAnalog[0]);
 		$dumpvars(2, DUT.ComAnalog[1]);
@@ -75,10 +66,7 @@ module LCD_tb();
 
 		#1 Reset = 1'b1;
 		
-		
-
-/*
-		$display("      time C0 C1 C2 C3 S0 S1 S2 S3 S4 S5 S6 S7");	
+		$display("      time C0 C1 C2 C3");	
 		$monitor("%t  %d  %d  %d  %d  %d  %d  %d  %d  %d  %d  %d  %d", 
 				$realtime, 
 				DUT.ComAnalog[0],

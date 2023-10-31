@@ -1,26 +1,26 @@
-// 231029
+// 231031
 
 `include "vim828_defines.vh"
 
 `default_nettype none
-module LCD #(
-	parameter	CLOCK_HZ      = 10_000_000,
-	parameter	CHANGE_COM_US = 1000
+module VIM828 #(
+	parameter CLOCK_HZ      = 10_000_000,
+	parameter CHANGE_COM_US = 1000
 )(
-	input  wire       Clock,
-	input  wire       Reset,
+	input wire Clock,
+	input wire Reset,
 	
 	// Rightmost character = 0
 	// Leftmost character  = 7
 	// Segment order in each input = pnmlkjihgfedcba
-	input  wire [14:0] Bitmap7_i,
-	input  wire [14:0] Bitmap6_i,
-	input  wire [14:0] Bitmap5_i,
-	input  wire [14:0] Bitmap4_i,
-	input  wire [14:0] Bitmap3_i,
-	input  wire [14:0] Bitmap2_i,
-	input  wire [14:0] Bitmap1_i,
-	input  wire [14:0] Bitmap0_i, 
+	input wire [14:0] Bitmap7_i,
+	input wire [14:0] Bitmap6_i,
+	input wire [14:0] Bitmap5_i,
+	input wire [14:0] Bitmap4_i,
+	input wire [14:0] Bitmap3_i,
+	input wire [14:0] Bitmap2_i,
+	input wire [14:0] Bitmap1_i,
+	input wire [14:0] Bitmap0_i, 
 	
 	// Connect this output to LCD pins
 	// Each line needs a RC filter to smooth PWM signal
@@ -31,7 +31,7 @@ module LCD #(
 	
 	// PWM generator to create 0, 1/3, 2/3 and 1 voltage levels
 	wire [3:0] Voltage;
-	LCD_PWM LCD_PWM_inst(
+	VIM828_PWM VIM828_PWM_inst(
 		.Clock(Clock),
 		.Reset(Reset),
 		.Voltage0_o(Voltage[0]),  // 0V
