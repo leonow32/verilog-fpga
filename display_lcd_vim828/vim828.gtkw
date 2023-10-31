@@ -1,0 +1,127 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Tue Oct 31 19:31:21 2023
+[*]
+[dumpfile] "vim828.vcd"
+[dumpfile_mtime] "Tue Oct 31 19:30:46 2023"
+[dumpfile_size] 40186
+[savefile] "vim828.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -1 -1
+*-15.906986 130000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] VIM828_tb.
+[treeopen] VIM828_tb.DUT.
+[sst_width] 241
+[signals_width] 325
+[sst_expanded] 1
+[sst_vpaned_height] 558
+@28
+VIM828_tb.Reset
+VIM828_tb.Clock
+@200
+-Input data to display
+@28
+VIM828_tb.DUT.Bitmap0_i[14:0]
+VIM828_tb.DUT.Bitmap1_i[14:0]
+@c00028
+VIM828_tb.DUT.Bitmap2_i[14:0]
+@28
+(0)VIM828_tb.DUT.Bitmap2_i[14:0]
+(1)VIM828_tb.DUT.Bitmap2_i[14:0]
+(2)VIM828_tb.DUT.Bitmap2_i[14:0]
+(3)VIM828_tb.DUT.Bitmap2_i[14:0]
+(4)VIM828_tb.DUT.Bitmap2_i[14:0]
+(5)VIM828_tb.DUT.Bitmap2_i[14:0]
+(6)VIM828_tb.DUT.Bitmap2_i[14:0]
+(7)VIM828_tb.DUT.Bitmap2_i[14:0]
+(8)VIM828_tb.DUT.Bitmap2_i[14:0]
+(9)VIM828_tb.DUT.Bitmap2_i[14:0]
+(10)VIM828_tb.DUT.Bitmap2_i[14:0]
+(11)VIM828_tb.DUT.Bitmap2_i[14:0]
+(12)VIM828_tb.DUT.Bitmap2_i[14:0]
+(13)VIM828_tb.DUT.Bitmap2_i[14:0]
+(14)VIM828_tb.DUT.Bitmap2_i[14:0]
+@1401200
+-group_end
+@c00028
+VIM828_tb.DUT.Bitmap3_i[14:0]
+@28
+(0)VIM828_tb.DUT.Bitmap3_i[14:0]
+(1)VIM828_tb.DUT.Bitmap3_i[14:0]
+(2)VIM828_tb.DUT.Bitmap3_i[14:0]
+(3)VIM828_tb.DUT.Bitmap3_i[14:0]
+(4)VIM828_tb.DUT.Bitmap3_i[14:0]
+(5)VIM828_tb.DUT.Bitmap3_i[14:0]
+(6)VIM828_tb.DUT.Bitmap3_i[14:0]
+(7)VIM828_tb.DUT.Bitmap3_i[14:0]
+(8)VIM828_tb.DUT.Bitmap3_i[14:0]
+(9)VIM828_tb.DUT.Bitmap3_i[14:0]
+(10)VIM828_tb.DUT.Bitmap3_i[14:0]
+(11)VIM828_tb.DUT.Bitmap3_i[14:0]
+(12)VIM828_tb.DUT.Bitmap3_i[14:0]
+(13)VIM828_tb.DUT.Bitmap3_i[14:0]
+(14)VIM828_tb.DUT.Bitmap3_i[14:0]
+@1401200
+-group_end
+@28
+VIM828_tb.DUT.Bitmap4_i[14:0]
+VIM828_tb.DUT.Bitmap5_i[14:0]
+VIM828_tb.DUT.Bitmap6_i[14:0]
+VIM828_tb.DUT.Bitmap7_i[14:0]
+@200
+-State Machine
+@28
+VIM828_tb.DUT.ChangeState
+@2024
+^1 vim828_state.gtkw
+VIM828_tb.DUT.State[2:0]
+@200
+-LCD pins
+@800022
+VIM828_tb.DUT.Pin_o[36:1]
+@28
+[color] 2
+(0)VIM828_tb.DUT.Pin_o[36:1]
+(1)VIM828_tb.DUT.Pin_o[36:1]
+(2)VIM828_tb.DUT.Pin_o[36:1]
+(3)VIM828_tb.DUT.Pin_o[36:1]
+(4)VIM828_tb.DUT.Pin_o[36:1]
+(5)VIM828_tb.DUT.Pin_o[36:1]
+(6)VIM828_tb.DUT.Pin_o[36:1]
+(7)VIM828_tb.DUT.Pin_o[36:1]
+(8)VIM828_tb.DUT.Pin_o[36:1]
+(9)VIM828_tb.DUT.Pin_o[36:1]
+(10)VIM828_tb.DUT.Pin_o[36:1]
+(11)VIM828_tb.DUT.Pin_o[36:1]
+(12)VIM828_tb.DUT.Pin_o[36:1]
+(13)VIM828_tb.DUT.Pin_o[36:1]
+(14)VIM828_tb.DUT.Pin_o[36:1]
+(15)VIM828_tb.DUT.Pin_o[36:1]
+(16)VIM828_tb.DUT.Pin_o[36:1]
+[color] 2
+(17)VIM828_tb.DUT.Pin_o[36:1]
+[color] 2
+(18)VIM828_tb.DUT.Pin_o[36:1]
+(19)VIM828_tb.DUT.Pin_o[36:1]
+(20)VIM828_tb.DUT.Pin_o[36:1]
+(21)VIM828_tb.DUT.Pin_o[36:1]
+(22)VIM828_tb.DUT.Pin_o[36:1]
+(23)VIM828_tb.DUT.Pin_o[36:1]
+(24)VIM828_tb.DUT.Pin_o[36:1]
+(25)VIM828_tb.DUT.Pin_o[36:1]
+(26)VIM828_tb.DUT.Pin_o[36:1]
+(27)VIM828_tb.DUT.Pin_o[36:1]
+(28)VIM828_tb.DUT.Pin_o[36:1]
+(29)VIM828_tb.DUT.Pin_o[36:1]
+(30)VIM828_tb.DUT.Pin_o[36:1]
+(31)VIM828_tb.DUT.Pin_o[36:1]
+(32)VIM828_tb.DUT.Pin_o[36:1]
+(33)VIM828_tb.DUT.Pin_o[36:1]
+(34)VIM828_tb.DUT.Pin_o[36:1]
+[color] 2
+(35)VIM828_tb.DUT.Pin_o[36:1]
+@1001200
+-group_end
+[pattern_trace] 1
+[pattern_trace] 0
