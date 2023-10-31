@@ -1,6 +1,6 @@
-// 230419
+// 231031
 
-`timescale 1ns/1ns	// time-unit, precision
+`timescale 1ns/1ns
 `default_nettype none
 `include "vim828_defines.vh"
 
@@ -27,7 +27,7 @@ module VIM828_tb();
 		.Clock(Clock),
 		.Reset(Reset),
 		             //PNMLK_JIHGF_EDCBA
-		.Bitmap7_i(15'b00000_10000_00000),
+		.Bitmap7_i(15'b00000_10000_00000), // Segment J visible
 		.Bitmap6_i(15'b00000_00000_00000),
 		.Bitmap5_i(15'b00000_00000_00000),
 		.Bitmap4_i(15'b00000_00000_00000),
@@ -42,20 +42,6 @@ module VIM828_tb();
 	initial begin
 		$dumpfile("vim828.vcd");
 		$dumpvars(0, VIM828_tb);
-		/*
-		$dumpvars(2, DUT.ComAnalog[0]);
-		$dumpvars(2, DUT.ComAnalog[1]);
-		$dumpvars(2, DUT.ComAnalog[2]);
-		$dumpvars(2, DUT.ComAnalog[3]);
-		$dumpvars(2, DUT.SegAnalog[0]);
-		$dumpvars(2, DUT.SegAnalog[1]);
-		$dumpvars(2, DUT.SegAnalog[2]);
-		$dumpvars(2, DUT.SegAnalog[3]);
-		$dumpvars(2, DUT.SegAnalog[4]);
-		$dumpvars(2, DUT.SegAnalog[5]);
-		$dumpvars(2, DUT.SegAnalog[6]);
-		$dumpvars(2, DUT.SegAnalog[7]);
-		*/
 	end
 
 	// Test sequence
@@ -64,33 +50,25 @@ module VIM828_tb();
 		$display("===== START =====");
 		$display("CLOCK_HZ = %9d", CLOCK_HZ);
 
-		#1 Reset = 1'b1;
+		@(posedge Clock);
+		Reset = 1'b1;
 		
 		$display("      time C0 C1 C2 C3");	
-		$monitor("%t  %d  %d  %d  %d  %d  %d  %d  %d  %d  %d  %d  %d", 
-				$realtime, 
-				DUT.ComAnalog[0],
-				DUT.ComAnalog[1],
-				DUT.ComAnalog[2],
-				DUT.ComAnalog[3],
-				DUT.SegAnalog[0],
-				DUT.SegAnalog[1],
-				DUT.SegAnalog[2],
-				DUT.SegAnalog[3],
-				DUT.SegAnalog[4],
-				DUT.SegAnalog[5],
-				DUT.SegAnalog[6],
-				DUT.SegAnalog[7],
-			);
-			*/
+		$monitor("%t  %d  %d  %d  %d", 
+			$realtime, 
+			DUT.PinVoltage[`COM0],
+			DUT.PinVoltage[`COM1],
+			DUT.PinVoltage[`COM2],
+			DUT.PinVoltage[`COM3]
+		);
 
 		// Wait through all eight states
 		repeat(8) begin
 			@(posedge DUT.ChangeState);
 		end
 		
-		#1 $display("===== END =====");
-		#1 $finish;
+		$display("====== END ======");
+		$finish;
 	end
 
 endmodule
