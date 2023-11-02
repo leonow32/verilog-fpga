@@ -1,6 +1,6 @@
 # 7 Segment Display Decoder
 
-![Status](https://img.shields.io/badge/STATUS-READY-green.svg)
+![Status](https://img.shields.io/badge/STATUS-DEVELOPMENT-yellow.svg)
 
 Simple module to convert 4-bit binary data into 7-segment code that can drive a 7-segment display. Supports displaying digits from 0 to 9 and hexadecimal values from A to F.
 
