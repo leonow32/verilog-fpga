@@ -1,9 +1,11 @@
-`timescale 1ns/1ns	// time-unit, precision
+// 231104
+
+`timescale 1ns/1ns
 
 `default_nettype none
 module Decoder14seg_tb();
 	
-	parameter CLOCK_HZ	     = 1_000_000;
+	parameter CLOCK_HZ       = 1_000_000;
 	parameter HALF_PERIOD_NS = 1_000_000_000 / (2 * CLOCK_HZ);
 	
 	// Clock generator
@@ -15,7 +17,7 @@ module Decoder14seg_tb();
 	
 	// Variables
 	reg Reset  = 1'b0;
-	reg	Enable = 1'b0;
+	reg Enable = 1'b0;
 	reg [7:0] Data;
 	integer i;
 	
