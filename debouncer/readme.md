@@ -14,7 +14,9 @@ A module used to filter the vibration of mechanical button contacts. After chang
 		.Clock(Clock),
 		.Reset(Reset),
 		.NoisySignal_i(),
-		.FilteredSignal_o()
+		.FilteredSignal_o(),
+		.RisingEdge_o(),
+		.FallingEdge_o()
 	);
 ```
 
@@ -26,6 +28,8 @@ A module used to filter the vibration of mechanical button contacts. After chang
 + **Reset** - Asynchronous reset, active low.
 + **NoisySignal_i** - Not filtered signal directly from a button or other mechanical switch.
 + **FilteredSignal_o** - Filtered signal without glitches.
++ **RisingEdge_o** - A high state means that a rising edge has been detected in the signal under test.
++ **FallingEdge_o** - A high state means that a falling edge has been detected in the signal under test.
 
 ## Simulation
 

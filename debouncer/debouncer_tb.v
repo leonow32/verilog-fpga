@@ -3,7 +3,7 @@
 `default_nettype none
 module Debouncer_tb();
 
-	parameter CLOCK_HZ	= 10_000_000;
+	parameter CLOCK_HZ       = 10_000_000;
 	parameter HALF_PERIOD_NS = 1_000_000_000 / (2 * CLOCK_HZ);
 	
 	// Clock generator
@@ -28,7 +28,6 @@ module Debouncer_tb();
 	// Variables
 	reg Reset  = 1'b0;
 	reg Button = 1'b0;
-	wire Out;
 	
 	// Test sequence
 	integer i;
@@ -62,7 +61,7 @@ module Debouncer_tb();
 		.Clock(Clock),
 		.Reset(Reset),
 		.NoisySignal_i(Button),
-		.FilteredSignal_o(Out)
+		.FilteredSignal_o()
 	);
 
 endmodule
