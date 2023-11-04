@@ -1,44 +1,60 @@
 `timescale 1ns/1ns	// time-unit, precision
 
 `default_nettype none
-module Decoder7seg_tb();
+module Decoder14seg_tb();
 	
-	// Signals
-	reg				Enable = 1'b0;
-	reg		[3:0]	Data;
-	wire	[6:0]	Segments;
-	integer			i;
+	parameter CLOCK_HZ	     = 1_000_000;
+	parameter HALF_PERIOD_NS = 1_000_000_000 / (2 * CLOCK_HZ);
+	
+	// Clock generator
+	reg Clock = 1'b1;
+	always begin
+		#HALF_PERIOD_NS;
+		Clock = !Clock;
+	end
+	
+	// Variables
+	reg Reset  = 1'b0;
+	reg	Enable = 1'b0;
+	reg [7:0] Data;
+	integer i;
 	
 	// Variable dump
 	initial begin
-		$dumpfile("decoder_7seg.vcd");
-		$dumpvars(0, DUT);
+		$dumpfile("decoder_14seg.vcd");
+		$dumpvars(0, Decoder14seg_tb);
 	end
 	
 	// Test sequence
 	initial begin
 		$timeformat(-9, 3, "ns", 10);
 		$display("===== START =====");
-		$display("      Time  i Data Segments");
-		$monitor("%t %2d %b %b", $realtime, i, Data, Segments);
 		
-		#5 Enable <= 1'b1;
-		for(i=0; i<=15; i=i+1) begin
-			#1; Data <= i;
+		@(posedge Clock);
+		Reset = 1'b1;
+		
+		@(posedge Clock);
+		Enable = 1'b1;
+		
+		for(i=0; i<=8'h5F; i=i+1) begin
+			@(posedge Clock);
+			Data <= i;
 		end
-		#5 Enable <= 1'b0;
 		
-		#5 $display("====== END ======");
+		@(posedge Clock);
+		Enable = 1'b0;
+		
+		$display("====== END ======");
 		$finish;
 	end
 	
 	// Instantiate device under test
-	Decoder7seg #(
-		.COMMON_CATHODE(1)
-	) DUT(
+	Decoder14seg DUT(
+		.Clock(Clock),
+		.Reset(Reset),
 		.Enable_i(Enable),
 		.Data_i(Data),
-		.Segments_o(Segments)
+		.Segments_o()
 	);
 
 endmodule

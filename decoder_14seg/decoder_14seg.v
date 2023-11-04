@@ -5,8 +5,8 @@ module Decoder14seg(
 	input wire Clock,
 	input wire Reset,
 	input wire Enable_i,
-	input wire	[7:0]  Data_i,
-	output reg	[13:0] Segments_o
+	input wire [ 7:0] Data_i,
+	output reg [13:0] Segments_o
 );
 	
 	always @(posedge Clock, negedge Reset) begin
@@ -14,7 +14,9 @@ module Decoder14seg(
 			Segments_o <= 14'b00000000000000;
 		end else if(Enable_i) begin
 			case(Data_i)
-			" ":	 Segments_o <= 14'b00000000000100;
+			//                         NMLKJIHGFEDCBA
+			8'd0:	 Segments_o <= 14'b00000000000000;
+			" ":	 Segments_o <= 14'b00000000000000;
 			"\"":	 Segments_o <= 14'b00000000100010;
 			"'":	 Segments_o <= 14'b00000100000000;
 			"(":	 Segments_o <= 14'b10001000000000;
@@ -27,7 +29,7 @@ module Decoder14seg(
 			"/":	 Segments_o <= 14'b00101000000000;
 			"0":	 Segments_o <= 14'b00000000111111;
 			"1":	 Segments_o <= 14'b00001000000110;
-			"2":	 Segments_o <= 14'b00101000101001;
+			"2":	 Segments_o <= 14'b00010001011011;
 			"3":	 Segments_o <= 14'b00010000001111;
 			"4":	 Segments_o <= 14'b00010001100110;
 			"5":	 Segments_o <= 14'b00010001101101;

@@ -1,4 +1,4 @@
 @echo off
-iverilog -o decoder_7seg.o decoder_7seg.v decoder_7seg_tb.v
-vvp decoder_7seg.o
-del decoder_7seg.o
+iverilog -o decoder_14seg.o decoder_14seg.v decoder_14seg_tb.v
+vvp decoder_14seg.o
+del decoder_14seg.o
