@@ -1,0 +1,55 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sat Nov 04 16:19:49 2023
+[*]
+[dumpfile] "decoder_14seg.vcd"
+[dumpfile_mtime] "Sat Nov 04 16:15:26 2023"
+[dumpfile_size] 7118
+[savefile] "decoder_14seg.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -1 -1
+*-13.167625 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] Decoder14seg_tb.
+[sst_width] 197
+[signals_width] 158
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+Decoder14seg_tb.Clock
+Decoder14seg_tb.Reset
+Decoder14seg_tb.DUT.Enable_i
+@c00022
+Decoder14seg_tb.Data[7:0]
+@28
+(0)Decoder14seg_tb.Data[7:0]
+(1)Decoder14seg_tb.Data[7:0]
+(2)Decoder14seg_tb.Data[7:0]
+(3)Decoder14seg_tb.Data[7:0]
+(4)Decoder14seg_tb.Data[7:0]
+(5)Decoder14seg_tb.Data[7:0]
+(6)Decoder14seg_tb.Data[7:0]
+(7)Decoder14seg_tb.Data[7:0]
+@1401200
+-group_end
+@800022
+Decoder14seg_tb.DUT.Segments_o[13:0]
+@28
+(0)Decoder14seg_tb.DUT.Segments_o[13:0]
+(1)Decoder14seg_tb.DUT.Segments_o[13:0]
+(2)Decoder14seg_tb.DUT.Segments_o[13:0]
+(3)Decoder14seg_tb.DUT.Segments_o[13:0]
+(4)Decoder14seg_tb.DUT.Segments_o[13:0]
+(5)Decoder14seg_tb.DUT.Segments_o[13:0]
+(6)Decoder14seg_tb.DUT.Segments_o[13:0]
+(7)Decoder14seg_tb.DUT.Segments_o[13:0]
+(8)Decoder14seg_tb.DUT.Segments_o[13:0]
+(9)Decoder14seg_tb.DUT.Segments_o[13:0]
+(10)Decoder14seg_tb.DUT.Segments_o[13:0]
+(11)Decoder14seg_tb.DUT.Segments_o[13:0]
+(12)Decoder14seg_tb.DUT.Segments_o[13:0]
+(13)Decoder14seg_tb.DUT.Segments_o[13:0]
+@1001200
+-group_end
+[pattern_trace] 1
+[pattern_trace] 0
