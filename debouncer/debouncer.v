@@ -1,11 +1,13 @@
-// 230426
+// 231104
 
 `default_nettype none
 module Debouncer(
 	input wire Clock,
 	input wire Reset,
 	input wire NoisySignal_i,
-	output reg FilteredSignal_o
+	output reg FilteredSignal_o,
+	output wire RisingEdge_o,
+	output wire FallingEdge_o
 );
 
 	parameter  CLOCK_HZ 	= 10_000_000;
@@ -15,6 +17,7 @@ module Debouncer(
 
 	reg [WIDTH-1:0] Counter = 0;
 
+	// Signal filtering
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
 			Counter          <= 0;
@@ -28,6 +31,15 @@ module Debouncer(
 			Counter <= 0;
 		end
 	end
+	
+	// Edge detection
+	EdgeDetector EdgeDetector_inst(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Signal_i(FilteredSignal_o),
+		.RisingEdge_o(RisingEdge_o),
+		.FallingEdge_o(FallingEdge_o)
+	);
 
 endmodule
 `default_nettype wire
