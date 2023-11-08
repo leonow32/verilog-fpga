@@ -25,7 +25,7 @@ Simple module to convert 8-bit ASCII data into 14-segment code that can drive a 
 + **Reset** - Asynchronous reset, active low.
 + **Enable_i** - If 1 then display is enabled, if 0 then all segments are disabled.
 + **Data_i[7:0]** - ASCII code to be displayed.
-+ **Segments_o[14:0]** - Driver output.
++ **Segments_o[13:0]** - Driver output.
 	+ **Segments_o[0]** - Segment A
 	+ **Segments_o[1]** - Segment B
 	+ **Segments_o[2]** - Segment C
@@ -40,7 +40,6 @@ Simple module to convert 8-bit ASCII data into 14-segment code that can drive a 
 	+ **Segments_o[11]** - Segment L
 	+ **Segments_o[12]** - Segment M
 	+ **Segments_o[13]** - Segment N
-	+ **Segments_o[13]** - Segment P (decimal point)
   
 ## Simulation
 
