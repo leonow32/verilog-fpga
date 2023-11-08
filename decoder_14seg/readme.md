@@ -4,7 +4,7 @@
 
 Simple module to convert 8-bit ASCII data into 14-segment code that can drive a 14-segment display. Supports displaying digits from 0 to 9, letters from A to Z and some other characters. Designed to be used with `display_lcd_vim828`.
 
-![Font]("font.png" "Font")
+![Font](font.png "Font")
 
 ## Instantiation
 
