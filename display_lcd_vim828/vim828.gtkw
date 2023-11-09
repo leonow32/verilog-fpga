@@ -1,10 +1,10 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Tue Oct 31 19:31:21 2023
+[*] Thu Nov 09 13:32:48 2023
 [*]
 [dumpfile] "vim828.vcd"
-[dumpfile_mtime] "Tue Oct 31 19:30:46 2023"
-[dumpfile_size] 40186
+[dumpfile_mtime] "Thu Nov 09 13:21:20 2023"
+[dumpfile_size] 41072
 [savefile] "vim828.gtkw"
 [timestart] 0
 [size] 1920 1009
@@ -21,54 +21,18 @@ VIM828_tb.Reset
 VIM828_tb.Clock
 @200
 -Input data to display
-@28
-VIM828_tb.DUT.Bitmap0_i[14:0]
-VIM828_tb.DUT.Bitmap1_i[14:0]
-@c00028
-VIM828_tb.DUT.Bitmap2_i[14:0]
-@28
-(0)VIM828_tb.DUT.Bitmap2_i[14:0]
-(1)VIM828_tb.DUT.Bitmap2_i[14:0]
-(2)VIM828_tb.DUT.Bitmap2_i[14:0]
-(3)VIM828_tb.DUT.Bitmap2_i[14:0]
-(4)VIM828_tb.DUT.Bitmap2_i[14:0]
-(5)VIM828_tb.DUT.Bitmap2_i[14:0]
-(6)VIM828_tb.DUT.Bitmap2_i[14:0]
-(7)VIM828_tb.DUT.Bitmap2_i[14:0]
-(8)VIM828_tb.DUT.Bitmap2_i[14:0]
-(9)VIM828_tb.DUT.Bitmap2_i[14:0]
-(10)VIM828_tb.DUT.Bitmap2_i[14:0]
-(11)VIM828_tb.DUT.Bitmap2_i[14:0]
-(12)VIM828_tb.DUT.Bitmap2_i[14:0]
-(13)VIM828_tb.DUT.Bitmap2_i[14:0]
-(14)VIM828_tb.DUT.Bitmap2_i[14:0]
-@1401200
--group_end
-@c00028
-VIM828_tb.DUT.Bitmap3_i[14:0]
-@28
-(0)VIM828_tb.DUT.Bitmap3_i[14:0]
-(1)VIM828_tb.DUT.Bitmap3_i[14:0]
-(2)VIM828_tb.DUT.Bitmap3_i[14:0]
-(3)VIM828_tb.DUT.Bitmap3_i[14:0]
-(4)VIM828_tb.DUT.Bitmap3_i[14:0]
-(5)VIM828_tb.DUT.Bitmap3_i[14:0]
-(6)VIM828_tb.DUT.Bitmap3_i[14:0]
-(7)VIM828_tb.DUT.Bitmap3_i[14:0]
-(8)VIM828_tb.DUT.Bitmap3_i[14:0]
-(9)VIM828_tb.DUT.Bitmap3_i[14:0]
-(10)VIM828_tb.DUT.Bitmap3_i[14:0]
-(11)VIM828_tb.DUT.Bitmap3_i[14:0]
-(12)VIM828_tb.DUT.Bitmap3_i[14:0]
-(13)VIM828_tb.DUT.Bitmap3_i[14:0]
-(14)VIM828_tb.DUT.Bitmap3_i[14:0]
-@1401200
--group_end
-@28
-VIM828_tb.DUT.Bitmap4_i[14:0]
-VIM828_tb.DUT.Bitmap5_i[14:0]
-VIM828_tb.DUT.Bitmap6_i[14:0]
-VIM828_tb.DUT.Bitmap7_i[14:0]
+@22
+VIM828_tb.DUT.Bitmap7[14:0]
+VIM828_tb.DUT.Bitmap6[14:0]
+VIM828_tb.DUT.Bitmap5[14:0]
+VIM828_tb.DUT.Bitmap4[14:0]
+VIM828_tb.DUT.Bitmap3[14:0]
+@23
+VIM828_tb.DUT.Bitmap2[14:0]
+@22
+VIM828_tb.DUT.Bitmap1[14:0]
+VIM828_tb.DUT.Bitmap0[14:0]
+VIM828_tb.DUT.DecimalPoints_i[7:0]
 @200
 -State Machine
 @28
