@@ -1,4 +1,4 @@
-// 231031
+// 231109
 
 `timescale 1ns/1ns
 `default_nettype none
@@ -26,15 +26,16 @@ module VIM828_tb();
 	) DUT(
 		.Clock(Clock),
 		.Reset(Reset),
-		             //PNMLK_JIHGF_EDCBA
-		.Bitmap7_i(15'b00000_10000_00000), // Segment J visible
-		.Bitmap6_i(15'b00000_00000_00000),
-		.Bitmap5_i(15'b00000_00000_00000),
-		.Bitmap4_i(15'b00000_00000_00000),
-		.Bitmap3_i(15'b00000_00000_00000),
-		.Bitmap2_i(15'b00000_00000_00000),
-		.Bitmap1_i(15'b00000_00000_00000),
-		.Bitmap0_i(15'b00000_00000_00000),
+		               //NMLK_JIHGF_EDCBA
+		.Segments7_i(14'b0000_10000_00000), // Segment J visible
+		.Segments6_i(14'b0000_00000_00000),
+		.Segments5_i(14'b0000_00000_00000),
+		.Segments4_i(14'b0000_00000_00000),
+		.Segments3_i(14'b0000_00000_00000),
+		.Segments2_i(14'b0000_00000_00000),
+		.Segments1_i(14'b0000_00000_00000),
+		.Segments0_i(14'b0000_00000_00000),
+		.DecimalPoints_i(8'b00010000),
 		.Pin_o()
 	);
 	

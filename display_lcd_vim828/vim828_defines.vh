@@ -62,4 +62,4 @@
 `define BIT_N		13
 `define BIT_P		14
 
-`endif
+`endif // VIM828_DEFINES_VH
