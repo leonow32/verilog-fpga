@@ -1,0 +1,101 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Fri Nov 10 14:49:04 2023
+[*]
+[dumpfile] "C:\verilog\terminal_vim828\terminal_vim828.vcd"
+[dumpfile_mtime] "Fri Nov 10 14:16:48 2023"
+[dumpfile_size] 3723523
+[savefile] "C:\verilog\terminal_vim828\termina_vim828.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -1 -1
+*-17.117283 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TerminalVIM828_tb.
+[treeopen] TerminalVIM828_tb.DUT.
+[sst_width] 197
+[signals_width] 244
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+TerminalVIM828_tb.Reset
+TerminalVIM828_tb.Clock
+@200
+-UART Transmitter
+@820
+TerminalVIM828_tb.UartTx_Inst.Data_i[7:0]
+@28
+TerminalVIM828_tb.UartTx_Inst.Start_i
+TerminalVIM828_tb.UartTx_Inst.Busy_o
+TerminalVIM828_tb.UartTx_Inst.Tx_o
+@200
+-UART Receiver
+@28
+TerminalVIM828_tb.DUT.Rx_i
+@820
+TerminalVIM828_tb.DUT.UartRx_Inst.Data_o[7:0]
+@28
+TerminalVIM828_tb.DUT.UartRx_Inst.Done_o
+@200
+-14 Segment Decoder
+@820
+TerminalVIM828_tb.DUT.Decoder14seg_inst.Data_i[7:0]
+@22
+TerminalVIM828_tb.DUT.Decoder14seg_inst.Segments_o[13:0]
+@200
+-Display Memory
+@28
+TerminalVIM828_tb.DUT.OneBitDelay
+@22
+TerminalVIM828_tb.DUT.Segments0[13:0]
+TerminalVIM828_tb.DUT.Segments1[13:0]
+TerminalVIM828_tb.DUT.Segments2[13:0]
+TerminalVIM828_tb.DUT.Segments3[13:0]
+TerminalVIM828_tb.DUT.Segments4[13:0]
+TerminalVIM828_tb.DUT.Segments5[13:0]
+TerminalVIM828_tb.DUT.Segments6[13:0]
+TerminalVIM828_tb.DUT.Segments7[13:0]
+@200
+-Display Output
+@c00022
+TerminalVIM828_tb.DUT.Pin_o[36:1]
+@28
+(0)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(1)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(2)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(3)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(4)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(5)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(6)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(7)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(8)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(9)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(10)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(11)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(12)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(13)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(14)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(15)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(16)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(17)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(18)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(19)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(20)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(21)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(22)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(23)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(24)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(25)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(26)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(27)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(28)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(29)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(30)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(31)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(32)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(33)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(34)TerminalVIM828_tb.DUT.Pin_o[36:1]
+(35)TerminalVIM828_tb.DUT.Pin_o[36:1]
+@1401200
+-group_end
+[pattern_trace] 1
+[pattern_trace] 0
