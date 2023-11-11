@@ -63,7 +63,7 @@ module TerminalVIM828 #(
 		.Segments2_i(Segments2),
 		.Segments1_i(Segments1),
 		.Segments0_i(Segments0),
-		.DecimalPoints_i(8'b00000000),
+		.DecimalPoints_i(8'b00000001),
 		.Pin_o(Pin_o)
 	);
 	

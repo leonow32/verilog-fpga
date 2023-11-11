@@ -1,7 +1,5 @@
 // 231109
 
-`include "vim828_defines.vh"
-
 `default_nettype none
 module VIM828 #(
 	parameter CLOCK_HZ      = 10_000_000,
