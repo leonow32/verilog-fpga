@@ -5,7 +5,7 @@
 
 module TerminalVIM828_tb();
 	
-	parameter CLOCK_HZ	     = 1_000_000;
+	parameter CLOCK_HZ       = 1_000_000;
 	parameter HALF_PERIOD_NS = 1_000_000_000 / (2 * CLOCK_HZ);
 	
 	// Clock generator
@@ -87,10 +87,6 @@ module TerminalVIM828_tb();
 		UartSend("F");
 		UartSend("G");
 		UartSend("H");
-		
-		repeat(10000) begin
-			@(posedge Clock);
-		end
 		
 		// Wait through all eight states of VIM828 controller
 		repeat(8) begin

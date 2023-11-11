@@ -38,7 +38,7 @@ module TerminalVIM828 #(
 		.Segments_o(DecodedByte)
 	);
 	
-	// Memory to store decoded segment bitmaps for each character
+	// Registers to store decoded segment bitmaps for each character
 	reg [13:0] Segments7;
 	reg [13:0] Segments6;
 	reg [13:0] Segments5;
@@ -68,6 +68,7 @@ module TerminalVIM828 #(
 	);
 	
 	reg OneBitDelay;
+	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset)
 			OneBitDelay <= 1'b0;

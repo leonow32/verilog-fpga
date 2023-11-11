@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Fri Nov 10 14:49:04 2023
+[*] Sat Nov 11 09:48:14 2023
 [*]
-[dumpfile] "C:\verilog\terminal_vim828\terminal_vim828.vcd"
+[dumpfile] "terminal_vim828.vcd"
 [dumpfile_mtime] "Fri Nov 10 14:16:48 2023"
 [dumpfile_size] 3723523
-[savefile] "C:\verilog\terminal_vim828\termina_vim828.gtkw"
+[savefile] "termina_vim828.gtkw"
 [timestart] 0
 [size] 1920 1009
 [pos] -1 -1
-*-17.117283 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-18.247215 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TerminalVIM828_tb.
 [treeopen] TerminalVIM828_tb.DUT.
 [sst_width] 197
@@ -54,6 +54,13 @@ TerminalVIM828_tb.DUT.Segments4[13:0]
 TerminalVIM828_tb.DUT.Segments5[13:0]
 TerminalVIM828_tb.DUT.Segments6[13:0]
 TerminalVIM828_tb.DUT.Segments7[13:0]
+@200
+-VIM828 Driver
+@28
+TerminalVIM828_tb.DUT.VIM828_inst.ChangeState
+@2024
+^1 vim828_state.gtkw
+TerminalVIM828_tb.DUT.VIM828_inst.State[2:0]
 @200
 -Display Output
 @c00022
