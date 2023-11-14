@@ -29,6 +29,7 @@ module VIM828 #(
 	output wire [36:1] Pin_o
 );
 	
+	// Join together segments data with decimal points
 	wire [14:0] Bitmap7 = {DecimalPoints_i[7], Segments7_i};
 	wire [14:0] Bitmap6 = {DecimalPoints_i[6], Segments6_i};
 	wire [14:0] Bitmap5 = {DecimalPoints_i[5], Segments5_i};
@@ -73,6 +74,7 @@ module VIM828 #(
 	localparam [2:0] COM_2L = 3'd6;
 	localparam [2:0] COM_3L = 3'd7;
 	
+	// Increment of state variable
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) 
 			State <= 0;
