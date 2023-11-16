@@ -99,380 +99,380 @@ module VIM828 #(
 	always @(*) begin
 		case(State)
 			COM_0H: begin
-				PinVoltage[`COM0] = 2'd3;
-				PinVoltage[`COM1] = 2'd1;
-				PinVoltage[`COM2] = 2'd1;
-				PinVoltage[`COM3] = 2'd1;
+				PinVoltage[`COM0] = `COM_H_ACTIVE;
+				PinVoltage[`COM1] = `COM_H_PASSIVE;
+				PinVoltage[`COM2] = `COM_H_PASSIVE;
+				PinVoltage[`COM3] = `COM_H_PASSIVE;
 				
-				PinVoltage[`SEG0_ABCP] = Bitmap0[`BIT_A] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG0__FED] = 2'd2;
-				PinVoltage[`SEG0_IJKN] = Bitmap0[`BIT_I] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG0_HGLM] = Bitmap0[`BIT_H] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG0_ABCP] = Bitmap0[`BIT_A] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG0__FED] = `SEG_H_PASSIVE;
+				PinVoltage[`SEG0_IJKN] = Bitmap0[`BIT_I] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG0_HGLM] = Bitmap0[`BIT_H] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG1_ABCP] = Bitmap1[`BIT_A] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG1__FED] = 2'd2;
-				PinVoltage[`SEG1_IJKN] = Bitmap1[`BIT_I] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG1_HGLM] = Bitmap1[`BIT_H] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG1_ABCP] = Bitmap1[`BIT_A] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG1__FED] = `SEG_H_PASSIVE;
+				PinVoltage[`SEG1_IJKN] = Bitmap1[`BIT_I] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG1_HGLM] = Bitmap1[`BIT_H] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG2_ABCP] = Bitmap2[`BIT_A] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG2__FED] = 2'd2;
-				PinVoltage[`SEG2_IJKN] = Bitmap2[`BIT_I] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG2_HGLM] = Bitmap2[`BIT_H] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG2_ABCP] = Bitmap2[`BIT_A] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG2__FED] = `SEG_H_PASSIVE;
+				PinVoltage[`SEG2_IJKN] = Bitmap2[`BIT_I] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG2_HGLM] = Bitmap2[`BIT_H] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG3_ABCP] = Bitmap3[`BIT_A] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG3__FED] = 2'd2;
-				PinVoltage[`SEG3_IJKN] = Bitmap3[`BIT_I] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG3_HGLM] = Bitmap3[`BIT_H] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG3_ABCP] = Bitmap3[`BIT_A] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG3__FED] = `SEG_H_PASSIVE;
+				PinVoltage[`SEG3_IJKN] = Bitmap3[`BIT_I] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG3_HGLM] = Bitmap3[`BIT_H] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG4_ABCP] = Bitmap4[`BIT_A] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG4__FED] = 2'd2;
-				PinVoltage[`SEG4_IJKN] = Bitmap4[`BIT_I] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG4_HGLM] = Bitmap4[`BIT_H] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG4_ABCP] = Bitmap4[`BIT_A] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG4__FED] = `SEG_H_PASSIVE;
+				PinVoltage[`SEG4_IJKN] = Bitmap4[`BIT_I] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG4_HGLM] = Bitmap4[`BIT_H] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG5_ABCP] = Bitmap5[`BIT_A] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG5__FED] = 2'd2;
-				PinVoltage[`SEG5_IJKN] = Bitmap5[`BIT_I] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG5_HGLM] = Bitmap5[`BIT_H] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG5_ABCP] = Bitmap5[`BIT_A] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG5__FED] = `SEG_H_PASSIVE;
+				PinVoltage[`SEG5_IJKN] = Bitmap5[`BIT_I] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG5_HGLM] = Bitmap5[`BIT_H] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG6_ABCP] = Bitmap6[`BIT_A] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG6__FED] = 2'd2;
-				PinVoltage[`SEG6_IJKN] = Bitmap6[`BIT_I] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG6_HGLM] = Bitmap6[`BIT_H] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG6_ABCP] = Bitmap6[`BIT_A] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG6__FED] = `SEG_H_PASSIVE;
+				PinVoltage[`SEG6_IJKN] = Bitmap6[`BIT_I] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG6_HGLM] = Bitmap6[`BIT_H] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG7_ABCP] = Bitmap7[`BIT_A] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG7__FED] = 2'd2;
-				PinVoltage[`SEG7_IJKN] = Bitmap7[`BIT_I] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG7_HGLM] = Bitmap7[`BIT_H] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG7_ABCP] = Bitmap7[`BIT_A] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG7__FED] = `SEG_H_PASSIVE;
+				PinVoltage[`SEG7_IJKN] = Bitmap7[`BIT_I] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG7_HGLM] = Bitmap7[`BIT_H] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 			end
 			
 			COM_1H: begin
-				PinVoltage[`COM0] = 2'd1;
-				PinVoltage[`COM1] = 2'd3;
-				PinVoltage[`COM2] = 2'd1;
-				PinVoltage[`COM3] = 2'd1;
+				PinVoltage[`COM0] = `COM_H_PASSIVE;
+				PinVoltage[`COM1] = `COM_H_ACTIVE;
+				PinVoltage[`COM2] = `COM_H_PASSIVE;
+				PinVoltage[`COM3] = `COM_H_PASSIVE;
 				
-				PinVoltage[`SEG0_ABCP] = Bitmap0[`BIT_B] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG0__FED] = Bitmap0[`BIT_F] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG0_IJKN] = Bitmap0[`BIT_J] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG0_HGLM] = Bitmap0[`BIT_G] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG0_ABCP] = Bitmap0[`BIT_B] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG0__FED] = Bitmap0[`BIT_F] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG0_IJKN] = Bitmap0[`BIT_J] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG0_HGLM] = Bitmap0[`BIT_G] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG1_ABCP] = Bitmap1[`BIT_B] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG1__FED] = Bitmap1[`BIT_F] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG1_IJKN] = Bitmap1[`BIT_J] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG1_HGLM] = Bitmap1[`BIT_G] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG1_ABCP] = Bitmap1[`BIT_B] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG1__FED] = Bitmap1[`BIT_F] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG1_IJKN] = Bitmap1[`BIT_J] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG1_HGLM] = Bitmap1[`BIT_G] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG2_ABCP] = Bitmap2[`BIT_B] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG2__FED] = Bitmap2[`BIT_F] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG2_IJKN] = Bitmap2[`BIT_J] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG2_HGLM] = Bitmap2[`BIT_G] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG2_ABCP] = Bitmap2[`BIT_B] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG2__FED] = Bitmap2[`BIT_F] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG2_IJKN] = Bitmap2[`BIT_J] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG2_HGLM] = Bitmap2[`BIT_G] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG3_ABCP] = Bitmap3[`BIT_B] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG3__FED] = Bitmap3[`BIT_F] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG3_IJKN] = Bitmap3[`BIT_J] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG3_HGLM] = Bitmap3[`BIT_G] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG3_ABCP] = Bitmap3[`BIT_B] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG3__FED] = Bitmap3[`BIT_F] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG3_IJKN] = Bitmap3[`BIT_J] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG3_HGLM] = Bitmap3[`BIT_G] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG4_ABCP] = Bitmap4[`BIT_B] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG4__FED] = Bitmap4[`BIT_F] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG4_IJKN] = Bitmap4[`BIT_J] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG4_HGLM] = Bitmap4[`BIT_G] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG4_ABCP] = Bitmap4[`BIT_B] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG4__FED] = Bitmap4[`BIT_F] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG4_IJKN] = Bitmap4[`BIT_J] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG4_HGLM] = Bitmap4[`BIT_G] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG5_ABCP] = Bitmap5[`BIT_B] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG5__FED] = Bitmap5[`BIT_F] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG5_IJKN] = Bitmap5[`BIT_J] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG5_HGLM] = Bitmap5[`BIT_G] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG5_ABCP] = Bitmap5[`BIT_B] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG5__FED] = Bitmap5[`BIT_F] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG5_IJKN] = Bitmap5[`BIT_J] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG5_HGLM] = Bitmap5[`BIT_G] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG6_ABCP] = Bitmap6[`BIT_B] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG6__FED] = Bitmap6[`BIT_F] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG6_IJKN] = Bitmap6[`BIT_J] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG6_HGLM] = Bitmap6[`BIT_G] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG6_ABCP] = Bitmap6[`BIT_B] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG6__FED] = Bitmap6[`BIT_F] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG6_IJKN] = Bitmap6[`BIT_J] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG6_HGLM] = Bitmap6[`BIT_G] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG7_ABCP] = Bitmap7[`BIT_B] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG7__FED] = Bitmap7[`BIT_F] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG7_IJKN] = Bitmap7[`BIT_J] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG7_HGLM] = Bitmap7[`BIT_G] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG7_ABCP] = Bitmap7[`BIT_B] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG7__FED] = Bitmap7[`BIT_F] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG7_IJKN] = Bitmap7[`BIT_J] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG7_HGLM] = Bitmap7[`BIT_G] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 			end
 			
 			COM_2H: begin
-				PinVoltage[`COM0] = 2'd1;
-				PinVoltage[`COM1] = 2'd1;
-				PinVoltage[`COM2] = 2'd3;
-				PinVoltage[`COM3] = 2'd1;
+				PinVoltage[`COM0] = `COM_H_PASSIVE;
+				PinVoltage[`COM1] = `COM_H_PASSIVE;
+				PinVoltage[`COM2] = `COM_H_ACTIVE;
+				PinVoltage[`COM3] = `COM_H_PASSIVE;
 				
-				PinVoltage[`SEG0_ABCP] = Bitmap0[`BIT_C] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG0__FED] = Bitmap0[`BIT_E] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG0_IJKN] = Bitmap0[`BIT_K] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG0_HGLM] = Bitmap0[`BIT_L] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG0_ABCP] = Bitmap0[`BIT_C] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG0__FED] = Bitmap0[`BIT_E] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG0_IJKN] = Bitmap0[`BIT_K] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG0_HGLM] = Bitmap0[`BIT_L] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG1_ABCP] = Bitmap1[`BIT_C] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG1__FED] = Bitmap1[`BIT_E] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG1_IJKN] = Bitmap1[`BIT_K] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG1_HGLM] = Bitmap1[`BIT_L] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG1_ABCP] = Bitmap1[`BIT_C] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG1__FED] = Bitmap1[`BIT_E] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG1_IJKN] = Bitmap1[`BIT_K] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG1_HGLM] = Bitmap1[`BIT_L] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG2_ABCP] = Bitmap2[`BIT_C] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG2__FED] = Bitmap2[`BIT_E] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG2_IJKN] = Bitmap2[`BIT_K] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG2_HGLM] = Bitmap2[`BIT_L] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG2_ABCP] = Bitmap2[`BIT_C] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG2__FED] = Bitmap2[`BIT_E] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG2_IJKN] = Bitmap2[`BIT_K] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG2_HGLM] = Bitmap2[`BIT_L] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG3_ABCP] = Bitmap3[`BIT_C] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG3__FED] = Bitmap3[`BIT_E] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG3_IJKN] = Bitmap3[`BIT_K] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG3_HGLM] = Bitmap3[`BIT_L] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG3_ABCP] = Bitmap3[`BIT_C] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG3__FED] = Bitmap3[`BIT_E] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG3_IJKN] = Bitmap3[`BIT_K] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG3_HGLM] = Bitmap3[`BIT_L] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG4_ABCP] = Bitmap4[`BIT_C] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG4__FED] = Bitmap4[`BIT_E] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG4_IJKN] = Bitmap4[`BIT_K] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG4_HGLM] = Bitmap4[`BIT_L] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG4_ABCP] = Bitmap4[`BIT_C] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG4__FED] = Bitmap4[`BIT_E] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG4_IJKN] = Bitmap4[`BIT_K] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG4_HGLM] = Bitmap4[`BIT_L] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG5_ABCP] = Bitmap5[`BIT_C] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG5__FED] = Bitmap5[`BIT_E] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG5_IJKN] = Bitmap5[`BIT_K] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG5_HGLM] = Bitmap5[`BIT_L] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG5_ABCP] = Bitmap5[`BIT_C] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG5__FED] = Bitmap5[`BIT_E] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG5_IJKN] = Bitmap5[`BIT_K] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG5_HGLM] = Bitmap5[`BIT_L] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG6_ABCP] = Bitmap6[`BIT_C] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG6__FED] = Bitmap6[`BIT_E] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG6_IJKN] = Bitmap6[`BIT_K] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG6_HGLM] = Bitmap6[`BIT_L] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG6_ABCP] = Bitmap6[`BIT_C] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG6__FED] = Bitmap6[`BIT_E] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG6_IJKN] = Bitmap6[`BIT_K] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG6_HGLM] = Bitmap6[`BIT_L] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG7_ABCP] = Bitmap7[`BIT_C] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG7__FED] = Bitmap7[`BIT_E] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG7_IJKN] = Bitmap7[`BIT_K] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG7_HGLM] = Bitmap7[`BIT_L] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG7_ABCP] = Bitmap7[`BIT_C] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG7__FED] = Bitmap7[`BIT_E] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG7_IJKN] = Bitmap7[`BIT_K] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG7_HGLM] = Bitmap7[`BIT_L] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 			end
 			
 			COM_3H: begin
-				PinVoltage[`COM0] = 2'd1;
-				PinVoltage[`COM1] = 2'd1;
-				PinVoltage[`COM2] = 2'd1;
-				PinVoltage[`COM3] = 2'd3;
+				PinVoltage[`COM0] = `COM_H_PASSIVE;
+				PinVoltage[`COM1] = `COM_H_PASSIVE;
+				PinVoltage[`COM2] = `COM_H_PASSIVE;
+				PinVoltage[`COM3] = `COM_H_ACTIVE;
 				
-				PinVoltage[`SEG0_ABCP] = Bitmap0[`BIT_P] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG0__FED] = Bitmap0[`BIT_D] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG0_IJKN] = Bitmap0[`BIT_N] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG0_HGLM] = Bitmap0[`BIT_M] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG0_ABCP] = Bitmap0[`BIT_P] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG0__FED] = Bitmap0[`BIT_D] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG0_IJKN] = Bitmap0[`BIT_N] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG0_HGLM] = Bitmap0[`BIT_M] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG1_ABCP] = Bitmap1[`BIT_P] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG1__FED] = Bitmap1[`BIT_D] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG1_IJKN] = Bitmap1[`BIT_N] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG1_HGLM] = Bitmap1[`BIT_M] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG1_ABCP] = Bitmap1[`BIT_P] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG1__FED] = Bitmap1[`BIT_D] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG1_IJKN] = Bitmap1[`BIT_N] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG1_HGLM] = Bitmap1[`BIT_M] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG2_ABCP] = Bitmap2[`BIT_P] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG2__FED] = Bitmap2[`BIT_D] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG2_IJKN] = Bitmap2[`BIT_N] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG2_HGLM] = Bitmap2[`BIT_M] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG2_ABCP] = Bitmap2[`BIT_P] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG2__FED] = Bitmap2[`BIT_D] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG2_IJKN] = Bitmap2[`BIT_N] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG2_HGLM] = Bitmap2[`BIT_M] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG3_ABCP] = Bitmap3[`BIT_P] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG3__FED] = Bitmap3[`BIT_D] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG3_IJKN] = Bitmap3[`BIT_N] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG3_HGLM] = Bitmap3[`BIT_M] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG3_ABCP] = Bitmap3[`BIT_P] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG3__FED] = Bitmap3[`BIT_D] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG3_IJKN] = Bitmap3[`BIT_N] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG3_HGLM] = Bitmap3[`BIT_M] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG4_ABCP] = Bitmap4[`BIT_P] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG4__FED] = Bitmap4[`BIT_D] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG4_IJKN] = Bitmap4[`BIT_N] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG4_HGLM] = Bitmap4[`BIT_M] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG4_ABCP] = Bitmap4[`BIT_P] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG4__FED] = Bitmap4[`BIT_D] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG4_IJKN] = Bitmap4[`BIT_N] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG4_HGLM] = Bitmap4[`BIT_M] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG5_ABCP] = Bitmap5[`BIT_P] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG5__FED] = Bitmap5[`BIT_D] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG5_IJKN] = Bitmap5[`BIT_N] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG5_HGLM] = Bitmap5[`BIT_M] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG5_ABCP] = Bitmap5[`BIT_P] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG5__FED] = Bitmap5[`BIT_D] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG5_IJKN] = Bitmap5[`BIT_N] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG5_HGLM] = Bitmap5[`BIT_M] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG6_ABCP] = Bitmap6[`BIT_P] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG6__FED] = Bitmap6[`BIT_D] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG6_IJKN] = Bitmap6[`BIT_N] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG6_HGLM] = Bitmap6[`BIT_M] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG6_ABCP] = Bitmap6[`BIT_P] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG6__FED] = Bitmap6[`BIT_D] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG6_IJKN] = Bitmap6[`BIT_N] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG6_HGLM] = Bitmap6[`BIT_M] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 				
-				PinVoltage[`SEG7_ABCP] = Bitmap7[`BIT_P] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG7__FED] = Bitmap7[`BIT_D] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG7_IJKN] = Bitmap7[`BIT_N] ? 2'd0 : 2'd2;
-				PinVoltage[`SEG7_HGLM] = Bitmap7[`BIT_M] ? 2'd0 : 2'd2;
+				PinVoltage[`SEG7_ABCP] = Bitmap7[`BIT_P] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG7__FED] = Bitmap7[`BIT_D] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG7_IJKN] = Bitmap7[`BIT_N] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
+				PinVoltage[`SEG7_HGLM] = Bitmap7[`BIT_M] ? `SEG_H_ACTIVE : `SEG_H_PASSIVE;
 			end
 			
 			COM_0L: begin
-				PinVoltage[`COM0] = 2'd0;
-				PinVoltage[`COM1] = 2'd2;
-				PinVoltage[`COM2] = 2'd2;
-				PinVoltage[`COM3] = 2'd2;
+				PinVoltage[`COM0] = `COM_L_ACTIVE;
+				PinVoltage[`COM1] = `COM_L_PASSSIVE;
+				PinVoltage[`COM2] = `COM_L_PASSSIVE;
+				PinVoltage[`COM3] = `COM_L_PASSSIVE;
 				
-				PinVoltage[`SEG0_ABCP] = Bitmap0[`BIT_A] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG0__FED] = 2'd1;
-				PinVoltage[`SEG0_IJKN] = Bitmap0[`BIT_I] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG0_HGLM] = Bitmap0[`BIT_H] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG0_ABCP] = Bitmap0[`BIT_A] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG0__FED] = `SEG_L_PASSIVE;
+				PinVoltage[`SEG0_IJKN] = Bitmap0[`BIT_I] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG0_HGLM] = Bitmap0[`BIT_H] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG1_ABCP] = Bitmap1[`BIT_A] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG1__FED] = 2'd1;
-				PinVoltage[`SEG1_IJKN] = Bitmap1[`BIT_I] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG1_HGLM] = Bitmap1[`BIT_H] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG1_ABCP] = Bitmap1[`BIT_A] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG1__FED] = `SEG_L_PASSIVE;
+				PinVoltage[`SEG1_IJKN] = Bitmap1[`BIT_I] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG1_HGLM] = Bitmap1[`BIT_H] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG2_ABCP] = Bitmap2[`BIT_A] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG2__FED] = 2'd1;
-				PinVoltage[`SEG2_IJKN] = Bitmap2[`BIT_I] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG2_HGLM] = Bitmap2[`BIT_H] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG2_ABCP] = Bitmap2[`BIT_A] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG2__FED] = `SEG_L_PASSIVE;
+				PinVoltage[`SEG2_IJKN] = Bitmap2[`BIT_I] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG2_HGLM] = Bitmap2[`BIT_H] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG3_ABCP] = Bitmap3[`BIT_A] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG3__FED] = 2'd1;
-				PinVoltage[`SEG3_IJKN] = Bitmap3[`BIT_I] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG3_HGLM] = Bitmap3[`BIT_H] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG3_ABCP] = Bitmap3[`BIT_A] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG3__FED] = `SEG_L_PASSIVE;
+				PinVoltage[`SEG3_IJKN] = Bitmap3[`BIT_I] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG3_HGLM] = Bitmap3[`BIT_H] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG4_ABCP] = Bitmap4[`BIT_A] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG4__FED] = 2'd1;
-				PinVoltage[`SEG4_IJKN] = Bitmap4[`BIT_I] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG4_HGLM] = Bitmap4[`BIT_H] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG4_ABCP] = Bitmap4[`BIT_A] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG4__FED] = `SEG_L_PASSIVE;
+				PinVoltage[`SEG4_IJKN] = Bitmap4[`BIT_I] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG4_HGLM] = Bitmap4[`BIT_H] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG5_ABCP] = Bitmap5[`BIT_A] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG5__FED] = 2'd1;
-				PinVoltage[`SEG5_IJKN] = Bitmap5[`BIT_I] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG5_HGLM] = Bitmap5[`BIT_H] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG5_ABCP] = Bitmap5[`BIT_A] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG5__FED] = `SEG_L_PASSIVE;
+				PinVoltage[`SEG5_IJKN] = Bitmap5[`BIT_I] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG5_HGLM] = Bitmap5[`BIT_H] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG6_ABCP] = Bitmap6[`BIT_A] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG6__FED] = 2'd1;
-				PinVoltage[`SEG6_IJKN] = Bitmap6[`BIT_I] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG6_HGLM] = Bitmap6[`BIT_H] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG6_ABCP] = Bitmap6[`BIT_A] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG6__FED] = `SEG_L_PASSIVE;
+				PinVoltage[`SEG6_IJKN] = Bitmap6[`BIT_I] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG6_HGLM] = Bitmap6[`BIT_H] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG7_ABCP] = Bitmap7[`BIT_A] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG7__FED] = 2'd1;
-				PinVoltage[`SEG7_IJKN] = Bitmap7[`BIT_I] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG7_HGLM] = Bitmap7[`BIT_H] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG7_ABCP] = Bitmap7[`BIT_A] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG7__FED] = `SEG_L_PASSIVE;
+				PinVoltage[`SEG7_IJKN] = Bitmap7[`BIT_I] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG7_HGLM] = Bitmap7[`BIT_H] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
 			end
 			
 			COM_1L: begin
-				PinVoltage[`COM0] = 2'd2;
-				PinVoltage[`COM1] = 2'd0;
-				PinVoltage[`COM2] = 2'd2;
-				PinVoltage[`COM3] = 2'd2;
+				PinVoltage[`COM0] = `COM_L_PASSSIVE;
+				PinVoltage[`COM1] = `COM_L_ACTIVE;
+				PinVoltage[`COM2] = `COM_L_PASSSIVE;
+				PinVoltage[`COM3] = `COM_L_PASSSIVE;
 				
-				PinVoltage[`SEG0_ABCP] = Bitmap0[`BIT_B] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG0__FED] = Bitmap0[`BIT_F] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG0_IJKN] = Bitmap0[`BIT_J] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG0_HGLM] = Bitmap0[`BIT_G] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG0_ABCP] = Bitmap0[`BIT_B] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG0__FED] = Bitmap0[`BIT_F] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG0_IJKN] = Bitmap0[`BIT_J] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG0_HGLM] = Bitmap0[`BIT_G] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG1_ABCP] = Bitmap1[`BIT_B] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG1__FED] = Bitmap1[`BIT_F] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG1_IJKN] = Bitmap1[`BIT_J] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG1_HGLM] = Bitmap1[`BIT_G] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG1_ABCP] = Bitmap1[`BIT_B] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG1__FED] = Bitmap1[`BIT_F] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG1_IJKN] = Bitmap1[`BIT_J] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG1_HGLM] = Bitmap1[`BIT_G] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG2_ABCP] = Bitmap2[`BIT_B] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG2__FED] = Bitmap2[`BIT_F] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG2_IJKN] = Bitmap2[`BIT_J] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG2_HGLM] = Bitmap2[`BIT_G] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG2_ABCP] = Bitmap2[`BIT_B] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG2__FED] = Bitmap2[`BIT_F] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG2_IJKN] = Bitmap2[`BIT_J] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG2_HGLM] = Bitmap2[`BIT_G] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG3_ABCP] = Bitmap3[`BIT_B] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG3__FED] = Bitmap3[`BIT_F] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG3_IJKN] = Bitmap3[`BIT_J] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG3_HGLM] = Bitmap3[`BIT_G] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG3_ABCP] = Bitmap3[`BIT_B] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG3__FED] = Bitmap3[`BIT_F] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG3_IJKN] = Bitmap3[`BIT_J] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG3_HGLM] = Bitmap3[`BIT_G] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG4_ABCP] = Bitmap4[`BIT_B] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG4__FED] = Bitmap4[`BIT_F] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG4_IJKN] = Bitmap4[`BIT_J] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG4_HGLM] = Bitmap4[`BIT_G] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG4_ABCP] = Bitmap4[`BIT_B] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG4__FED] = Bitmap4[`BIT_F] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG4_IJKN] = Bitmap4[`BIT_J] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG4_HGLM] = Bitmap4[`BIT_G] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG5_ABCP] = Bitmap5[`BIT_B] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG5__FED] = Bitmap5[`BIT_F] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG5_IJKN] = Bitmap5[`BIT_J] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG5_HGLM] = Bitmap5[`BIT_G] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG5_ABCP] = Bitmap5[`BIT_B] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG5__FED] = Bitmap5[`BIT_F] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG5_IJKN] = Bitmap5[`BIT_J] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG5_HGLM] = Bitmap5[`BIT_G] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG6_ABCP] = Bitmap6[`BIT_B] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG6__FED] = Bitmap6[`BIT_F] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG6_IJKN] = Bitmap6[`BIT_J] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG6_HGLM] = Bitmap6[`BIT_G] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG6_ABCP] = Bitmap6[`BIT_B] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG6__FED] = Bitmap6[`BIT_F] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG6_IJKN] = Bitmap6[`BIT_J] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG6_HGLM] = Bitmap6[`BIT_G] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG7_ABCP] = Bitmap7[`BIT_B] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG7__FED] = Bitmap7[`BIT_F] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG7_IJKN] = Bitmap7[`BIT_J] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG7_HGLM] = Bitmap7[`BIT_G] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG7_ABCP] = Bitmap7[`BIT_B] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG7__FED] = Bitmap7[`BIT_F] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG7_IJKN] = Bitmap7[`BIT_J] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG7_HGLM] = Bitmap7[`BIT_G] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 			end
 			
 			COM_2L: begin
-				PinVoltage[`COM0] = 2'd2;
-				PinVoltage[`COM1] = 2'd2;
-				PinVoltage[`COM2] = 2'd0;
-				PinVoltage[`COM3] = 2'd2;
+				PinVoltage[`COM0] = `COM_L_PASSSIVE;
+				PinVoltage[`COM1] = `COM_L_PASSSIVE;
+				PinVoltage[`COM2] = `COM_L_ACTIVE;
+				PinVoltage[`COM3] = `COM_L_PASSSIVE;
 				
-				PinVoltage[`SEG0_ABCP] = Bitmap0[`BIT_C] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG0__FED] = Bitmap0[`BIT_E] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG0_IJKN] = Bitmap0[`BIT_K] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG0_HGLM] = Bitmap0[`BIT_L] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG0_ABCP] = Bitmap0[`BIT_C] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG0__FED] = Bitmap0[`BIT_E] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG0_IJKN] = Bitmap0[`BIT_K] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG0_HGLM] = Bitmap0[`BIT_L] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG1_ABCP] = Bitmap1[`BIT_C] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG1__FED] = Bitmap1[`BIT_E] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG1_IJKN] = Bitmap1[`BIT_K] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG1_HGLM] = Bitmap1[`BIT_L] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG1_ABCP] = Bitmap1[`BIT_C] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG1__FED] = Bitmap1[`BIT_E] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG1_IJKN] = Bitmap1[`BIT_K] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG1_HGLM] = Bitmap1[`BIT_L] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG2_ABCP] = Bitmap2[`BIT_C] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG2__FED] = Bitmap2[`BIT_E] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG2_IJKN] = Bitmap2[`BIT_K] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG2_HGLM] = Bitmap2[`BIT_L] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG2_ABCP] = Bitmap2[`BIT_C] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG2__FED] = Bitmap2[`BIT_E] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG2_IJKN] = Bitmap2[`BIT_K] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG2_HGLM] = Bitmap2[`BIT_L] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG3_ABCP] = Bitmap3[`BIT_C] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG3__FED] = Bitmap3[`BIT_E] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG3_IJKN] = Bitmap3[`BIT_K] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG3_HGLM] = Bitmap3[`BIT_L] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG3_ABCP] = Bitmap3[`BIT_C] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG3__FED] = Bitmap3[`BIT_E] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG3_IJKN] = Bitmap3[`BIT_K] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG3_HGLM] = Bitmap3[`BIT_L] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG4_ABCP] = Bitmap4[`BIT_C] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG4__FED] = Bitmap4[`BIT_E] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG4_IJKN] = Bitmap4[`BIT_K] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG4_HGLM] = Bitmap4[`BIT_L] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG4_ABCP] = Bitmap4[`BIT_C] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG4__FED] = Bitmap4[`BIT_E] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG4_IJKN] = Bitmap4[`BIT_K] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG4_HGLM] = Bitmap4[`BIT_L] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG5_ABCP] = Bitmap5[`BIT_C] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG5__FED] = Bitmap5[`BIT_E] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG5_IJKN] = Bitmap5[`BIT_K] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG5_HGLM] = Bitmap5[`BIT_L] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG5_ABCP] = Bitmap5[`BIT_C] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG5__FED] = Bitmap5[`BIT_E] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG5_IJKN] = Bitmap5[`BIT_K] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG5_HGLM] = Bitmap5[`BIT_L] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG6_ABCP] = Bitmap6[`BIT_C] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG6__FED] = Bitmap6[`BIT_E] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG6_IJKN] = Bitmap6[`BIT_K] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG6_HGLM] = Bitmap6[`BIT_L] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG6_ABCP] = Bitmap6[`BIT_C] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG6__FED] = Bitmap6[`BIT_E] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG6_IJKN] = Bitmap6[`BIT_K] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG6_HGLM] = Bitmap6[`BIT_L] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG7_ABCP] = Bitmap7[`BIT_C] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG7__FED] = Bitmap7[`BIT_E] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG7_IJKN] = Bitmap7[`BIT_K] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG7_HGLM] = Bitmap7[`BIT_L] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG7_ABCP] = Bitmap7[`BIT_C] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG7__FED] = Bitmap7[`BIT_E] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG7_IJKN] = Bitmap7[`BIT_K] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG7_HGLM] = Bitmap7[`BIT_L] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 			end
 			
 			COM_3L: begin
-				PinVoltage[`COM0] = 2'd2;
-				PinVoltage[`COM1] = 2'd2;
-				PinVoltage[`COM2] = 2'd2;
-				PinVoltage[`COM3] = 2'd0;
+				PinVoltage[`COM0] = `COM_L_PASSSIVE;
+				PinVoltage[`COM1] = `COM_L_PASSSIVE;
+				PinVoltage[`COM2] = `COM_L_PASSSIVE;
+				PinVoltage[`COM3] = `COM_L_ACTIVE;
 				
-				PinVoltage[`SEG0_ABCP] = Bitmap0[`BIT_P] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG0__FED] = Bitmap0[`BIT_D] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG0_IJKN] = Bitmap0[`BIT_N] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG0_HGLM] = Bitmap0[`BIT_M] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG0_ABCP] = Bitmap0[`BIT_P] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG0__FED] = Bitmap0[`BIT_D] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG0_IJKN] = Bitmap0[`BIT_N] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG0_HGLM] = Bitmap0[`BIT_M] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG1_ABCP] = Bitmap1[`BIT_P] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG1__FED] = Bitmap1[`BIT_D] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG1_IJKN] = Bitmap1[`BIT_N] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG1_HGLM] = Bitmap1[`BIT_M] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG1_ABCP] = Bitmap1[`BIT_P] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG1__FED] = Bitmap1[`BIT_D] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG1_IJKN] = Bitmap1[`BIT_N] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG1_HGLM] = Bitmap1[`BIT_M] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG2_ABCP] = Bitmap2[`BIT_P] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG2__FED] = Bitmap2[`BIT_D] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG2_IJKN] = Bitmap2[`BIT_N] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG2_HGLM] = Bitmap2[`BIT_M] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG2_ABCP] = Bitmap2[`BIT_P] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG2__FED] = Bitmap2[`BIT_D] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG2_IJKN] = Bitmap2[`BIT_N] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG2_HGLM] = Bitmap2[`BIT_M] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG3_ABCP] = Bitmap3[`BIT_P] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG3__FED] = Bitmap3[`BIT_D] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG3_IJKN] = Bitmap3[`BIT_N] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG3_HGLM] = Bitmap3[`BIT_M] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG3_ABCP] = Bitmap3[`BIT_P] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG3__FED] = Bitmap3[`BIT_D] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG3_IJKN] = Bitmap3[`BIT_N] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG3_HGLM] = Bitmap3[`BIT_M] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG4_ABCP] = Bitmap4[`BIT_P] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG4__FED] = Bitmap4[`BIT_D] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG4_IJKN] = Bitmap4[`BIT_N] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG4_HGLM] = Bitmap4[`BIT_M] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG4_ABCP] = Bitmap4[`BIT_P] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG4__FED] = Bitmap4[`BIT_D] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG4_IJKN] = Bitmap4[`BIT_N] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG4_HGLM] = Bitmap4[`BIT_M] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG5_ABCP] = Bitmap5[`BIT_P] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG5__FED] = Bitmap5[`BIT_D] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG5_IJKN] = Bitmap5[`BIT_N] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG5_HGLM] = Bitmap5[`BIT_M] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG5_ABCP] = Bitmap5[`BIT_P] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG5__FED] = Bitmap5[`BIT_D] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG5_IJKN] = Bitmap5[`BIT_N] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG5_HGLM] = Bitmap5[`BIT_M] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG6_ABCP] = Bitmap6[`BIT_P] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG6__FED] = Bitmap6[`BIT_D] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG6_IJKN] = Bitmap6[`BIT_N] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG6_HGLM] = Bitmap6[`BIT_M] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG6_ABCP] = Bitmap6[`BIT_P] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG6__FED] = Bitmap6[`BIT_D] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG6_IJKN] = Bitmap6[`BIT_N] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG6_HGLM] = Bitmap6[`BIT_M] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
-				PinVoltage[`SEG7_ABCP] = Bitmap7[`BIT_P] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG7__FED] = Bitmap7[`BIT_D] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG7_IJKN] = Bitmap7[`BIT_N] ? 2'd3 : 2'd1;
-				PinVoltage[`SEG7_HGLM] = Bitmap7[`BIT_M] ? 2'd3 : 2'd1;
+				PinVoltage[`SEG7_ABCP] = Bitmap7[`BIT_P] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG7__FED] = Bitmap7[`BIT_D] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG7_IJKN] = Bitmap7[`BIT_N] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
+				PinVoltage[`SEG7_HGLM] = Bitmap7[`BIT_M] ? `SEG_L_ACTIVE : `SEG_L_PASSIVE;
 				
 			end
 			

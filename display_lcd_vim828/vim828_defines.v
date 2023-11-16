@@ -62,4 +62,14 @@
 `define BIT_N		13
 `define BIT_P		14
 
+`define COM_H_ACTIVE	2'd3
+`define COM_H_PASSIVE	2'd1
+`define SEG_H_ACTIVE	2'd0
+`define SEG_H_PASSIVE	2'd2
+
+`define COM_L_ACTIVE	2'd0
+`define COM_L_PASSSIVE	2'd2
+`define SEG_L_ACTIVE	2'd3
+`define SEG_L_PASSIVE	2'd1
+
 `endif // VIM828_DEFINES_VH
