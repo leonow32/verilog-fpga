@@ -2,7 +2,6 @@
 
 `timescale 1ns/1ns
 `default_nettype none
-`include "vim828_defines.vh"
 
 module VIM828_tb();
 	

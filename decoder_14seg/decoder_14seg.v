@@ -15,7 +15,7 @@ module Decoder14seg(
 		end else if(Enable_i) begin
 			case(Data_i)
 			//                         NMLKJIHGFEDCBA
-			8'd0:	 Segments_o <= 14'b00000000000000;
+			8'h00:	 Segments_o <= 14'b00000000000000;
 			" ":	 Segments_o <= 14'b00000000000000;
 			"\"":	 Segments_o <= 14'b00000000100010;
 			"'":	 Segments_o <= 14'b00000100000000;

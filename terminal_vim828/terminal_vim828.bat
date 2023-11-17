@@ -3,7 +3,7 @@ iverilog -o terminal_vim828.o ^
 	terminal_vim828.v ^
 	terminal_vim828_tb.v ^
 	../decoder_14seg/decoder_14seg.v ^
-	../display_lcd_vim828/vim828_defines.vh ^
+	../display_lcd_vim828/vim828_defines.v ^
 	../display_lcd_vim828/vim828.v ^
 	../display_lcd_vim828/vim828_pwm.v ^
 	../edge_detector/edge_detector.v ^
