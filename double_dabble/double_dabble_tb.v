@@ -16,8 +16,8 @@ module DoubleDabble_tb();
 	end
 	
 	// Variables
-	reg Reset  = 1'b0;
-	reg [15:0] Binary = 8'h00;
+	reg Reset  = 0;
+	reg [15:0] Binary = 0;
 	integer i;
 	
 	// Variable dump
