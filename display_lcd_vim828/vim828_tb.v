@@ -26,8 +26,8 @@ module VIM828_tb();
 		.Clock(Clock),
 		.Reset(Reset),
 		               //NMLK_JIHGF_EDCBA
-		.Segments7_i(14'b0000_00000_00000), // Segment J visible
-		.Segments6_i(14'b0010_00000_00000),
+		.Segments7_i(14'b0000_00000_00000),
+		.Segments6_i(14'b0010_00000_00000), // Segment L visible
 		.Segments5_i(14'b0000_00000_00000),
 		.Segments4_i(14'b0000_00000_00000),
 		.Segments3_i(14'b0000_00000_00000),
