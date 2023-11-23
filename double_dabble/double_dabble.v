@@ -3,9 +3,50 @@
 
 `default_nettype none
 
+module DoubleDabble #(
+	parameter INPUT_BITS    = 16,
+	parameter OUTPUT_DIGITS = 5,
+	parameter OUTPUT_BITS   = OUTPUT_DIGITS * 4
+)(
+	input wire [INPUT_BITS-1:0] Binary_i,	// Max 65535
+	output reg [19:0] BCD_o
+);
+	
+	// For loop iterator
+	integer i;
+	
+	always @(*) begin
+		BCD_o = 0;
+		
+		// For each bit of input
+		for(i=0; i<INPUT_BITS; i=i+1) begin
+			
+			// If a hex digit of 'BCD_o' is more than 4, add 3 to it. 
+			if(BCD_o[3:0] >= 4'd5) 
+				BCD_o[3:0] = BCD_o[3:0] + 4'd3;
+			
+			if(BCD_o[7:4] >= 4'd5)
+				BCD_o[7:4] = BCD_o[7:4] + 4'd3;
+			
+			if(BCD_o[11:8] >= 4'd5)
+				BCD_o[11:8] = BCD_o[11:8] + 4'd3;
+				
+			if(BCD_o[15:12] >= 4'd5)
+				BCD_o[15:12] = BCD_o[15:12] + 4'd3; 
+				
+			if(BCD_o[19:16] >= 4'd5)
+				BCD_o[19:12] = BCD_o[19:12] + 4'd3; 
+			
+			BCD_o = {BCD_o[18:0], Binary_i[(INPUT_BITS-1)-i]};
+		end
+	end
+
+endmodule
+
 // Max 65535 - 5 cyfr
 //	36	108	215	25
 //	36	94	187	28
+/*
 module DoubleDabble(
 	input wire [15:0] Binary_i,	// Max 65535
 	output reg [19:0] BCD_o
@@ -40,7 +81,7 @@ module DoubleDabble(
 	end
 
 endmodule
-
+*/
 
 // Max 255 - 3 cyfry
 //	18	13	26	141

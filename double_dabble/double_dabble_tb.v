@@ -5,6 +5,10 @@
 `default_nettype none
 module DoubleDabble_tb();
 	
+	// Configuration
+	parameter BITS   = 16;
+	parameter DIGITS = 5;
+	
 	parameter CLOCK_HZ            = 1_000_000;
 	parameter real HALF_PERIOD_NS = 1_000_000_000.0 / (2 * CLOCK_HZ);
 	
@@ -17,7 +21,8 @@ module DoubleDabble_tb();
 	
 	// Variables
 	reg Reset  = 0;
-	reg [15:0] Binary = 0;
+	reg [BITS-1:0] Binary = 0;
+	integer MaxInput = 2**BITS - 1;
 	integer i;
 	
 	// Variable dump
@@ -27,7 +32,10 @@ module DoubleDabble_tb();
 	end
 	
 	// Instantiate device under test
-	DoubleDabble DUT(
+	DoubleDabble #(
+		.INPUT_BITS(16),
+		.OUTPUT_DIGITS(5)
+	) DUT(
 		.Binary_i(Binary),
 		.BCD_o()
 	);
@@ -36,6 +44,10 @@ module DoubleDabble_tb();
 	initial begin
 		$timeformat(-9, 3, "ns", 10);
 		$display("===== START =====");
+		$display("INPUT_BITS:  %3d", BITS);
+		$display("OUTPUT_BITS: %3d", DUT.OUTPUT_BITS);
+		$display("DIGITS:      %3d", DIGITS);
+		$display("MaxInput:    %d", MaxInput);
 		
 		@(posedge Clock);
 		Reset = 1'b1;
