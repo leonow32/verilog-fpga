@@ -6,8 +6,9 @@
 module DoubleDabble_tb();
 	
 	// Configuration
-	parameter BITS   = 16;
-	parameter DIGITS = 5;
+	parameter INPUT_BITS    = 12;
+	parameter OUTPUT_DIGITS = 8;
+	parameter OUTPUT_BITS   = OUTPUT_DIGITS * 4;
 	
 	parameter CLOCK_HZ            = 1_000_000;
 	parameter real HALF_PERIOD_NS = 1_000_000_000.0 / (2 * CLOCK_HZ);
@@ -20,9 +21,9 @@ module DoubleDabble_tb();
 	end
 	
 	// Variables
-	reg Reset  = 0;
-	reg [BITS-1:0] Binary = 0;
-	integer MaxInput = 2**BITS - 1;
+	reg  [ INPUT_BITS-1:0] Binary = 0;
+	wire [OUTPUT_BITS-1:0] BCD;
+	integer MaxInput = 2**INPUT_BITS - 1;
 	integer i;
 	
 	// Variable dump
@@ -33,37 +34,68 @@ module DoubleDabble_tb();
 	
 	// Instantiate device under test
 	DoubleDabble #(
-		.INPUT_BITS(16),
-		.OUTPUT_DIGITS(5)
+		.INPUT_BITS(INPUT_BITS),
+		.OUTPUT_DIGITS(OUTPUT_DIGITS)
 	) DUT(
 		.Binary_i(Binary),
-		.BCD_o()
+		.BCD_o(BCD)
 	);
+	
+	// Verification
+	integer PassCounter = 0;
+	integer FailCounter = 0;
+	integer Temp;
+	integer Digit;
+	
+	task Verify(input [INPUT_BITS-1:0] Binary, input [OUTPUT_BITS-1:0] BCD);
+		begin
+			// Initialize temporary variable
+			Temp = 0;
+			
+			// Convert BCD to binary
+			for(Digit=0; Digit<OUTPUT_DIGITS; Digit=Digit+1) begin
+				Temp = Temp + BCD[Digit*4+3-:4] * 10**Digit;
+			end
+			
+			if(Temp === Binary)
+				PassCounter = PassCounter + 1;
+			else
+				FailCounter = FailCounter + 1;
+		end
+	endtask
 	
 	// Test sequence
 	initial begin
 		$timeformat(-9, 3, "ns", 10);
 		$display("===== START =====");
-		$display("INPUT_BITS:  %3d", BITS);
-		$display("OUTPUT_BITS: %3d", DUT.OUTPUT_BITS);
-		$display("DIGITS:      %3d", DIGITS);
-		$display("MaxInput:    %d", MaxInput);
+		$display("INPUT_BITS:    %9d", INPUT_BITS);
+		$display("OUTPUT_BITS:   %9d", DUT.OUTPUT_BITS);
+		$display("OUTPUT_DIGITS: %9d", OUTPUT_DIGITS);
+		$display("MaxInput:      %9d", MaxInput);
 		
-		@(posedge Clock);
-		Reset = 1'b1;
-		
-		for(i=0; i<=65535; i++) begin
+		// Test from zero to maximum value
+		for(i=0; i<=MaxInput; i=i+1) begin
 			@(posedge Clock);
 			Binary <= i;
+			
+			@(posedge Clock);
+			Verify(Binary, BCD);
 		end
 		
-		for(i=0; i<=255; i++) begin
+		// Test from maximum value to zero
+		for(i=MaxInput; i>=0; i=i-1) begin
 			@(posedge Clock);
 			Binary <= i;
+			
+			@(posedge Clock);
+			Verify(Binary, BCD);
 		end
 		
 		@(posedge Clock);
 		
+		// Display verification results
+		$display("Pass: %d", PassCounter);
+		$display("Fail: %d", FailCounter);
 		$display("====== END ======");
 		$finish;
 	end

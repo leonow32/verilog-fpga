@@ -8,36 +8,35 @@ module DoubleDabble #(
 	parameter OUTPUT_DIGITS = 5,
 	parameter OUTPUT_BITS   = OUTPUT_DIGITS * 4
 )(
-	input wire [INPUT_BITS-1:0] Binary_i,	// Max 65535
-	output reg [19:0] BCD_o
+	input wire [ INPUT_BITS-1:0] Binary_i,
+	output reg [OUTPUT_BITS-1:0] BCD_o
 );
 	
-	// For loop iterator
+	// For loop iterators
 	integer i;
+	integer j;
 	
+	// Combinational logic
 	always @(*) begin
 		BCD_o = 0;
 		
-		// For each bit of input
+		// For each bit in the input
 		for(i=0; i<INPUT_BITS; i=i+1) begin
 			
-			// If a hex digit of 'BCD_o' is more than 4, add 3 to it. 
-			if(BCD_o[3:0] >= 4'd5) 
-				BCD_o[3:0] = BCD_o[3:0] + 4'd3;
-			
-			if(BCD_o[7:4] >= 4'd5)
-				BCD_o[7:4] = BCD_o[7:4] + 4'd3;
-			
-			if(BCD_o[11:8] >= 4'd5)
-				BCD_o[11:8] = BCD_o[11:8] + 4'd3;
+			// For each digit in the output
+			for(j=3; j<OUTPUT_BITS; j=j+4) begin
 				
-			if(BCD_o[15:12] >= 4'd5)
-				BCD_o[15:12] = BCD_o[15:12] + 4'd3; 
-				
-			if(BCD_o[19:16] >= 4'd5)
-				BCD_o[19:12] = BCD_o[19:12] + 4'd3; 
+				// If a digit is >= 5
+				if(BCD_o[j-:4] >= 4'd5) begin
+					
+					// Then add 3 to this digit
+					BCD_o[j-:4] = BCD_o[j-:4] + 4'd3;
+				end
+			end
 			
-			BCD_o = {BCD_o[18:0], Binary_i[(INPUT_BITS-1)-i]};
+			// Shift output register
+			// and append another bit from the binary input
+			BCD_o = {BCD_o[OUTPUT_BITS-2:0], Binary_i[(INPUT_BITS-1)-i]};
 		end
 	end
 
