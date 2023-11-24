@@ -1,4 +1,4 @@
-// 231117
+// 231124
 
 `timescale 1ns/1ns
 
@@ -6,8 +6,8 @@
 module DoubleDabble_tb();
 	
 	// Configuration
-	parameter INPUT_BITS    = 12;
-	parameter OUTPUT_DIGITS = 8;
+	parameter INPUT_BITS    = 8;
+	parameter OUTPUT_DIGITS = 3;
 	parameter OUTPUT_BITS   = OUTPUT_DIGITS * 4;
 	
 	parameter CLOCK_HZ            = 1_000_000;
@@ -68,10 +68,10 @@ module DoubleDabble_tb();
 	initial begin
 		$timeformat(-9, 3, "ns", 10);
 		$display("===== START =====");
-		$display("INPUT_BITS:    %9d", INPUT_BITS);
-		$display("OUTPUT_BITS:   %9d", DUT.OUTPUT_BITS);
-		$display("OUTPUT_DIGITS: %9d", OUTPUT_DIGITS);
-		$display("MaxInput:      %9d", MaxInput);
+		// $display("INPUT_BITS:    %9d", INPUT_BITS);
+		// $display("OUTPUT_BITS:   %9d", DUT.OUTPUT_BITS);
+		// $display("OUTPUT_DIGITS: %9d", OUTPUT_DIGITS);
+		// $display("MaxInput:      %9d", MaxInput);
 		
 		// Test from zero to maximum value
 		for(i=0; i<=MaxInput; i=i+1) begin
