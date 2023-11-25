@@ -2,10 +2,10 @@
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
 [*] Fri Nov 24 21:02:04 2023
 [*]
-[dumpfile] "C:\verilog\double_dabble\double_dabble.vcd"
+[dumpfile] "double_dabble.vcd"
 [dumpfile_mtime] "Fri Nov 24 21:01:42 2023"
 [dumpfile_size] 98162
-[savefile] "C:\verilog\double_dabble\double_dabble.gtkw"
+[savefile] "double_dabble.gtkw"
 [timestart] 0
 [size] 1920 1009
 [pos] -1 -1

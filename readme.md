@@ -32,6 +32,10 @@ I decided to publish these peripherals because I think they may be useful for ot
 + [RAM](/ram) - Single port RAM.
 + [Pseudo Dual Port RAM](/ram_pseudo_dual_port) - RAM memory with a separate address port for reading data and a separate one for writing. Moreover, the write and read ports can be connected to completely different clock signals.
 
+**Computing**
+
++ [Binary to BCD converter - combinational Double Dabble](/double_dabble) - Converter of binary values to BCD code, which is often used by display controllers. It uses the Double Dabble algorithm in a combinational implementation.
+
 **Communication**
 
 + [UART Transmitter](/uart_tx) - UART transmitter developed to be as easy to use as possible. It supports 8-bit data transmission with one stop bit and no parity bit - the most common configuration.

@@ -44,20 +44,20 @@ module DoubleDabble_tb();
 	// Verification
 	integer PassCounter = 0;
 	integer FailCounter = 0;
-	integer Temp;
+	integer Result;
 	integer Digit;
 	
 	task Verify(input [INPUT_BITS-1:0] Binary, input [OUTPUT_BITS-1:0] BCD);
 		begin
 			// Initialize temporary variable
-			Temp = 0;
+			Result = 0;
 			
 			// Convert BCD to binary
 			for(Digit=0; Digit<OUTPUT_DIGITS; Digit=Digit+1) begin
-				Temp = Temp + BCD[Digit*4+3-:4] * 10**Digit;
+				Result = Result + BCD[Digit*4+3-:4] * 10**Digit;
 			end
 			
-			if(Temp === Binary)
+			if(Result === Binary)
 				PassCounter = PassCounter + 1;
 			else
 				FailCounter = FailCounter + 1;
