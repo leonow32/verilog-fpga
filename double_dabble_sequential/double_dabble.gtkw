@@ -1,22 +1,77 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Fri Nov 24 21:02:04 2023
+[*] Wed Nov 29 14:01:12 2023
 [*]
-[dumpfile] "double_dabble.vcd"
-[dumpfile_mtime] "Fri Nov 24 21:01:42 2023"
-[dumpfile_size] 98162
-[savefile] "double_dabble.gtkw"
+[dumpfile] "C:\verilog\double_dabble_sequential\double_dabble.vcd"
+[dumpfile_mtime] "Wed Nov 29 13:52:55 2023"
+[dumpfile_size] 3080
+[savefile] "C:\verilog\double_dabble_sequential\double_dabble.gtkw"
 [timestart] 0
 [size] 1920 1009
 [pos] -1 -1
-*-17.032677 10440 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-11.810952 6000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] DoubleDabble_tb.
 [sst_width] 197
-[signals_width] 142
+[signals_width] 168
 [sst_expanded] 1
 [sst_vpaned_height] 297
-@25
+@28
+DoubleDabble_tb.Reset
+DoubleDabble_tb.Clock
+@200
+-Inputs
+@28
+DoubleDabble_tb.Start
+@24
 DoubleDabble_tb.DUT.Binary_i[7:0]
+@200
+-Internals
+@28
+DoubleDabble_tb.DUT.State
+@24
+DoubleDabble_tb.DUT.Counter[2:0]
+@c00022
+DoubleDabble_tb.DUT.Binary[7:0]
+@28
+(0)DoubleDabble_tb.DUT.Binary[7:0]
+(1)DoubleDabble_tb.DUT.Binary[7:0]
+(2)DoubleDabble_tb.DUT.Binary[7:0]
+(3)DoubleDabble_tb.DUT.Binary[7:0]
+(4)DoubleDabble_tb.DUT.Binary[7:0]
+(5)DoubleDabble_tb.DUT.Binary[7:0]
+(6)DoubleDabble_tb.DUT.Binary[7:0]
+(7)DoubleDabble_tb.DUT.Binary[7:0]
+@1401200
+-group_end
+@22
+DoubleDabble_tb.DUT.BCD[11:0]
+@200
+-Debug
+@c00022
+DoubleDabble_tb.DUT.DEC[3:0]
+@28
+(0)DoubleDabble_tb.DUT.DEC[3:0]
+(1)DoubleDabble_tb.DUT.DEC[3:0]
+(2)DoubleDabble_tb.DUT.DEC[3:0]
+(3)DoubleDabble_tb.DUT.DEC[3:0]
+@1401200
+-group_end
+@c00023
+DoubleDabble_tb.DUT.TEN[3:0]
+@29
+(0)DoubleDabble_tb.DUT.TEN[3:0]
+(1)DoubleDabble_tb.DUT.TEN[3:0]
+(2)DoubleDabble_tb.DUT.TEN[3:0]
+(3)DoubleDabble_tb.DUT.TEN[3:0]
+@1401201
+-group_end
+@22
+DoubleDabble_tb.DUT.HUN[3:0]
+@200
+-Outputs
+@28
+DoubleDabble_tb.DUT.Busy_o
+DoubleDabble_tb.DUT.Done_o
 @22
 DoubleDabble_tb.DUT.BCD_o[11:0]
 [pattern_trace] 1

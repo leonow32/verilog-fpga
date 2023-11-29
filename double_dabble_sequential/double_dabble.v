@@ -7,40 +7,92 @@ module DoubleDabble #(
 	parameter OUTPUT_DIGITS = 5,
 	parameter OUTPUT_BITS   = OUTPUT_DIGITS * 4
 )(
+	input wire Clock,
+	input wire Reset,
 	input wire Start_i,
-	output wire Busy_o,
-	output wire Done_o,
+	output reg Busy_o,
+	output reg Done_o,
 	input wire [ INPUT_BITS-1:0] Binary_i,
 	output reg [OUTPUT_BITS-1:0] BCD_o
 );
 	
-	// For loop iterators
-	integer i;
-	integer j;
+	// Variables
 	
-	// Combinational logic
-	always @(*) begin
-		BCD_o = 0;
+	reg [ INPUT_BITS-1:0] Binary;
+	reg [OUTPUT_BITS-1:0] BCD;
+	
+	wire [3:0] DEC = BCD[ 3:0];
+	wire [3:0] TEN = BCD[ 7:4];
+	wire [3:0] HUN = BCD[11:8];
+	
+	// State machine
+	// 0 - Double
+	// 1 - Dabble
+	reg State;
+	localparam DOUBLE = 1'b0;
+	localparam DABBLE = 1'b1;
+	
+	localparam WIDTH = $clog2(INPUT_BITS - 1);
+	reg [WIDTH-1:0] Counter;
+	
+	always @(posedge Clock, negedge Reset) begin
+		if(!Reset) begin
+			Counter <= 0;
+			Busy_o <= 0;
+			Done_o <= 0;
+			Binary <= 0;
+			BCD <= 0;
+			State   <= DOUBLE;
+		end 
 		
-		// For each bit in the input
-		for(i=0; i<INPUT_BITS; i=i+1) begin
+		else if(Start_i) begin
+			Busy_o  <= 1'b1;
+			Done_o  <= 1'b0;
+			Binary  <= Binary_i;
+			Counter <= INPUT_BITS - 1'b1;
+			State   <= DOUBLE;
+		end 
+		
+		else if(Busy_o) begin
 			
-			// For each digit in the output
-			for(j=3; j<OUTPUT_BITS; j=j+4) begin
+			// Double
+			if(State == DOUBLE) begin
+				BCD <= {BCD[OUTPUT_BITS-2:0], Binary[INPUT_BITS-1]};
+				Binary <= {Binary[INPUT_BITS-2:0], 1'bX};
+				State <= DABBLE;
+			end 
+			
+			// Dabble
+			else begin
 				
-				// If a digit is >= 5
-				if(BCD_o[j-:4] >= 4'd5) begin
-					
-					// Then add 3 to this digit
-					BCD_o[j-:4] = BCD_o[j-:4] + 4'd3;
+				if(BCD[3:0] >= 4'd5)
+					BCD[3:0] <= BCD[3:0] + 4'd3;
+				
+				if(BCD[7:4] >= 4'd5)
+					BCD[7:4] <= BCD[7:4] + 4'd3;
+				
+				if(BCD[11:8] >= 4'd5)
+					BCD[11:8] <= BCD[11:8] + 4'd3;
+				
+				State <= DOUBLE;
+				
+				if(Counter) begin
+					Counter <= Counter - 1'b1;
+				end
+				
+				else begin
+					Busy_o <= 0;
+					Done_o <= 1'b1;
+					BCD_o <= BCD;
 				end
 			end
-			
-			// Shift output register
-			// and append another bit from the binary input
-			BCD_o = {BCD_o[OUTPUT_BITS-2:0], Binary_i[(INPUT_BITS-1)-i]};
+		end
+		
+		if(Done_o) begin
+			Done_o <= 1'b0;
 		end
 	end
+	
 
 endmodule
 

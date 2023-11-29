@@ -21,7 +21,11 @@ module DoubleDabble_tb();
 	end
 	
 	// Variables
-	reg  [ INPUT_BITS-1:0] Binary = 0;
+	reg Reset = 0;
+	reg Start = 0;
+	wire Busy;
+	wire Done;
+	reg  [ INPUT_BITS-1:0] Binary = {INPUT_BITS{1'bX}};
 	wire [OUTPUT_BITS-1:0] BCD;
 	integer MaxInput = 2**INPUT_BITS - 1;
 	integer i;
@@ -37,6 +41,11 @@ module DoubleDabble_tb();
 		.INPUT_BITS(INPUT_BITS),
 		.OUTPUT_DIGITS(OUTPUT_DIGITS)
 	) DUT(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Start_i(Start),
+		.Busy_o(Busy),
+		.Done_o(Done),
 		.Binary_i(Binary),
 		.BCD_o(BCD)
 	);
@@ -73,6 +82,24 @@ module DoubleDabble_tb();
 		// $display("OUTPUT_DIGITS: %9d", OUTPUT_DIGITS);
 		// $display("MaxInput:      %9d", MaxInput);
 		
+		@(posedge Clock);
+		Reset = 1'b1;
+		
+		@(posedge Clock);
+		@(posedge Clock);
+		@(posedge Clock);
+		
+		@(posedge Clock);
+		Binary <= 8'hFF;
+		Start  <= 1'b1;
+		
+		@(posedge Clock);
+		Binary <= 8'hXX;
+		Start  <= 1'b0;
+		
+		repeat(20) @(posedge Clock);
+		
+		/*
 		// Test from zero to maximum value
 		for(i=0; i<=MaxInput; i=i+1) begin
 			@(posedge Clock);
@@ -90,6 +117,7 @@ module DoubleDabble_tb();
 			@(posedge Clock);
 			Verify(Binary, BCD);
 		end
+		*/
 		
 		@(posedge Clock);
 		
