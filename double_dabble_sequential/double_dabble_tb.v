@@ -6,8 +6,8 @@
 module DoubleDabble_tb();
 	
 	// Configuration
-	parameter INPUT_BITS    = 8;
-	parameter OUTPUT_DIGITS = 3;
+	parameter INPUT_BITS    = 16;
+	parameter OUTPUT_DIGITS = 5;
 	parameter OUTPUT_BITS   = OUTPUT_DIGITS * 4;
 	
 	parameter CLOCK_HZ            = 1_000_000;
@@ -90,14 +90,16 @@ module DoubleDabble_tb();
 		@(posedge Clock);
 		
 		@(posedge Clock);
-		Binary <= 8'hFF;
+		Binary <= 16'd12345;
 		Start  <= 1'b1;
 		
 		@(posedge Clock);
 		Binary <= 8'hXX;
 		Start  <= 1'b0;
 		
-		repeat(20) @(posedge Clock);
+		@(posedge Done);
+		
+		repeat(3) @(posedge Clock);
 		
 		/*
 		// Test from zero to maximum value

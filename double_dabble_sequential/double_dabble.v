@@ -17,7 +17,7 @@ module DoubleDabble #(
 );
 	
 	// Variables
-	
+	integer i;
 	reg [ INPUT_BITS-1:0] Binary;
 	reg [OUTPUT_BITS-1:0] BCD;
 	
@@ -65,6 +65,14 @@ module DoubleDabble #(
 			// Dabble
 			else begin
 				
+				// Check each digit
+				// If the digit is >= 5 then add 3
+				for(i=3; i<OUTPUT_BITS; i=i+4) begin
+					if(BCD[i-:4] >= 4'd5)
+						BCD[i-:4] <= BCD[i-:4] + 4'd3;
+				end
+				
+				/*
 				if(BCD[3:0] >= 4'd5)
 					BCD[3:0] <= BCD[3:0] + 4'd3;
 				
@@ -73,6 +81,7 @@ module DoubleDabble #(
 				
 				if(BCD[11:8] >= 4'd5)
 					BCD[11:8] <= BCD[11:8] + 4'd3;
+				*/
 				
 				State <= DOUBLE;
 				
