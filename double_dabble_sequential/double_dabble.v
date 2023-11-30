@@ -21,13 +21,7 @@ module DoubleDabble #(
 	reg [ INPUT_BITS-1:0] Binary;
 	reg [OUTPUT_BITS-1:0] BCD;
 	
-	wire [3:0] DEC = BCD[ 3:0];
-	wire [3:0] TEN = BCD[ 7:4];
-	wire [3:0] HUN = BCD[11:8];
-	
 	// State machine
-	// 0 - Double
-	// 1 - Dabble
 	reg State;
 	localparam DOUBLE = 1'b0;
 	localparam DABBLE = 1'b1;
@@ -38,10 +32,10 @@ module DoubleDabble #(
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
 			Counter <= 0;
-			Busy_o <= 0;
-			Done_o <= 0;
-			Binary <= 0;
-			BCD <= 0;
+			Busy_o  <= 0;
+			Done_o  <= 0;
+			Binary  <= 0;
+			BCD     <= 0;
 			State   <= DOUBLE;
 		end 
 		
@@ -50,6 +44,7 @@ module DoubleDabble #(
 			Done_o  <= 1'b0;
 			Binary  <= Binary_i;
 			Counter <= INPUT_BITS - 1'b1;
+			BCD     <= 0;
 			State   <= DOUBLE;
 		end 
 		
@@ -57,9 +52,9 @@ module DoubleDabble #(
 			
 			// Double
 			if(State == DOUBLE) begin
-				BCD <= {BCD[OUTPUT_BITS-2:0], Binary[INPUT_BITS-1]};
-				Binary <= {Binary[INPUT_BITS-2:0], 1'bX};
-				State <= DABBLE;
+				BCD    <= {BCD[OUTPUT_BITS-2:0], Binary[INPUT_BITS-1]};
+				Binary <= {Binary[INPUT_BITS-2:0], 1'b0};
+				State  <= DABBLE;
 			end 
 			
 			// Dabble
@@ -72,35 +67,36 @@ module DoubleDabble #(
 						BCD[i-:4] <= BCD[i-:4] + 4'd3;
 				end
 				
-				/*
-				if(BCD[3:0] >= 4'd5)
-					BCD[3:0] <= BCD[3:0] + 4'd3;
-				
-				if(BCD[7:4] >= 4'd5)
-					BCD[7:4] <= BCD[7:4] + 4'd3;
-				
-				if(BCD[11:8] >= 4'd5)
-					BCD[11:8] <= BCD[11:8] + 4'd3;
-				*/
-				
-				State <= DOUBLE;
-				
+				// If counting in progress
 				if(Counter) begin
 					Counter <= Counter - 1'b1;
 				end
 				
+				// If counting done
 				else begin
 					Busy_o <= 0;
 					Done_o <= 1'b1;
-					BCD_o <= BCD;
+					BCD_o  <= BCD;
 				end
+				
+				State <= DOUBLE;
 			end
 		end
 		
+		// Clear done flag
 		if(Done_o) begin
 			Done_o <= 1'b0;
 		end
 	end
+	
+	generate
+		genvar k;
+		for(k=0; k<OUTPUT_DIGITS; k=k+1) begin: Digit
+			wire [3:0] Dig = BCD[(k*4+3)-:4];
+			//assign Dig[k] = BCD[(k*4+3)-:4];
+			//assign Digit[k] = BCD[(k*4-1)-:4];
+		end
+	endgenerate
 	
 
 endmodule
