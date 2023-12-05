@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Thu Nov 30 12:36:40 2023
+[*] Tue Dec 05 21:07:01 2023
 [*]
-[dumpfile] "C:\verilog\double_dabble_sequential\double_dabble.vcd"
-[dumpfile_mtime] "Thu Nov 30 12:09:56 2023"
+[dumpfile] "double_dabble.vcd"
+[dumpfile_mtime] "Tue Dec 05 20:57:22 2023"
 [dumpfile_size] 607044
-[savefile] "C:\verilog\double_dabble_sequential\double_dabble.gtkw"
-[timestart] 4578090
+[savefile] "double_dabble.gtkw"
+[timestart] 2210370
 [size] 1920 1009
-[pos] -1 -1
-*-13.427840 4916000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -9 -9
+*-12.173063 4519480 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] DoubleDabble_tb.
 [treeopen] DoubleDabble_tb.DUT.
 [treeopen] DoubleDabble_tb.Verify.
@@ -23,8 +23,9 @@ DoubleDabble_tb.Clock
 @200
 -Inputs
 @28
+[color] 3
 DoubleDabble_tb.Start
-@22
+@25
 DoubleDabble_tb.DUT.Binary_i[7:0]
 @200
 -Internals
@@ -51,7 +52,7 @@ DoubleDabble_tb.DUT.BCD[11:0]
 -Outputs
 @28
 DoubleDabble_tb.DUT.Busy_o
-@29
+[color] 3
 DoubleDabble_tb.DUT.Done_o
 @22
 DoubleDabble_tb.DUT.BCD_o[11:0]
