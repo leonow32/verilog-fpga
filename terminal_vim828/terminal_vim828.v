@@ -3,8 +3,7 @@
 `default_nettype none
 module TerminalVIM828 #(
 	parameter CLOCK_HZ  	= 10_000_000,
-	parameter BAUD			= 115200,
-	parameter CHANGE_COM_US	= 1000
+	parameter BAUD			= 115200
 )(
 	input wire Clock,
 	input wire Reset,
@@ -51,7 +50,7 @@ module TerminalVIM828 #(
 	// Display instance
 	VIM828 #(
 		.CLOCK_HZ(CLOCK_HZ),
-		.CHANGE_COM_US(CHANGE_COM_US)
+		.CHANGE_COM_US(1000)
 	) VIM828_inst(
 		.Clock(Clock),
 		.Reset(Reset),
