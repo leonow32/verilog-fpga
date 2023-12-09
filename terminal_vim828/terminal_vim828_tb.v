@@ -39,8 +39,7 @@ module TerminalVIM828_tb();
 	// Instantiate device under test
 	TerminalVIM828 #(
 		.CLOCK_HZ(CLOCK_HZ),
-		.BAUD(100_000),
-		.CHANGE_COM_US(2000)
+		.BAUD(100_000)
 	) DUT(
 		.Clock(Clock),
 		.Reset(Reset),
