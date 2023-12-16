@@ -41,6 +41,7 @@ I decided to publish these peripherals because I think they may be useful for ot
 
 + [Sound Generator](/sound_generator) - generates sound of the desired frequency and duration.
 + [Melody Player](/melody_player) - This module is superior to the `SoundGenerator` module, which can only play a single sound at the desired frequency for the desired duration. The `MelodyPlayer` module is equipped with a ROM that contains music notes and their length of time. After starting the module with the `Play` signal, the module reads consecutive sounds from the memory and pushes them to the SoundGenerator. This way, a melody player with capabilities similar to the ringtone composer from the Nokia 3310 can be realized.
++ [Terminal VIM828](/terminal_vim828) - A module that combines the functionality of a UART receiver, a 14-segment decoder and a VIM828 display controller. When a character is received by the UART, it is converted into a 14-segment code and shown on the display. The display shows the eight most recently received characters.
 
 
 
