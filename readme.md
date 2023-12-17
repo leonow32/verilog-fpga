@@ -11,7 +11,8 @@ I decided to publish these peripherals because I think they may be useful for ot
 + [Decoder 14seg](/decoder_14seg) - Simple module to convert 8-bit ASCII data into 14-segment code that can drive a 14-segment display. Supports displaying digits from 0 to 9, letters from A to Z and some other characters. Designed to be used with `display_lcd_vim828`.
 + [LED Display Multiplexed Const](/display_multiplexed_const) - Module that controls an 8-digit LED display with a common cathode. Supports blanking out unnecessary zeros and adjustable multiplexing period.
 + [LED Display Multiplexed Variable](/display_multiplexed_variable) - Module that controls an n-digit LED display with a common cathode. The number of digits in the display is controlled with a parameter. Supports blanking out unnecessary zeros and adjustable multiplexing period.
-+ [LCD Display Multiplexed S401M16KR](/display_lcd_s401m16kr) - Multiplexing an LCD display is much more difficult than for an LED display. This controller works with the S401M16KR display from Lumex. This display works with 1/4 duty, that is, it has four electrodes in common COM and 1/3 bias, that is, the control voltage of the electrodes can have 4 different values.
++ [LCD Display S401M16KR](/display_lcd_s401m16kr) - Multiplexing an LCD display is much more difficult than for an LED display. This controller works with the S401M16KR display from Lumex. This display works with 1/4 duty, that is, it has four electrodes in common COM and 1/3 bias, that is, the control voltage of the electrodes can have 4 different values.
++ [LCD Display VIM828](/display_lcd_vim828) - A 14-segment display that supports 8 alphanumeric characters.
 + [VGA](/vga) - During development. VGA driver that will display some text on a monitor.
 
 **Timing:**
@@ -45,6 +46,7 @@ I decided to publish these peripherals because I think they may be useful for ot
 
 + [Sound Generator](/sound_generator) - generates sound of the desired frequency and duration.
 + [Melody Player](/melody_player) - This module is superior to the `SoundGenerator` module, which can only play a single sound at the desired frequency for the desired duration. The `MelodyPlayer` module is equipped with a ROM that contains music notes and their length of time. After starting the module with the `Play` signal, the module reads consecutive sounds from the memory and pushes them to the SoundGenerator. This way, a melody player with capabilities similar to the ringtone composer from the Nokia 3310 can be realized.
++ [Terminal VIM828](/terminal_vim828) - A module that combines the functionality of a UART receiver, a 14-segment decoder and a VIM828 display controller. When a character is received by the UART, it is converted into a 14-segment code and shown on the display. The display shows the eight most recently received characters.
 
 
 
