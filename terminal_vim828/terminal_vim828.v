@@ -3,8 +3,7 @@
 `default_nettype none
 module TerminalVIM828 #(
 	parameter CLOCK_HZ  	= 10_000_000,
-	parameter BAUD			= 115200,
-	parameter CHANGE_COM_US	= 1000
+	parameter BAUD			= 115200
 )(
 	input wire Clock,
 	input wire Reset,
@@ -48,25 +47,6 @@ module TerminalVIM828 #(
 	reg [13:0] Segments1;
 	reg [13:0] Segments0;
 	
-	// Display instance
-	VIM828 #(
-		.CLOCK_HZ(CLOCK_HZ),
-		.CHANGE_COM_US(CHANGE_COM_US)
-	) VIM828_inst(
-		.Clock(Clock),
-		.Reset(Reset),
-		.Segments7_i(Segments7),
-		.Segments6_i(Segments6),
-		.Segments5_i(Segments5),
-		.Segments4_i(Segments4),
-		.Segments3_i(Segments3),
-		.Segments2_i(Segments2),
-		.Segments1_i(Segments1),
-		.Segments0_i(Segments0),
-		.DecimalPoints_i(8'b00000001),
-		.Pin_o(Pin_o)
-	);
-	
 	reg OneBitDelay;
 	
 	always @(posedge Clock, negedge Reset) begin
@@ -97,6 +77,25 @@ module TerminalVIM828 #(
 			Segments7 <= Segments6;
 		end
 	end
+	
+	// Display instance
+	VIM828 #(
+		.CLOCK_HZ(CLOCK_HZ),
+		.CHANGE_COM_US(1000)
+	) VIM828_inst(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Segments7_i(Segments7),
+		.Segments6_i(Segments6),
+		.Segments5_i(Segments5),
+		.Segments4_i(Segments4),
+		.Segments3_i(Segments3),
+		.Segments2_i(Segments2),
+		.Segments1_i(Segments1),
+		.Segments0_i(Segments0),
+		.DecimalPoints_i(8'b00000001),
+		.Pin_o(Pin_o)
+	);
 	
 endmodule
 `default_nettype wire

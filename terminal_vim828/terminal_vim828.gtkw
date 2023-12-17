@@ -1,21 +1,23 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sat Nov 11 09:48:14 2023
+[*] Mon Dec 11 20:59:21 2023
 [*]
 [dumpfile] "terminal_vim828.vcd"
-[dumpfile_mtime] "Fri Nov 10 14:16:48 2023"
-[dumpfile_size] 3723523
+[dumpfile_mtime] "Mon Dec 11 19:58:54 2023"
+[dumpfile_size] 1157194
 [savefile] "terminal_vim828.gtkw"
 [timestart] 0
-[size] 1920 1009
-[pos] -1 -1
-*-18.247215 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1918 743
+[pos] -8 229
+*-17.170134 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TerminalVIM828_tb.
 [treeopen] TerminalVIM828_tb.DUT.
-[sst_width] 197
+[treeopen] TerminalVIM828_tb.DUT.UartRx_Inst.
+[treeopen] TerminalVIM828_tb.UartTx_Inst.
+[sst_width] 257
 [signals_width] 244
 [sst_expanded] 1
-[sst_vpaned_height] 297
+[sst_vpaned_height] 249
 @28
 TerminalVIM828_tb.Reset
 TerminalVIM828_tb.Clock
@@ -34,6 +36,7 @@ TerminalVIM828_tb.DUT.Rx_i
 @820
 TerminalVIM828_tb.DUT.UartRx_Inst.Data_o[7:0]
 @28
+[color] 3
 TerminalVIM828_tb.DUT.UartRx_Inst.Done_o
 @200
 -14 Segment Decoder
@@ -44,6 +47,7 @@ TerminalVIM828_tb.DUT.Decoder14seg_inst.Segments_o[13:0]
 @200
 -Display Memory
 @28
+[color] 3
 TerminalVIM828_tb.DUT.OneBitDelay
 @22
 TerminalVIM828_tb.DUT.Segments0[13:0]
