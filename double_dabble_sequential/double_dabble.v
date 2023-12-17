@@ -26,7 +26,7 @@ module DoubleDabble #(
 	localparam DOUBLE = 1'b0;
 	localparam DABBLE = 1'b1;
 	
-	localparam WIDTH = $clog2(INPUT_BITS - 1);
+	localparam WIDTH = $clog2(INPUT_BITS);
 	reg [WIDTH-1:0] Counter;
 	
 	always @(posedge Clock, negedge Reset) begin
@@ -84,7 +84,7 @@ module DoubleDabble #(
 		end
 		
 		// Clear done flag
-		if(Done_o) begin
+		else if(Done_o) begin
 			Done_o <= 1'b0;
 		end
 	end

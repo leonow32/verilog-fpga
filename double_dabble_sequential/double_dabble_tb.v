@@ -6,8 +6,8 @@
 module DoubleDabble_tb();
 	
 	// Configuration
-	parameter INPUT_BITS    = 8;
-	parameter OUTPUT_DIGITS = 3;
+	parameter INPUT_BITS    = 17;
+	parameter OUTPUT_DIGITS = 6;
 	parameter OUTPUT_BITS   = OUTPUT_DIGITS * 4;
 	
 	parameter CLOCK_HZ            = 1_000_000;
@@ -61,7 +61,7 @@ module DoubleDabble_tb();
 		integer Digit;
 		
 		begin: VerifyBlock
-			integer Result;
+			reg [OUTPUT_BITS-1:0] Result;
 			Result = 0;
 			
 			// Convert BCD to binary
@@ -71,8 +71,11 @@ module DoubleDabble_tb();
 			
 			if(Result === Binary)
 				PassCounter = PassCounter + 1;
-			else
+			else begin
 				FailCounter = FailCounter + 1;
+				$display("Result: %h, Binary %h, BCD: %h", Result, Binary, BCD);
+				//$fatal(0, "fatal error");
+			end
 				
 			//$display("Verify %d %h %d", Binary, BCD, Result === Binary);
 		end
