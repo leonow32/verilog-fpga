@@ -2,7 +2,7 @@
 
 ![Status](https://img.shields.io/badge/STATUS-READY-green.svg)
 
-A 14-segment display that supports 8 alphanumeric characters.
+A 14-segment display that supports 8 alphanumeric characters. Read the readme of `display_lcd_s401m16kr` to understand how LCD display works.
 
 
 ## Instantiation
@@ -33,9 +33,9 @@ A 14-segment display that supports 8 alphanumeric characters.
 + **CHANGE_COM_US** - The time how long each COM is active in [us].
 + **Clock** - Clock signal, active rising edge.
 + **Reset** - Asynchronous reset, active low.
-+ **SegmentsX_i[13:0] - .
-+ **DecimalPoints_i[7:0]** - .
-+ **Pin_o[36:1]** - .
++ **SegmentsX_i[13:0]** - Input segments for each character. High state causes segment visible, bit order is nmlkjihgfedcba.
++ **DecimalPoints_i[7:0]** - Input for decimal points after each character.
++ **Pin_o[36:1]** - Connect to LCD.
   
 ## Simulation
 
