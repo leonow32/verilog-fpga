@@ -4,6 +4,7 @@
 
 A 14-segment display that supports 8 alphanumeric characters. Read the readme of `display_lcd_s401m16kr` to understand how LCD display works.
 
+![Photo](vim828.jpg "VIM828")
 
 ## Instantiation
 
@@ -39,8 +40,7 @@ A 14-segment display that supports 8 alphanumeric characters. Read the readme of
   
 ## Simulation
 
-![Simulation](simulation1.png "Simulation")
-![Simulation](simulation2.png "Simulation")
+![Simulation](simulation.png "Simulation")
 
 ## Console output
 
