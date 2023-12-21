@@ -6,8 +6,8 @@
 module DoubleDabble_tb();
 	
 	// Configuration
-	parameter INPUT_BITS    = 17;
-	parameter OUTPUT_DIGITS = 6;
+	parameter INPUT_BITS    = 8;
+	parameter OUTPUT_DIGITS = 3;
 	parameter OUTPUT_BITS   = OUTPUT_DIGITS * 4;
 	
 	parameter CLOCK_HZ            = 1_000_000;
