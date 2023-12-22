@@ -1,8 +1,10 @@
-# Binary to BCD converter - Double Dabble algorithm
+# Binary to BCD converter - Double Dabble algorithm (combinational)
 
 ![Status](https://img.shields.io/badge/STATUS-READY-green.svg)
 
 Converter of binary values to BCD code, which is often used by display controllers. It uses the Double Dabble algorithm in a combinational implementation.
+
+Testbench tries to convert all possible values from zero to maximum and from maximum to zero. After the test, it shows how many attempts were successful and failed.
 
 ## Instantiation
 
@@ -24,3 +26,16 @@ Converter of binary values to BCD code, which is often used by display controlle
 + **OUTPUT_BITS** - Optional parameter. Defaults to `OUTPUT_DIGITS` * 4, since there are 4 bits for each digit in the BCD code. However, if the most significant digit can change in an incomplete range (e.g. from 0 to 3) then there is no need for 4 bits, but 2.
 + **Binary_i** - Input binary value.
 + **BCD_o** - Output in BCD code.
+
+## Simulation
+
+![Simulation](simulation.png "Simulation")
+
+## Console output
+
+	VCD info: dumpfile double_dabble.vcd opened for output.
+	===== START =====
+	Pass:         512
+	Fail:           0
+	====== END ======
+	double_dabble_tb.v:100: $finish called at 1025000 (1ns)

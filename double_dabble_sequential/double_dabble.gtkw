@@ -1,0 +1,60 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Fri Dec 22 21:38:23 2023
+[*]
+[dumpfile] "double_dabble.vcd"
+[dumpfile_mtime] "Fri Dec 22 21:37:25 2023"
+[dumpfile_size] 607040
+[savefile] "double_dabble.gtkw"
+[timestart] 2210370
+[size] 1920 1009
+[pos] -9 -9
+*-12.173063 4519480 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] DoubleDabble_tb.
+[treeopen] DoubleDabble_tb.DUT.
+[treeopen] DoubleDabble_tb.Verify.
+[sst_width] 197
+[signals_width] 318
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+DoubleDabble_tb.Reset
+DoubleDabble_tb.Clock
+@200
+-Inputs
+@28
+[color] 3
+DoubleDabble_tb.Start
+@24
+DoubleDabble_tb.DUT.Binary_i[7:0]
+@200
+-Internals
+@28
+DoubleDabble_tb.DUT.State
+@24
+DoubleDabble_tb.DUT.Counter[2:0]
+@c00022
+DoubleDabble_tb.DUT.Binary[7:0]
+@28
+(0)DoubleDabble_tb.DUT.Binary[7:0]
+(1)DoubleDabble_tb.DUT.Binary[7:0]
+(2)DoubleDabble_tb.DUT.Binary[7:0]
+(3)DoubleDabble_tb.DUT.Binary[7:0]
+(4)DoubleDabble_tb.DUT.Binary[7:0]
+(5)DoubleDabble_tb.DUT.Binary[7:0]
+(6)DoubleDabble_tb.DUT.Binary[7:0]
+(7)DoubleDabble_tb.DUT.Binary[7:0]
+@1401200
+-group_end
+@22
+DoubleDabble_tb.DUT.BCD[11:0]
+@200
+-Outputs
+@28
+DoubleDabble_tb.DUT.Busy_o
+[color] 3
+DoubleDabble_tb.DUT.Done_o
+@22
+DoubleDabble_tb.DUT.BCD_o[11:0]
+[pattern_trace] 1
+[pattern_trace] 0
