@@ -1,10 +1,10 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Tue Dec 05 21:07:01 2023
+[*] Fri Dec 22 21:38:23 2023
 [*]
 [dumpfile] "double_dabble.vcd"
-[dumpfile_mtime] "Tue Dec 05 20:57:22 2023"
-[dumpfile_size] 607044
+[dumpfile_mtime] "Fri Dec 22 21:37:25 2023"
+[dumpfile_size] 607040
 [savefile] "double_dabble.gtkw"
 [timestart] 2210370
 [size] 1920 1009
@@ -25,7 +25,7 @@ DoubleDabble_tb.Clock
 @28
 [color] 3
 DoubleDabble_tb.Start
-@25
+@24
 DoubleDabble_tb.DUT.Binary_i[7:0]
 @200
 -Internals
@@ -56,34 +56,5 @@ DoubleDabble_tb.DUT.Busy_o
 DoubleDabble_tb.DUT.Done_o
 @22
 DoubleDabble_tb.DUT.BCD_o[11:0]
-@c00022
-DoubleDabble_tb.DUT.Digit[2].Dig[3:0]
-@28
-(0)DoubleDabble_tb.DUT.Digit[2].Dig[3:0]
-(1)DoubleDabble_tb.DUT.Digit[2].Dig[3:0]
-(2)DoubleDabble_tb.DUT.Digit[2].Dig[3:0]
-(3)DoubleDabble_tb.DUT.Digit[2].Dig[3:0]
-@1401200
--group_end
-@200
--Debug
-@c00022
-DoubleDabble_tb.DUT.Digit[1].Dig[3:0]
-@28
-(0)DoubleDabble_tb.DUT.Digit[1].Dig[3:0]
-(1)DoubleDabble_tb.DUT.Digit[1].Dig[3:0]
-(2)DoubleDabble_tb.DUT.Digit[1].Dig[3:0]
-(3)DoubleDabble_tb.DUT.Digit[1].Dig[3:0]
-@1401200
--group_end
-@c00022
-DoubleDabble_tb.DUT.Digit[0].Dig[3:0]
-@28
-(0)DoubleDabble_tb.DUT.Digit[0].Dig[3:0]
-(1)DoubleDabble_tb.DUT.Digit[0].Dig[3:0]
-(2)DoubleDabble_tb.DUT.Digit[0].Dig[3:0]
-(3)DoubleDabble_tb.DUT.Digit[0].Dig[3:0]
-@1401200
--group_end
 [pattern_trace] 1
 [pattern_trace] 0
