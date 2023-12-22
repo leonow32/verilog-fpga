@@ -35,7 +35,8 @@ I decided to publish these peripherals because I think they may be useful for ot
 
 **Computing**
 
-+ [Binary to BCD converter - combinational Double Dabble](/double_dabble) - Converter of binary values to BCD code, which is often used by display controllers. It uses the Double Dabble algorithm in a combinational implementation.
++ [Binary to BCD converter - combinational Double Dabble](/double_dabble_combinational) - Converter of binary values to BCD code. It uses the Double Dabble algorithm in a combinational implementation.
++ [Binary to BCD converter - sequential Double Dabble](/double_dabble_sequential) - Converter of binary values to BCD code. It uses the Double Dabble algorithm in a sequential implementation.
 
 **Communication**
 

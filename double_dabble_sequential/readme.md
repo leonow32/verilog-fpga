@@ -1,4 +1,4 @@
-# Binary to BCD converter - Double Dabble algorithm
+# Binary to BCD converter - Double Dabble algorithm (sequential)
 
 ![Status](https://img.shields.io/badge/STATUS-READY-green.svg)
 
