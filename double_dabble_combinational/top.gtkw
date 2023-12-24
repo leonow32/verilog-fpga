@@ -1,0 +1,47 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sun Dec 24 20:10:55 2023
+[*]
+[dumpfile] "top.vcd"
+[dumpfile_mtime] "Sun Dec 24 19:34:32 2023"
+[dumpfile_size] 51160
+[savefile] "top.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -1 -1
+*-16.903425 28100 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top_tb.
+[treeopen] top_tb.DUT.
+[treeopen] top_tb.DUT.DisplayMultiplex_inst.
+[treeopen] top_tb.DUT.Encoder_inst.
+[sst_width] 197
+[signals_width] 201
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+top_tb.Reset
+top_tb.Clock
+@200
+-Encoder
+@28
+top_tb.DUT.Encoder_inst.AsyncA_i
+top_tb.DUT.Encoder_inst.AsyncB_i
+top_tb.DUT.Encoder_inst.Increment_o
+top_tb.DUT.Encoder_inst.Decrement_o
+@200
+-Counter
+@24
+top_tb.DUT.Counter[15:0]
+@22
+top_tb.DUT.Decimal[15:0]
+@200
+-Display
+@22
+top_tb.DUT.DisplayMultiplex_inst.Data_i[31:0]
+@28
+top_tb.DUT.DisplayMultiplex_inst.SwitchCathode_o
+@22
+top_tb.DUT.DisplayMultiplex_inst.Cathodes_o[7:0]
+top_tb.DUT.DisplayMultiplex_inst.Segments_o[7:0]
+[pattern_trace] 1
+[pattern_trace] 0

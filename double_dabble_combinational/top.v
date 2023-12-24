@@ -1,3 +1,4 @@
+// 231224
 
 `default_nettype none
 
@@ -32,7 +33,7 @@ module top #(
 	// Up/down counter, range 0...9999 decimal
 	reg [15:0] Counter;
 	
-	always @(posedge Clock, negedge Reset) begin
+	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
 			Counter <= 0;
 		end else if(Increment) begin
@@ -49,11 +50,11 @@ module top #(
 	end
 	
 	// Binary to BCD converter
-	wire Decimal;
+	wire [15:0] Decimal;
 	
 	DoubleDabble #(
 		.INPUT_BITS(16),
-		.OUTPUT_DIGITS(9)
+		.OUTPUT_DIGITS(4)
 	) DoubleDabble_inst(
 		.Binary_i(Counter),
 		.BCD_o(Decimal)
@@ -63,14 +64,15 @@ module top #(
 	DisplayMultiplex #(
 		.CLOCK_HZ(CLOCK_HZ),
 		.SWITCH_PERIOD_US(1000),
-		.DIGITS(DIGITS)
+		.DIGITS(8)
 	) DisplayMultiplex_inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Data_i({Counter, Decimal}),
+		.Data_i({Decimal, Counter}),
 		.DecimalPoints_i(8'b00010000),
 		.Cathodes_o(Cathodes_o),
-		.Segments_o(Segments_o)
+		.Segments_o(Segments_o),
+		.SwitchCathode_o()
 	);	
 	
 
