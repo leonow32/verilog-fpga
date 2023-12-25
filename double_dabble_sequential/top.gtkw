@@ -1,23 +1,24 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Mon Dec 25 10:29:58 2023
+[*] Mon Dec 25 10:26:31 2023
 [*]
 [dumpfile] "top.vcd"
-[dumpfile_mtime] "Mon Dec 25 10:29:37 2023"
-[dumpfile_size] 88325
+[dumpfile_mtime] "Mon Dec 25 10:16:22 2023"
+[dumpfile_size] 123314
 [savefile] "top.gtkw"
 [timestart] 0
 [size] 1920 1009
-[pos] -9 -9
-*-17.902624 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 -1
+*-18.008570 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.DUT.
 [treeopen] top_tb.DUT.DisplayMultiplex_inst.
+[treeopen] top_tb.DUT.DoubleDabble_inst.
 [treeopen] top_tb.DUT.Encoder_inst.
 [sst_width] 197
-[signals_width] 201
+[signals_width] 230
 [sst_expanded] 1
-[sst_vpaned_height] 297
+[sst_vpaned_height] 466
 @28
 top_tb.Reset
 top_tb.Clock
@@ -26,16 +27,33 @@ top_tb.Clock
 @28
 top_tb.DUT.Encoder_inst.AsyncA_i
 top_tb.DUT.Encoder_inst.AsyncB_i
+[color] 3
 top_tb.DUT.Encoder_inst.Increment_o
 top_tb.DUT.Encoder_inst.Decrement_o
 @200
 -Counter
 @24
 top_tb.DUT.Counter[15:0]
+@200
+-Double Dabble
 @22
-top_tb.DUT.Decimal[15:0]
+top_tb.DUT.DoubleDabble_inst.Binary_i[15:0]
+@28
+[color] 3
+top_tb.DUT.DoubleDabble_inst.Start_i
+@24
+top_tb.DUT.DoubleDabble_inst.Counter[3:0]
+@28
+top_tb.DUT.DoubleDabble_inst.Busy_o
+[color] 3
+top_tb.DUT.DoubleDabble_inst.Done_o
+@22
+top_tb.DUT.DoubleDabble_inst.BCD[15:0]
+top_tb.DUT.DoubleDabble_inst.BCD_o[15:0]
 @200
 -Display
+@23
+top_tb.DUT.Decimal[15:0]
 @22
 top_tb.DUT.DisplayMultiplex_inst.Data_i[31:0]
 @28

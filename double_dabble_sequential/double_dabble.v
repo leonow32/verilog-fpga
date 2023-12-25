@@ -36,6 +36,7 @@ module DoubleDabble #(
 			Done_o  <= 0;
 			Binary  <= 0;
 			BCD     <= 0;
+			BCD_o	<= 0;
 			State   <= DOUBLE;
 		end 
 		
@@ -88,16 +89,6 @@ module DoubleDabble #(
 			Done_o <= 1'b0;
 		end
 	end
-	
-	generate
-		genvar k;
-		for(k=0; k<OUTPUT_DIGITS; k=k+1) begin: Digit
-			wire [3:0] Dig = BCD[(k*4+3)-:4];
-			//assign Dig[k] = BCD[(k*4+3)-:4];
-			//assign Digit[k] = BCD[(k*4-1)-:4];
-		end
-	endgenerate
-	
 
 endmodule
 

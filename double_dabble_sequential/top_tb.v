@@ -65,7 +65,8 @@ module top_tb();
 			#20000;
 		end
 		
-		@(posedge Clock);
+		repeat(100)
+			@(posedge Clock);
 		
 		$display("====== END ======");
 		$finish;

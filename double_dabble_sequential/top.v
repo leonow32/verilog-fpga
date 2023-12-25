@@ -1,4 +1,4 @@
-// 231224
+// 231225
 
 `default_nettype none
 
@@ -49,6 +49,17 @@ module top #(
 		end
 	end
 	
+	// One tick delay
+	reg ConversionStart;
+	
+	always @(posedge Clock, negedge Reset) begin
+		if(!Reset) begin
+			ConversionStart <= 0;
+		end else begin
+			ConversionStart <= Increment | Decrement;
+		end
+	end
+	
 	// Binary to BCD converter
 	wire [15:0] Decimal;
 	
@@ -56,6 +67,11 @@ module top #(
 		.INPUT_BITS(16),
 		.OUTPUT_DIGITS(4)
 	) DoubleDabble_inst(
+		.Clock(Clock),
+		.Reset(Reset),
+		.Start_i(ConversionStart),
+		.Busy_o(),
+		.Done_o(),
 		.Binary_i(Counter),
 		.BCD_o(Decimal)
 	);
