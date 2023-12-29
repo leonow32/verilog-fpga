@@ -12,7 +12,7 @@ Testbench tries to convert all possible values from zero to maximum and from max
 	DoubleDabble #(
 		.INPUT_BITS(),
 		.OUTPUT_DIGITS()
-	) DUT(
+	) DoubleDabble_inst(
 		.Clock(Clock),
 		.Reset(Reset),
 		.Start_i(),

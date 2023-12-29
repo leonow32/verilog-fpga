@@ -13,7 +13,7 @@ Testbench tries to convert all possible values from zero to maximum and from max
 		.INPUT_BITS(),
 		.OUTPUT_DIGITS(),
 		.OUTPUT_BITS()      // Optional
-	) DUT(
+	) DoubleDabble_inst(
 		.Binary_i(),
 		.BCD_o()
 	);
