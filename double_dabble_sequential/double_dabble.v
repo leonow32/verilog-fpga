@@ -26,7 +26,8 @@ module DoubleDabble #(
 	localparam DOUBLE = 1'b0;
 	localparam DABBLE = 1'b1;
 	
-	localparam WIDTH = $clog2(INPUT_BITS);
+	localparam MAX_VALUE = INPUT_BITS - 1;
+	localparam WIDTH = $clog2(MAX_VALUE + 1);
 	reg [WIDTH-1:0] Counter;
 	
 	always @(posedge Clock, negedge Reset) begin
@@ -44,7 +45,7 @@ module DoubleDabble #(
 			Busy_o  <= 1'b1;
 			Done_o  <= 1'b0;
 			Binary  <= Binary_i;
-			Counter <= INPUT_BITS - 1'b1;
+			Counter <= MAX_VALUE;
 			BCD     <= 0;
 			State   <= DOUBLE;
 		end 

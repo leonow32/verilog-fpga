@@ -73,11 +73,8 @@ module DoubleDabble_tb();
 				PassCounter = PassCounter + 1;
 			else begin
 				FailCounter = FailCounter + 1;
-				$display("Result: %h, Binary %h, BCD: %h", Result, Binary, BCD);
-				//$fatal(0, "fatal error");
+				//$display("Result: %h, Binary %h, BCD: %h", Result, Binary, BCD);
 			end
-				
-			//$display("Verify %d %h %d", Binary, BCD, Result === Binary);
 		end
 	endtask
 	
@@ -89,6 +86,7 @@ module DoubleDabble_tb();
 		$display("OUTPUT_BITS:   %9d", DUT.OUTPUT_BITS);
 		$display("OUTPUT_DIGITS: %9d", OUTPUT_DIGITS);
 		$display("MaxInput:      %9d", MaxInput);
+		$display("Counter WIDTH: %9d", DUT.WIDTH);
 		
 		@(posedge Clock);
 		Reset = 1'b1;
