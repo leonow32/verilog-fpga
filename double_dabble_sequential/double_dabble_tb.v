@@ -73,7 +73,7 @@ module DoubleDabble_tb();
 				PassCounter = PassCounter + 1;
 			else begin
 				FailCounter = FailCounter + 1;
-				//$display("Result: %h, Binary %h, BCD: %h", Result, Binary, BCD);
+				$fatal(0, "Result: %h, Binary %h, BCD: %h", Result, Binary, BCD);
 			end
 		end
 	endtask
