@@ -23,7 +23,6 @@ module DoubleDabble_tb();
 	// Variables
 	reg Reset = 0;
 	reg Start = 0;
-	wire Busy;
 	wire Done;
 	reg  [ INPUT_BITS-1:0] Binary = {INPUT_BITS{1'bX}};
 	wire [OUTPUT_BITS-1:0] BCD;
@@ -47,7 +46,7 @@ module DoubleDabble_tb();
 		.Clock(Clock),
 		.Reset(Reset),
 		.Start_i(Start),
-		.Busy_o(Busy),
+		.Busy_o(),
 		.Done_o(Done),
 		.Binary_i(Binary),
 		.BCD_o(BCD)
