@@ -68,17 +68,15 @@ module DoubleDabble_tb();
 	initial begin
 		$timeformat(-9, 3, "ns", 10);
 		$display("===== START =====");
-		// $display("INPUT_BITS:    %9d", INPUT_BITS);
-		// $display("OUTPUT_BITS:   %9d", DUT.OUTPUT_BITS);
-		// $display("OUTPUT_DIGITS: %9d", OUTPUT_DIGITS);
-		// $display("MaxInput:      %9d", MaxInput);
+		$display("INPUT_BITS:    %9d", INPUT_BITS);
+		$display("OUTPUT_BITS:   %9d", DUT.OUTPUT_BITS);
+		$display("OUTPUT_DIGITS: %9d", OUTPUT_DIGITS);
+		$display("MaxInput:      %9d", MaxInput);
 		
 		// Test from zero to maximum value
 		for(i=0; i<=MaxInput; i=i+1) begin
 			@(posedge Clock);
 			Binary <= i;
-			
-			@(posedge Clock);
 			Verify(Binary, BCD);
 		end
 		
@@ -86,8 +84,6 @@ module DoubleDabble_tb();
 		for(i=MaxInput; i>=0; i=i-1) begin
 			@(posedge Clock);
 			Binary <= i;
-			
-			@(posedge Clock);
 			Verify(Binary, BCD);
 		end
 		

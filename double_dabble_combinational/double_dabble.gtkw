@@ -1,21 +1,23 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Fri Nov 24 21:02:04 2023
+[*] Tue Jan 23 19:47:29 2024
 [*]
 [dumpfile] "double_dabble.vcd"
-[dumpfile_mtime] "Fri Nov 24 21:01:42 2023"
-[dumpfile_size] 98162
+[dumpfile_mtime] "Tue Jan 23 19:32:03 2024"
+[dumpfile_size] 91444
 [savefile] "double_dabble.gtkw"
 [timestart] 0
 [size] 1920 1009
 [pos] -1 -1
-*-17.032677 10440 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-11.709453 4000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] DoubleDabble_tb.
 [sst_width] 197
 [signals_width] 142
 [sst_expanded] 1
 [sst_vpaned_height] 297
-@25
+@28
+DoubleDabble_tb.Clock
+@24
 DoubleDabble_tb.DUT.Binary_i[7:0]
 @22
 DoubleDabble_tb.DUT.BCD_o[11:0]
