@@ -64,9 +64,9 @@ module DoubleDabble #(
 				
 				// Check each digit
 				// If the digit is >= 5 then add 3
-				for(i=3; i<OUTPUT_BITS; i=i+4) begin
-					if(BCD[i-:4] >= 4'd5)
-						BCD[i-:4] <= BCD[i-:4] + 4'd3;
+				for(i=0; i<OUTPUT_BITS; i=i+4) begin
+					if(BCD[i+:4] >= 4'd5)
+						BCD[i+:4] <= BCD[i+:4] + 4'd3;
 				end
 				
 				// If counting in progress

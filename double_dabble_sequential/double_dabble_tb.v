@@ -65,7 +65,7 @@ module DoubleDabble_tb();
 			
 			// Convert BCD to binary
 			for(Digit=0; Digit<OUTPUT_DIGITS; Digit=Digit+1) begin
-				Result = Result + BCD[Digit*4+3-:4] * 10**Digit;
+				Result = Result + BCD[Digit*4+:4] * 10**Digit;
 			end
 			
 			if(Result === Binary)
