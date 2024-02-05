@@ -1,0 +1,43 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Mon Feb 05 21:15:21 2024
+[*]
+[dumpfile] "C:\verilog\frequency_meter\frequency_meter.vcd"
+[dumpfile_mtime] "Mon Feb 05 21:03:56 2024"
+[dumpfile_size] 857751
+[savefile] "C:\verilog\frequency_meter\frequency_meter.gtkw"
+[timestart] 988710
+[size] 1920 1009
+[pos] -1 -1
+*-11.262568 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] FrequencyMeter_tb.
+[treeopen] FrequencyMeter_tb.DUT.
+[sst_width] 197
+[signals_width] 215
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+FrequencyMeter_tb.Reset
+FrequencyMeter_tb.Clock
+FrequencyMeter_tb.TestSignal
+FrequencyMeter_tb.DUT.SignalSync
+FrequencyMeter_tb.DUT.SignalEdge
+@200
+-Frequency Meter
+@24
+FrequencyMeter_tb.DUT.Counter[31:0]
+@28
+FrequencyMeter_tb.DUT.OneSecondStrobe
+@200
+-BIN/BCD
+@22
+FrequencyMeter_tb.DUT.DoubleDabble_inst.Binary[31:0]
+@28
+FrequencyMeter_tb.DUT.DoubleDabble_inst.Busy_o
+@29
+[color] 3
+FrequencyMeter_tb.DUT.DoubleDabble_inst.Done_o
+@22
+FrequencyMeter_tb.DUT.Decimal[39:0]
+[pattern_trace] 1
+[pattern_trace] 0
