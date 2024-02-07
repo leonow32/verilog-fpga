@@ -12,9 +12,6 @@ module FrequencyMeter #(
 	output wire [7:0] Segments_o	// Pin 39 38 37 36 35 34 30 29
 );
 
-
-
-
 	// Synchronize the signal with FPGA clock domain
 	wire SignalSync;
 	
@@ -43,7 +40,7 @@ module FrequencyMeter #(
 	
 	StrobeGenerator #(
 		.CLOCK_HZ(CLOCK_HZ),
-		.PERIOD_US(1_000)
+		.PERIOD_US(1_000_000)
 	) StrobeGenerator_inst(
 		.Clock(Clock),
 		.Reset(Reset),
@@ -52,7 +49,7 @@ module FrequencyMeter #(
 	);
 	
 	// Counter to count detected edges in 1 second periods
-	reg [31:0] Counter;
+	reg [25:0] Counter;
 	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset)
@@ -64,11 +61,11 @@ module FrequencyMeter #(
 	end
 	
 	// Conver counter value to BCD code
-	wire [39:0] Decimal;
+	wire [31:0] Decimal;
 	
 	DoubleDabble #(
-		.INPUT_BITS(32),
-		.OUTPUT_DIGITS(10)
+		.INPUT_BITS(26),
+		.OUTPUT_DIGITS(8)
 	) DoubleDabble_inst(
 		.Clock(Clock),
 		.Reset(Reset),

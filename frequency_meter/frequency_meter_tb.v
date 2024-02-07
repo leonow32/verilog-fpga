@@ -6,8 +6,8 @@
 module FrequencyMeter_tb();
 	
 	// Configuration
-	parameter CLOCK_HZ       = 1_000_000;
-	parameter TEST_SIGNAL_HZ = 300_000;
+	parameter CLOCK_HZ       = 2_000_000;
+	parameter TEST_SIGNAL_HZ = 123456;
 	
 	// Clock generator
 	reg Clock = 1'b1;
@@ -17,7 +17,7 @@ module FrequencyMeter_tb();
 	end
 	
 	// Test signal generator
-	reg TestSignal = 1'b1;
+	reg TestSignal = 1'b0;
 	always begin
 		#(1_000_000_000.0 / (2 * TEST_SIGNAL_HZ));
 		TestSignal = !TestSignal;
@@ -46,20 +46,17 @@ module FrequencyMeter_tb();
 	initial begin
 		$timeformat(-9, 3, "ns", 10);
 		$display("===== START =====");
-		// $display("INPUT_BITS:    %9d", INPUT_BITS);
-		// $display("OUTPUT_BITS:   %9d", DUT.OUTPUT_BITS);
-		// $display("OUTPUT_DIGITS: %9d", OUTPUT_DIGITS);
-		// $display("MaxInput:      %9d", MaxInput);
-		// $display("Counter WIDTH: %9d", DUT.WIDTH);
+		$display("Test freq: %0d", TEST_SIGNAL_HZ);
 		
 		@(posedge Clock);
 		Reset = 1'b1;
 		
-		//@(posedge DUT.DoubleDabble_inst.Done_o)
+		@(posedge DUT.DoubleDabble_inst.Done_o)
 		
-		
-		repeat(10000)
+		repeat(100)
 			@(posedge Clock);
+		
+		$display("Result:    %0H", DUT.Decimal);
 		
 		$display("====== END ======");
 		$finish;
