@@ -7,7 +7,7 @@ module FrequencyMeter #(
 )(
 	input wire Clock,				// Pin 20
 	input wire Reset,				// Pin 17
-	input wire SignalAsync_i,			// Pin 
+	input wire SignalAsync_i,		// Pin 75
 	output wire [7:0] Cathodes_o,	// Pin 40 41 42 43 45 47 51 52
 	output wire [7:0] Segments_o	// Pin 39 38 37 36 35 34 30 29
 );
