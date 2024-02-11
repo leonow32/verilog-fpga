@@ -1,0 +1,48 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Wed Feb 07 19:23:20 2024
+[*]
+[dumpfile] "frequency_meter.vcd"
+[dumpfile_mtime] "Wed Feb 07 19:11:20 2024"
+[dumpfile_size] 156920007
+[savefile] "frequency_meter.gtkw"
+[timestart] 999978180
+[size] 1920 1009
+[pos] -1 -1
+*-13.043156 1000036800 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] FrequencyMeter_tb.
+[treeopen] FrequencyMeter_tb.DUT.
+[sst_width] 260
+[signals_width] 219
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+FrequencyMeter_tb.Reset
+FrequencyMeter_tb.Clock
+@200
+-Signal
+@28
+[color] 2
+FrequencyMeter_tb.TestSignal
+FrequencyMeter_tb.DUT.SignalSync
+@29
+FrequencyMeter_tb.DUT.SignalEdge
+@200
+-Frequency Meter
+@24
+FrequencyMeter_tb.DUT.Counter[25:0]
+@28
+FrequencyMeter_tb.DUT.OneSecondStrobe
+@200
+-BIN/BCD
+@28
+FrequencyMeter_tb.DUT.DoubleDabble_inst.Busy_o
+@22
+FrequencyMeter_tb.DUT.DoubleDabble_inst.Counter[4:0]
+@28
+[color] 3
+FrequencyMeter_tb.DUT.DoubleDabble_inst.Done_o
+@22
+FrequencyMeter_tb.DUT.Decimal[31:0]
+[pattern_trace] 1
+[pattern_trace] 0
