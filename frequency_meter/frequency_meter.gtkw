@@ -2,10 +2,10 @@
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
 [*] Wed Feb 07 19:23:20 2024
 [*]
-[dumpfile] "C:\verilog\frequency_meter\frequency_meter.vcd"
+[dumpfile] "frequency_meter.vcd"
 [dumpfile_mtime] "Wed Feb 07 19:11:20 2024"
 [dumpfile_size] 156920007
-[savefile] "C:\verilog\frequency_meter\frequency_meter.gtkw"
+[savefile] "frequency_meter.gtkw"
 [timestart] 999978180
 [size] 1920 1009
 [pos] -1 -1
