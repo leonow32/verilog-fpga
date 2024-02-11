@@ -60,7 +60,7 @@ module FrequencyMeter #(
 			Counter <= Counter + 1'b1;
 	end
 	
-	// Conver counter value to BCD code
+	// Convert counter value to BCD code
 	wire [31:0] Decimal;
 	
 	DoubleDabble #(
