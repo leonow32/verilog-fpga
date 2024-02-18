@@ -6,60 +6,66 @@
 module DDS_tb();
 	
 	// Configuration
-	parameter OUTPUT_BITS   = OUTPUT_DIGITS * 4;
-	
 	parameter CLOCK_HZ            = 1_000_000;
 	
 	// Clock generator
 	reg Clock = 1'b1;
 	always begin
-		#(HALF_PERIOD_NS = 1_000_000_000.0 / (2 * CLOCK_HZ));
+		#(1_000_000_000.0 / (2 * CLOCK_HZ));
 		Clock = !Clock;
 	end
 	
 	// Variables
 	reg Reset = 0;
-	reg Start = 0;
-	wire Done;
-	reg  [ INPUT_BITS-1:0] Binary = {INPUT_BITS{1'bX}};
-	wire [OUTPUT_BITS-1:0] BCD;
-	
-	integer MaxInput = 2**INPUT_BITS - 1;
-	
-	integer i;
+	wire Changed;
+	reg [7:0] TuningWord = 1;
 	
 	// Variable dump
 	initial begin
-		$dumpfile("double_dabble.vcd");
-		$dumpvars(0, DoubleDabble_tb);
+		$dumpfile("dds.vcd");
+		$dumpvars(0, DDS_tb);
 	end
 	
 	// Instantiate device under test
-	DDS #(
-		.INPUT_BITS(INPUT_BITS),
-		.OUTPUT_DIGITS(OUTPUT_DIGITS),
-		.OUTPUT_BITS(OUTPUT_BITS)
-	) DUT(
+	DDS DUT(
 		.Clock(Clock),
 		.Reset(Reset),
-		.Start_i(Start),
-		.Busy_o(),
-		.Done_o(Done),
-		.Binary_i(Binary),
-		.BCD_o(BCD)
+		.TuningWord_i(TuningWord),
+		.Result_o(),
+		.Changed_o(Changed)
 	);
+	
+	real TimePrevious;
+	real TimeNow;
+	real FreqPrevious;
+	real FreqNow;
+		
+	always @(posedge Changed) begin: FreqMeasure
+		TimePrevious	= TimeNow;
+		TimeNow			= $realtime;
+		FreqPrevious	= FreqNow;
+		FreqNow 		= (TimeNow - TimePrevious);
+		
+		//$display("%t", TimePrevious);
+		
+		//if(FreqPrevious != FreqNow) begin
+			$display("%t Frequency: %d", 
+				$realtime,
+				FreqNow
+			);
+		//end
+	end
 
 	// Test sequence
 	initial begin
-		$timeformat(-9, 3, "ns", 10);
+		$timeformat(-9, 6, "ns", 10);
 		$display("===== START =====");
 		
 		@(posedge Clock);
 		Reset = 1'b1;
 		
 		
-		
-		@(posedge Clock);
+		repeat(1000) @(posedge Clock);
 		
 		$display("====== END ======");
 		$finish;
