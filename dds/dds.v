@@ -36,6 +36,19 @@ module DDS (
 	
 	assign Changed_o = (Result_o != Previous);
 	
+	// ROM with sine wave
+	ROM #(
+		.ADDRESS_WIDTH(10),
+		.DATA_WIDTH(8),
+		.MEMORY_DEPTH(1024),
+		.MEMORY_FILE("sin.mem")
+	) ROM_inst(
+		.Clock(Clock),
+		.Reset(Reset),
+		.ReadEnable_i(1'b1),
+		.Address_i(Accumulator[15:6]),
+		.Data_o()
+	);
 
 endmodule
 

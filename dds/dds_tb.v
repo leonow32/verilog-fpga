@@ -6,7 +6,7 @@
 module DDS_tb();
 	
 	// Configuration
-	parameter CLOCK_HZ            = 1_000_000;
+	parameter CLOCK_HZ            = 10_000_000;
 	
 	// Clock generator
 	reg Clock = 1'b1;
@@ -18,7 +18,7 @@ module DDS_tb();
 	// Variables
 	reg Reset = 0;
 	wire Changed;
-	reg [7:0] TuningWord = 1;
+	reg [7:0] TuningWord = 10;
 	
 	// Variable dump
 	initial begin
@@ -37,16 +37,16 @@ module DDS_tb();
 	
 	real TimePrevious;
 	real TimeNow;
-	real FreqPrevious;
-	real FreqNow;
-		
+	real Freq;
+	
+/*	
 	always @(posedge Changed) begin: FreqMeasure
 		TimePrevious	= TimeNow;
 		TimeNow			= $realtime;
 		FreqPrevious	= FreqNow;
 		FreqNow 		= (TimeNow - TimePrevious);
 		
-		//$display("%t", TimePrevious);
+		// $display("%t", TimePrevious);
 		
 		//if(FreqPrevious != FreqNow) begin
 			$display("%t Frequency: %d", 
@@ -54,18 +54,34 @@ module DDS_tb();
 				FreqNow
 			);
 		//end
-	end
+	end*/
 
+
+	always @(posedge DUT.ROM_inst.Address_i == 10'd1) begin
+		TimePrevious	= TimeNow;
+		TimeNow			= $realtime;
+		Freq			= 1_000_000_000.0 / (TimeNow - TimePrevious);
+		
+		$display("%t %t %t %f", 
+			TimeNow, 
+			TimePrevious, 
+			TimeNow - TimePrevious, 
+			Freq
+		);
+	end
+	
+	wire Zego = (DUT.ROM_inst.Address_i == 10'd1);
+	
 	// Test sequence
 	initial begin
-		$timeformat(-9, 6, "ns", 10);
+		$timeformat(-6, 6, "us", 10);
 		$display("===== START =====");
 		
 		@(posedge Clock);
 		Reset = 1'b1;
 		
 		
-		repeat(1000) @(posedge Clock);
+		repeat(100000) @(posedge Clock);
 		
 		$display("====== END ======");
 		$finish;

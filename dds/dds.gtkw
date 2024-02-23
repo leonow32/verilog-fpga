@@ -1,27 +1,40 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sun Feb 18 20:55:30 2024
+[*] Fri Feb 23 21:25:11 2024
 [*]
 [dumpfile] "C:\verilog\dds\dds.vcd"
-[dumpfile_mtime] "Sun Feb 18 20:39:18 2024"
-[dumpfile_size] 40873
+[dumpfile_mtime] "Fri Feb 23 21:24:41 2024"
+[dumpfile_size] 5213365
 [savefile] "C:\verilog\dds\dds.gtkw"
-[timestart] 100400
-[size] 1920 1009
+[timestart] 0
+[size] 1536 793
 [pos] -1 -1
-*-12.228060 100400 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-20.870844 22820 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] DDS_tb.
+[treeopen] DDS_tb.DUT.
 [sst_width] 197
-[signals_width] 166
+[signals_width] 244
 [sst_expanded] 1
-[sst_vpaned_height] 297
+[sst_vpaned_height] 221
 @28
 DDS_tb.Clock
 @22
 DDS_tb.TuningWord[7:0]
 DDS_tb.DUT.Accumulator[15:0]
 DDS_tb.DUT.Result_o[7:0]
-@29
+@28
 DDS_tb.DUT.Changed_o
+@200
+-ROM
+@22
+DDS_tb.DUT.ROM_inst.Address_i[9:0]
+DDS_tb.DUT.ROM_inst.Data_o[7:0]
+@8022
+DDS_tb.DUT.ROM_inst.Data_o[7:0]
+@20000
+-
+-
+@29
+DDS_tb.Zego
 [pattern_trace] 1
 [pattern_trace] 0
