@@ -6,8 +6,7 @@ module DDS (
 	input wire Clock,
 	input wire Reset,
 	input wire [7:0] TuningWord_i,
-	output wire [7:0] Result_o,
-	output wire Changed_o
+	output wire [7:0] Result_o
 );
 	
 	// Phase accumulator
@@ -33,8 +32,6 @@ module DDS (
 			Previous <= Result_o;
 		end
 	end
-	
-	assign Changed_o = (Result_o != Previous);
 	
 	// ROM with sine wave
 	ROM #(

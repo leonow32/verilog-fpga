@@ -1,12 +1,13 @@
 // 240218
 
-`timescale 1ns/1ns
+`timescale 1ns/1ps
 
 `default_nettype none
 module DDS_tb();
 	
 	// Configuration
-	parameter CLOCK_HZ            = 10_000_000;
+	parameter CLOCK_HZ   = 25_000_000;
+	reg [7:0] TuningWord = 100;
 	
 	// Clock generator
 	reg Clock = 1'b1;
@@ -17,8 +18,6 @@ module DDS_tb();
 	
 	// Variables
 	reg Reset = 0;
-	wire Changed;
-	reg [7:0] TuningWord = 10;
 	
 	// Variable dump
 	initial begin
@@ -31,57 +30,36 @@ module DDS_tb();
 		.Clock(Clock),
 		.Reset(Reset),
 		.TuningWord_i(TuningWord),
-		.Result_o(),
-		.Changed_o(Changed)
+		.Result_o()
 	);
 	
-	real TimePrevious;
-	real TimeNow;
-	real Freq;
+	// Wire to catch the beginig of new cycle
+	// TODO - this is not accurate. Cycles may be omitted at high frequencies
+	wire PeriodStart = (DUT.ROM_inst.Address_i == 10'd1);
 	
-/*	
-	always @(posedge Changed) begin: FreqMeasure
-		TimePrevious	= TimeNow;
-		TimeNow			= $realtime;
-		FreqPrevious	= FreqNow;
-		FreqNow 		= (TimeNow - TimePrevious);
+	// Measure signal frequency
+	always @(posedge PeriodStart) begin: MeasureFreq
+		real TimePrevious;
+		real Freq;
 		
-		// $display("%t", TimePrevious);
-		
-		//if(FreqPrevious != FreqNow) begin
-			$display("%t Frequency: %d", 
-				$realtime,
-				FreqNow
-			);
-		//end
-	end*/
-
-
-	always @(posedge DUT.ROM_inst.Address_i == 10'd1) begin
-		TimePrevious	= TimeNow;
-		TimeNow			= $realtime;
-		Freq			= 1_000_000_000.0 / (TimeNow - TimePrevious);
-		
-		$display("%t %t %t %f", 
-			TimeNow, 
-			TimePrevious, 
-			TimeNow - TimePrevious, 
-			Freq
-		);
+		if(TimePrevious == 0) begin
+			TimePrevious = $realtime;
+		end else begin
+			Freq = 1_000_000_000.0 / ($realtime - TimePrevious);
+			$display("%t %10.3f Hz", $realtime, Freq);
+			TimePrevious = $realtime;
+		end
 	end
-	
-	wire Zego = (DUT.ROM_inst.Address_i == 10'd1);
 	
 	// Test sequence
 	initial begin
-		$timeformat(-6, 6, "us", 10);
+		$timeformat(-3, 3, "ms", 10);
 		$display("===== START =====");
 		
 		@(posedge Clock);
-		Reset = 1'b1;
+		Reset <= 1'b1;
 		
-		
-		repeat(100000) @(posedge Clock);
+		repeat(10) @(posedge PeriodStart);
 		
 		$display("====== END ======");
 		$finish;
