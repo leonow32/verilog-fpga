@@ -13,24 +13,10 @@ module DDS (
 	reg [15:0] Accumulator;
 	
 	always @(posedge Clock, negedge Reset) begin
-		if(!Reset) begin
+		if(!Reset)
 			Accumulator <= 0;
-		end else begin
+		else
 			Accumulator <= Accumulator + TuningWord_i;
-		end
-	end
-	
-	assign Result_o = Accumulator[15:8];
-	
-	// Change detection
-	reg [7:0] Previous;
-	
-	always @(posedge Clock, negedge Reset) begin
-		if(!Reset) begin
-			Previous <= 0;
-		end else begin
-			Previous <= Result_o;
-		end
 	end
 	
 	// ROM with sine wave
@@ -44,7 +30,7 @@ module DDS (
 		.Reset(Reset),
 		.ReadEnable_i(1'b1),
 		.Address_i(Accumulator[15:6]),
-		.Data_o()
+		.Data_o(Result_o)
 	);
 
 endmodule
