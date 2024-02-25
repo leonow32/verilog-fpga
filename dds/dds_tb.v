@@ -37,6 +37,8 @@ module DDS_tb();
 	// TODO - this is not accurate. Cycles may be omitted at high frequencies
 	wire PeriodStart = (DUT.ROM_inst.Address_i == 10'd1);
 	
+	wire Past = $past(TimePrevious, 1);
+	
 	// Measure signal frequency
 	always @(posedge PeriodStart) begin: MeasureFreq
 		real TimePrevious;

@@ -1,10 +1,10 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sat Feb 24 19:13:22 2024
+[*] Sun Feb 25 10:07:34 2024
 [*]
 [dumpfile] "C:\verilog\dds\dds.vcd"
-[dumpfile_mtime] "Sat Feb 24 19:08:00 2024"
-[dumpfile_size] 746468
+[dumpfile_mtime] "Sun Feb 25 09:47:56 2024"
+[dumpfile_size] 746560
 [savefile] "C:\verilog\dds\dds.gtkw"
 [timestart] 0
 [size] 1536 793
