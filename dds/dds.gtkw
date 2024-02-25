@@ -1,21 +1,21 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sun Feb 25 10:07:34 2024
+[*] Sun Feb 25 21:03:45 2024
 [*]
 [dumpfile] "C:\verilog\dds\dds.vcd"
-[dumpfile_mtime] "Sun Feb 25 09:47:56 2024"
-[dumpfile_size] 746560
+[dumpfile_mtime] "Sun Feb 25 20:22:01 2024"
+[dumpfile_size] 275307
 [savefile] "C:\verilog\dds\dds.gtkw"
 [timestart] 0
-[size] 1536 793
-[pos] -1 -1
-*-26.068851 184040000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1920 1009
+[pos] -1921 5
+*-23.917345 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] DDS_tb.
 [treeopen] DDS_tb.DUT.
 [sst_width] 197
 [signals_width] 244
 [sst_expanded] 1
-[sst_vpaned_height] 221
+[sst_vpaned_height] 297
 @28
 DDS_tb.Clock
 @200
@@ -25,7 +25,7 @@ DDS_tb.TuningWord[7:0]
 DDS_tb.DUT.Accumulator[15:0]
 @200
 -ROM
-@24
+@25
 DDS_tb.DUT.ROM_inst.Address_i[9:0]
 @8022
 DDS_tb.DUT.ROM_inst.Address_i[9:0]
@@ -37,7 +37,7 @@ DDS_tb.DUT.ROM_inst.Address_i[9:0]
 DDS_tb.DUT.ROM_inst.Data_o[7:0]
 @28
 [color] 3
-DDS_tb.PeriodStart
+DDS_tb.DUT.Overflow_o
 @200
 -DDS Output
 @22

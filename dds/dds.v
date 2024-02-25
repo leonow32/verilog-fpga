@@ -6,7 +6,8 @@ module DDS (
 	input wire Clock,
 	input wire Reset,
 	input wire [7:0] TuningWord_i,
-	output wire [7:0] Result_o
+	output wire [7:0] Result_o,
+	output wire Overflow_o
 );
 	
 	// Phase accumulator
@@ -32,6 +33,18 @@ module DDS (
 		.Address_i(Accumulator[15:6]),
 		.Data_o(Result_o)
 	);
+	
+	// 
+	reg [7:0] Previous;
+	always @(posedge Clock, negedge Reset) begin
+		if(!Reset) begin
+			Previous <= 0;
+		end else begin
+			Previous <= Accumulator[15:6];
+		end
+	end
+	
+	assign Overflow_o = (Previous > Accumulator[15:6]) ? 1'b1 : 1'b0;
 
 endmodule
 
