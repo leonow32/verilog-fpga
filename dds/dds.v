@@ -6,7 +6,7 @@ module DDS (
 	input wire Clock,
 	input wire Reset,
 	input wire [7:0] TuningWord_i,
-	output wire [7:0] Result_o,
+	output wire [7:0] Signal_o,
 	output wire Overflow_o
 );
 	
@@ -31,11 +31,12 @@ module DDS (
 		.Reset(Reset),
 		.ReadEnable_i(1'b1),
 		.Address_i(Accumulator[15:6]),
-		.Data_o(Result_o)
+		.Data_o(Signal_o)
 	);
 	
-	// 
+	// Counter overflow detection
 	reg [7:0] Previous;
+	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
 			Previous <= 0;

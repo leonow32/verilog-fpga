@@ -2,7 +2,9 @@
 
 `default_nettype none
 
-module top (
+module top #(
+	parameter CLOCK_HZ = 25_000_000
+)(
 	input wire Clock,				// Pin 20
 	input wire Reset,				// Pin 17
 	input wire EncoderA_i,			// Pin 68
@@ -12,10 +14,13 @@ module top (
 	output wire [7:0] Segments_o	// Pin 39 38 37 36 35 34 30 29
 );
 	
-	// Rotary encoder
+	//Variables
 	wire Increment;
 	wire Decrement;
+	wire Overflow;
+	reg [7:0] TuningWord;
 	
+	// Encoder instance
 	Encoder Encoder_inst(
 		.Clock(Clock),
 		.Reset(Reset),
@@ -30,7 +35,7 @@ module top (
 	);
 	
 	// Setting of the tuning word
-	reg [7:0] TuningWord;
+	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset)
 			TuningWord <= 0;
@@ -45,11 +50,20 @@ module top (
 		.Clock(Clock),
 		.Reset(Reset),
 		.TuningWord_i(TuningWord),
-		.Result_o(Signal_o),
-		.Overflow_o()
+		.Signal_o(Signal_o),
+		.Overflow_o(Overflow)
 	);
 	
-	
+	// Frequency meter instance
+	FrequencyMeter #(
+		.CLOCK_HZ(CLOCK_HZ)
+	) FrequencyMeter_inst(
+		.Clock(Clock),
+		.Reset(Reset),
+		.SignalAsync_i(Overflow),
+		.Cathodes_o(Cathodes_o),
+		.Segments_o(Segments_o)
+	);
 	
 	
 endmodule

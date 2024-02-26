@@ -34,12 +34,6 @@ module DDS_tb();
 		.Overflow_o()
 	);
 	
-	// Wire to catch the beginig of new cycle
-	// TODO - this is not accurate. Cycles may be omitted at high frequencies
-	//wire PeriodStart = (DUT.ROM_inst.Address_i == 10'd1);
-	
-	//ire Past = $past(TimePrevious, 1);
-	
 	// Measure signal frequency
 	always @(posedge DUT.Overflow_o) begin: MeasureFreq
 		real TimePrevious;
@@ -50,7 +44,6 @@ module DDS_tb();
 		end else begin
 			Freq = 1_000_000_000.0 / ($realtime - TimePrevious);
 			$display("%t %10.3f Hz", $realtime, Freq);
-			//$display("%d", $past(TuningWord));
 			TimePrevious = $realtime;
 		end
 	end
