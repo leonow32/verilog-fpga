@@ -7,7 +7,7 @@ module top_tb();
 	
 	// Configuration
 	parameter CLOCK_HZ = 25_000_000;
-	parameter TuningWordRequested = 10;
+	parameter TuningWordRequested = 35;
 	
 	// Clock generator
 	reg Clock = 1'b1;
@@ -20,7 +20,6 @@ module top_tb();
 	reg Reset = 0;
 	reg AsyncA = 1;
 	reg AsyncB = 1;
-	integer i;
 	
 	// Variable dump
 	initial begin
@@ -29,7 +28,7 @@ module top_tb();
 	end
 	
 	// Instantiate device under test	
-	top top_inst(
+	top DUT(
 		.Clock(Clock),
 		.Reset(Reset),
 		.EncoderA_i(AsyncA),
@@ -47,8 +46,11 @@ module top_tb();
 		@(posedge Clock);
 		Reset = 1'b1;
 		
-		// 10 increment events
-		for(i = 0; i < TuningWordRequested; i = i + 1) begin
+		repeat(5000)
+			@(posedge Clock);
+		
+		// Increment the tuning word
+		repeat(TuningWordRequested) begin
 			#10000 AsyncA = 1'b0;
 			#10000 AsyncB = 1'b0;
 			#10000 AsyncA = 1'b1;
@@ -56,7 +58,23 @@ module top_tb();
 			#20000;
 		end
 		
+		// Decrement the tuning word
+		repeat(TuningWordRequested) begin
+			#10000 AsyncB = 1'b0;
+			#10000 AsyncA = 1'b0;
+			#10000 AsyncB = 1'b1;
+			#10000 AsyncA = 1'b1;
+			#20000;
+		end
+		
+		/*
 		repeat(100)
+			@(posedge Clock);
+		*/
+		
+		//@(posedge DUT.FrequencyMeter_inst.DoubleDabble_inst.Done_o);
+		
+		repeat(5000)
 			@(posedge Clock);
 		
 		$display("====== END ======");

@@ -7,7 +7,7 @@ module DDS_tb();
 	
 	// Configuration
 	parameter CLOCK_HZ   = 25_000_000;
-	reg [7:0] TuningWord = 1000;
+	reg [7:0] TuningWord = 100;
 	
 	// Clock generator
 	reg Clock = 1'b1;
@@ -30,7 +30,7 @@ module DDS_tb();
 		.Clock(Clock),
 		.Reset(Reset),
 		.TuningWord_i(TuningWord),
-		.Result_o(),
+		.Signal_o(),
 		.Overflow_o()
 	);
 	

@@ -1,41 +1,40 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Mon Feb 26 11:58:41 2024
+[*] Mon Feb 26 15:02:43 2024
 [*]
 [dumpfile] "C:\verilog\dds\top.vcd"
-[dumpfile_mtime] "Mon Feb 26 11:35:44 2024"
-[dumpfile_size] 1488628
+[dumpfile_mtime] "Mon Feb 26 15:02:25 2024"
+[dumpfile_size] 12228792
 [savefile] "C:\verilog\dds\top.gtkw"
 [timestart] 0
-[size] 1920 1009
+[size] 1536 793
 [pos] -1 -1
-*-17.210518 2 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-19.912872 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
-[treeopen] top_tb.top_inst.
-[treeopen] top_tb.top_inst.FrequencyMeter_inst.
+[treeopen] top_tb.DUT.
+[treeopen] top_tb.DUT.FrequencyMeter_inst.
 [sst_width] 280
 [signals_width] 272
 [sst_expanded] 1
-[sst_vpaned_height] 297
+[sst_vpaned_height] 221
 @28
 top_tb.Reset
 top_tb.Clock
 @200
 -Encoder
 @28
-top_tb.top_inst.Encoder_inst.AsyncA_i
-top_tb.top_inst.Encoder_inst.AsyncB_i
+top_tb.DUT.Encoder_inst.AsyncA_i
+top_tb.DUT.Encoder_inst.AsyncB_i
 [color] 3
-top_tb.top_inst.Encoder_inst.Increment_o
-@29
+top_tb.DUT.Encoder_inst.Increment_o
 [color] 3
-top_tb.top_inst.Encoder_inst.Decrement_o
+top_tb.DUT.Encoder_inst.Decrement_o
 @200
 -DDS
 @24
-top_tb.top_inst.DDS_inst.TuningWord_i[7:0]
+top_tb.DUT.DDS_inst.TuningWord_i[7:0]
 @8022
-top_tb.top_inst.DDS_inst.Signal_o[7:0]
+top_tb.DUT.DDS_inst.Signal_o[7:0]
 @20000
 -
 -
@@ -44,11 +43,16 @@ top_tb.top_inst.DDS_inst.Signal_o[7:0]
 @200
 -Frequency meter
 @24
-top_tb.top_inst.FrequencyMeter_inst.Counter[25:0]
+top_tb.DUT.FrequencyMeter_inst.Counter[25:0]
+@29
+[color] 3
+top_tb.DUT.FrequencyMeter_inst.OneSecondStrobe
+@22
+top_tb.DUT.FrequencyMeter_inst.DoubleDabble_inst.Counter[4:0]
 @28
 [color] 3
-top_tb.top_inst.FrequencyMeter_inst.DoubleDabble_inst.Done_o
+top_tb.DUT.FrequencyMeter_inst.DoubleDabble_inst.Done_o
 @22
-top_tb.top_inst.FrequencyMeter_inst.Decimal[31:0]
+top_tb.DUT.FrequencyMeter_inst.Decimal[31:0]
 [pattern_trace] 1
 [pattern_trace] 0
