@@ -1,6 +1,6 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Mon Feb 26 15:02:43 2024
+[*] Mon Feb 26 15:21:36 2024
 [*]
 [dumpfile] "C:\verilog\dds\top.vcd"
 [dumpfile_mtime] "Mon Feb 26 15:02:25 2024"
@@ -12,7 +12,10 @@
 *-19.912872 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.DUT.
+[treeopen] top_tb.DUT.DDS_inst.
+[treeopen] top_tb.DUT.Encoder_inst.
 [treeopen] top_tb.DUT.FrequencyMeter_inst.
+[treeopen] top_tb.DUT.FrequencyMeter_inst.DisplayMultiplex_inst.
 [sst_width] 280
 [signals_width] 272
 [sst_expanded] 1
