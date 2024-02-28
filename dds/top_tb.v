@@ -7,7 +7,7 @@ module top_tb();
 	
 	// Configuration
 	parameter CLOCK_HZ = 25_000_000;
-	parameter TuningWordRequested = 35;
+	parameter TuningWordRequested = 15;	// 35 is okay
 	
 	// Clock generator
 	reg Clock = 1'b1;
@@ -18,8 +18,10 @@ module top_tb();
 	
 	// Variables
 	reg Reset = 0;
-	reg AsyncA = 1;
-	reg AsyncB = 1;
+	reg AsyncFreqA = 1;
+	reg AsyncFreqB = 1;
+	reg AsyncAmplA = 1;
+	reg AsyncAmplB = 1;
 	
 	// Variable dump
 	initial begin
@@ -31,8 +33,10 @@ module top_tb();
 	top DUT(
 		.Clock(Clock),
 		.Reset(Reset),
-		.EncoderA_i(AsyncA),
-		.EncoderB_i(AsyncB),
+		.EncoderFreqA_i(AsyncFreqA),
+		.EncoderFreqB_i(AsyncFreqB),
+		.EncoderAmplA_i(AsyncAmplA),
+		.EncoderAmplB_i(AsyncAmplB),
 		.Signal_o(),
 		.Cathodes_o(),
 		.Segments_o()
@@ -49,22 +53,40 @@ module top_tb();
 		repeat(5000)
 			@(posedge Clock);
 		
-		// Increment the tuning word
+		// IncrementFreq the tuning word
 		repeat(TuningWordRequested) begin
-			#10000 AsyncA = 1'b0;
-			#10000 AsyncB = 1'b0;
-			#10000 AsyncA = 1'b1;
-			#10000 AsyncB = 1'b1;
+			#10000 AsyncFreqA = 1'b0;
+			#10000 AsyncFreqB = 1'b0;
+			#10000 AsyncFreqA = 1'b1;
+			#10000 AsyncFreqB = 1'b1;
 			#20000;
 		end
 		
-		// Decrement the tuning word
-		repeat(TuningWordRequested) begin
-			#10000 AsyncB = 1'b0;
-			#10000 AsyncA = 1'b0;
-			#10000 AsyncB = 1'b1;
-			#10000 AsyncA = 1'b1;
-			#20000;
+		// DecrementFreq the tuning word
+		// repeat(TuningWordRequested) begin
+			// #10000 AsyncFreqB = 1'b0;
+			// #10000 AsyncFreqA = 1'b0;
+			// #10000 AsyncFreqB = 1'b1;
+			// #10000 AsyncFreqA = 1'b1;
+			// #20000;
+		// end
+		
+		// Decrease amplitude from maximum to zero
+		repeat(255) begin
+			#2000 AsyncAmplB = 1'b0;
+			#2000 AsyncAmplA = 1'b0;
+			#2000 AsyncAmplB = 1'b1;
+			#2000 AsyncAmplA = 1'b1;
+			#5000;
+		end
+		
+		// Increase amplitude from zero to maximum
+		repeat(255) begin
+			#2000 AsyncAmplA = 1'b0;
+			#2000 AsyncAmplB = 1'b0;
+			#2000 AsyncAmplA = 1'b1;
+			#2000 AsyncAmplB = 1'b1;
+			#5000;
 		end
 		
 		/*

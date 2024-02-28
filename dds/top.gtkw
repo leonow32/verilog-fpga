@@ -1,43 +1,44 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Mon Feb 26 15:21:36 2024
+[*] Wed Feb 28 19:31:17 2024
 [*]
 [dumpfile] "C:\verilog\dds\top.vcd"
-[dumpfile_mtime] "Mon Feb 26 15:02:25 2024"
-[dumpfile_size] 12228792
+[dumpfile_mtime] "Wed Feb 28 19:30:45 2024"
+[dumpfile_size] 22005003
 [savefile] "C:\verilog\dds\top.gtkw"
 [timestart] 0
 [size] 1536 793
 [pos] -1 -1
-*-19.912872 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-20.698559 3200000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.DUT.
 [treeopen] top_tb.DUT.DDS_inst.
-[treeopen] top_tb.DUT.Encoder_inst.
+[treeopen] top_tb.DUT.EncoderAmpl_inst.
+[treeopen] top_tb.DUT.EncoderFreq_inst.
 [treeopen] top_tb.DUT.FrequencyMeter_inst.
 [treeopen] top_tb.DUT.FrequencyMeter_inst.DisplayMultiplex_inst.
 [sst_width] 280
 [signals_width] 272
 [sst_expanded] 1
-[sst_vpaned_height] 221
+[sst_vpaned_height] 326
 @28
 top_tb.Reset
 top_tb.Clock
 @200
--Encoder
+-Enocder frequency
 @28
-top_tb.DUT.Encoder_inst.AsyncA_i
-top_tb.DUT.Encoder_inst.AsyncB_i
+top_tb.AsyncFreqA
+top_tb.AsyncFreqB
 [color] 3
-top_tb.DUT.Encoder_inst.Increment_o
+top_tb.DUT.IncrementFreq
 [color] 3
-top_tb.DUT.Encoder_inst.Decrement_o
+top_tb.DUT.DecrementFreq
 @200
 -DDS
 @24
 top_tb.DUT.DDS_inst.TuningWord_i[7:0]
-@8022
-top_tb.DUT.DDS_inst.Signal_o[7:0]
+@8023
+top_tb.DUT.SignalTemp[7:0]
 @20000
 -
 -
@@ -47,7 +48,7 @@ top_tb.DUT.DDS_inst.Signal_o[7:0]
 -Frequency meter
 @24
 top_tb.DUT.FrequencyMeter_inst.Counter[25:0]
-@29
+@28
 [color] 3
 top_tb.DUT.FrequencyMeter_inst.OneSecondStrobe
 @22
@@ -57,5 +58,25 @@ top_tb.DUT.FrequencyMeter_inst.DoubleDabble_inst.Counter[4:0]
 top_tb.DUT.FrequencyMeter_inst.DoubleDabble_inst.Done_o
 @22
 top_tb.DUT.FrequencyMeter_inst.Decimal[31:0]
+@200
+-Encoder amplitude
+@28
+top_tb.AsyncAmplA
+top_tb.AsyncAmplB
+[color] 3
+top_tb.DUT.IncrementAmpl
+[color] 3
+top_tb.DUT.DecrementAmpl
+@200
+-Amplitude multiplier
+@22
+top_tb.DUT.Amplitude[7:0]
+@8022
+top_tb.DUT.Signal_o[7:0]
+@20000
+-
+-
+-
+-
 [pattern_trace] 1
 [pattern_trace] 0
