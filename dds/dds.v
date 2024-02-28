@@ -35,7 +35,7 @@ module DDS (
 	);
 	
 	// Counter overflow detection
-	reg [7:0] Previous;
+	reg [9:0] Previous;
 	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
