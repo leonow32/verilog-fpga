@@ -9,9 +9,9 @@ module top #(
 	input wire Reset,				// Pin 17
 	input wire EncoderFreqA_i,		// Pin 68
 	input wire EncoderFreqB_i,		// Pin 67
-	input wire EncoderAmplA_i,		// Pin 
-	input wire EncoderAmplB_i,		// Pin 
-	output wire [7:0] Signal_o,		// Pin 
+	input wire EncoderAmplA_i,		// Pin 71
+	input wire EncoderAmplB_i,		// Pin 70
+	output wire [7:0] Signal_o,	// Pin 
 	output wire [7:0] Cathodes_o,	// Pin 40 41 42 43 45 47 51 52
 	output wire [7:0] Segments_o	// Pin 39 38 37 36 35 34 30 29
 );
