@@ -25,7 +25,8 @@ module top #(
 	wire [7:0] SignalTemp;
 	reg [7:0] TuningWord;
 	reg [7:0] Amplitude;
-	reg [15:0] Temp;
+	//reg [15:0] Temp;
+	wire [15:0] Temp;
 	
 	// Encoder to regulate the frequency
 	Encoder EncoderFreq_inst(
@@ -85,12 +86,26 @@ module top #(
 	);
 	
 	// Amplitude multiplier
+	/*
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset)
 			Temp <= 0;
 		else
 			Temp <= SignalTemp * Amplitude;
 	end
+	
+	
+	*/
+	
+	// Amplitude multipler - IP Express
+	multiplier multiplier_inst(
+		.Clock(Clock),
+		.ClkEn(1'b1),
+		.Aclr(1'b0),
+		.DataA(SignalTemp),
+		.DataB(Amplitude),
+		.Result(Temp)
+	);
 	
 	assign Signal_o[7:0] = Temp[15:8];
 	
