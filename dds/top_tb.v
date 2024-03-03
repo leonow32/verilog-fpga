@@ -1,6 +1,6 @@
 // 240226
 
-`timescale 1ns/1ns
+`timescale 1ns/1ps
 
 `default_nettype none
 module top_tb();

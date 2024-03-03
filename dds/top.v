@@ -101,7 +101,7 @@ module top #(
 	multiplier multiplier_inst(
 		.Clock(Clock),
 		.ClkEn(1'b1),
-		.Aclr(1'b0),
+		.Aclr(!Reset),
 		.DataA(SignalTemp),
 		.DataB(Amplitude),
 		.Result(Temp)

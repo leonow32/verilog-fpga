@@ -1,6 +1,6 @@
 @echo off
 iverilog -o top.o                                       ^
-	top.v                                               ^
+	C:\Lattice\DDS\impl1\DDS_impl1_vo.vo                                               ^
 	top_tb.v                                            ^
 	dds.v                                               ^
 	../decoder_7seg/decoder_7seg.v                      ^
@@ -11,6 +11,34 @@ iverilog -o top.o                                       ^
 	../rom/rom.v                                        ^
 	../rotary_encoder/encoder.v                         ^
 	../strobe_generator/strobe_generator.v              ^
-	../synchronizer/synchronizer.v
+	../synchronizer/synchronizer.v                      ^
+	C:/Lattice/DDS/impl1/source/multiplier.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/DP8KC.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/UDFDL5SC_UDP_X.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/UDFDL7E_UDP_X.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/UDFDL7SP_UDP_X.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/lut_mux4.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/BUFBA.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/VHI.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/CCU2D.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/AND2.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/FL1P3BX.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/FL1P3DX.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/FL1P3IY.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/FL1P3JY.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/IB.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/IBPU.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/INV.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/OB.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/MUX21.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/ROM16X1A.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/SP8KC.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/FD1P3DX.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/FADD2B.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/MULT2.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/VLO.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/UDFDL5E_UDP_X.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/GSR.v ^
+	C:/lscc/diamond/3.13/ispfpga/verilog/data/machxo2/PUR.v
 vvp top.o
 del top.o
