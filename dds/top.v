@@ -11,24 +11,15 @@ module top #(
 	input wire EncoderFreqB_i,		// Pin 67
 	input wire EncoderAmplA_i,		// Pin 71
 	input wire EncoderAmplB_i,		// Pin 70
-	output wire [7:0] Signal_o,	// Pin 
+	output wire [7:0] Signal_o,		// Pin 
 	output wire [7:0] Cathodes_o,	// Pin 40 41 42 43 45 47 51 52
 	output wire [7:0] Segments_o	// Pin 39 38 37 36 35 34 30 29
 );
 	
-	// Variables
+	// Encoder to regulate the frequency
 	wire IncrementFreq;
 	wire DecrementFreq;
-	wire IncrementAmpl;
-	wire DecrementAmpl;
-	wire Overflow;
-	wire [7:0] SignalTemp;
-	reg [7:0] TuningWord;
-	reg [7:0] Amplitude;
-	//reg [15:0] Temp;
-	wire [15:0] Temp;
 	
-	// Encoder to regulate the frequency
 	Encoder EncoderFreq_inst(
 		.Clock(Clock),
 		.Reset(Reset),
@@ -43,6 +34,9 @@ module top #(
 	);
 	
 	// Encoder to regulate the amplitude
+	wire IncrementAmpl;
+	wire DecrementAmpl;
+	
 	Encoder EncoderAmpl_inst(
 		.Clock(Clock),
 		.Reset(Reset),
@@ -57,6 +51,8 @@ module top #(
 	);
 	
 	// Setting of the tuning word
+	reg [7:0] TuningWord;
+	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset)
 			TuningWord <= 0;
@@ -67,6 +63,8 @@ module top #(
 	end
 	
 	// Setting of the amplitude multiplier
+	reg [7:0] Amplitude;
+	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset)
 			Amplitude <= 8'hFF;
@@ -77,6 +75,9 @@ module top #(
 	end
 	
 	// DDS instance
+	wire Overflow;
+	wire [7:0] SignalTemp;
+	
 	DDS DDS_inst(
 		.Clock(Clock),
 		.Reset(Reset),
@@ -86,7 +87,8 @@ module top #(
 	);
 	
 	// Amplitude multiplier
-	/*
+	reg [15:0] Temp;
+	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset)
 			Temp <= 0;
@@ -94,18 +96,17 @@ module top #(
 			Temp <= SignalTemp * Amplitude;
 	end
 	
-	
-	*/
-	
 	// Amplitude multipler - IP Express
-	multiplier multiplier_inst(
-		.Clock(Clock),
-		.ClkEn(1'b1),
-		.Aclr(!Reset),
-		.DataA(SignalTemp),
-		.DataB(Amplitude),
-		.Result(Temp)
-	);
+//	wire [15:0] Temp;
+//	
+//	multiplier multiplier_inst(
+//		.Clock(Clock),
+//		.ClkEn(1'b1),
+//		.Aclr(!Reset),
+//		.DataA(SignalTemp),
+//		.DataB(Amplitude),
+//		.Result(Temp)
+//	);
 	
 	assign Signal_o[7:0] = Temp[15:8];
 	
@@ -119,7 +120,6 @@ module top #(
 		.Cathodes_o(Cathodes_o),
 		.Segments_o(Segments_o)
 	);
-	
 	
 endmodule
 

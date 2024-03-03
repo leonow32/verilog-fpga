@@ -7,7 +7,7 @@ module top_tb();
 	
 	// Configuration
 	parameter CLOCK_HZ = 25_000_000;
-	parameter TuningWordRequested = 15;	// 35 is okay
+	parameter TuningWordRequested = 20;	// 35 is okay
 	
 	// Clock generator
 	reg Clock = 1'b1;
@@ -53,7 +53,7 @@ module top_tb();
 		repeat(5000)
 			@(posedge Clock);
 		
-		// IncrementFreq the tuning word
+		// Increment the tuning word
 		repeat(TuningWordRequested) begin
 			#10000 AsyncFreqA = 1'b0;
 			#10000 AsyncFreqB = 1'b0;
@@ -61,15 +61,6 @@ module top_tb();
 			#10000 AsyncFreqB = 1'b1;
 			#20000;
 		end
-		
-		// DecrementFreq the tuning word
-		// repeat(TuningWordRequested) begin
-			// #10000 AsyncFreqB = 1'b0;
-			// #10000 AsyncFreqA = 1'b0;
-			// #10000 AsyncFreqB = 1'b1;
-			// #10000 AsyncFreqA = 1'b1;
-			// #20000;
-		// end
 		
 		// Decrease amplitude from maximum to zero
 		repeat(255) begin
@@ -89,10 +80,14 @@ module top_tb();
 			#5000;
 		end
 		
-		/*
-		repeat(100)
-			@(posedge Clock);
-		*/
+		// Decrement the tuning word
+		repeat(TuningWordRequested) begin
+			#10000 AsyncFreqB = 1'b0;
+			#10000 AsyncFreqA = 1'b0;
+			#10000 AsyncFreqB = 1'b1;
+			#10000 AsyncFreqA = 1'b1;
+			#20000;
+		end
 		
 		//@(posedge DUT.FrequencyMeter_inst.DoubleDabble_inst.Done_o);
 		
@@ -102,5 +97,5 @@ module top_tb();
 		$display("====== END ======");
 		$finish;
 	end
-
+	
 endmodule

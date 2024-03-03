@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Wed Feb 28 19:31:17 2024
+[*] Sun Mar 03 10:44:55 2024
 [*]
 [dumpfile] "C:\verilog\dds\top.vcd"
-[dumpfile_mtime] "Wed Feb 28 19:30:45 2024"
-[dumpfile_size] 22005003
+[dumpfile_mtime] "Sun Mar 03 10:32:18 2024"
+[dumpfile_size] 28109029
 [savefile] "C:\verilog\dds\top.gtkw"
 [timestart] 0
-[size] 1536 793
+[size] 1920 1009
 [pos] -1 -1
-*-20.698559 3200000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-30.327255 3200000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.DUT.
 [treeopen] top_tb.DUT.DDS_inst.
@@ -17,10 +17,10 @@
 [treeopen] top_tb.DUT.EncoderFreq_inst.
 [treeopen] top_tb.DUT.FrequencyMeter_inst.
 [treeopen] top_tb.DUT.FrequencyMeter_inst.DisplayMultiplex_inst.
-[sst_width] 280
-[signals_width] 272
+[sst_width] 247
+[signals_width] 221
 [sst_expanded] 1
-[sst_vpaned_height] 326
+[sst_vpaned_height] 493
 @28
 top_tb.Reset
 top_tb.Clock
@@ -37,7 +37,7 @@ top_tb.DUT.DecrementFreq
 -DDS
 @24
 top_tb.DUT.DDS_inst.TuningWord_i[7:0]
-@8023
+@8022
 top_tb.DUT.SignalTemp[7:0]
 @20000
 -
@@ -74,6 +74,7 @@ top_tb.DUT.Amplitude[7:0]
 @8022
 top_tb.DUT.Signal_o[7:0]
 @20000
+-
 -
 -
 -

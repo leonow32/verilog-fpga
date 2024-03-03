@@ -45,7 +45,7 @@ module DDS (
 		end
 	end
 	
-	assign Overflow_o = (Previous > Accumulator[15:6]) ? 1'b1 : 1'b0;
+	assign Overflow_o = (Previous > Accumulator[15:6]);
 
 endmodule
 
