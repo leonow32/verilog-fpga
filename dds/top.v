@@ -11,8 +11,8 @@ module top #(
 	input wire EncoderFreqB_i,		// Pin 67
 	input wire EncoderAmplA_i,		// Pin 71
 	input wire EncoderAmplB_i,		// Pin 70
-	output wire [7:0] Signal_o,		// Pin 
-	output wire [7:0] Cathodes_o,	// Pin 40 41 42 43 45 47 51 52
+	output wire [7:0] Signal_o,		// Pin  2  3  4  7 82 81 77 76
+	output wire [7:0] Cathodes_o,	// Pin 40 41 42 43 45 47 51 25
 	output wire [7:0] Segments_o	// Pin 39 38 37 36 35 34 30 29
 );
 	
@@ -76,40 +76,16 @@ module top #(
 	
 	// DDS instance
 	wire Overflow;
-	wire [7:0] SignalTemp;
 	
 	DDS DDS_inst(
 		.Clock(Clock),
 		.Reset(Reset),
 		.TuningWord_i(TuningWord),
-		.Signal_o(SignalTemp),
+		.Amplitude_i(Amplitude),
+		.Signal_o(Signal_o),
 		.Overflow_o(Overflow)
 	);
-	
-	// Amplitude multiplier
-	reg [15:0] Temp;
-	
-	always @(posedge Clock, negedge Reset) begin
-		if(!Reset)
-			Temp <= 0;
-		else
-			Temp <= SignalTemp * Amplitude;
-	end
-	
-	// Amplitude multipler - IP Express
-//	wire [15:0] Temp;
-//	
-//	multiplier multiplier_inst(
-//		.Clock(Clock),
-//		.ClkEn(1'b1),
-//		.Aclr(!Reset),
-//		.DataA(SignalTemp),
-//		.DataB(Amplitude),
-//		.Result(Temp)
-//	);
-	
-	assign Signal_o[7:0] = Temp[15:8];
-	
+		
 	// Frequency meter instance
 	FrequencyMeter #(
 		.CLOCK_HZ(CLOCK_HZ)

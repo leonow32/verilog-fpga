@@ -30,6 +30,7 @@ module DDS_tb();
 		.Clock(Clock),
 		.Reset(Reset),
 		.TuningWord_i(TuningWord),
+		.Amplitude_i(8'hFF),
 		.Signal_o(),
 		.Overflow_o()
 	);

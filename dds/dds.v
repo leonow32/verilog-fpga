@@ -6,6 +6,7 @@ module DDS (
 	input wire Clock,
 	input wire Reset,
 	input wire [7:0] TuningWord_i,
+	input wire [7:0] Amplitude_i,
 	output wire [7:0] Signal_o,
 	output wire Overflow_o
 );
@@ -21,6 +22,8 @@ module DDS (
 	end
 	
 	// ROM with sine wave
+	wire [7:0] DataFromROM;
+	
 	ROM #(
 		.ADDRESS_WIDTH(10),
 		.DATA_WIDTH(8),
@@ -31,7 +34,7 @@ module DDS (
 		.Reset(Reset),
 		.ReadEnable_i(1'b1),
 		.Address_i(Accumulator[15:6]),
-		.Data_o(Signal_o)
+		.Data_o(DataFromROM)
 	);
 	
 	// Counter overflow detection
@@ -46,6 +49,18 @@ module DDS (
 	end
 	
 	assign Overflow_o = (Previous > Accumulator[15:6]);
+	
+	// Amplitude multiplier
+	reg [15:0] Temp;
+	
+	always @(posedge Clock, negedge Reset) begin
+		if(!Reset)
+			Temp <= 0;
+		else
+			Temp <= DataFromROM * Amplitude_i;
+	end
+	
+	assign Signal_o = Temp[15:8];
 
 endmodule
 
