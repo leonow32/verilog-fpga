@@ -1,0 +1,58 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sun Mar 03 10:57:48 2024
+[*]
+[dumpfile] "dds.vcd"
+[dumpfile_mtime] "Sun Mar 03 10:57:22 2024"
+[dumpfile_size] 761677
+[savefile] "dds.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -1 -1
+*-23.917345 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] DDS_tb.
+[treeopen] DDS_tb.DUT.
+[sst_width] 197
+[signals_width] 244
+[sst_expanded] 1
+[sst_vpaned_height] 299
+@28
+DDS_tb.Clock
+@200
+-Phace Accumulator
+@24
+DDS_tb.TuningWord[7:0]
+@22
+DDS_tb.DUT.Amplitude_i[7:0]
+@24
+DDS_tb.DUT.Accumulator[15:0]
+@200
+-ROM
+@24
+DDS_tb.DUT.ROM_inst.Address_i[9:0]
+@8022
+DDS_tb.DUT.ROM_inst.Address_i[9:0]
+@20000
+-
+-
+-
+@22
+DDS_tb.DUT.ROM_inst.Data_o[7:0]
+@28
+[color] 3
+DDS_tb.DUT.Overflow_o
+@200
+-DDS Output
+@8022
+DDS_tb.DUT.Signal_o[7:0]
+@20000
+-
+-
+-
+-
+-
+-
+-
+-
+[pattern_trace] 1
+[pattern_trace] 0
