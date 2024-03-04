@@ -38,7 +38,6 @@ The 8-bit `Amplitude_i` input is used to digitally adjust the signal amplitude. 
 ![](simulation2.png)
 ![](screenshot.png)
 
-
 ## Console output
 
 	VCD info: dumpfile dds.vcd opened for output.

@@ -7,7 +7,7 @@ module top_tb();
 	
 	// Configuration
 	parameter CLOCK_HZ = 25_000_000;
-	parameter TuningWordRequested = 20;	// 35 is okay
+	parameter TuningWordRequested = 20;
 	
 	// Clock generator
 	reg Clock = 1'b1;

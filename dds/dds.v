@@ -41,11 +41,10 @@ module DDS (
 	reg [9:0] Previous;
 	
 	always @(posedge Clock, negedge Reset) begin
-		if(!Reset) begin
+		if(!Reset)
 			Previous <= 0;
-		end else begin
+		else
 			Previous <= Accumulator[15:6];
-		end
 	end
 	
 	assign Overflow_o = (Previous > Accumulator[15:6]);
