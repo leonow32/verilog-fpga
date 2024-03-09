@@ -10,6 +10,8 @@ The address of the currently processed sample is selected by the counter with ph
 
 The 8-bit `Amplitude_i` input is used to digitally adjust the signal amplitude. This is implemented by multiplying the 8-bit sample by the 8-bit value of `Amplitude_i`. Multiplying two 8-bit variables results in a 16-bit variable. We only use the 8 most signifficant bits of this variable and the 8 least signifficant bit are discarded.
 
+![](photo.jpg)
+
 ## Instantiation
 
 ```verilog
