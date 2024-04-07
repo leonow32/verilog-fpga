@@ -1,7 +1,8 @@
 @echo off
-iverilog -o dds.o ^
-	dds.v         ^
-	dds_tb.v      ^
-	../rom/rom.v
-vvp dds.o
-del dds.o
+iverilog -o slave_spi.o ^
+	slave_spi.v         ^
+	slave_spi_tb.v      ^
+	../edge_detector/edge_detector.v ^
+	../synchronizer/synchronizer.v
+vvp slave_spi.o
+del slave_spi.o

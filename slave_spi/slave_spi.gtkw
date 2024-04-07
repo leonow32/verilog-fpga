@@ -1,0 +1,43 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sun Apr 07 19:54:43 2024
+[*]
+[dumpfile] "C:\verilog\slave_spi\slave_spi.vcd"
+[dumpfile_mtime] "Sun Apr 07 19:52:17 2024"
+[dumpfile_size] 6473
+[savefile] "C:\verilog\slave_spi\slave_spi.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -1 -1
+*-14.252780 32576 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] SlaveSPI_tb.
+[sst_width] 197
+[signals_width] 205
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+SlaveSPI_tb.Reset
+SlaveSPI_tb.Clock
+@200
+-Signals from Master
+@28
+[color] 3
+SlaveSPI_tb.DUT.CS_i
+[color] 5
+SlaveSPI_tb.DUT.SCK_i
+[color] 7
+SlaveSPI_tb.DUT.MOSI_i
+@200
+-Signal Anaysis
+@28
+SlaveSPI_tb.DUT.TransmissionStart
+@29
+SlaveSPI_tb.DUT.InputSampleRequest
+@28
+SlaveSPI_tb.DUT.OutputShiftRequest
+@200
+-Signals from Slave
+@28
+SlaveSPI_tb.DUT.MISO_o
+[pattern_trace] 1
+[pattern_trace] 0
