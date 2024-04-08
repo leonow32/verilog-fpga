@@ -52,6 +52,35 @@ module SlaveSPI (
 		.RisingEdge_o(InputSampleRequest),
 		.FallingEdge_o(OutputShiftRequest)
 	);
+	
+	// 
+	reg [2:0] BitsReceived;
+	
+	always @(posedge Clock, negedge Reset) begin
+		if(!Reset) begin
+			BitsReceived	<= 0;
+			DataReceived_o	<= 0;
+		end 
+		
+		else if(TransmissionStart) begin
+			BitsReceived	<= 0;
+		end
+		
+		else if(InputSampleRequest) begin
+			DataReceived_o	<= {DataReceived_o[6:0], SyncMOSI};
+			BitsReceived	<= BitsReceived + 1'b1;
+			
+			if(BitsReceived == 3'd7) begin
+				Done_o		<= 1'b1;
+			end
+		end
+		
+		// if(BitsReceived == 3'd7) begin
+			// BitsReceived	<= 0;
+		// end
+		
+		Done_o 				<= 0;
+	end
 
 endmodule
 
