@@ -30,6 +30,9 @@ module SlaveSPI (
 		.Sync_o({SyncCS, SyncSCK, SyncMOSI})
 	);
 	
+	// Recognize ongoing transmission
+	wire TransmissionInProgress = !SyncCS;
+	
 	// Recognize the beginning of the transmission
 	wire TransmissionStart;
 	
@@ -66,20 +69,19 @@ module SlaveSPI (
 			BitsReceived	<= 0;
 		end
 		
-		else if(InputSampleRequest) begin
-			DataReceived_o	<= {DataReceived_o[6:0], SyncMOSI};
+		else if(TransmissionInProgress && InputSampleRequest) begin
 			BitsReceived	<= BitsReceived + 1'b1;
-			
-			if(BitsReceived == 3'd7) begin
-				Done_o		<= 1'b1;
-			end
+			DataReceived_o	<= {DataReceived_o[6:0], SyncMOSI};
 		end
-		
-		// if(BitsReceived == 3'd7) begin
-			// BitsReceived	<= 0;
-		// end
-		
-		Done_o 				<= 0;
+	end
+	
+	always @(posedge Clock, negedge Reset) begin
+		if(!Reset)
+			Done_o <= 0;
+		else if(TransmissionInProgress && InputSampleRequest && BitsReceived == 3'd7)
+			Done_o <= 1;
+		else
+			Done_o <= 0;
 	end
 
 endmodule
