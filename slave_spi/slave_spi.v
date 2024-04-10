@@ -57,20 +57,20 @@ module SlaveSPI (
 	);
 	
 	// 
-	reg [2:0] BitsReceived;
+	reg [2:0] BitCounter;
 	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
-			BitsReceived	<= 0;
+			BitCounter		<= 3'd7;
 			DataReceived_o	<= 0;
 		end 
 		
 		else if(TransmissionStart) begin
-			BitsReceived	<= 0;
+			BitCounter		<= 3'd7;
 		end
 		
 		else if(TransmissionInProgress && InputSampleRequest) begin
-			BitsReceived	<= BitsReceived + 1'b1;
+			BitCounter		<= BitCounter - 1'b1;
 			DataReceived_o	<= {DataReceived_o[6:0], SyncMOSI};
 		end
 	end
@@ -78,11 +78,30 @@ module SlaveSPI (
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset)
 			Done_o <= 0;
-		else if(TransmissionInProgress && InputSampleRequest && BitsReceived == 3'd7)
+		else if(TransmissionInProgress && InputSampleRequest && BitCounter == 3'd0)
 			Done_o <= 1;
 		else
 			Done_o <= 0;
 	end
+	
+	// Transmiter
+	reg [7:0] DataToSend;
+	
+	always @(posedge Clock, negedge Reset) begin
+		if(!Reset) begin
+			DataToSend <= 0;
+		end 
+		
+		else if(TransmissionStart) begin
+			DataToSend <= DataToSend_i;
+		end
+		
+		else if(OutputShiftRequest) begin
+			DataToSend <= {DataToSend[6:0], 1'b0};
+		end
+	end
+	
+	assign MISO_o = TransmissionInProgress ? DataToSend[7] : 1'bZ;
 
 endmodule
 

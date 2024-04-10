@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Tue Apr 09 20:06:50 2024
+[*] Wed Apr 10 19:13:39 2024
 [*]
 [dumpfile] "C:\verilog\slave_spi\slave_spi.vcd"
-[dumpfile_mtime] "Tue Apr 09 19:57:09 2024"
-[dumpfile_size] 18870
+[dumpfile_mtime] "Wed Apr 10 19:12:53 2024"
+[dumpfile_size] 18395
 [savefile] "C:\verilog\slave_spi\slave_spi.gtkw"
 [timestart] 0
 [size] 1536 793
 [pos] -1 -1
-*-16.617405 493000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-16.524485 76500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] SlaveSPI_tb.
 [sst_width] 197
 [signals_width] 280
@@ -23,8 +23,10 @@ SlaveSPI_tb.Clock
 @28
 [color] 3
 SlaveSPI_tb.DUT.CS_i
+@29
 [color] 5
 SlaveSPI_tb.DUT.SCK_i
+@28
 [color] 7
 SlaveSPI_tb.DUT.MOSI_i
 @200
@@ -35,13 +37,16 @@ SlaveSPI_tb.DUT.TransmissionInProgress
 SlaveSPI_tb.DUT.InputSampleRequest
 SlaveSPI_tb.DUT.OutputShiftRequest
 @24
-SlaveSPI_tb.DUT.BitsReceived[2:0]
+SlaveSPI_tb.DUT.BitCounter[2:0]
 @200
 -Slave receiver output
-@29
-SlaveSPI_tb.DUT.Done_o
 @28
+SlaveSPI_tb.DUT.Done_o
 SlaveSPI_tb.DUT.DataReceived_o[7:0]
+@200
+-Slave transmitter
+@28
+SlaveSPI_tb.DUT.DataToSend_i[7:0]
 @200
 -Signals from Slave
 @28
