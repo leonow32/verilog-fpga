@@ -97,9 +97,13 @@ module SlaveSPI (
 		end
 		
 		else if(OutputShiftRequest) begin
-			DataToSend <= {DataToSend[6:0], 1'b0};
+			//DataToSend <= {DataToSend[6:0], 1'b0};
+			DataToSend <= DataToSend << 1;
 		end
 	end
+	
+	wire DataToSend7;
+	assign DataToSend7 = DataToSend[7];
 	
 	assign MISO_o = TransmissionInProgress ? DataToSend[7] : 1'bZ;
 
