@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Thu Apr 11 20:23:37 2024
+[*] Sat Apr 13 12:04:19 2024
 [*]
 [dumpfile] "C:\verilog\slave_spi\top.vcd"
-[dumpfile_mtime] "Thu Apr 11 20:11:53 2024"
-[dumpfile_size] 662895
+[dumpfile_mtime] "Sat Apr 13 11:42:42 2024"
+[dumpfile_size] 670871
 [savefile] "C:\verilog\slave_spi\top.gtkw"
 [timestart] 0
 [size] 1920 1009
 [pos] -1 -1
-*-16.296848 164200 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-16.315128 47520 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.DUT.
 [sst_width] 197
@@ -36,6 +36,7 @@ top_tb.TransmitSPI.Data[7:0]
 top_tb.DUT.SlaveSPI_inst.TransmissionStart
 top_tb.DUT.SlaveSPI_inst.TransmissionInProgress
 top_tb.DUT.SlaveSPI_inst.InputSampleRequest
+@29
 top_tb.DUT.SlaveSPI_inst.OutputShiftRequest
 @24
 top_tb.DUT.SlaveSPI_inst.BitCounter[2:0]
@@ -43,7 +44,7 @@ top_tb.DUT.SlaveSPI_inst.BitCounter[2:0]
 top_tb.DUT.SlaveSPI_inst.Done_o
 @22
 top_tb.DUT.SlaveSPI_inst.DataToSend_i[7:0]
-@800022
+@c00022
 top_tb.DUT.SlaveSPI_inst.DataToSend[7:0]
 @28
 (0)top_tb.DUT.SlaveSPI_inst.DataToSend[7:0]
@@ -54,10 +55,9 @@ top_tb.DUT.SlaveSPI_inst.DataToSend[7:0]
 (5)top_tb.DUT.SlaveSPI_inst.DataToSend[7:0]
 (6)top_tb.DUT.SlaveSPI_inst.DataToSend[7:0]
 (7)top_tb.DUT.SlaveSPI_inst.DataToSend[7:0]
-top_tb.DUT.SlaveSPI_inst.DataToSend7
-@1001200
+@1401200
 -group_end
-@29
+@28
 top_tb.DUT.SlaveSPI_inst.MISO_o
 @200
 -Bytes
