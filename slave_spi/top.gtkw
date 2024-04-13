@@ -1,9 +1,9 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sat Apr 13 12:04:19 2024
+[*] Sat Apr 13 19:02:21 2024
 [*]
 [dumpfile] "C:\verilog\slave_spi\top.vcd"
-[dumpfile_mtime] "Sat Apr 13 11:42:42 2024"
+[dumpfile_mtime] "Sat Apr 13 18:50:23 2024"
 [dumpfile_size] 670871
 [savefile] "C:\verilog\slave_spi\top.gtkw"
 [timestart] 0
@@ -25,6 +25,7 @@ top_tb.Clock
 top_tb.CS
 top_tb.SCK
 top_tb.MOSI
+@29
 top_tb.MISO
 @200
 -Master
@@ -36,7 +37,6 @@ top_tb.TransmitSPI.Data[7:0]
 top_tb.DUT.SlaveSPI_inst.TransmissionStart
 top_tb.DUT.SlaveSPI_inst.TransmissionInProgress
 top_tb.DUT.SlaveSPI_inst.InputSampleRequest
-@29
 top_tb.DUT.SlaveSPI_inst.OutputShiftRequest
 @24
 top_tb.DUT.SlaveSPI_inst.BitCounter[2:0]

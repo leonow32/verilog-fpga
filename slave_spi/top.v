@@ -10,7 +10,7 @@ module top #(
 	input wire CS,					// Pin 5
 	input wire SCK,					// Pin 18
 	input wire MOSI,				// Pin 23
-	output reg MISO,				// Pin 19
+	output wire MISO,				// Pin 19
 	output wire [7:0] Cathodes_o,	// Pin 40 41 42 43 45 47 51 25
 	output wire [7:0] Segments_o	// Pin 39 38 37 36 35 34 30 29
 );
@@ -23,8 +23,6 @@ module top #(
 	
 	wire [7:0] DataReceived;
 	wire ReceivedEvent;
-	wire MISO_Data;
-	wire MISO_Enable;
 	
 	SlaveSPI SlaveSPI_inst(
 		.Clock(Clock),
@@ -32,21 +30,11 @@ module top #(
 		.CS_i(CS),
 		.SCK_i(SCK),
 		.MOSI_i(MOSI),
-		.MISO_o(MISO_Data),
-		.MISO_Enable_o(MISO_Enable),
+		.MISO_o(MISO),
 		.DataToSend_i(Byte0),
 		.DataReceived_o(DataReceived),
 		.Done_o(ReceivedEvent)
 	);
-	
-	//assign MISO = MISO_Enable ? MISO_Data : 1'bZ;
-	
-	always @(*) begin
-		if(!MISO_Enable)
-			MISO = MISO_Data;
-		else
-			MISO = 1'bZ;
-	end
 	
 	// Shift all received bytes when new byte is received
 	always @(posedge Clock, negedge Reset) begin

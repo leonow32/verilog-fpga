@@ -9,9 +9,9 @@ module SlaveSPI (
 	input  wire CS_i,					// Chip select, active low
 	input  wire SCK_i,					// Serial clock
 	input  wire MOSI_i,					// Master Out, Slave In
-	//output reg  MISO_o,					// Master In, Slave Out
-	output wire MISO_o,					// Master In, Slave Out
-	output wire MISO_Enable_o,			// 1 - MISO active, 0 - MISO tristated
+	output reg  MISO_o,					// Master In, Slave Out
+	//output wire MISO_o,					// Master In, Slave Out
+	//output wire MISO_Enable_o,			// 1 - MISO active, 0 - MISO tristated
 	
 	input  wire [7:0] DataToSend_i,		// Byte to be sent via MISO
 	output reg  [7:0] DataReceived_o,	// Byte received from MOSI
@@ -105,15 +105,15 @@ module SlaveSPI (
 	
 	//assign MISO_o = TransmissionInProgress ? DataToSend[7] : 1'b0;
 	
-	// always @(*) begin
-		// if(TransmissionInProgress)
-			// MISO_o = DataToSend[7];
-		// else
-			// MISO_o = 1'bZ;
-	// end
+	always @(*) begin
+		if(TransmissionInProgress)
+			MISO_o = DataToSend[7];
+		else
+			MISO_o = 1'bZ;
+	end
 	
-	assign MISO_o = DataToSend[7];
-	assign MISO_Enable_o = TransmissionInProgress;
+	// assign MISO_o = DataToSend[7];
+	// assign MISO_Enable_o = TransmissionInProgress;
 
 endmodule
 
