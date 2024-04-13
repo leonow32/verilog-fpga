@@ -7,10 +7,10 @@ module top #(
 )(
 	input wire Clock,				// Pin 20
 	input wire Reset,				// Pin 17
-	input wire CS,					// Pin 
-	input wire SCK,					// Pin 
-	input wire MOSI,				// Pin 
-	output wire MISO,				// Pin 
+	input wire CS,					// Pin 5
+	input wire SCK,					// Pin 18
+	input wire MOSI,				// Pin 23
+	output wire MISO,				// Pin 19
 	output wire [7:0] Cathodes_o,	// Pin 40 41 42 43 45 47 51 25
 	output wire [7:0] Segments_o	// Pin 39 38 37 36 35 34 30 29
 );
@@ -46,10 +46,10 @@ module top #(
 		end 
 		
 		else if(ReceivedEvent) begin
-			Byte0 <= DataReceived;
-			Byte1 <= Byte0;
-			Byte2 <= Byte1;
 			Byte3 <= Byte2;
+			Byte2 <= Byte1;
+			Byte1 <= Byte0;
+			Byte0 <= DataReceived;
 		end
 	end
 	
@@ -62,7 +62,7 @@ module top #(
 		.Clock(Clock),
 		.Reset(Reset),
 		.Data_i({Byte3, Byte2, Byte1, Byte0}),
-		.DecimalPoints_i(8'b00000000),
+		.DecimalPoints_i(8'b01010101),
 		.Cathodes_o(Cathodes_o),
 		.Segments_o(Segments_o),
 		.SwitchCathode_o()

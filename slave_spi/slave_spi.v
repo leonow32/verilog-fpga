@@ -9,7 +9,7 @@ module SlaveSPI (
 	input  wire CS_i,					// Chip select, active low
 	input  wire SCK_i,					// Serial clock
 	input  wire MOSI_i,					// Master Out, Slave In
-	output wire MISO_o,					// Master In, Slave Out
+	output reg  MISO_o,					// Master In, Slave Out
 	
 	input  wire [7:0] DataToSend_i,		// Byte to be sent via MISO
 	output reg  [7:0] DataReceived_o,	// Byte received from MOSI
@@ -56,21 +56,21 @@ module SlaveSPI (
 		.FallingEdge_o(OutputShiftRequest)
 	);
 	
-	// 
+	// Receiver
 	reg [2:0] BitCounter;
 	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
-			BitCounter		<= 3'd7;
+			BitCounter		<= 0;
 			DataReceived_o	<= 0;
 		end 
 		
 		else if(TransmissionStart) begin
-			BitCounter		<= 3'd7;
+			BitCounter		<= 0;
 		end
 		
 		else if(TransmissionInProgress && InputSampleRequest) begin
-			BitCounter		<= BitCounter - 1'b1;
+			BitCounter		<= BitCounter + 1'b1;
 			DataReceived_o	<= {DataReceived_o[6:0], SyncMOSI};
 		end
 	end
@@ -78,7 +78,7 @@ module SlaveSPI (
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset)
 			Done_o <= 0;
-		else if(TransmissionInProgress && InputSampleRequest && BitCounter == 3'd0)
+		else if(InputSampleRequest && BitCounter == 3'd7)
 			Done_o <= 1;
 		else
 			Done_o <= 0;
@@ -92,20 +92,23 @@ module SlaveSPI (
 			DataToSend <= 0;
 		end 
 		
-		else if(TransmissionStart) begin
+		else if(TransmissionStart || (OutputShiftRequest && BitCounter == 3'd0)) begin
 			DataToSend <= DataToSend_i;
 		end
 		
 		else if(OutputShiftRequest) begin
-			//DataToSend <= {DataToSend[6:0], 1'b0};
 			DataToSend <= DataToSend << 1;
 		end
 	end
 	
-	wire DataToSend7;
-	assign DataToSend7 = DataToSend[7];
+	//assign MISO_o = TransmissionInProgress ? DataToSend[7] : 1'b0;
 	
-	assign MISO_o = TransmissionInProgress ? DataToSend[7] : 1'bZ;
+	always @(*) begin
+		if(TransmissionInProgress)
+			MISO_o = DataToSend[7];
+		else
+			MISO_o = 1'bZ;
+	end
 
 endmodule
 

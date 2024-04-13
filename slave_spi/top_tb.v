@@ -43,8 +43,8 @@ module top_tb();
 	
 	task TransmitSPI(input [7:0] Data);
 		begin
-			#DELAY;		CS = 0; 	SCK = 0; 	MOSI = Data[7];
-			#DELAY;					SCK = 1;
+					SCK = 0; 	MOSI = Data[7];
+			#DELAY;	SCK = 1;
 			#DELAY;					SCK = 0;	MOSI = Data[6];
 			#DELAY;					SCK = 1;
 			#DELAY;					SCK = 0;	MOSI = Data[5];
@@ -59,7 +59,7 @@ module top_tb();
 			#DELAY;					SCK = 1;
 			#DELAY;					SCK = 0;	MOSI = Data[0];
 			#DELAY;					SCK = 1;
-			#DELAY; 	CS = 1;
+			#DELAY; 	
 		end
 	endtask
 	
@@ -71,13 +71,16 @@ module top_tb();
 		@(posedge Clock);
 		Reset = 1'b1;
 		
-		@(posedge Clock);
+		repeat(5) #DELAY;
+		CS = 0;
 		TransmitSPI(8'b01010101);
 		TransmitSPI(8'b00110011);
 		TransmitSPI(8'b00001111);
 		TransmitSPI(8'b00000000);
+		CS = 1;
 		
-		repeat(1000) @(posedge Clock);
+		
+		repeat(5) #DELAY;
 		
 		$display("====== END ======");
 		$finish;
