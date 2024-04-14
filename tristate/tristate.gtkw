@@ -1,0 +1,23 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sun Apr 14 10:17:35 2024
+[*]
+[dumpfile] "tristate.vcd"
+[dumpfile_mtime] "Sun Apr 14 10:17:25 2024"
+[dumpfile_size] 552
+[savefile] "tristate.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -1 -1
+*-3.399683 26 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 197
+[signals_width] 136
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+TriState_tb.In
+TriState_tb.Enable
+@29
+TriState_tb.Out
+[pattern_trace] 1
+[pattern_trace] 0
