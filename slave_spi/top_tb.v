@@ -21,7 +21,7 @@ module top_tb();
 	reg CS    = 1;
 	reg SCK   = 0;
 	reg MOSI  = 0;
-	wire MISO = 0;
+	wire MISO;
 	
 	// Variable dump
 	initial begin
@@ -41,44 +41,46 @@ module top_tb();
 		.Segments_o()
 	);
 	
+	// Display message after a byte is received
+	always @(posedge DUT.SlaveSPI_inst.Done_o) begin
+		$display("%t Received:     %H %b", 
+			$realtime, 
+			DUT.SlaveSPI_inst.DataReceived_o, 
+			DUT.SlaveSPI_inst.DataReceived_o
+		);
+	end
+	
+	// Task to send a byte from master to slave
 	task TransmitSPI(input [7:0] Data);
+		integer i;
 		begin
-					SCK = 0; 	MOSI = Data[7];
-			#DELAY;	SCK = 1;
-			#DELAY;					SCK = 0;	MOSI = Data[6];
-			#DELAY;					SCK = 1;
-			#DELAY;					SCK = 0;	MOSI = Data[5];
-			#DELAY;					SCK = 1;
-			#DELAY;					SCK = 0;	MOSI = Data[4];
-			#DELAY;					SCK = 1;
-			#DELAY;					SCK = 0;	MOSI = Data[3];
-			#DELAY;					SCK = 1;
-			#DELAY;					SCK = 0;	MOSI = Data[2];
-			#DELAY;					SCK = 1;
-			#DELAY;					SCK = 0;	MOSI = Data[1];
-			#DELAY;					SCK = 1;
-			#DELAY;					SCK = 0;	MOSI = Data[0];
-			#DELAY;					SCK = 1;
-			#DELAY; 	
+			$display("%t Transmitting: %H %b", $realtime, Data, Data);
+			for(i=7; i>=0; i=i-1) begin
+				SCK = 0;
+				MOSI = Data[i];
+				#DELAY;	
+				SCK = 1;
+				#DELAY;
+			end
 		end
 	endtask
 	
 	// Test sequence
 	initial begin
-		$timeformat(-9, 3, "ns", 10);
+		$timeformat(-6, 3, "us", 10);
 		$display("===== START =====");
 		
 		@(posedge Clock);
 		Reset = 1'b1;
-		
 		repeat(5) #DELAY;
-		CS = 0;
-		TransmitSPI(8'b01010101);
-		TransmitSPI(8'b00110011);
-		TransmitSPI(8'b00001111);
-		TransmitSPI(8'b00000000);
-		CS = 1;
 		
+		// Transmit four bytes
+		CS = 0;
+		TransmitSPI(8'b00000001);
+		TransmitSPI(8'b00000011);
+		TransmitSPI(8'b00000111);
+		TransmitSPI(8'b00001111);
+		CS = 1;
 		
 		repeat(5) #DELAY;
 		

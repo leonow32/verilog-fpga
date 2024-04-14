@@ -9,13 +9,11 @@ module SlaveSPI (
 	input  wire CS_i,					// Chip select, active low
 	input  wire SCK_i,					// Serial clock
 	input  wire MOSI_i,					// Master Out, Slave In
-	output reg  MISO_o,					// Master In, Slave Out
-	//output wire MISO_o,					// Master In, Slave Out
-	//output wire MISO_Enable_o,			// 1 - MISO active, 0 - MISO tristated
+	output wire MISO_o,					// Master In, Slave Out
 	
 	input  wire [7:0] DataToSend_i,		// Byte to be sent via MISO
 	output reg  [7:0] DataReceived_o,	// Byte received from MOSI
-	output reg  Done_o					// High strobe after transfer of a byte is done
+	output reg  Done_o					// High strobe after the transmission is done
 );
 	
 	// Syncronize CS, SCK and MOSI with clock domain
@@ -32,11 +30,11 @@ module SlaveSPI (
 		.Sync_o({SyncCS, SyncSCK, SyncMOSI})
 	);
 	
-	// Recognize ongoing transmission
-	wire TransmissionInProgress = !SyncCS;
-	
-	// Recognize the beginning of the transmission
+	// Recognize events
 	wire TransmissionStart;
+	wire TransmissionInProgress = !SyncCS;
+	wire InputSampleRequest;
+	wire OutputShiftRequest;
 	
 	EdgeDetector EdgeDetectorCS(
 		.Clock(Clock),
@@ -45,10 +43,6 @@ module SlaveSPI (
 		.RisingEdge_o(),
 		.FallingEdge_o(TransmissionStart)
 	);
-	
-	// Recognize clock events
-	wire InputSampleRequest;
-	wire OutputShiftRequest;
 	
 	EdgeDetector EdgeDetectorSCK(
 		.Clock(Clock),
@@ -77,6 +71,7 @@ module SlaveSPI (
 		end
 	end
 	
+	// Done event
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset)
 			Done_o <= 0;
@@ -103,18 +98,9 @@ module SlaveSPI (
 		end
 	end
 	
-	//assign MISO_o = TransmissionInProgress ? DataToSend[7] : 1'b0;
+	// Transmiter output
+	assign MISO_o = TransmissionInProgress ? DataToSend[7] : 1'bZ;
 	
-	always @(*) begin
-		if(TransmissionInProgress)
-			MISO_o = DataToSend[7];
-		else
-			MISO_o = 1'bZ;
-	end
-	
-	// assign MISO_o = DataToSend[7];
-	// assign MISO_Enable_o = TransmissionInProgress;
-
 endmodule
 
 `default_nettype wire

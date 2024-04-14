@@ -16,10 +16,10 @@ module top #(
 );
 	
 	// Four last received bytes
-	reg [7:0] Byte0;
-	reg [7:0] Byte1;
-	reg [7:0] Byte2;
-	reg [7:0] Byte3;
+	reg [7:0] Byte0 = 0;
+	reg [7:0] Byte1 = 0;
+	reg [7:0] Byte2 = 0;
+	reg [7:0] Byte3 = 0;
 	
 	wire [7:0] DataReceived;
 	wire ReceivedEvent;
@@ -46,10 +46,10 @@ module top #(
 		end 
 		
 		else if(ReceivedEvent) begin
-			Byte3 <= Byte2;
-			Byte2 <= Byte1;
-			Byte1 <= Byte0;
 			Byte0 <= DataReceived;
+			Byte1 <= Byte0;
+			Byte2 <= Byte1;
+			Byte3 <= Byte2;
 		end
 	end
 	

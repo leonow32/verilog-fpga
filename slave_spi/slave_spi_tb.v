@@ -39,7 +39,7 @@ module SlaveSPI_tb();
 	reg CS		= 1;
 	reg SCK		= 0;
 	reg MOSI	= 0;
-	reg [7:0] ResponseData;
+	reg [7:0] ResponseData = 0;
 	
 	// Variable dump
 	initial begin
@@ -61,9 +61,25 @@ module SlaveSPI_tb();
 		.Done_o()	
 	);
 	
+	// Display message after a byte is received
 	always @(posedge DUT.Done_o) begin
-		$display("%t Received: %H %b", $realtime, DUT.DataReceived_o, DUT.DataReceived_o);
+		$display("%t Received:     %H %b", $realtime, DUT.DataReceived_o, DUT.DataReceived_o);
 	end
+	
+	// Task to send a byte from master to slave
+	task TransmitSPI(input [7:0] Data);
+		integer i;
+		begin
+			$display("%t Transmitting: %H %b", $realtime, Data, Data);
+			for(i=7; i>=0; i=i-1) begin
+				SCK = 0;
+				MOSI = Data[i];
+				#DELAY;	
+				SCK = 1;
+				#DELAY;
+			end
+		end
+	endtask
 	
 	// Test sequence
 	initial begin
@@ -74,81 +90,29 @@ module SlaveSPI_tb();
 		@(posedge Clock);
 		Reset <= 1'b1;
 		
+		repeat(5) #DELAY;
+		
 		// Transmit one byte to the slave
-		ResponseData = BytesMISO[0];
-		#DELAY;		CS = 0; 	SCK = 0; 	MOSI = BytesMOSI[0][7];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[0][6];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[0][5];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[0][4];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[0][3];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[0][2];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[0][1];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[0][0];
-		#DELAY;					SCK = 1;
-		#DELAY; 	CS = 1;//		SCK = 0; 	MOSI = 1;					// Czy trzeba ustawiać SCK i MOSI?
-		//#DELAY;
+		CS = 0;
+		ResponseData = 8'h01;
+		TransmitSPI(8'h80);
+		CS = 1;
+		#DELAY;
 		
 		// Transmit one byto to another slave
-		ResponseData = BytesMISO[1];
-		#DELAY;					SCK = 0; 	MOSI = BytesMOSI[1][7];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[1][6];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[1][5];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[1][4];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[1][3];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[1][2];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[1][1];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[1][0];
-		#DELAY;					SCK = 1;
-		#DELAY; 			//	SCK = 0; 	MOSI = 1;					// Czy trzeba ustawiać SCK i MOSI?
-		//#DELAY;
+		ResponseData = 8'h02;
+		TransmitSPI(8'h40);
+		#DELAY;
 		
-		// Transmit one byte to the slave - but transmission broken
-		ResponseData = BytesMISO[2];
-		#DELAY;		CS = 0; 	SCK = 0; 	MOSI = BytesMOSI[2][7];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[2][6];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[2][5];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[2][4];
-		#DELAY;					SCK = 1;
-		#DELAY; 	CS = 1;//		SCK = 0; 	MOSI = 1;					// Czy trzeba ustawiać SCK i MOSI?
-		//#DELAY;
+		// Transmit two bytes to the slave
+		CS = 0;
+		ResponseData = 8'h04;
+		TransmitSPI(8'h20);
+		#DELAY;
+		TransmitSPI(8'h10);
+		CS = 1;
 		
-		// Transmit one byte to the slave - recover after broken transmission
-		ResponseData = BytesMISO[3];
-		#DELAY;		CS = 0; 	SCK = 0; 	MOSI = BytesMOSI[3][7];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[3][6];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[3][5];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[3][4];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[3][3];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[3][2];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[3][1];
-		#DELAY;					SCK = 1;
-		#DELAY;					SCK = 0;	MOSI = BytesMOSI[3][0];
-		#DELAY;					SCK = 1;
-		#DELAY; 	CS = 1;//		SCK = 0; 	MOSI = 1;					// Czy trzeba ustawiać SCK i MOSI?
-		//#DELAY;
+		repeat(5) #DELAY;
 		
 		$display("====== END ======");
 		$finish;
