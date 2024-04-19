@@ -1,0 +1,52 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Fri Apr 19 11:27:59 2024
+[*]
+[dumpfile] "top.vcd"
+[dumpfile_mtime] "Fri Apr 19 11:25:19 2024"
+[dumpfile_size] 670756
+[savefile] "top.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -61 -61
+*-16.354937 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top_tb.
+[treeopen] top_tb.DUT.
+[treeopen] top_tb.DUT.SlaveSPI_inst.
+[sst_width] 227
+[signals_width] 238
+[sst_expanded] 1
+[sst_vpaned_height] 349
+@28
+top_tb.Reset
+top_tb.Clock
+@200
+-SPI Signals
+@28
+top_tb.CS
+top_tb.SCK
+top_tb.MOSI
+top_tb.MISO
+@200
+-Master
+-Slave
+@28
+top_tb.DUT.SlaveSPI_inst.TransmissionStart_o
+top_tb.DUT.SlaveSPI_inst.TransmissionEnd_o
+top_tb.DUT.SlaveSPI_inst.TransactionDone_o
+top_tb.DUT.SlaveSPI_inst.TransmissionInProgress
+top_tb.DUT.SlaveSPI_inst.InputSampleRequest
+top_tb.DUT.SlaveSPI_inst.OutputShiftRequest
+@22
+top_tb.DUT.SlaveSPI_inst.DataToSend_i[7:0]
+@28
+top_tb.DUT.SlaveSPI_inst.MISO_o
+@200
+-Received bytes
+@22
+top_tb.DUT.Byte0[7:0]
+top_tb.DUT.Byte1[7:0]
+top_tb.DUT.Byte2[7:0]
+top_tb.DUT.Byte3[7:0]
+[pattern_trace] 1
+[pattern_trace] 0
