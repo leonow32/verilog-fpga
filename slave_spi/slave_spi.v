@@ -13,7 +13,9 @@ module SlaveSPI (
 	
 	input  wire [7:0] DataToSend_i,		// Byte to be sent via MISO
 	output reg  [7:0] DataReceived_o,	// Byte received from MOSI
-	output reg  Done_o					// High strobe after the transmission is done
+	output reg  TransactionDone_o,		// High strobe after a byte is sent and received
+	output wire TransmissionStart_o,	// High strobe after CS input goes low
+	output wire TransmissionEnd_o		// High strobe after CS input goes high
 );
 	
 	// Syncronize CS, SCK and MOSI with clock domain
@@ -31,7 +33,6 @@ module SlaveSPI (
 	);
 	
 	// Recognize events
-	wire TransmissionStart;
 	wire TransmissionInProgress = !SyncCS;
 	wire InputSampleRequest;
 	wire OutputShiftRequest;
@@ -40,8 +41,8 @@ module SlaveSPI (
 		.Clock(Clock),
 		.Reset(Reset),
 		.Signal_i(SyncCS),
-		.RisingEdge_o(),
-		.FallingEdge_o(TransmissionStart)
+		.RisingEdge_o(TransmissionEnd_o),
+		.FallingEdge_o(TransmissionStart_o)
 	);
 	
 	EdgeDetector EdgeDetectorSCK(
@@ -61,7 +62,7 @@ module SlaveSPI (
 			DataReceived_o	<= 0;
 		end 
 		
-		else if(TransmissionStart) begin
+		else if(TransmissionStart_o) begin
 			BitCounter		<= 0;
 		end
 		
@@ -74,11 +75,11 @@ module SlaveSPI (
 	// Done event
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset)
-			Done_o <= 0;
+			TransactionDone_o <= 0;
 		else if(InputSampleRequest && BitCounter == 3'd7)
-			Done_o <= 1;
+			TransactionDone_o <= 1;
 		else
-			Done_o <= 0;
+			TransactionDone_o <= 0;
 	end
 	
 	// Transmiter
@@ -89,7 +90,7 @@ module SlaveSPI (
 			DataToSend <= 0;
 		end 
 		
-		else if(TransmissionStart || (OutputShiftRequest && BitCounter == 3'd0)) begin
+		else if(TransmissionStart_o || (OutputShiftRequest && BitCounter == 3'd0)) begin
 			DataToSend <= DataToSend_i;
 		end
 		

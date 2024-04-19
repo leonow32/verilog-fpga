@@ -33,7 +33,9 @@ module top #(
 		.MISO_o(MISO),
 		.DataToSend_i(Byte0),
 		.DataReceived_o(DataReceived),
-		.Done_o(ReceivedEvent)
+		.TransactionDone_o(ReceivedEvent),
+		.TransmissionStart_o(),
+		.TransmissionEnd_o()
 	);
 	
 	// Shift all received bytes when new byte is received

@@ -1,21 +1,22 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sun Apr 14 19:41:25 2024
+[*] Fri Apr 19 11:27:59 2024
 [*]
 [dumpfile] "top.vcd"
-[dumpfile_mtime] "Sun Apr 14 19:41:21 2024"
-[dumpfile_size] 670705
+[dumpfile_mtime] "Fri Apr 19 11:25:19 2024"
+[dumpfile_size] 670756
 [savefile] "top.gtkw"
 [timestart] 0
-[size] 1536 793
-[pos] -1 -1
-*-16.765152 159300 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1920 1009
+[pos] -61 -61
+*-16.354937 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.DUT.
-[sst_width] 197
+[treeopen] top_tb.DUT.SlaveSPI_inst.
+[sst_width] 227
 [signals_width] 238
 [sst_expanded] 1
-[sst_vpaned_height] 221
+[sst_vpaned_height] 349
 @28
 top_tb.Reset
 top_tb.Clock
@@ -30,29 +31,14 @@ top_tb.MISO
 -Master
 -Slave
 @28
-top_tb.DUT.SlaveSPI_inst.TransmissionStart
+top_tb.DUT.SlaveSPI_inst.TransmissionStart_o
+top_tb.DUT.SlaveSPI_inst.TransmissionEnd_o
+top_tb.DUT.SlaveSPI_inst.TransactionDone_o
 top_tb.DUT.SlaveSPI_inst.TransmissionInProgress
 top_tb.DUT.SlaveSPI_inst.InputSampleRequest
 top_tb.DUT.SlaveSPI_inst.OutputShiftRequest
-@24
-top_tb.DUT.SlaveSPI_inst.BitCounter[2:0]
-@28
-top_tb.DUT.SlaveSPI_inst.Done_o
 @22
 top_tb.DUT.SlaveSPI_inst.DataToSend_i[7:0]
-@c00022
-top_tb.DUT.SlaveSPI_inst.DataToSend[7:0]
-@28
-(0)top_tb.DUT.SlaveSPI_inst.DataToSend[7:0]
-(1)top_tb.DUT.SlaveSPI_inst.DataToSend[7:0]
-(2)top_tb.DUT.SlaveSPI_inst.DataToSend[7:0]
-(3)top_tb.DUT.SlaveSPI_inst.DataToSend[7:0]
-(4)top_tb.DUT.SlaveSPI_inst.DataToSend[7:0]
-(5)top_tb.DUT.SlaveSPI_inst.DataToSend[7:0]
-(6)top_tb.DUT.SlaveSPI_inst.DataToSend[7:0]
-(7)top_tb.DUT.SlaveSPI_inst.DataToSend[7:0]
-@1401200
--group_end
 @28
 top_tb.DUT.SlaveSPI_inst.MISO_o
 @200

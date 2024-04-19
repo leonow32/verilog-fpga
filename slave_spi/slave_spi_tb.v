@@ -9,24 +9,6 @@ module SlaveSPI_tb();
 	parameter CLOCK_HZ     = 1_000_000;
 	parameter DELAY        = 7894;			// Delay between edges of SCK
 	
-	reg [7:0] BytesMOSI[0:3];				// Data from Master to Slave
-	reg [7:0] BytesMISO[0:3];				// Data from Slave to Master
-
-	initial begin
-		
-		// Data from Master to Slave
-		BytesMOSI[0] = 8'b10101010;
-		BytesMOSI[1] = 8'b11111111;
-		BytesMOSI[2] = 8'b01010101;
-		BytesMOSI[3] = 8'b00000000;
-		
-		// Data from Slave to Master
-		BytesMISO[0] = 8'b10100101;
-		BytesMISO[1] = 8'b00110011;
-		BytesMISO[2] = 8'b01010101;
-		BytesMISO[3] = 8'b11110000;
-	end
-	
 	// Clock generator
 	reg Clock = 1'b1;
 	always begin
@@ -55,14 +37,15 @@ module SlaveSPI_tb();
 		.SCK_i(SCK),					// Serial clock
 		.MOSI_i(MOSI),					// Master Out, Slave In
 		.MISO_o(),						// Master In, Slave Out
-		
 		.DataToSend_i(ResponseData),	// Byte to be sent via MISO
 		.DataReceived_o(),				// Byte received from MOSI
-		.Done_o()	
+		.TransactionDone_o(),
+		.TransmissionStart_o(),
+		.TransmissionEnd_o()
 	);
 	
 	// Display message after a byte is received
-	always @(posedge DUT.Done_o) begin
+	always @(posedge DUT.TransactionDone_o) begin
 		$display("%t Received:     %H %b", $realtime, DUT.DataReceived_o, DUT.DataReceived_o);
 	end
 	

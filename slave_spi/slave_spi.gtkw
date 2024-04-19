@@ -1,20 +1,20 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sun Apr 14 19:41:39 2024
+[*] Fri Apr 19 11:28:53 2024
 [*]
 [dumpfile] "slave_spi.vcd"
-[dumpfile_mtime] "Sun Apr 14 19:07:00 2024"
-[dumpfile_size] 22730
+[dumpfile_mtime] "Fri Apr 19 11:06:19 2024"
+[dumpfile_size] 22781
 [savefile] "slave_spi.gtkw"
 [timestart] 0
-[size] 1536 793
+[size] 1920 1009
 [pos] -1 -1
-*-16.883709 124700 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-16.417650 565000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] SlaveSPI_tb.
 [sst_width] 197
 [signals_width] 280
 [sst_expanded] 1
-[sst_vpaned_height] 121
+[sst_vpaned_height] 163
 @28
 SlaveSPI_tb.Reset
 SlaveSPI_tb.Clock
@@ -33,7 +33,11 @@ SlaveSPI_tb.DUT.SyncMOSI
 @200
 -Signal Anaysis
 @28
-SlaveSPI_tb.DUT.TransmissionStart
+SlaveSPI_tb.DUT.TransmissionStart_o
+SlaveSPI_tb.DUT.TransmissionEnd_o
+@29
+SlaveSPI_tb.DUT.TransactionDone_o
+@28
 SlaveSPI_tb.DUT.TransmissionInProgress
 SlaveSPI_tb.DUT.InputSampleRequest
 SlaveSPI_tb.DUT.OutputShiftRequest
@@ -41,8 +45,6 @@ SlaveSPI_tb.DUT.OutputShiftRequest
 SlaveSPI_tb.DUT.BitCounter[2:0]
 @200
 -Slave receiver output
-@28
-SlaveSPI_tb.DUT.Done_o
 @22
 SlaveSPI_tb.DUT.DataReceived_o[7:0]
 @200
@@ -52,7 +54,7 @@ SlaveSPI_tb.DUT.DataToSend_i[7:0]
 SlaveSPI_tb.DUT.DataToSend[7:0]
 @200
 -Signals from Slave
-@29
+@28
 SlaveSPI_tb.DUT.MISO_o
 [pattern_trace] 1
 [pattern_trace] 0

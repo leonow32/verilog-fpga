@@ -42,7 +42,7 @@ module top_tb();
 	);
 	
 	// Display message after a byte is received
-	always @(posedge DUT.SlaveSPI_inst.Done_o) begin
+	always @(posedge DUT.SlaveSPI_inst.TransactionDone_o) begin
 		$display("%t Received:     %H %b", 
 			$realtime, 
 			DUT.SlaveSPI_inst.DataReceived_o, 
