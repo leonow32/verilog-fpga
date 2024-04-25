@@ -1,26 +1,19 @@
-`timescale 1ns/1ns  // time-unit, precision
+`timescale 1ns/1ps  // time-unit, precision
 
 `default_nettype none
 module VGA_tb();
 
-//	parameter CLOCK_HZ	= 25_175_000;
-//	parameter real HALF_PERIOD_NS = 1_000_000_000.0 / (2.0 * CLOCK_HZ);
-	
-//	parameter CLOCK_HZ	= 25_175_000;
-//	parameter HALF_PERIOD_NS = 1_000_000_000 / (2 * CLOCK_HZ);
-	
-	parameter CLOCK_HZ	= 25_000_000;
-	parameter HALF_PERIOD_NS = 1_000_000_000 / (2 * CLOCK_HZ);
+	parameter CLOCK_HZ	= 25_175_000;
 	
 	// Clock generator
 	reg Clock = 1'b1;
 	always begin
-		#HALF_PERIOD_NS;
+		#(1_000_000_000.0 / (2.0 * CLOCK_HZ));
 		Clock = !Clock;
 	end
 	
 	// Variables
-	reg Reset  = 1'b1;
+	reg Reset = 1'b0;
 	
 	// Instantiate device under test
 	VGA #(
@@ -28,7 +21,6 @@ module VGA_tb();
 	) DUT(
 		.Clock(Clock),
 		.Reset(Reset),
-		
 		.HSync_o(),
 		.VSync_o(),
 		.Red_o(),
@@ -48,16 +40,14 @@ module VGA_tb();
 		$display("===== START =====");
 
 		@(posedge Clock);
-		Reset = 1'b0;
-		#1 Reset = 1'b1;
+		Reset <= 1'b1;
 		
 		repeat(1000) @(posedge Clock);
-			
-		wait(DUT.VCounter_r == 0);
+		wait(DUT.VCounter == 0);
 		repeat(1000) @(posedge Clock);
 		
-		#1 $display("===== END =====");
-		#1 $finish;
+		$display("===== END =====");
+		$finish;
 	end
 	
 endmodule

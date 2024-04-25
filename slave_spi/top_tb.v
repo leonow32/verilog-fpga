@@ -71,7 +71,7 @@ module top_tb();
 		$display("===== START =====");
 		
 		@(posedge Clock);
-		Reset = 1'b1;
+		Reset <= 1'b1;
 		repeat(5) #DELAY;
 		
 		// Transmit four bytes
