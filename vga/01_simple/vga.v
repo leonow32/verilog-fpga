@@ -14,6 +14,7 @@ module VGA #(
 );
 	
 	reg [2:0] TestData;
+	//wire 
 	
 	// Timing for 640x400 70Hz
 	// localparam H_ACTIVE			= 640;
@@ -80,6 +81,8 @@ module VGA #(
 		end
 	end
 	
+	wire [2:0] ColorSelector = (HCounter[9:4] + VCounter[9:4]);
+	
 	// Horizontal state machine
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
@@ -92,28 +95,17 @@ module VGA #(
 		end else begin
 			case(HState)
 				ACTIVE: begin
-					if(VState == ACTIVE) begin
-						Red_o   <= TestData[0];
-						Green_o <= TestData[1];
-						Blue_o  <= TestData[2];
-						
-						//Red_o   <= TestData[5];
-						//Green_o <= TestData[6];
-						//Blue_o  <= TestData[7];
-						
-						//Red_o   <= 1'b1;
-						//Green_o <= 1'b1;
-						//Blue_o  <= 1'b1;
-						
-						//{Red_o, Green_o, Blue_o} <= TestData + VCounter[2:0];
-						
-						
-					end else begin
-						Red_o   <= 0;
-						Green_o <= 0;
-						Blue_o  <= 0;
-					end
-					
+					case(ColorSelector) 
+						3'd0:	{Red_o, Green_o, Blue_o} <= 3'b100;
+						3'd1:	{Red_o, Green_o, Blue_o} <= 3'b110;
+						3'd2:	{Red_o, Green_o, Blue_o} <= 3'b010;
+						3'd3:	{Red_o, Green_o, Blue_o} <= 3'b011;
+						3'd4:	{Red_o, Green_o, Blue_o} <= 3'b001;
+						3'd5:	{Red_o, Green_o, Blue_o} <= 3'b101;
+						3'd6:	{Red_o, Green_o, Blue_o} <= 3'b111;
+						3'd7:	{Red_o, Green_o, Blue_o} <= 3'b000;
+					endcase
+							
 					HSync_o <= 1;
 					
 					if(HCounter == H_GOTO_FRONT)
@@ -185,13 +177,29 @@ module VGA #(
 		end
 	end
 	
+	// Test color
+	// wire [6:0] HBlock = HCounter[9:3];
+	// wire [6:0] VBlock = VCounter[9:3];
+	// wire [2:0] Sum = HBlock + VBlock;
+
 	
-	always @(posedge Clock, negedge Reset) begin
-		if(!Reset)
-			TestData <= 3'b001;
-		else if(HState == ACTIVE)
-			TestData <= {TestData[1:0], TestData[2]};
-	end
+	// always @(posedge Clock, negedge Reset) begin
+		// if(!Reset)
+			// {Red_o, Green_o, Blue_o} <= 3'b000;
+		// else if(HState == ACTIVE && VState == ACTIVE)
+			// case(Sum) 
+				// 3'd0:	{Red_o, Green_o, Blue_o} <= 3'b100;
+				// 3'd1:	{Red_o, Green_o, Blue_o} <= 3'b110;
+				// 3'd2:	{Red_o, Green_o, Blue_o} <= 3'b010;
+				// 3'd3:	{Red_o, Green_o, Blue_o} <= 3'b011;
+				// 3'd4:	{Red_o, Green_o, Blue_o} <= 3'b001;
+				// 3'd5:	{Red_o, Green_o, Blue_o} <= 3'b101;
+				// 3'd6:	{Red_o, Green_o, Blue_o} <= 3'b111;
+				// 3'd7:	{Red_o, Green_o, Blue_o} <= 3'b000;
+			// endcase
+		// else
+			// {Red_o, Green_o, Blue_o} <= 3'b000;
+	// end
 	
 	
 endmodule
