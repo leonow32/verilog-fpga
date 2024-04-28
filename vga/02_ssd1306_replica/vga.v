@@ -4,6 +4,7 @@
 module VGA(
 	input  wire Clock,		// Must be 25 MHz or 25.175 MHz
 	input  wire Reset,
+	
 	output reg  Red_o,
 	output reg  Green_o,
 	output reg  Blue_o,
