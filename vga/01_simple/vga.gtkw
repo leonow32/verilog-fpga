@@ -1,43 +1,54 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Thu Apr 25 19:32:47 2024
+[*] Sun Apr 28 10:23:07 2024
 [*]
-[dumpfile] "C:\verilog\vga\01_simple\vga.vcd"
-[dumpfile_mtime] "Thu Apr 25 19:28:43 2024"
-[dumpfile_size] 25222260
-[savefile] "C:\verilog\vga\01_simple\vga.gtkw"
-[timestart] 14293395600
-[size] 1920 1009
+[dumpfile] "vga.vcd"
+[dumpfile_mtime] "Sun Apr 28 10:19:23 2024"
+[dumpfile_size] 21347289
+[savefile] "vga.gtkw"
+[timestart] 0
+[size] 1536 793
 [pos] -1 -1
-*-17.307899 14294279476 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-31.532047 16999291900 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] VGA_tb.
 [sst_width] 197
 [signals_width] 192
 [sst_expanded] 1
-[sst_vpaned_height] 297
+[sst_vpaned_height] 221
 @28
 VGA_tb.Reset
 VGA_tb.Clock
 @200
 -Horizontal
 @2024
-^1 C:\verilog\vga\01_simple\vga_state.gtkw
+^1 vga_state.gtkw
 VGA_tb.DUT.HState[1:0]
 @24
 VGA_tb.DUT.HCounter[9:0]
+@88022
+VGA_tb.DUT.HCounter[9:0]
+@20000
+-
+-
+-
 @200
 -Vertical
 @2024
-^1 C:\verilog\vga\01_simple\vga_state.gtkw
+^1 vga_state.gtkw
 VGA_tb.DUT.VState[1:0]
-@25
+@24
 VGA_tb.DUT.VCounter[9:0]
+@88022
+VGA_tb.DUT.VCounter[9:0]
+@20000
+-
+-
+-
 @200
 -Output
 @28
 [color] 1
 VGA_tb.DUT.Red_o
-[color] 4
 VGA_tb.DUT.Green_o
 [color] 5
 VGA_tb.DUT.Blue_o

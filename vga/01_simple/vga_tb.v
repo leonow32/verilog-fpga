@@ -16,9 +16,7 @@ module VGA_tb();
 	reg Reset = 1'b0;
 	
 	// Instantiate device under test
-	VGA #(
-		.CLOCK_HZ(CLOCK_HZ)
-	) DUT(
+	VGA DUT(
 		.Clock(Clock),
 		.Reset(Reset),
 		.HSync_o(),
@@ -42,9 +40,8 @@ module VGA_tb();
 		@(posedge Clock);
 		Reset <= 1'b1;
 		
-		repeat(1000) @(posedge Clock);
-		wait(DUT.VCounter == 0);
-		repeat(1000) @(posedge Clock);
+		wait(DUT.VCounter == 524 && DUT.HCounter == 799);
+		wait(DUT.VCounter == 10);
 		
 		$display("===== END =====");
 		$finish;
