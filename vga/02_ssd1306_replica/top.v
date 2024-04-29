@@ -46,6 +46,36 @@ module top(
 		.Sync_o(DC)
 	);
 	
+	// Bitmap memory
+	reg [10:0] WriteAddress;
+	
+	PseudoDualPortRAM #(
+		.ADDRESS_WIDTH(),
+		.DATA_WIDTH(8)
+	) BitmapRAM(
+		.ReadClock(Clock),
+		.WriteClock(Clock),
+		.Reset(Reset),
+		.ReadEnable_i(1'b1),
+		.WriteEnable_i(TransactionDone),
+		.ReadAddress_i(),
+		.WriteAddress_i(WriteAddress),
+		.Data_i(DataReceived),
+		.Data_o()
+	);
+	
+	// State machine to copy bitmap data
+	// from SPI interface to Dual Port RAM
+	always @(posedge Clock, negedge Reset) begin
+		if(!Reset)
+			WriteAddress <= 0;
+		else if(TransmissionStart)
+			WriteAddress <= 0;
+		else if(TransactionDone)
+			WriteAddress <= WriteAddress + 1'b1;
+	end
+	
+	
 	
 	
 
