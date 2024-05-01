@@ -42,7 +42,7 @@ module top_tb();
 	task TransmitSPI(input [7:0] Data);
 		integer i;
 		begin
-			$display("%t Transmitting: %H %b", $realtime, Data, Data);
+			//$display("%t Transmitting: %H %b", $realtime, Data, Data);
 			for(i=7; i>=0; i=i-1) begin
 				SCK = 0;
 				MOSI = Data[i];
@@ -67,6 +67,19 @@ module top_tb();
 		@(posedge Clock);
 		Reset <= 1;
 		
+		// Transmit some dummy bytes
+		repeat(10) @(posedge Clock);
+		CS = 0;
+		TransmitSPI(8'b00000001);
+		TransmitSPI(8'b00000011);
+		TransmitSPI(8'b00000111);
+		TransmitSPI(8'b00001111);
+		TransmitSPI(8'b00011111);
+		TransmitSPI(8'b00111111);
+		TransmitSPI(8'b01111111);
+		TransmitSPI(8'b11111111);
+		CS = 1;
+		
 		// Transmit image to the memory
 		repeat(10) @(posedge Clock);
 		CS = 0;
@@ -77,6 +90,9 @@ module top_tb();
 		CS = 1;
 		
 		repeat(10) @(posedge Clock);
+		
+		wait(DUT.VGA_inst.VCounter == 524 && DUT.VGA_inst.HCounter == 799);
+		wait(DUT.VGA_inst.VCounter == 10);
 		
 		$display("===== END =====");
 		$finish;

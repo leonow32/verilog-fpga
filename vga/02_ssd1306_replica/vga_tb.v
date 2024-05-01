@@ -19,11 +19,11 @@ module VGA_tb();
 	VGA DUT(
 		.Clock(Clock),
 		.Reset(Reset),
-		.HSync_o(),
-		.VSync_o(),
 		.Red_o(),
 		.Green_o(),
-		.Blue_o()
+		.Blue_o(),
+		.HSync_o(),
+		.VSync_o()
 	);
 
 	// Variable dump

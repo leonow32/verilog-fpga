@@ -50,7 +50,7 @@ module top(
 	reg [10:0] WriteAddress;
 	
 	PseudoDualPortRAM #(
-		.ADDRESS_WIDTH(),
+		.ADDRESS_WIDTH(11),
 		.DATA_WIDTH(8)
 	) BitmapRAM(
 		.ReadClock(Clock),
@@ -75,7 +75,17 @@ module top(
 			WriteAddress <= WriteAddress + 1'b1;
 	end
 	
-	
+	VGA VGA_inst(
+		.Clock(Clock),
+		.Reset(Reset),
+		.RequestedAddress(),
+		.DataFromRAM(8'b00000001),
+		.Red_o(Red_o),
+		.Green_o(Green_o),
+		.Blue_o(),
+		.HSync_o(),
+		.VSync_o()
+	);
 	
 	
 

@@ -1,22 +1,82 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sun Apr 28 18:37:34 2024
+[*] Wed May 01 16:55:27 2024
 [*]
-[dumpfile] "top.vcd"
-[dumpfile_mtime] "Fri Apr 19 11:25:19 2024"
-[dumpfile_size] 670756
-[savefile] "top.gtkw"
-[timestart] 0
+[dumpfile] "C:\verilog\vga\02_ssd1306_replica\top.vcd"
+[dumpfile_mtime] "Wed May 01 16:52:16 2024"
+[dumpfile_size] 25828893
+[savefile] "C:\verilog\vga\02_ssd1306_replica\top.gtkw"
+[timestart] 12390000000
 [size] 1920 1009
-[pos] -87 -87
-*-16.162420 2 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 -1
+*-28.699162 16873945322 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top_tb.
+[treeopen] top_tb.DUT.
+[treeopen] top_tb.DUT.SlaveSPI_inst.
 [sst_width] 197
-[signals_width] 184
+[signals_width] 265
 [sst_expanded] 1
 [sst_vpaned_height] 297
 @28
 top_tb.Reset
-@29
 top_tb.Clock
+@200
+-SPI Input
+@28
+top_tb.CS
+top_tb.SCK
+top_tb.MOSI
+[color] 3
+top_tb.DUT.TransmissionStart
+[color] 3
+top_tb.DUT.TransactionDone
+@22
+top_tb.DUT.DataReceived[7:0]
+@200
+-Input State Machine
+@22
+top_tb.DUT.WriteAddress[10:0]
+@200
+-Bitmap RAM
+@22
+top_tb.RAM_0000[7:0]
+top_tb.RAM_0001[7:0]
+top_tb.RAM_0002[7:0]
+top_tb.RAM_0003[7:0]
+top_tb.RAM_1534[7:0]
+top_tb.RAM_1535[7:0]
+top_tb.RAM_1536[7:0]
+top_tb.RAM_1537[7:0]
+@200
+-VGA module
+@2024
+^1 C:\verilog\vga\02_ssd1306_replica\vga_state.gtkw
+top_tb.DUT.VGA_inst.HState[1:0]
+@24
+top_tb.DUT.VGA_inst.HCounter[9:0]
+top_tb.DUT.VGA_inst.HDivider[2:0]
+top_tb.DUT.VGA_inst.HPixel[6:0]
+@2024
+^1 C:\verilog\vga\02_ssd1306_replica\vga_state.gtkw
+top_tb.DUT.VGA_inst.VState[1:0]
+@24
+top_tb.DUT.VGA_inst.VCounter[9:0]
+top_tb.DUT.VGA_inst.VDivider[2:0]
+@25
+top_tb.DUT.VGA_inst.VPixel[6:0]
+@24
+top_tb.DUT.VGA_inst.PageNumber[6:0]
+top_tb.DUT.VGA_inst.LineInPage[2:0]
+top_tb.DUT.VGA_inst.RequestedAddress[10:0]
+@22
+top_tb.DUT.VGA_inst.DataFromRAM[7:0]
+@200
+-VGA Output
+@28
+top_tb.DUT.VGA_inst.Red_o
+top_tb.DUT.VGA_inst.Green_o
+top_tb.DUT.VGA_inst.Blue_o
+top_tb.DUT.VGA_inst.HSync_o
+top_tb.DUT.VGA_inst.VSync_o
 [pattern_trace] 1
 [pattern_trace] 0
