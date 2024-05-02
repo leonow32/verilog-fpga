@@ -84,8 +84,14 @@ module top_tb();
 		repeat(10) @(posedge Clock);
 		CS = 0;
 		repeat(WIDTH * HEIGHT / 16) begin
-			TransmitSPI(8'b01010101);
-			TransmitSPI(8'b10101010);
+			// TransmitSPI(8'b01010101);
+			// TransmitSPI(8'b10101010);
+			
+			// TransmitSPI(8'b11111111);
+			// TransmitSPI(8'b11111111);
+			
+			TransmitSPI(8'b11111111);
+			TransmitSPI(8'b00000000);
 		end
 		CS = 1;
 		
@@ -94,7 +100,7 @@ module top_tb();
 		wait(DUT.VGA_inst.VCounter == 524 && DUT.VGA_inst.HCounter == 799);
 		wait(DUT.VGA_inst.VCounter == 10);
 		
-		$display("===== END =====");
+		$display("====== END ======");
 		$finish;
 	end
 	

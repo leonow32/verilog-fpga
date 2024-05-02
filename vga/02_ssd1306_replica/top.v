@@ -20,7 +20,8 @@ module top(
 	// SPI data receiver
 	wire TransmissionStart;
 	wire TransactionDone;
-	wire [7:0] DataReceived;
+	wire [7:0] DataFromSPI;
+	wire [7:0] DataFromRAM;
 	
 	SlaveSPI SlaveSPI_inst(
 		.Clock(Clock),
@@ -30,7 +31,7 @@ module top(
 		.MOSI_i(MOSI_i),
 		.MISO_o(),
 		.DataToSend_i(8'd0),
-		.DataReceived_o(DataReceived),
+		.DataReceived_o(DataFromSPI),
 		.TransactionDone_o(TransactionDone),
 		.TransmissionStart_o(TransmissionStart),
 		.TransmissionEnd_o()
@@ -48,6 +49,7 @@ module top(
 	
 	// Bitmap memory
 	reg [10:0] WriteAddress;
+	wire [10:0] ReadAddress;
 	
 	PseudoDualPortRAM #(
 		.ADDRESS_WIDTH(11),
@@ -58,10 +60,10 @@ module top(
 		.Reset(Reset),
 		.ReadEnable_i(1'b1),
 		.WriteEnable_i(TransactionDone),
-		.ReadAddress_i(),
+		.ReadAddress_i(ReadAddress),
 		.WriteAddress_i(WriteAddress),
-		.Data_i(DataReceived),
-		.Data_o()
+		.Data_i(DataFromSPI),
+		.Data_o(DataFromRAM)
 	);
 	
 	// State machine to copy bitmap data
@@ -78,13 +80,13 @@ module top(
 	VGA VGA_inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		.RequestedAddress(),
-		.DataFromRAM(8'b00000001),
+		.RequestedAddress_o(ReadAddress),
+		.DataFromRAM_i(DataFromRAM),
 		.Red_o(Red_o),
 		.Green_o(Green_o),
-		.Blue_o(),
-		.HSync_o(),
-		.VSync_o()
+		.Blue_o(Blue_o),
+		.HSync_o(HSync_o),
+		.VSync_o(VSync_o)
 	);
 	
 	

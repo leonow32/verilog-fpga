@@ -5,8 +5,8 @@ module VGA(
 	input  wire Clock,		// Must be 25 MHz or 25.175 MHz
 	input  wire Reset,
 	
-	output reg [10:0] RequestedAddress,
-	input wire [7:0] DataFromRAM,
+	output wire [10:0] RequestedAddress_o,
+	input  wire [ 7:0] DataFromRAM_i,
 	
 	output reg  Red_o,
 	output reg  Green_o,
@@ -18,9 +18,6 @@ module VGA(
 	// Counters
 	reg [9:0] HCounter;		// Max 799
 	reg [9:0] VCounter;		// Max 524
-	
-	wire [2:0] LineInPage = VCounter[2:0];
-	wire [6:0] PageNumber = VCounter[9:3];
 	
 	// State machines
 	reg [1:0] HState;
@@ -37,19 +34,9 @@ module VGA(
 		if(!Reset) begin
 			HCounter <= 0;
 			VCounter <= 0;
-			// HDivider <= 0;
-			// VDivider <= 0;
-			// HPixel <= 0;
-			// VPixel <= 0;
 		end else begin
 			if(HCounter != 799) begin
 				HCounter <= HCounter + 1'b1;
-				// if(HDivider == 4) begin
-					// HDivider <= 0;
-					// HPixel <= HPixel + 1'b1;
-				// end else begin
-					// HDivider <= HDivider + 1'b1;
-				// end
 			end
 			
 			else begin
@@ -68,7 +55,7 @@ module VGA(
 			// Red_o 	<= 0;
 			// Green_o	<= 0;
 			// Blue_o	<= 0;
-			// HSync_o	<= 1;
+			HSync_o	<= 1;
 			HState	<= ACTIVE;
 		end 
 		
@@ -77,12 +64,12 @@ module VGA(
 				ACTIVE: begin
 					// if(VState != ACTIVE)
 						// {Red_o, Green_o, Blue_o} <= 3'b000;
-					// else if(DataFromRAM[LineInPage])
+					// else if(DataFromRAM_i[LineInPage])
 						// {Red_o, Green_o, Blue_o} <= 3'b111;
 					// else
 						// {Red_o, Green_o, Blue_o} <= 3'b000;
 					
-					// HSync_o <= 1;
+					HSync_o <= 1;
 					if(HCounter == 639)
 						HState <= FRONT;
 				end
@@ -91,7 +78,7 @@ module VGA(
 					// Red_o   <= 0;
 					// Green_o <= 0;
 					// Blue_o  <= 0;
-					// HSync_o <= 1;
+					HSync_o <= 1;
 					if(HCounter == 655)
 						HState <= SYNC;
 				end
@@ -100,7 +87,7 @@ module VGA(
 					// Red_o   <= 0;
 					// Green_o <= 0;
 					// Blue_o  <= 0;
-					// HSync_o <= 0;
+					HSync_o <= 0;
 					if(HCounter == 751)
 						HState <= BACK;
 				end
@@ -109,7 +96,7 @@ module VGA(
 					// Red_o   <= 0;
 					// Green_o <= 0;
 					// Blue_o  <= 0;
-					// HSync_o <= 1;
+					HSync_o <= 1;
 					if(HCounter == 799)
 						HState <= ACTIVE;
 				end
@@ -120,32 +107,32 @@ module VGA(
 	// Vertical state machine
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
-			// VSync_o <= 1;
+			VSync_o <= 1;
 			VState	<= ACTIVE;
 		end 
 		
 		else if(HCounter == 799) begin
 			case(VState)
 				ACTIVE: begin
-					// VSync_o <= 1;
+					VSync_o <= 1;
 					if(VCounter == 479)
 						VState <= FRONT;
 				end
 				
 				FRONT: begin
-					// VSync_o <= 1;
+					VSync_o <= 1;
 					if(VCounter == 489)
 						VState <= SYNC;
 				end
 				
 				SYNC: begin
-					// VSync_o <= 0;
+					VSync_o <= 0;
 					if(VCounter == 491)
 						VState <= BACK;
 				end
 				
 				BACK: begin
-					// VSync_o <= 1;
+					VSync_o <= 1;
 					if(VCounter == 524)
 						VState <= ACTIVE;
 				end
@@ -194,26 +181,30 @@ module VGA(
 		end
 	end
 	
-	// Pixel 5x5
-	// reg [2:0] Divider;
+	wire [2:0] LineInPage = VPixel[2:0];
+	wire [3:0] PageNumber = VPixel[6:3];
 	
+	assign RequestedAddress_o[10:0] = {PageNumber, HPixel};
 	
-	// always @(posedge Clock, negedge Reset) begin
-		// if(!Reset) begin
-			// Divider = 0;
-			// RequestedAddress = 0;
-		// end 
+	always @(posedge Clock, negedge Reset) begin
+		if(!Reset) begin
+			Red_o <= 0;
+			Green_o <= 0;
+			Blue_o <= 0;
+		end 
 		
-		// else if(HState == ACTIVE) begin
-			// if(Divider == 4) begin
-				// Divider <= 0;
-				// RequestedAddress <= RequestedAddress + 1'b1;
-			// end else begin
-				// Divider <= Divider + 1'b1;
-			// end
-		// end
-	// end
-	
+		else if(HState == ACTIVE && VState == ACTIVE && DataFromRAM_i[LineInPage]) begin
+			Red_o <= 1;
+			Green_o <= 1;
+			Blue_o <= 1;
+		end
+		
+		else begin
+			Red_o <= 0;
+			Green_o <= 0;
+			Blue_o <= 0;
+		end
+	end
 	
 endmodule
 `default_nettype wire
