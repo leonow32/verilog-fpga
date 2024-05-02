@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Thu May 02 09:59:52 2024
+[*] Thu May 02 10:31:31 2024
 [*]
 [dumpfile] "C:\verilog\vga\02_ssd1306_replica\top.vcd"
-[dumpfile_mtime] "Thu May 02 09:45:53 2024"
-[dumpfile_size] 30958149
+[dumpfile_mtime] "Thu May 02 10:19:44 2024"
+[dumpfile_size] 28024311
 [savefile] "C:\verilog\vga\02_ssd1306_replica\top.gtkw"
-[timestart] 8897395200
+[timestart] 15782800000
 [size] 1536 793
 [pos] -1 -1
-*-17.338139 8897807444 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-27.567541 15571103444 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.DUT.
 [treeopen] top_tb.DUT.SlaveSPI_inst.
@@ -49,14 +49,12 @@ top_tb.RAM_1536[7:0]
 top_tb.RAM_1537[7:0]
 @200
 -VGA module
-@2024
+@2025
 ^1 C:\verilog\vga\02_ssd1306_replica\vga_state.gtkw
 top_tb.DUT.VGA_inst.HState[1:0]
 @24
 top_tb.DUT.VGA_inst.HCounter[9:0]
-@25
 top_tb.DUT.VGA_inst.HDivider[2:0]
-@24
 top_tb.DUT.VGA_inst.HPixel[6:0]
 @2024
 ^1 C:\verilog\vga\02_ssd1306_replica\vga_state.gtkw

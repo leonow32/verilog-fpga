@@ -55,7 +55,7 @@ module VGA(
 			// Red_o 	<= 0;
 			// Green_o	<= 0;
 			// Blue_o	<= 0;
-			HSync_o	<= 1;
+			// HSync_o	<= 1;
 			HState	<= ACTIVE;
 		end 
 		
@@ -69,7 +69,7 @@ module VGA(
 					// else
 						// {Red_o, Green_o, Blue_o} <= 3'b000;
 					
-					HSync_o <= 1;
+					// HSync_o <= 1;
 					if(HCounter == 639)
 						HState <= FRONT;
 				end
@@ -78,7 +78,7 @@ module VGA(
 					// Red_o   <= 0;
 					// Green_o <= 0;
 					// Blue_o  <= 0;
-					HSync_o <= 1;
+					// HSync_o <= 1;
 					if(HCounter == 655)
 						HState <= SYNC;
 				end
@@ -87,7 +87,7 @@ module VGA(
 					// Red_o   <= 0;
 					// Green_o <= 0;
 					// Blue_o  <= 0;
-					HSync_o <= 0;
+					// HSync_o <= 0;
 					if(HCounter == 751)
 						HState <= BACK;
 				end
@@ -96,7 +96,7 @@ module VGA(
 					// Red_o   <= 0;
 					// Green_o <= 0;
 					// Blue_o  <= 0;
-					HSync_o <= 1;
+					// HSync_o <= 1;
 					if(HCounter == 799)
 						HState <= ACTIVE;
 				end
@@ -114,25 +114,25 @@ module VGA(
 		else if(HCounter == 799) begin
 			case(VState)
 				ACTIVE: begin
-					VSync_o <= 1;
+					// VSync_o <= 1;
 					if(VCounter == 479)
 						VState <= FRONT;
 				end
 				
 				FRONT: begin
-					VSync_o <= 1;
+					// VSync_o <= 1;
 					if(VCounter == 489)
 						VState <= SYNC;
 				end
 				
 				SYNC: begin
-					VSync_o <= 0;
+					// VSync_o <= 0;
 					if(VCounter == 491)
 						VState <= BACK;
 				end
 				
 				BACK: begin
-					VSync_o <= 1;
+					// VSync_o <= 1;
 					if(VCounter == 524)
 						VState <= ACTIVE;
 				end
@@ -186,24 +186,49 @@ module VGA(
 	
 	assign RequestedAddress_o[10:0] = {PageNumber, HPixel};
 	
+	// Output signals
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
 			Red_o <= 0;
 			Green_o <= 0;
 			Blue_o <= 0;
+			HSync_o <= 1;
+			VSync_o <= 1;
 		end 
 		
-		else if(HState == ACTIVE && VState == ACTIVE && DataFromRAM_i[LineInPage]) begin
-			Red_o <= 1;
-			Green_o <= 1;
-			Blue_o <= 1;
+		else begin
+			
+			// Vertical sync pulse
+			if(VState == SYNC)
+				VSync_o <= 0;
+			else
+				VSync_o <= 1;
+			
+			// Horizontal sync pulse
+			if(HState == SYNC)
+				HSync_o <= 0;
+			else
+				HSync_o <= 1;
+				
+			// RGB signals
+			if(HState == ACTIVE && VState == ACTIVE && DataFromRAM_i[LineInPage])
+				{Red_o, Green_o, Blue_o} <= 3'b111;
+			else
+				{Red_o, Green_o, Blue_o} <= 3'b000;
 		end
 		
-		else begin
-			Red_o <= 0;
-			Green_o <= 0;
-			Blue_o <= 0;
-		end
+		
+		// else if(HState == ACTIVE && VState == ACTIVE && DataFromRAM_i[LineInPage]) begin
+			// Red_o <= 1;
+			// Green_o <= 1;
+			// Blue_o <= 1;
+		// end
+		
+		// else begin
+			// Red_o <= 0;
+			// Green_o <= 0;
+			// Blue_o <= 0;
+		// end
 	end
 	
 endmodule

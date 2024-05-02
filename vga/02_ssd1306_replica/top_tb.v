@@ -87,11 +87,11 @@ module top_tb();
 			// TransmitSPI(8'b01010101);
 			// TransmitSPI(8'b10101010);
 			
-			// TransmitSPI(8'b11111111);
-			// TransmitSPI(8'b11111111);
-			
 			TransmitSPI(8'b11111111);
-			TransmitSPI(8'b00000000);
+			TransmitSPI(8'b11111111);
+			
+			// TransmitSPI(8'b11111111);
+			// TransmitSPI(8'b00000000);
 		end
 		CS = 1;
 		
