@@ -107,7 +107,7 @@ module VGA(
 	// Vertical state machine
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
-			VSync_o <= 1;
+			//VSync_o <= 1;
 			VState	<= ACTIVE;
 		end 
 		

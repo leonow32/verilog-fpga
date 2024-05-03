@@ -53,7 +53,8 @@ module top(
 	
 	PseudoDualPortRAM #(
 		.ADDRESS_WIDTH(11),
-		.DATA_WIDTH(8)
+		.DATA_WIDTH(8),
+		.MEMORY_DEPTH(1536)
 	) BitmapRAM(
 		.ReadClock(Clock),
 		.WriteClock(Clock),
