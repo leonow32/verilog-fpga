@@ -74,7 +74,7 @@ module top(
 			WriteAddress <= 0;
 		else if(TransmissionStart)
 			WriteAddress <= 0;
-		else if(TransactionDone)
+		else if(TransactionDone && DC)
 			WriteAddress <= WriteAddress + 1'b1;
 	end
 	

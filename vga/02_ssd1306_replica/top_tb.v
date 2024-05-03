@@ -29,7 +29,7 @@ module top_tb();
 		.CS_i(CS),
 		.SCK_i(SCK),
 		.MOSI_i(MOSI),
-		.DC_i(1'b0),
+		.DC_i(1'b1),
 		
 		.HSync_o(),
 		.VSync_o(),
@@ -110,8 +110,6 @@ module top_tb();
 	wire [7:0] RAM_0003 = DUT.BitmapRAM.Memory[3];
 	wire [7:0] RAM_1534 = DUT.BitmapRAM.Memory[1534];
 	wire [7:0] RAM_1535	= DUT.BitmapRAM.Memory[1535];
-	wire [7:0] RAM_1536 = DUT.BitmapRAM.Memory[1536];
-	wire [7:0] RAM_1537 = DUT.BitmapRAM.Memory[1537];
 	
 endmodule
 `default_nettype wire

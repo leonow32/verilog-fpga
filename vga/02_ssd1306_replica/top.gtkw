@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Thu May 02 10:31:31 2024
+[*] Fri May 03 13:57:57 2024
 [*]
 [dumpfile] "C:\verilog\vga\02_ssd1306_replica\top.vcd"
-[dumpfile_mtime] "Thu May 02 10:19:44 2024"
-[dumpfile_size] 28024311
+[dumpfile_mtime] "Fri May 03 13:55:43 2024"
+[dumpfile_size] 28024321
 [savefile] "C:\verilog\vga\02_ssd1306_replica\top.gtkw"
-[timestart] 15782800000
+[timestart] 0
 [size] 1536 793
-[pos] -1 -1
-*-27.567541 15571103444 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] 1885 -41
+*-31.676020 15571103444 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.DUT.
 [treeopen] top_tb.DUT.SlaveSPI_inst.
