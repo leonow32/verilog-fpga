@@ -27,7 +27,7 @@ module RAM #(
 	// Initialize memory with zeros
 	integer i;
 	initial begin
-		for(i=0; i<2**ADDRESS_WIDTH; i=i+1) begin
+		for(i=0; i<MEMORY_DEPTH; i=i+1) begin
 			Memory[i] = 0;
 		end
 	end
