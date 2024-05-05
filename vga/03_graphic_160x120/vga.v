@@ -156,7 +156,7 @@ module VGA(
 	wire [2:0] LineInPage = VPixel[2:0];
 	wire [3:0] PageNumber = VPixel[6:3];
 	
-	assign RequestedAddress_o[11:0] = (VPixel * 160 + HPixel) / 8;
+	assign RequestedAddress_o[11:0] = (VPixel/8) * 160 + HPixel;
 	
 	// Output signals
 	always @(posedge Clock, negedge Reset) begin
