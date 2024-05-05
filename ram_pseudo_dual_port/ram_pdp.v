@@ -27,12 +27,12 @@ module PseudoDualPortRAM #(
 	end
 	
 	// Initialize the memory with zeros
-	integer i;
+	/*integer i;
 	initial begin
 		for(i=0; i<MEMORY_DEPTH; i=i+1) begin
 			Memory[i] = 0;
 		end
-	end
+	end*/
 	
 	// Read operation
 	always @(posedge ReadClock, negedge Reset) begin
