@@ -2,19 +2,19 @@
 
 `default_nettype none
 module top(
-	input wire Clock,		// Must be 25 MHz or 25.175 MHz
-	input wire Reset,
+	input wire Clock,		// Pin 20, must be 25 MHz or 25.175 MHz
+	input wire Reset,		// Pin 17
 	
-	input wire CS_i,
-	input wire SCK_i,
-	input wire MOSI_i,
-	input wire DC_i,
+	input wire CS_i,		// Pin 27
+	input wire SCK_i,		// Pin 31
+	input wire MOSI_i,		// Pin 49
+	input wire DC_i,		// Pin 48
 	
-	output wire Red_o,
-	output wire Green_o,
-	output wire Blue_o,
-	output wire HSync_o,
-	output wire VSync_o
+	output wire Red_o,		// Pin 78
+	output wire Green_o,	// Pin 10
+	output wire Blue_o,		// Pin 9
+	output wire HSync_o,	// Pin 1
+	output wire VSync_o		// Pin 8
 );
 	
 	// SPI data receiver
@@ -48,7 +48,7 @@ module top(
 	);
 	
 	// Bitmap memory
-	reg [10:0] WriteAddress;
+	reg  [10:0] WriteAddress;
 	wire [10:0] ReadAddress;
 	
 	PseudoDualPortRAM #(
@@ -90,6 +90,4 @@ module top(
 		.VSync_o(VSync_o)
 	);
 	
-	
-
 endmodule

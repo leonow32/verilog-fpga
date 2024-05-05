@@ -25,12 +25,10 @@ module top_tb();
 	top DUT(
 		.Clock(Clock),
 		.Reset(Reset),
-		
 		.CS_i(CS),
 		.SCK_i(SCK),
 		.MOSI_i(MOSI),
 		.DC_i(1'b1),
-		
 		.HSync_o(),
 		.VSync_o(),
 		.Red_o(),
@@ -67,28 +65,16 @@ module top_tb();
 		@(posedge Clock);
 		Reset <= 1;
 		
-		// Transmit some dummy bytes
 		repeat(10) @(posedge Clock);
-		CS = 0;
-		TransmitSPI(8'b00000001);
-		TransmitSPI(8'b00000011);
-		TransmitSPI(8'b00000111);
-		TransmitSPI(8'b00001111);
-		TransmitSPI(8'b00011111);
-		TransmitSPI(8'b00111111);
-		TransmitSPI(8'b01111111);
-		TransmitSPI(8'b11111111);
-		CS = 1;
 		
 		// Transmit image to the memory
-		repeat(10) @(posedge Clock);
 		CS = 0;
 		repeat(WIDTH * HEIGHT / 16) begin
-			// TransmitSPI(8'b01010101);
-			// TransmitSPI(8'b10101010);
+			TransmitSPI(8'b01010101);
+			TransmitSPI(8'b10101010);
 			
-			TransmitSPI(8'b11111111);
-			TransmitSPI(8'b11111111);
+			// TransmitSPI(8'b11111111);
+			// TransmitSPI(8'b11111111);
 			
 			// TransmitSPI(8'b11111111);
 			// TransmitSPI(8'b00000000);
@@ -104,6 +90,7 @@ module top_tb();
 		$finish;
 	end
 	
+	// Some wires to have a look inside the memory
 	wire [7:0] RAM_0000 = DUT.BitmapRAM.Memory[0];
 	wire [7:0] RAM_0001 = DUT.BitmapRAM.Memory[1];
 	wire [7:0] RAM_0002 = DUT.BitmapRAM.Memory[2];

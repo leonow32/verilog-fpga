@@ -15,7 +15,7 @@ module VGA(
 	output reg  VSync_o
 );
 	
-	// Counters
+	// Counters for 640*480 screen resolution
 	reg [9:0] HCounter;		// Max 799
 	reg [9:0] VCounter;		// Max 524
 	
@@ -52,51 +52,27 @@ module VGA(
 	// Horizontal state machine
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
-			// Red_o 	<= 0;
-			// Green_o	<= 0;
-			// Blue_o	<= 0;
-			// HSync_o	<= 1;
 			HState	<= ACTIVE;
 		end 
 		
 		else begin
 			case(HState)
 				ACTIVE: begin
-					// if(VState != ACTIVE)
-						// {Red_o, Green_o, Blue_o} <= 3'b000;
-					// else if(DataFromRAM_i[LineInPage])
-						// {Red_o, Green_o, Blue_o} <= 3'b111;
-					// else
-						// {Red_o, Green_o, Blue_o} <= 3'b000;
-					
-					// HSync_o <= 1;
 					if(HCounter == 639)
 						HState <= FRONT;
 				end
 					
 				FRONT: begin
-					// Red_o   <= 0;
-					// Green_o <= 0;
-					// Blue_o  <= 0;
-					// HSync_o <= 1;
 					if(HCounter == 655)
 						HState <= SYNC;
 				end
 				
 				SYNC: begin
-					// Red_o   <= 0;
-					// Green_o <= 0;
-					// Blue_o  <= 0;
-					// HSync_o <= 0;
 					if(HCounter == 751)
 						HState <= BACK;
 				end
 				
 				BACK: begin
-					// Red_o   <= 0;
-					// Green_o <= 0;
-					// Blue_o  <= 0;
-					// HSync_o <= 1;
 					if(HCounter == 799)
 						HState <= ACTIVE;
 				end
@@ -107,32 +83,27 @@ module VGA(
 	// Vertical state machine
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
-			//VSync_o <= 1;
 			VState	<= ACTIVE;
 		end 
 		
 		else if(HCounter == 799) begin
 			case(VState)
 				ACTIVE: begin
-					// VSync_o <= 1;
 					if(VCounter == 479)
 						VState <= FRONT;
 				end
 				
 				FRONT: begin
-					// VSync_o <= 1;
 					if(VCounter == 489)
 						VState <= SYNC;
 				end
 				
 				SYNC: begin
-					// VSync_o <= 0;
 					if(VCounter == 491)
 						VState <= BACK;
 				end
 				
 				BACK: begin
-					// VSync_o <= 1;
 					if(VCounter == 524)
 						VState <= ACTIVE;
 				end
@@ -141,6 +112,7 @@ module VGA(
 		end
 	end
 	
+	// Counters for 128*96 screen resolution (640*480/5 = 128*96)
 	reg [2:0] HDivider;		// Max 4
 	reg [2:0] VDivider;		// Max 4
 	reg [6:0] HPixel;		// Max 127
@@ -216,19 +188,6 @@ module VGA(
 			else
 				{Red_o, Green_o, Blue_o} <= 3'b000;
 		end
-		
-		
-		// else if(HState == ACTIVE && VState == ACTIVE && DataFromRAM_i[LineInPage]) begin
-			// Red_o <= 1;
-			// Green_o <= 1;
-			// Blue_o <= 1;
-		// end
-		
-		// else begin
-			// Red_o <= 0;
-			// Green_o <= 0;
-			// Blue_o <= 0;
-		// end
 	end
 	
 endmodule
