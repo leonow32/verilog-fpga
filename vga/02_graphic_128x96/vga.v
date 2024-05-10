@@ -183,10 +183,19 @@ module VGA(
 				HSync_o <= 1;
 				
 			// RGB signals
-			if(HState == ACTIVE && VState == ACTIVE && DataFromRAM_i[LineInPage])
-				{Red_o, Green_o, Blue_o} <= 3'b111;
-			else
+			if(HDivider == 1) begin
+				if(HState == ACTIVE && VState == ACTIVE && DataFromRAM_i[LineInPage])
+					{Red_o, Green_o, Blue_o} <= 3'b111;
+				else
+					{Red_o, Green_o, Blue_o} <= 3'b000;
+			end
+			
+			if(HState == ACTIVE && VState == ACTIVE) begin
+				if(HDivider == 1 && DataFromRAM_i[LineInPage])
+					{Red_o, Green_o, Blue_o} <= 3'b111;
+			end else begin
 				{Red_o, Green_o, Blue_o} <= 3'b000;
+			end
 		end
 	end
 	
