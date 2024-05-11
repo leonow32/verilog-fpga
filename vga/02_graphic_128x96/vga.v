@@ -182,6 +182,8 @@ module VGA(
 			else
 				HSync_o <= 1;
 				
+			// Something wrong with two blocks below. Should be one block
+			
 			// RGB signals
 			if(HDivider == 1) begin
 				if(HState == ACTIVE && VState == ACTIVE && DataFromRAM_i[LineInPage])
@@ -196,6 +198,8 @@ module VGA(
 			end else begin
 				{Red_o, Green_o, Blue_o} <= 3'b000;
 			end
+			
+			// Something wrong with two blocks above. Should be one block
 		end
 	end
 	
