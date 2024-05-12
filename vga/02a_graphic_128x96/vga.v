@@ -40,16 +40,40 @@ module VGA(
 	end
 	
 	// Cursor position for 128x96 screen resolution
+	reg [2:0] HDivider;		// Max 4
+	reg [2:0] VDivider;		// Max 4
 	reg [6:0] HPixel;		// Max 127
 	reg [6:0] VPixel;		// Max 95
 	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
+			HDivider <= 0;
+			VDivider <= 0;
 			HPixel <= 0;
 			VPixel <= 0;
 		end else begin
-			HPixel <= HCounter / 5;
-			VPixel <= VCounter / 5;
+			// HPixel <= HCounter / 5;
+			// VPixel <= VCounter / 5;
+			
+			if(HDivider == 4) begin
+				HDivider <= 0;
+				if(HCounter == 799) begin
+					HPixel <= 0;
+					if(VCounter == 524) begin
+						VPixel <= 0;
+						VDivider <= 0;
+					end else if(VDivider == 4) begin
+						VDivider <= 0;
+						VPixel <= VPixel + 1'b1;
+					end else begin
+						VDivider <= VDivider + 1'b1;
+					end
+				end else begin
+					HPixel <= HPixel + 1'b1;
+				end
+			end else begin
+				HDivider <= HDivider + 1'b1;
+			end
 		end
 	end
 	
