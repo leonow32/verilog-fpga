@@ -1,22 +1,22 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sun May 12 19:02:51 2024
+[*] Mon May 13 18:32:25 2024
 [*]
 [dumpfile] "C:\verilog\vga\03a_graphic_160x120\top.vcd"
-[dumpfile_mtime] "Sun May 12 19:01:46 2024"
-[dumpfile_size] 31099318
+[dumpfile_mtime] "Mon May 13 18:28:43 2024"
+[dumpfile_size] 32311504
 [savefile] "C:\verilog\vga\03a_graphic_160x120\top.gtkw"
-[timestart] 14814000000
-[size] 1920 1009
-[pos] -9 -9
-*-28.240322 16683279722 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 15245786000
+[size] 1536 793
+[pos] -1 -1
+*-18.806038 15247686920 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.DUT.
 [treeopen] top_tb.DUT.SlaveSPI_inst.
-[sst_width] 197
+[sst_width] 228
 [signals_width] 296
 [sst_expanded] 1
-[sst_vpaned_height] 297
+[sst_vpaned_height] 221
 @28
 top_tb.Reset
 top_tb.Clock
@@ -43,10 +43,13 @@ top_tb.RAM_2399[7:0]
 -VGA Horizontal
 @24
 top_tb.DUT.VGA_inst.HCounter[9:0]
+top_tb.DUT.VGA_inst.HDivider[2:0]
+top_tb.DUT.VGA_inst.HPixel[7:0]
 @200
 -VGA Vertical
 @24
 top_tb.DUT.VGA_inst.VCounter[9:0]
+top_tb.DUT.VGA_inst.VDivider[2:0]
 top_tb.DUT.VGA_inst.VPixel[6:0]
 @200
 -VGA Others
@@ -60,7 +63,9 @@ top_tb.DUT.VGA_inst.DataFromRAM_i[7:0]
 -VGA Output
 @28
 top_tb.DUT.VGA_inst.Red_o
+@29
 top_tb.DUT.VGA_inst.Green_o
+@28
 top_tb.DUT.VGA_inst.Blue_o
 top_tb.DUT.VGA_inst.HSync_o
 top_tb.DUT.VGA_inst.VSync_o

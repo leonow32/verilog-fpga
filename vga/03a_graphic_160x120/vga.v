@@ -89,10 +89,12 @@ module VGA(
 		
 		// Horizontal active area
 		else if(HCounter >= 2 && HCounter <= 641 && VCounter >= 0 && VCounter <= 479) begin
-			if(DataFromRAM_i[LineInPage])
-				{HSync_o, Red_o, Green_o, Blue_o} <= 4'b1111;
-			else
-				{HSync_o, Red_o, Green_o, Blue_o} <= 4'b1000;
+			if(HDivider == 2) begin
+				if(DataFromRAM_i[LineInPage])
+					{HSync_o, Red_o, Green_o, Blue_o} <= 4'b1111;
+				else
+					{HSync_o, Red_o, Green_o, Blue_o} <= 4'b1000;
+			end
 		end
 		
 		// Horizontal front porch
