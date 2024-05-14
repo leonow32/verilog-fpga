@@ -70,11 +70,11 @@ module top_tb();
 		// Transmit image to the memory
 		CS = 0;
 		repeat(WIDTH * HEIGHT / 16) begin
-			// TransmitSPI(8'b01010101);
-			// TransmitSPI(8'b10101010);
+			TransmitSPI(8'b01010101);
+			TransmitSPI(8'b10101010);
 			
-			TransmitSPI(8'b11111111);
-			TransmitSPI(8'b11111111);
+			// TransmitSPI(8'b11111111);
+			// TransmitSPI(8'b11111111);
 			
 			// TransmitSPI(8'b11111111);
 			// TransmitSPI(8'b00000000);
