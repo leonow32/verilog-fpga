@@ -73,30 +73,30 @@ module top_tb();
 			// TransmitSPI(8'b01010101);
 			// TransmitSPI(8'b10101010);
 			
-			TransmitSPI(8'b11111111);
-			TransmitSPI(8'b11111111);
-			
 			// TransmitSPI(8'b11111111);
-			// TransmitSPI(8'b00000000);
+			// TransmitSPI(8'b11111111);
+			
+			TransmitSPI(8'b11111111);
+			TransmitSPI(8'b00000000);
 		end
 		CS = 1;
 		
 		repeat(10) @(posedge Clock);
 		
 		wait(DUT.VGA_inst.VCounter == 524 && DUT.VGA_inst.HCounter == 799);
-		wait(DUT.VGA_inst.VCounter == 10);
+		wait(DUT.VGA_inst.VCounter == 500);
 		
 		$display("====== END ======");
 		$finish;
 	end
 	
 	// Some wires to have a look inside the memory
-	wire [7:0] RAM_0000 = DUT.BitmapRAM.Memory[0];
-	wire [7:0] RAM_0001 = DUT.BitmapRAM.Memory[1];
-	wire [7:0] RAM_0002 = DUT.BitmapRAM.Memory[2];
-	wire [7:0] RAM_0003 = DUT.BitmapRAM.Memory[3];
-	wire [7:0] RAM_2398 = DUT.BitmapRAM.Memory[2398];
-	wire [7:0] RAM_2399	= DUT.BitmapRAM.Memory[2399];
+	wire [7:0] RAM_0000 = DUT.BitmapRAM_0.Memory[0];
+	wire [7:0] RAM_0001 = DUT.BitmapRAM_0.Memory[1023];
+	wire [7:0] RAM_1024 = DUT.BitmapRAM_1.Memory[0];
+	wire [7:0] RAM_2047 = DUT.BitmapRAM_1.Memory[1023];
+	wire [7:0] RAM_2048 = DUT.BitmapRAM_2.Memory[0];
+	wire [7:0] RAM_2399	= DUT.BitmapRAM_2.Memory[351];
 	
 endmodule
 `default_nettype wire

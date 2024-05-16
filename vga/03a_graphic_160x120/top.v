@@ -21,7 +21,6 @@ module top(
 	wire TransmissionStart;
 	wire TransactionDone;
 	wire [7:0] DataFromSPI;
-	wire [7:0] DataFromRAM;
 	
 	SlaveSPI SlaveSPI_inst(
 		.Clock(Clock),
@@ -51,22 +50,6 @@ module top(
 	reg  [11:0] WriteAddress;
 	wire [11:0] ReadAddress;
 	
-	PseudoDualPortRAM #(
-		.ADDRESS_WIDTH(12),
-		.DATA_WIDTH(8),
-		.MEMORY_DEPTH(2400)
-	) BitmapRAM(
-		.ReadClock(Clock),
-		.WriteClock(Clock),
-		.Reset(Reset),
-		.ReadEnable_i(1'b1),
-		.WriteEnable_i(TransactionDone),
-		.ReadAddress_i(ReadAddress),
-		.WriteAddress_i(WriteAddress),
-		.Data_i(DataFromSPI),
-		.Data_o(DataFromRAM)
-	);
-	
 	// State machine to copy bitmap data
 	// from SPI interface to Dual Port RAM
 	always @(posedge Clock, negedge Reset) begin
@@ -78,6 +61,65 @@ module top(
 			WriteAddress <= WriteAddress + 1'b1;
 	end
 	
+	// Multiplexer for memory outputs
+	wire [7:0] DataFromRAM_0;
+	wire [7:0] DataFromRAM_1;
+	wire [7:0] DataFromRAM_2;
+	wire [7:0] DataFromRAM = (ReadAddress[11:10] == 2'd0) ? DataFromRAM_0 :
+	                         (ReadAddress[11:10] == 2'd1) ? DataFromRAM_1 :
+							 (ReadAddress[11:10] == 2'd2) ? DataFromRAM_2 :
+							 8'd0;
+	
+	// Memory blocks
+	PseudoDualPortRAM #(
+		.ADDRESS_WIDTH(10),
+		.DATA_WIDTH(8),
+		.MEMORY_DEPTH(1024)
+	) BitmapRAM_0(
+		.ReadClock(Clock),
+		.WriteClock(Clock),
+		.Reset(Reset),
+		.ReadEnable_i(ReadAddress[11:10] == 2'b00),
+		.WriteEnable_i(TransactionDone && (WriteAddress[11:10] == 2'b00)),
+		.ReadAddress_i(ReadAddress[9:0]),
+		.WriteAddress_i(WriteAddress[9:0]),
+		.Data_i(DataFromSPI),
+		.Data_o(DataFromRAM_0)
+	);
+	
+	PseudoDualPortRAM #(
+		.ADDRESS_WIDTH(10),
+		.DATA_WIDTH(8),
+		.MEMORY_DEPTH(1024)
+	) BitmapRAM_1(
+		.ReadClock(Clock),
+		.WriteClock(Clock),
+		.Reset(Reset),
+		.ReadEnable_i(ReadAddress[11:10] == 2'b01),
+		.WriteEnable_i(TransactionDone && (WriteAddress[11:10] == 2'b01)),
+		.ReadAddress_i(ReadAddress[9:0]),
+		.WriteAddress_i(WriteAddress[9:0]),
+		.Data_i(DataFromSPI),
+		.Data_o(DataFromRAM_1)
+	);
+	
+	PseudoDualPortRAM #(
+		.ADDRESS_WIDTH(10),
+		.DATA_WIDTH(8),
+		.MEMORY_DEPTH(352)
+	) BitmapRAM_2(
+		.ReadClock(Clock),
+		.WriteClock(Clock),
+		.Reset(Reset),
+		.ReadEnable_i(ReadAddress[11:10] == 2'b10),
+		.WriteEnable_i(TransactionDone && (WriteAddress[11:10] == 2'b10)),
+		.ReadAddress_i(ReadAddress[9:0]),
+		.WriteAddress_i(WriteAddress[9:0]),
+		.Data_i(DataFromSPI),
+		.Data_o(DataFromRAM_2)
+	);
+	
+	// VGA instance
 	VGA VGA_inst(
 		.Clock(Clock),
 		.Reset(Reset),
