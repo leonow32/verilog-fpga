@@ -1,0 +1,58 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Mon May 20 19:10:21 2024
+[*]
+[dumpfile] "C:\verilog\vga\05_text_terminal\top.vcd"
+[dumpfile_mtime] "Mon May 20 19:09:55 2024"
+[dumpfile_size] 19645209
+[savefile] "C:\verilog\vga\05_text_terminal\top.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -1 -1
+*-27.510792 85901000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top_tb.
+[treeopen] top_tb.DUT.
+[sst_width] 197
+[signals_width] 244
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+top_tb.Reset
+top_tb.Clock
+@200
+-UART Transmitter
+@28
+top_tb.TxDone
+@22
+top_tb.TxData[7:0]
+@28
+top_tb.TxRequest
+top_tb.TxRxCommon
+@200
+-UART Receiver
+@28
+top_tb.DUT.DataReceived
+@22
+top_tb.DUT.DataFromUART[7:0]
+@200
+-Decoder
+@28
+top_tb.DUT.CharWriteRequest
+@24
+top_tb.DUT.CursorX[6:0]
+top_tb.DUT.CursorY[4:0]
+@200
+-Character RAM
+@22
+top_tb.CharRAM_0000[7:0]
+@23
+top_tb.CharRAM_0001[7:0]
+@22
+top_tb.CharRAM_0002[7:0]
+top_tb.CharRAM_1023[7:0]
+top_tb.CharRAM_1024[7:0]
+top_tb.CharRAM_2047[7:0]
+top_tb.CharRAM_2048[7:0]
+top_tb.CharRAM_2399[7:0]
+[pattern_trace] 1
+[pattern_trace] 0
