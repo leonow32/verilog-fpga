@@ -81,18 +81,22 @@ module top #(
 				// Text characters
 				default: begin
 					CharWriteRequest <= 1;
-					
-					if(CursorX == 79) begin
-						CursorX <= 0;
-						if(CursorY == 29)
-							CursorY <= 0;
-						else
-							CursorY <= CursorY + 1;
-					end else begin
-						CursorX <= CursorX + 1;
-					end
 				end
 			endcase
+		end
+		
+		// If previously a character was written to CharRAM then increment the Cursor
+		else if(CharWriteRequest) begin
+			CharWriteRequest <= 0;
+			if(CursorX == 79) begin
+				CursorX <= 0;
+				if(CursorY == 29)
+					CursorY <= 0;
+				else
+					CursorY <= CursorY + 1;
+			end else begin
+				CursorX <= CursorX + 1;
+			end
 		end
 		
 		else begin

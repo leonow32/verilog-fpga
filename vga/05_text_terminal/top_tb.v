@@ -70,7 +70,9 @@ module top_tb();
 		$dumpfile("top.vcd");
 		$dumpvars(0, top_tb);
 	end
-
+	
+	reg [7:0] CharacterToSend = "A";
+	
 	// Test sequence
 	initial begin
 		$timeformat(-6, 3, "us", 12);
@@ -81,18 +83,25 @@ module top_tb();
 		
 		repeat(10) @(posedge Clock);
 		
-		for(i=32; i<=159; i=i+1) begin
-			UartSend(i);
+		repeat(100) begin
+			UartSend(CharacterToSend);
+			CharacterToSend = CharacterToSend + 1;
+			if(CharacterToSend == "Z")
+				CharacterToSend = "A";
 		end
 		
-		UartSend("A");
-		UartSend("B");
-		UartSend("C");
-		UartSend("D");
-		UartSend(8'h01);
-		UartSend(8'h02);
-		UartSend(8'h03);
-		UartSend("U");
+		// for(i=32; i<=159; i=i+1) begin
+			// UartSend(i);
+		// end
+		
+		// UartSend("A");
+		// UartSend("B");
+		// UartSend("C");
+		// UartSend("D");
+		// UartSend(8'h01);
+		// UartSend(8'h02);
+		// UartSend(8'h03);
+		// UartSend("U");
 		
 		
 		// Transmit image to the memory
