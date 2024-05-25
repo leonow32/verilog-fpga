@@ -128,7 +128,7 @@ module top #(
 		.ReadClock(Clock),
 		.WriteClock(Clock),
 		.Reset(Reset),
-		.ReadEnable_i(CharReadAddress[11:10] == 2'd0),
+		.ReadEnable_i(CharReadAddress[11:10] == 2'd0),							// Czy to potrzebne
 		.WriteEnable_i(CharWriteRequest && (CharWriteAddress[11:10] == 2'd0)),
 		.ReadAddress_i(CharReadAddress[9:0]),
 		.WriteAddress_i(CharWriteAddress[9:0]),
@@ -144,7 +144,7 @@ module top #(
 		.ReadClock(Clock),
 		.WriteClock(Clock),
 		.Reset(Reset),
-		.ReadEnable_i(CharReadAddress[11:10] == 2'd1),
+		.ReadEnable_i(CharReadAddress[11:10] == 2'd1),							// Czy to potrzebne
 		.WriteEnable_i(CharWriteRequest && (CharWriteAddress[11:10] == 2'd1)),
 		.ReadAddress_i(CharReadAddress[9:0]),
 		.WriteAddress_i(CharWriteAddress[9:0]),
@@ -160,7 +160,7 @@ module top #(
 		.ReadClock(Clock),
 		.WriteClock(Clock),
 		.Reset(Reset),
-		.ReadEnable_i(CharReadAddress[11:10] == 2'd2),
+		.ReadEnable_i(CharReadAddress[11:10] == 2'd2),							// Czy to potrzebne
 		.WriteEnable_i(CharWriteRequest && (CharWriteAddress[11:10] == 2'd2)),
 		.ReadAddress_i(CharReadAddress[9:0]),
 		.WriteAddress_i(CharWriteAddress[9:0]),
@@ -175,30 +175,32 @@ module top #(
 	wire [7:0] FontDataFromROM_1;
 	wire [7:0] FontDataFromROM = (FontAddress[10] == 1'd0) ? FontDataFromROM_0 : FontDataFromROM_1;
 	
+	// Characters 32...95
 	ROM #(
-		.ADDRESS_WIDTH(),
-		.DATA_WIDTH(),
-		.MEMORY_DEPTH(),
-		.MEMORY_FILE("data.mem")
+		.ADDRESS_WIDTH(10),
+		.DATA_WIDTH(8),
+		.MEMORY_DEPTH(1024),
+		.MEMORY_FILE("font_32_95.mem")
 	) FontROM_0(
 		.Clock(Clock),
 		.Reset(Reset),
-		.ReadEnable_i(),
-		.Address_i(),
-		.Data_o()
+		.ReadEnable_i(1'b1),
+		.Address_i(FontAddress[9:0]),
+		.Data_o(FontDataFromROM_0)
 	);
 	
+	// characters 96...159
 	ROM #(
-		.ADDRESS_WIDTH(),
-		.DATA_WIDTH(),
-		.MEMORY_DEPTH(),
-		.MEMORY_FILE("data.mem")
-	) FontROM_0(
+		.ADDRESS_WIDTH(10),
+		.DATA_WIDTH(8),
+		.MEMORY_DEPTH(1024),
+		.MEMORY_FILE("font_96_159.mem")
+	) FontROM_1(
 		.Clock(Clock),
 		.Reset(Reset),
-		.ReadEnable_i(),
-		.Address_i(),
-		.Data_o()
+		.ReadEnable_i(1'b1),
+		.Address_i(FontAddress[9:0]),
+		.Data_o(FontDataFromROM_1)
 	);
 	
 	
