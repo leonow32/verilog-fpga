@@ -4,6 +4,7 @@ iverilog -o top.o 											^
 	top_tb.v 												^
 	../../edge_detector/edge_detector.v						^
 	../../ram_pseudo_dual_port/ram_pdp.v					^
+	../../rom/rom.v											^
 	../../strobe_generator_ticks/strobe_generator_ticks.v	^
 	../../synchronizer/synchronizer.v						^
 	../../uart_rx/uart_rx.v 								^

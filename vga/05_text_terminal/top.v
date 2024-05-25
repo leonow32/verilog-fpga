@@ -168,6 +168,40 @@ module top #(
 		.Data_o(CharDataFromRAM_2)
 	);
 	
+	// Font Memory
+	wire [10:0] FontAddress;
+	
+	wire [7:0] FontDataFromROM_0;
+	wire [7:0] FontDataFromROM_1;
+	wire [7:0] FontDataFromROM = (FontAddress[10] == 1'd0) ? FontDataFromROM_0 : FontDataFromROM_1;
+	
+	ROM #(
+		.ADDRESS_WIDTH(),
+		.DATA_WIDTH(),
+		.MEMORY_DEPTH(),
+		.MEMORY_FILE("data.mem")
+	) FontROM_0(
+		.Clock(Clock),
+		.Reset(Reset),
+		.ReadEnable_i(),
+		.Address_i(),
+		.Data_o()
+	);
+	
+	ROM #(
+		.ADDRESS_WIDTH(),
+		.DATA_WIDTH(),
+		.MEMORY_DEPTH(),
+		.MEMORY_FILE("data.mem")
+	) FontROM_0(
+		.Clock(Clock),
+		.Reset(Reset),
+		.ReadEnable_i(),
+		.Address_i(),
+		.Data_o()
+	);
+	
+	
 	// VGA instance
 	/*
 	VGA VGA_inst(
