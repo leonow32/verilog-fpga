@@ -2,6 +2,7 @@
 iverilog -o top.o 											^
 	top.v 													^
 	top_tb.v 												^
+	vga.v													^
 	../../edge_detector/edge_detector.v						^
 	../../ram_pseudo_dual_port/ram_pdp.v					^
 	../../rom/rom.v											^

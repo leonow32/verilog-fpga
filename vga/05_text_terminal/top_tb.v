@@ -118,8 +118,8 @@ module top_tb();
 		
 		repeat(10) @(posedge Clock);
 		
-		// wait(DUT.VGA_inst.VCounter == 524 && DUT.VGA_inst.HCounter == 799);
-		// wait(DUT.VGA_inst.VCounter == 500);
+		wait(DUT.VGA_inst.VCounter == 524 && DUT.VGA_inst.HCounter == 799);
+		wait(DUT.VGA_inst.VCounter == 500);
 		
 		$display("====== END ======");
 		$finish;

@@ -205,18 +205,21 @@ module top #(
 	
 	
 	// VGA instance
-	/*
 	VGA VGA_inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		.RequestedAddress_o(ReadAddress),
-		.DataFromRAM_i(DataFromRAM),
+		.MemoryReadRequest_o(),
+		.Column_o(),
+		.Row_o(),
+		.Line_o(),
+		.PixelsToDisplay_i(8'd0),
+		.ColorForeground_i(3'b111),
+		.ColorBackground_i(3'b000),
 		.Red_o(Red_o),
 		.Green_o(Green_o),
 		.Blue_o(Blue_o),
 		.HSync_o(HSync_o),
 		.VSync_o(VSync_o)
 	);
-	*/
 	
 endmodule

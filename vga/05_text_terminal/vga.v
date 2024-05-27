@@ -5,8 +5,14 @@ module VGA(
 	input  wire Clock,		// Must be 25 MHz or 25.175 MHz
 	input  wire Reset,
 	
-	output wire [10:0] RequestedCharAddress_o,
-	input  wire [ 7:0] DataFromROM_i,
+	output wire       MemoryReadRequest_o,
+	output wire [6:0] Column_o,			// Range 0..79
+	output wire [4:0] Row_o,			// Range 0..29
+	output wire [3:0] Line_o,			// Range 0..15
+	
+	input wire [7:0] PixelsToDisplay_i,	// 1 - has to be displayed with foreground color, 0 - background color
+	input wire [2:0] ColorForeground_i,	// RGB
+	input wire [2:0] ColorBackground_i,	// RGB
 	
 	output reg  Red_o,
 	output reg  Green_o,
@@ -39,6 +45,13 @@ module VGA(
 		end
 	end
 	
+	assign Column_o[6:0]       = HCounter[9:3];
+	assign Row_o[4:0]          = VCounter[8:4];
+	assign Line_o[3:0]         = VCounter[3:0];
+	assign MemoryReadRequest_o = HCounter[2:0] == 8'd0;
+	
+	
+	/*
 	// Cursor position for 128x96 screen resolution
 	reg [2:0] HDivider;		// Max 4
 	reg [2:0] VDivider;		// Max 4
@@ -121,6 +134,7 @@ module VGA(
 				VSync_o <= 1;
 		end
 	end
+	*/
 	
 endmodule
 `default_nettype wire
