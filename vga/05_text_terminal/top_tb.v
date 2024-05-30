@@ -83,26 +83,29 @@ module top_tb();
 		
 		repeat(10) @(posedge Clock);
 		
-		repeat(100) begin
-			UartSend(CharacterToSend);
-			CharacterToSend = CharacterToSend + 1;
-			if(CharacterToSend == "Z")
-				CharacterToSend = "A";
-		end
+		// repeat(100) begin
+			// UartSend(CharacterToSend);
+			// CharacterToSend = CharacterToSend + 1;
+			// if(CharacterToSend == "Z")
+				// CharacterToSend = "A";
+		// end
 		
 		// for(i=32; i<=159; i=i+1) begin
 			// UartSend(i);
 		// end
 		
-		// UartSend("A");
-		// UartSend("B");
-		// UartSend("C");
-		// UartSend("D");
-		// UartSend(8'h01);
-		// UartSend(8'h02);
-		// UartSend(8'h03);
-		// UartSend("U");
-		
+		UartSend("A");
+		UartSend("B");
+		UartSend("C");
+		UartSend(8'b1_100_0_001);	// Color
+		UartSend("D");
+		UartSend("E");
+		UartSend(8'h08);			// Backspace
+		UartSend("F");
+		UartSend("G");
+		//UartSend(8'h00);			// Home
+		UartSend(8'h13);			// Carrige return
+		UartSend("H");
 		
 		// Transmit image to the memory
 		/*repeat(WIDTH_CHARS * HEIGHT_CHARS) begin
@@ -126,6 +129,7 @@ module top_tb();
 	end
 	
 	// Some wires to have a look inside the memory
+	/*
 	wire [7:0] CharRAM_0000 = DUT.CharRAM_0.Memory[0];
 	wire [7:0] CharRAM_0001 = DUT.CharRAM_0.Memory[1];
 	wire [7:0] CharRAM_0002 = DUT.CharRAM_0.Memory[2];
@@ -134,6 +138,16 @@ module top_tb();
 	wire [7:0] CharRAM_2047 = DUT.CharRAM_1.Memory[1023];
 	wire [7:0] CharRAM_2048 = DUT.CharRAM_2.Memory[0];
 	wire [7:0] CharRAM_2399 = DUT.CharRAM_2.Memory[351];
+	*/
+	
+	wire [15:0] TextRAM_0000 = DUT.Memory_inst.TextRAM.Memory[0];
+	wire [15:0] TextRAM_0001 = DUT.Memory_inst.TextRAM.Memory[1];
+	wire [15:0] TextRAM_0002 = DUT.Memory_inst.TextRAM.Memory[2];
+	wire [15:0] TextRAM_0003 = DUT.Memory_inst.TextRAM.Memory[3];
+	wire [15:0] TextRAM_0004 = DUT.Memory_inst.TextRAM.Memory[4];
+	wire [15:0] TextRAM_0005 = DUT.Memory_inst.TextRAM.Memory[5];
+	wire [15:0] TextRAM_0006 = DUT.Memory_inst.TextRAM.Memory[6];
+	wire [15:0] TextRAM_0007 = DUT.Memory_inst.TextRAM.Memory[7];
 	
 endmodule
 `default_nettype wire

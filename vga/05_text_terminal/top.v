@@ -18,7 +18,7 @@ module top #(
 );
 	
 	// UART data receiver
-	wire DataReceived;
+	wire DataReceivedEvent;
 	wire [7:0] DataFromUART;
 	
 	UartRx #(
@@ -28,11 +28,26 @@ module top #(
 		.Clock(Clock),
 		.Reset(Reset),
 		.Rx_i(UartRx_i),
-		.Done_o(DataReceived),
+		.Done_o(DataReceivedEvent),
 		.Data_o(DataFromUART)
 	);
 	
+	// Memory controller
+	Memory Memory_inst(
+		.Clock(Clock),
+		.Reset(Reset),
+		.AnalyzeRequest_i(DataReceivedEvent),
+		.DataFromUART_i(DataFromUART),
+		.ReadRequest_i(1'b0),
+		.Column_i(7'd0),
+		.Row_i(5'd0),
+		.Line_i(4'd0),
+		.Pixels_o(),
+		.Color_o()
+	);
+	
 	// Cursor pointers
+	/*
 	reg  [ 6:0] CursorX;									// Range 0..79
 	reg  [ 4:0] CursorY;									// Range 0..29
 	
@@ -48,7 +63,7 @@ module top #(
 			CharWriteRequest  <= 0;
 		end 
 		
-		else if(DataReceived) begin
+		else if(DataReceivedEvent) begin
 			casex(DataFromUART)
 				
 				// Color
@@ -104,9 +119,10 @@ module top #(
 			CharWriteRequest  <= 0;
 		end
 	end
-	
+	*/
 	
 	// Character memory
+	/*
 	wire [11:0] CharWriteAddress = CursorY * 80 + CursorX;		// Range 0..2399
 	wire [11:0] CharReadAddress;
 	
@@ -167,8 +183,10 @@ module top #(
 		.Data_i(DataFromUART),
 		.Data_o(CharDataFromRAM_2)
 	);
+	*/
 	
 	// Font Memory
+	/*
 	wire [10:0] FontAddress;
 	
 	wire [7:0] FontDataFromROM_0;
@@ -202,7 +220,7 @@ module top #(
 		.Address_i(FontAddress[9:0]),
 		.Data_o(FontDataFromROM_1)
 	);
-	
+	*/
 	
 	// VGA instance
 	VGA VGA_inst(
