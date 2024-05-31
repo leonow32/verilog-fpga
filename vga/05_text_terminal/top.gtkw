@@ -1,22 +1,22 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Thu May 30 19:45:31 2024
+[*] Fri May 31 11:57:47 2024
 [*]
 [dumpfile] "C:\verilog\vga\05_text_terminal\top.vcd"
-[dumpfile_mtime] "Thu May 30 19:45:11 2024"
-[dumpfile_size] 42775832
+[dumpfile_mtime] "Fri May 31 11:56:16 2024"
+[dumpfile_size] 48194301
 [savefile] "C:\verilog\vga\05_text_terminal\top.gtkw"
-[timestart] 0
-[size] 1536 793
+[timestart] 16967262000
+[size] 1920 1009
 [pos] -1 -1
-*-28.034590 782960342 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-20.158533 16969317844 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.DUT.
 [treeopen] top_tb.DUT.Memory_inst.
 [sst_width] 246
-[signals_width] 297
+[signals_width] 272
 [sst_expanded] 1
-[sst_vpaned_height] 221
+[sst_vpaned_height] 297
 @28
 top_tb.Reset
 top_tb.Clock
@@ -38,15 +38,18 @@ top_tb.DUT.DataFromUART[7:0]
 @22
 top_tb.DUT.DataFromUART[7:0]
 @200
--Decoder
+-UART Decoder
 @24
 top_tb.DUT.Memory_inst.CursorX[6:0]
 top_tb.DUT.Memory_inst.CursorY[4:0]
-@200
--Text and color memory
-@23
-top_tb.TextRAM_0000[15:0]
+top_tb.DUT.Memory_inst.TextWriteAddress[11:0]
 @22
+top_tb.DUT.Memory_inst.ColorForeground[2:0]
+top_tb.DUT.Memory_inst.ColorBackground[2:0]
+@200
+-Text and Color Memory
+@22
+top_tb.TextRAM_0000[15:0]
 top_tb.TextRAM_0001[15:0]
 top_tb.TextRAM_0002[15:0]
 top_tb.TextRAM_0003[15:0]
@@ -64,5 +67,13 @@ top_tb.DUT.VGA_inst.Row_o[4:0]
 top_tb.DUT.VGA_inst.Line_o[3:0]
 @28
 top_tb.DUT.VGA_inst.MemoryReadRequest_o
+@200
+-XXXX
+@24
+top_tb.DUT.Memory_inst.TextReadAddress[11:0]
+@23
+top_tb.DUT.Memory_inst.DataFromTextRAM[15:0]
+@22
+top_tb.DUT.Memory_inst.FontROM.Data_o[7:0]
 [pattern_trace] 1
 [pattern_trace] 0

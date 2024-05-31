@@ -51,6 +51,7 @@ module VGA(
 	assign MemoryReadRequest_o = HCounter[2:0] == 8'd0;
 	
 	
+	
 	/*
 	// Cursor position for 128x96 screen resolution
 	reg [2:0] HDivider;		// Max 4

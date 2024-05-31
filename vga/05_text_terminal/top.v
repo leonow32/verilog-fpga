@@ -17,6 +17,11 @@ module top #(
 	output wire VSync_o		// Pin 8
 );
 	
+	// Currently displayed Character
+	input [6:0] Column;			// Range 0..79
+	input [4:0] Row;			// Range 0..29
+	input [3:0] Line;			// Range 0..15
+	
 	// UART data receiver
 	wire DataReceivedEvent;
 	wire [7:0] DataFromUART;
@@ -39,87 +44,12 @@ module top #(
 		.AnalyzeRequest_i(DataReceivedEvent),
 		.DataFromUART_i(DataFromUART),
 		.ReadRequest_i(1'b0),
-		.Column_i(7'd0),
-		.Row_i(5'd0),
-		.Line_i(4'd0),
+		.Column_i(Column),
+		.Row_i(Row),
+		.Line_i(Line),
 		.Pixels_o(),
 		.Color_o()
 	);
-	
-	// Cursor pointers
-	/*
-	reg  [ 6:0] CursorX;									// Range 0..79
-	reg  [ 4:0] CursorY;									// Range 0..29
-	
-	
-	reg ColorWriteRequest;
-	reg CharWriteRequest;
-	
-	always @(posedge Clock, negedge Reset) begin
-		if(!Reset) begin
-			CursorX <= 0;
-			CursorY <= 0;
-			ColorWriteRequest <= 0;
-			CharWriteRequest  <= 0;
-		end 
-		
-		else if(DataReceivedEvent) begin
-			casex(DataFromUART)
-				
-				// Color
-				8'b00000XXX: begin
-					// TODO
-					ColorWriteRequest <= 1;
-				end
-				
-				// Backspace
-				8'h08: begin
-				
-				end
-				
-				// New line
-				8'h10: begin
-				
-				end
-				
-				// Carrige return
-				8'h13: begin
-				
-				end
-				
-				// Go to 0,0
-				8'h1B: begin
-					CursorX <= 0;
-					CursorY <= 0;
-				end
-				
-				// Text characters
-				default: begin
-					CharWriteRequest <= 1;
-				end
-			endcase
-		end
-		
-		// If previously a character was written to CharRAM then increment the Cursor
-		else if(CharWriteRequest) begin
-			CharWriteRequest <= 0;
-			if(CursorX == 79) begin
-				CursorX <= 0;
-				if(CursorY == 29)
-					CursorY <= 0;
-				else
-					CursorY <= CursorY + 1;
-			end else begin
-				CursorX <= CursorX + 1;
-			end
-		end
-		
-		else begin
-			ColorWriteRequest <= 0;
-			CharWriteRequest  <= 0;
-		end
-	end
-	*/
 	
 	// Character memory
 	/*
@@ -207,19 +137,6 @@ module top #(
 		.Data_o(FontDataFromROM_0)
 	);
 	
-	// characters 96...159
-	ROM #(
-		.ADDRESS_WIDTH(10),
-		.DATA_WIDTH(8),
-		.MEMORY_DEPTH(1024),
-		.MEMORY_FILE("font_96_159.mem")
-	) FontROM_1(
-		.Clock(Clock),
-		.Reset(Reset),
-		.ReadEnable_i(1'b1),
-		.Address_i(FontAddress[9:0]),
-		.Data_o(FontDataFromROM_1)
-	);
 	*/
 	
 	// VGA instance
@@ -227,9 +144,9 @@ module top #(
 		.Clock(Clock),
 		.Reset(Reset),
 		.MemoryReadRequest_o(),
-		.Column_o(),
-		.Row_o(),
-		.Line_o(),
+		.Column_o(Column),
+		.Row_o(Row),
+		.Line_o(Line),
 		.PixelsToDisplay_i(8'd0),
 		.ColorForeground_i(3'b111),
 		.ColorBackground_i(3'b000),
