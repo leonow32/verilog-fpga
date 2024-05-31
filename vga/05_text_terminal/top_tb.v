@@ -105,7 +105,7 @@ module top_tb();
 		UartSend("G");
 		//UartSend(8'h00);			// Home
 		UartSend(8'h13);			// Carrige return
-		UartSend("H");
+		UartSend(8'h01);
 		
 		// Transmit image to the memory
 		/*repeat(WIDTH_CHARS * HEIGHT_CHARS) begin
@@ -148,6 +148,10 @@ module top_tb();
 	wire [15:0] TextRAM_0005 = DUT.Memory_inst.TextRAM.Memory[5];
 	wire [15:0] TextRAM_0006 = DUT.Memory_inst.TextRAM.Memory[6];
 	wire [15:0] TextRAM_0007 = DUT.Memory_inst.TextRAM.Memory[7];
+	
+	wire [7:0] FontROM_0016 = DUT.Memory_inst.FontROM.Memory[16];
+	wire [7:0] FontROM_0017 = DUT.Memory_inst.FontROM.Memory[17];
+	wire [7:0] FontROM_0018 = DUT.Memory_inst.FontROM.Memory[18];
 	
 endmodule
 `default_nettype wire
