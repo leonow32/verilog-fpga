@@ -22,6 +22,8 @@ module top #(
 	input [4:0] Row;			// Range 0..29
 	input [3:0] Line;			// Range 0..15
 	
+	wire MemoryReadRequest;
+	
 	// UART data receiver
 	wire DataReceivedEvent;
 	wire [7:0] DataFromUART;
@@ -43,12 +45,14 @@ module top #(
 		.Reset(Reset),
 		.AnalyzeRequest_i(DataReceivedEvent),
 		.DataFromUART_i(DataFromUART),
-		.ReadRequest_i(1'b0),
+		.ReadRequest_i(MemoryReadRequest),
 		.Column_i(Column),
 		.Row_i(Row),
 		.Line_i(Line),
+		.DataReady_o(),
 		.Pixels_o(),
-		.Color_o()
+		.ColorForeground_o(),
+		.ColorBackground_o()
 	);
 	
 	// Character memory
@@ -143,7 +147,7 @@ module top #(
 	VGA VGA_inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		.MemoryReadRequest_o(),
+		.MemoryReadRequest_o(MemoryReadRequest),
 		.Column_o(Column),
 		.Row_o(Row),
 		.Line_o(Line),

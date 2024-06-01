@@ -25,7 +25,7 @@ module VGA(
 	reg [9:0] HCounter;		// Max 799
 	reg [9:0] VCounter;		// Max 524
 	
-	// Horizontal and vertical counter
+	// Horizontal and vertical pixel counter
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
 			HCounter <= 0;

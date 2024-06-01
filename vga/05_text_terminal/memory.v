@@ -1,28 +1,30 @@
 // 240528
 
-`default_nettype none
+`default_nettype wire
 
 module Memory(
 	input wire Clock,
 	input wire Reset,
 	
-	input AnalyzeRequest_i,
-	input [7:0] DataFromUART_i,
+	input wire AnalyzeRequest_i,
+	input wire [7:0] DataFromUART_i,
 	
-	input ReadRequest_i,
-	input [6:0] Column_i,		// Range 0..79
-	input [4:0] Row_i,			// Range 0..29
-	input [3:0] Line_i,			// Range 0..15
+	input wire ReadRequest_i,
+	input wire [6:0] Column_i,		// Range 0..79
+	input wire [4:0] Row_i,			// Range 0..29
+	input wire [3:0] Line_i,		// Range 0..15
 	
-	output [7:0] Pixels_o,
-	output [5:0] Color_o
+	output wire DataReady_o,
+	output reg  [7:0] Pixels_o,
+	output reg  [2:0] ColorForeground_o,
+	output reg  [2:0] ColorBackground_o
 );
 	
 	reg WriteRequest;
 	reg [2:0] ColorForeground;
 	reg [2:0] ColorBackground;
-	reg [6:0] CursorX;			// Range 0..79
-	reg [4:0] CursorY;			// 
+	reg [6:0] CursorX;				// Range 0..79
+	reg [4:0] CursorY;				// 
 	
 	
 	// State machine to analyze data from UART
@@ -132,7 +134,7 @@ module Memory(
 		.ReadClock(Clock),
 		.WriteClock(Clock),
 		.Reset(Reset),
-		.ReadEnable_i(1'b1),							// Czy to potrzebne
+		.ReadEnable_i(1'b1),
 		.WriteEnable_i(WriteRequest),
 		.ReadAddress_i(TextReadAddress),
 		.WriteAddress_i(TextWriteAddress),
@@ -146,16 +148,13 @@ module Memory(
 		.Data_o(DataFromTextRAM)
 	);
 	
-	// Pamięć czcionki
-	// Znaki od 0 do 127, 16 bajtów na znak
-	// 2048 bajtów na całą pamięć czcionki
-	//wire [7:0] 
+	// Font memory
+	// Characters from 0 to 127.
+	// Character size is 16x8 pixels.
+	// 16 bytes per characher.
+	// Whole memory is 2048 bytes.
 	
-	// characters 0...127
-	
-	
-	//wire [10:0] FontAddress = (Row_i * 80 + Column_i) * 16 + Line_i
-	
+	wire [7:0] DataFromFontROM;
 	
 	ROM #(
 		.ADDRESS_WIDTH(11),
@@ -170,9 +169,36 @@ module Memory(
 			DataFromTextRAM[6:0],
 			Line_i[3:0]
 		}),
-		.Data_o()
+		.Data_o(DataFromFontROM)
 	);
+	
+	reg [2:0] DelayLine;
+	
+	always @(posedge Clock, negedge Reset) begin
+		if(!Reset)
+			DelayLine <= 3'b001;
+		else if(ReadRequest_i)
+			DelayLine <= 3'b001;
+		else	
+			DelayLine <= DelayLine << 1;
+	end
+	
+	always @(posedge Clock, negedge Reset) begin
+		if(!Reset) begin
+			Pixels_o          <= 0;
+			ColorForeground_o <= 3'b111;
+			ColorBackground_o <= 3'b000;
+		end 
+		
+		else if(DelayLine[1]) begin
+			Pixels_o          <= DataFromFontROM;
+			ColorForeground_o <= DataFromTextRAM[14:12];
+			ColorBackground_o <= DataFromTextRAM[10:8];
+		end
+	end
+	
+	assign DataReady_o = DelayLine[2];
 	
 endmodule
 
-`default_nettype wire
+`default_nettype none
