@@ -4,9 +4,7 @@
 module top_tb();
 
 	parameter CLOCK_HZ     = 25_175_000;
-	parameter BAUD         = 100000;
-	parameter WIDTH_CHARS  = 80;			// 80 characters * 8 pixels wide  = 640 pixels total
-	parameter HEIGHT_CHARS = 30;			// 30 characters * 16 pixels tall = 480 pixels total
+	parameter BAUD         = 10_000_000;
 	
 	// Clock generator
 	reg Clock = 1'b1;
@@ -16,12 +14,12 @@ module top_tb();
 	end
 	
 	// Variables
-	reg Reset = 0;
+	reg       Reset = 0;
 	reg       TxRequest = 0;
 	reg [7:0] TxData = 8'h00;
 	wire      TxDone;
 	wire      TxRxCommon;
-	integer i;
+	integer   i;
 	
 	// Instantiate UART transmitter
 	UartTx #(
@@ -40,7 +38,7 @@ module top_tb();
 	// Task to send a byte via UART transmitter
 	task UartSend(input [7:0] Data);
 		begin
-			$display("%t Transmitting: %d %s", $realtime, Data, Data);
+			//$display("%t Transmitting: %d %s", $realtime, Data, Data);
 			TxData    <= Data;
 			TxRequest <= 1'b1;
 			@(posedge Clock);
@@ -71,8 +69,6 @@ module top_tb();
 		$dumpvars(0, top_tb);
 	end
 	
-	reg [7:0] CharacterToSend = "A";
-	
 	// Test sequence
 	initial begin
 		$timeformat(-6, 3, "us", 12);
@@ -83,41 +79,26 @@ module top_tb();
 		
 		repeat(10) @(posedge Clock);
 		
-		// repeat(100) begin
-			// UartSend(CharacterToSend);
-			// CharacterToSend = CharacterToSend + 1;
-			// if(CharacterToSend == "Z")
-				// CharacterToSend = "A";
-		// end
+		// UartSend("A");
+		// UartSend("B");
+		// UartSend("C");
+		// UartSend(8'b1_100_0_001);	// Color
+		// UartSend("D");
+		// UartSend("E");
+		// UartSend(8'h08);			// Backspace
+		// UartSend("F");
+		// UartSend("G");
+		// UartSend(8'h13);			// Carrige return
+		// UartSend(8'h01);
 		
-		// for(i=32; i<=159; i=i+1) begin
-			// UartSend(i);
-		// end
+		repeat(40) begin
+			UartSend(8'b1_101_0_000);	// Color
+			UartSend(8'h01);
+			UartSend(8'b1_011_0_000);	// Color
+			UartSend(8'h01);
+		end
 		
-		UartSend("A");
-		UartSend("B");
-		UartSend("C");
-		UartSend(8'b1_100_0_001);	// Color
-		UartSend("D");
-		UartSend("E");
-		UartSend(8'h08);			// Backspace
-		UartSend("F");
-		UartSend("G");
-		//UartSend(8'h00);			// Home
-		UartSend(8'h13);			// Carrige return
-		UartSend(8'h01);
-		
-		// Transmit image to the memory
-		/*repeat(WIDTH_CHARS * HEIGHT_CHARS) begin
-			// TransmitSPI(8'b01010101);
-			// TransmitSPI(8'b10101010);
-			
-			// TransmitSPI(8'b11111111);
-			// TransmitSPI(8'b11111111);
-			
-			TransmitUART(8'b11111111);
-			TransmitUART(8'b00000000);
-		end*/
+		DUT.Memory_inst.TextRAM.Memory[2399] = 16'b01110000_00000001;
 		
 		repeat(10) @(posedge Clock);
 		
@@ -128,18 +109,7 @@ module top_tb();
 		$finish;
 	end
 	
-	// Some wires to have a look inside the memory
-	/*
-	wire [7:0] CharRAM_0000 = DUT.CharRAM_0.Memory[0];
-	wire [7:0] CharRAM_0001 = DUT.CharRAM_0.Memory[1];
-	wire [7:0] CharRAM_0002 = DUT.CharRAM_0.Memory[2];
-	wire [7:0] CharRAM_1023 = DUT.CharRAM_0.Memory[1023];
-	wire [7:0] CharRAM_1024 = DUT.CharRAM_1.Memory[0];
-	wire [7:0] CharRAM_2047 = DUT.CharRAM_1.Memory[1023];
-	wire [7:0] CharRAM_2048 = DUT.CharRAM_2.Memory[0];
-	wire [7:0] CharRAM_2399 = DUT.CharRAM_2.Memory[351];
-	*/
-	
+	// Some wires to have a look inside the memory	
 	wire [15:0] TextRAM_0000 = DUT.Memory_inst.TextRAM.Memory[0];
 	wire [15:0] TextRAM_0001 = DUT.Memory_inst.TextRAM.Memory[1];
 	wire [15:0] TextRAM_0002 = DUT.Memory_inst.TextRAM.Memory[2];
