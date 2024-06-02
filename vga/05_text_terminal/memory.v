@@ -132,9 +132,9 @@ module Memory(
 		DataFromUART_i[7:0]		// [7:0]
 	};
 	
-	wire [15:0] DataFromTextRAM;
+	// wire [15:0] DataFromTextRAM;
 	
-	/*
+	
 	wire [15:0] DataFromTextRAM_0;
 	wire [15:0] DataFromTextRAM_1;
 	wire [15:0] DataFromTextRAM_2;
@@ -147,7 +147,7 @@ module Memory(
 								  (TextReadAddress[11:9] == 3'd3) ? DataFromTextRAM_3 :
 								  (TextReadAddress[11:9] == 3'd4) ? DataFromTextRAM_4 :
 								  0;
-	*/
+	
 	
 	
 	/*
@@ -173,6 +173,9 @@ module Memory(
 		.Data_o(DataFromTextRAM)
 	);*/
 	
+	
+	// IP Express generated module
+	/*
 	text_ram text_ram_inst(
 		.WrAddress(TextWriteAddress), 
 		.RdAddress(TextReadAddress), 
@@ -184,10 +187,10 @@ module Memory(
 		.WrClock(Clock), 
 		.WrClockEn(WriteRequest),
 		.Q(DataFromTextRAM)
-	);
+	);*/
 	
 	
-	/*
+	
 	PseudoDualPortRAM #(
 		.ADDRESS_WIDTH(9),
 		.DATA_WIDTH(16),
@@ -196,8 +199,8 @@ module Memory(
 		.ReadClock(Clock),
 		.WriteClock(Clock),
 		.Reset(Reset),
-		.ReadEnable_i(1'b1),
-		.WriteEnable_i(WriteRequest & TextWriteAddress[11:9] == 3'd0),
+		.ReadEnable_i(TextReadAddress[11:9] == 3'd0),
+		.WriteEnable_i(WriteRequest & (TextWriteAddress[11:9] == 3'd0)),
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
@@ -212,8 +215,8 @@ module Memory(
 		.ReadClock(Clock),
 		.WriteClock(Clock),
 		.Reset(Reset),
-		.ReadEnable_i(1'b1),
-		.WriteEnable_i(WriteRequest & TextWriteAddress[11:9] == 3'd1),
+		.ReadEnable_i(TextReadAddress[11:9] == 3'd1),
+		.WriteEnable_i(WriteRequest & (TextWriteAddress[11:9] == 3'd1)),
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
@@ -228,8 +231,8 @@ module Memory(
 		.ReadClock(Clock),
 		.WriteClock(Clock),
 		.Reset(Reset),
-		.ReadEnable_i(1'b1),
-		.WriteEnable_i(WriteRequest & TextWriteAddress[11:9] == 3'd2),
+		.ReadEnable_i(TextReadAddress[11:9] == 3'd2),
+		.WriteEnable_i(WriteRequest & (TextWriteAddress[11:9] == 3'd2)),
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
@@ -244,8 +247,8 @@ module Memory(
 		.ReadClock(Clock),
 		.WriteClock(Clock),
 		.Reset(Reset),
-		.ReadEnable_i(1'b1),
-		.WriteEnable_i(WriteRequest & TextWriteAddress[11:9] == 3'd3),
+		.ReadEnable_i(TextReadAddress[11:9] == 3'd3),
+		.WriteEnable_i(WriteRequest & (TextWriteAddress[11:9] == 3'd3)),
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
@@ -255,19 +258,19 @@ module Memory(
 	PseudoDualPortRAM #(
 		.ADDRESS_WIDTH(9),
 		.DATA_WIDTH(16),
-		.MEMORY_DEPTH(512)
+		.MEMORY_DEPTH(352)
 	) TextRAM_4(
 		.ReadClock(Clock),
 		.WriteClock(Clock),
 		.Reset(Reset),
-		.ReadEnable_i(1'b1),
-		.WriteEnable_i(WriteRequest & TextWriteAddress[11:9] == 3'd4),
+		.ReadEnable_i(TextReadAddress[11:9] == 3'd4),
+		.WriteEnable_i(WriteRequest & (TextWriteAddress[11:9] == 3'd4)),
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
 		.Data_o(DataFromTextRAM_4)
 	);
-	*/
+	
 	
 	
 	
@@ -281,7 +284,7 @@ module Memory(
 	wire [7:0] DataFromFontROM;
 	//wire [7:0] DataFromFontROM = 16'h6241;
 	
-	/*ROM #(
+	ROM #(
 		.ADDRESS_WIDTH(11),
 		.DATA_WIDTH(8),
 		.MEMORY_DEPTH(2048),
@@ -295,9 +298,10 @@ module Memory(
 			Line_i[3:0]
 		}),
 		.Data_o(DataFromFontROM)
-		//.Data_o()
-	);*/
+	);
 	
+	/*
+	// IP Express generated module
 	FontROM FontROM_inst(
 		.Address({
 			DataFromTextRAM[6:0],
@@ -307,7 +311,7 @@ module Memory(
 		.OutClockEn(1'b1),
 		.Reset(Reset),
 		.Q(DataFromFontROM)
-	);
+	);*/
 	
 	reg [2:0] DelayLine;
 	
@@ -328,8 +332,8 @@ module Memory(
 		end 
 		
 		else if(DelayLine[1]) begin
-			// Pixels_o          <= DataFromFontROM;
-			Pixels_o          <= DataFromTextRAM[7:0];
+			Pixels_o          <= DataFromFontROM;
+			// Pixels_o          <= DataFromTextRAM[7:0];
 			ColorForeground_o <= DataFromTextRAM[14:12];
 			ColorBackground_o <= DataFromTextRAM[10:8];
 		end
