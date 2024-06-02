@@ -18,7 +18,7 @@ module PseudoDualPortRAM #(
 );
 	
 	// Create the memory array
-	reg [DATA_WIDTH-1:0] Memory [0:MEMORY_DEPTH-1];
+	reg [DATA_WIDTH-1:0] Memory [0:MEMORY_DEPTH-1] /* synthesis syn_ramstyle = "block_ram" */;
 	
 	// Check memory depth and address space
 	initial begin

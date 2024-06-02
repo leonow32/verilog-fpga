@@ -98,7 +98,7 @@ module top_tb();
 			UartSend(8'h01);
 		end
 		
-		DUT.Memory_inst.TextRAM.Memory[2399] = 16'b01110000_00000001;
+		//DUT.Memory_inst.TextRAM.Memory[2399] = 16'b01110000_00000001;
 		
 		repeat(10) @(posedge Clock);
 		
@@ -110,14 +110,14 @@ module top_tb();
 	end
 	
 	// Some wires to have a look inside the memory	
-	wire [15:0] TextRAM_0000 = DUT.Memory_inst.TextRAM.Memory[0];
-	wire [15:0] TextRAM_0001 = DUT.Memory_inst.TextRAM.Memory[1];
-	wire [15:0] TextRAM_0002 = DUT.Memory_inst.TextRAM.Memory[2];
-	wire [15:0] TextRAM_0003 = DUT.Memory_inst.TextRAM.Memory[3];
-	wire [15:0] TextRAM_0004 = DUT.Memory_inst.TextRAM.Memory[4];
-	wire [15:0] TextRAM_0005 = DUT.Memory_inst.TextRAM.Memory[5];
-	wire [15:0] TextRAM_0006 = DUT.Memory_inst.TextRAM.Memory[6];
-	wire [15:0] TextRAM_0007 = DUT.Memory_inst.TextRAM.Memory[7];
+	// wire [15:0] TextRAM_0000 = DUT.Memory_inst.TextRAM.Memory[0];
+	// wire [15:0] TextRAM_0001 = DUT.Memory_inst.TextRAM.Memory[1];
+	// wire [15:0] TextRAM_0002 = DUT.Memory_inst.TextRAM.Memory[2];
+	// wire [15:0] TextRAM_0003 = DUT.Memory_inst.TextRAM.Memory[3];
+	// wire [15:0] TextRAM_0004 = DUT.Memory_inst.TextRAM.Memory[4];
+	// wire [15:0] TextRAM_0005 = DUT.Memory_inst.TextRAM.Memory[5];
+	// wire [15:0] TextRAM_0006 = DUT.Memory_inst.TextRAM.Memory[6];
+	// wire [15:0] TextRAM_0007 = DUT.Memory_inst.TextRAM.Memory[7];
 	
 	wire [7:0] FontROM_0016 = DUT.Memory_inst.FontROM.Memory[16];
 	wire [7:0] FontROM_0017 = DUT.Memory_inst.FontROM.Memory[17];

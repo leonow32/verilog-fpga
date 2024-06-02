@@ -25,12 +25,12 @@ module RAM #(
 	end
 	
 	// Initialize memory with zeros
-	integer i;
-	initial begin
-		for(i=0; i<MEMORY_DEPTH; i=i+1) begin
-			Memory[i] = 0;
-		end
-	end
+	// integer i;
+	// initial begin
+		// for(i=0; i<MEMORY_DEPTH; i=i+1) begin
+			// Memory[i] = 0;
+		// end
+	// end
 	
 	// Memory logic
 	always @(posedge Clock, negedge Reset) begin

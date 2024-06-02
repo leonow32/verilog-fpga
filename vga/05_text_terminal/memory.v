@@ -55,7 +55,7 @@ module Memory(
 				// New line
 				8'h10: begin
 					if(CursorY != 29)
-						CursorY <= CursorY + 1;
+						CursorY <= CursorY + 1'b1;
 					else
 						CursorY <= 0;
 				end
@@ -105,11 +105,11 @@ module Memory(
 			WriteRequest <= 0;
 			
 			if(CursorX != 79) begin
-				CursorX <= CursorX + 1;
+				CursorX <= CursorX + 1'b1;
 			end else begin
 				CursorX <= 0;
 				if(CursorY != 29)
-					CursorY <= CursorY + 1;
+					CursorY <= CursorY + 1'b1;
 				else
 					CursorY <= 0;
 			end
@@ -124,8 +124,33 @@ module Memory(
 	// Text and color memory
 	wire [11:0] TextWriteAddress = CursorY * 80 + CursorX;		// Range 0..2399
 	wire [11:0] TextReadAddress  = Row_i * 80 + Column_i;
+	wire [15:0] TextDataToWrite = {
+		1'b0, 					// [15]
+		ColorForeground[2:0], 	// [14:12]
+		1'b0, 					// [11]
+		ColorBackground[2:0], 	// [10:8]
+		DataFromUART_i[7:0]		// [7:0]
+	};
+	
 	wire [15:0] DataFromTextRAM;
 	
+	/*
+	wire [15:0] DataFromTextRAM_0;
+	wire [15:0] DataFromTextRAM_1;
+	wire [15:0] DataFromTextRAM_2;
+	wire [15:0] DataFromTextRAM_3;
+	wire [15:0] DataFromTextRAM_4;
+	
+	wire [15:0] DataFromTextRAM = (TextReadAddress[11:9] == 3'd0) ? DataFromTextRAM_0 :
+	                              (TextReadAddress[11:9] == 3'd1) ? DataFromTextRAM_1 :
+								  (TextReadAddress[11:9] == 3'd2) ? DataFromTextRAM_2 :
+								  (TextReadAddress[11:9] == 3'd3) ? DataFromTextRAM_3 :
+								  (TextReadAddress[11:9] == 3'd4) ? DataFromTextRAM_4 :
+								  0;
+	*/
+	
+	
+	/*
 	PseudoDualPortRAM #(
 		.ADDRESS_WIDTH(12),
 		.DATA_WIDTH(16),
@@ -146,7 +171,106 @@ module Memory(
 			DataFromUART_i[7:0]
 		}),
 		.Data_o(DataFromTextRAM)
+	);*/
+	
+	text_ram text_ram_inst(
+		.WrAddress(TextWriteAddress), 
+		.RdAddress(TextReadAddress), 
+		.Data(TextDataToWrite), 
+		.WE(WriteRequest), 
+		.RdClock(Clock), 
+		.RdClockEn(1'b1), 
+		.Reset(Reset), 
+		.WrClock(Clock), 
+		.WrClockEn(WriteRequest),
+		.Q(DataFromTextRAM)
 	);
+	
+	
+	/*
+	PseudoDualPortRAM #(
+		.ADDRESS_WIDTH(9),
+		.DATA_WIDTH(16),
+		.MEMORY_DEPTH(512)
+	) TextRAM_0(
+		.ReadClock(Clock),
+		.WriteClock(Clock),
+		.Reset(Reset),
+		.ReadEnable_i(1'b1),
+		.WriteEnable_i(WriteRequest & TextWriteAddress[11:9] == 3'd0),
+		.ReadAddress_i(TextReadAddress[8:0]),
+		.WriteAddress_i(TextWriteAddress[8:0]),
+		.Data_i(TextDataToWrite),
+		.Data_o(DataFromTextRAM_0)
+	);
+	
+	PseudoDualPortRAM #(
+		.ADDRESS_WIDTH(9),
+		.DATA_WIDTH(16),
+		.MEMORY_DEPTH(512)
+	) TextRAM_1(
+		.ReadClock(Clock),
+		.WriteClock(Clock),
+		.Reset(Reset),
+		.ReadEnable_i(1'b1),
+		.WriteEnable_i(WriteRequest & TextWriteAddress[11:9] == 3'd1),
+		.ReadAddress_i(TextReadAddress[8:0]),
+		.WriteAddress_i(TextWriteAddress[8:0]),
+		.Data_i(TextDataToWrite),
+		.Data_o(DataFromTextRAM_1)
+	);
+	
+	PseudoDualPortRAM #(
+		.ADDRESS_WIDTH(9),
+		.DATA_WIDTH(16),
+		.MEMORY_DEPTH(512)
+	) TextRAM_2(
+		.ReadClock(Clock),
+		.WriteClock(Clock),
+		.Reset(Reset),
+		.ReadEnable_i(1'b1),
+		.WriteEnable_i(WriteRequest & TextWriteAddress[11:9] == 3'd2),
+		.ReadAddress_i(TextReadAddress[8:0]),
+		.WriteAddress_i(TextWriteAddress[8:0]),
+		.Data_i(TextDataToWrite),
+		.Data_o(DataFromTextRAM_2)
+	);
+	
+	PseudoDualPortRAM #(
+		.ADDRESS_WIDTH(9),
+		.DATA_WIDTH(16),
+		.MEMORY_DEPTH(512)
+	) TextRAM_3(
+		.ReadClock(Clock),
+		.WriteClock(Clock),
+		.Reset(Reset),
+		.ReadEnable_i(1'b1),
+		.WriteEnable_i(WriteRequest & TextWriteAddress[11:9] == 3'd3),
+		.ReadAddress_i(TextReadAddress[8:0]),
+		.WriteAddress_i(TextWriteAddress[8:0]),
+		.Data_i(TextDataToWrite),
+		.Data_o(DataFromTextRAM_3)
+	);
+	
+	PseudoDualPortRAM #(
+		.ADDRESS_WIDTH(9),
+		.DATA_WIDTH(16),
+		.MEMORY_DEPTH(512)
+	) TextRAM_4(
+		.ReadClock(Clock),
+		.WriteClock(Clock),
+		.Reset(Reset),
+		.ReadEnable_i(1'b1),
+		.WriteEnable_i(WriteRequest & TextWriteAddress[11:9] == 3'd4),
+		.ReadAddress_i(TextReadAddress[8:0]),
+		.WriteAddress_i(TextWriteAddress[8:0]),
+		.Data_i(TextDataToWrite),
+		.Data_o(DataFromTextRAM_4)
+	);
+	*/
+	
+	
+	
 	
 	// Font memory
 	// Characters from 0 to 127.
@@ -155,8 +279,9 @@ module Memory(
 	// Whole memory is 2048 bytes.
 	
 	wire [7:0] DataFromFontROM;
+	//wire [7:0] DataFromFontROM = 16'h6241;
 	
-	ROM #(
+	/*ROM #(
 		.ADDRESS_WIDTH(11),
 		.DATA_WIDTH(8),
 		.MEMORY_DEPTH(2048),
@@ -170,6 +295,18 @@ module Memory(
 			Line_i[3:0]
 		}),
 		.Data_o(DataFromFontROM)
+		//.Data_o()
+	);*/
+	
+	FontROM FontROM_inst(
+		.Address({
+			DataFromTextRAM[6:0],
+			Line_i[3:0]
+		}),
+		.OutClock(Clock),
+		.OutClockEn(1'b1),
+		.Reset(Reset),
+		.Q(DataFromFontROM)
 	);
 	
 	reg [2:0] DelayLine;
@@ -191,7 +328,8 @@ module Memory(
 		end 
 		
 		else if(DelayLine[1]) begin
-			Pixels_o          <= DataFromFontROM;
+			// Pixels_o          <= DataFromFontROM;
+			Pixels_o          <= DataFromTextRAM[7:0];
 			ColorForeground_o <= DataFromTextRAM[14:12];
 			ColorBackground_o <= DataFromTextRAM[10:8];
 		end

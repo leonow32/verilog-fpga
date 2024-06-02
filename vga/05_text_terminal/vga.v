@@ -10,7 +10,7 @@ module VGA(
 	output wire [4:0] Row_o,			// Range 0..29
 	output wire [3:0] Line_o,			// Range 0..15
 	
-	input wire       DataReady_i,
+	input wire       DataReady_i,		// TODO not used
 	input wire [7:0] PixelsToDisplay_i,	// 1 - has to be displayed with foreground color, 0 - background color
 	input wire [2:0] ColorForeground_i,	// RGB
 	input wire [2:0] ColorBackground_i,	// RGB

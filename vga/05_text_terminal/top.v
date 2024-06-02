@@ -2,13 +2,13 @@
 
 `default_nettype none
 module top #(
-	parameter CLOCK_HZ = 10000000,
+	parameter CLOCK_HZ = 25000000,
 	parameter BAUD     = 115200
 )(
 	input wire Clock,		// Pin 20, must be 25 MHz or 25.175 MHz
 	input wire Reset,		// Pin 17
 	
-	input wire UartRx_i,	// Pin XX
+	input wire UartRx_i,	// Pin 75
 	
 	output wire Red_o,		// Pin 78
 	output wire Green_o,	// Pin 10
@@ -74,9 +74,13 @@ module top #(
 		.Line_o(Line),
 		
 		.DataReady_i(DataReady),
+		// .PixelsToDisplay_i(DataFromUART),
 		.PixelsToDisplay_i(Pixels),
-		.ColorForeground_i(ColorForeground),
-		.ColorBackground_i(ColorBackground),
+		// .ColorForeground_i(ColorForeground),
+		// .ColorBackground_i(ColorBackground),
+		// .PixelsToDisplay_i(8'b11111100),
+		.ColorForeground_i(3'b110),
+		.ColorBackground_i(3'b001),
 		
 		.Red_o(Red_o),
 		.Green_o(Green_o),
