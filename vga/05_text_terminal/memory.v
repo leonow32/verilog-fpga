@@ -14,10 +14,15 @@ module Memory(
 	input wire [4:0] Row_i,			// Range 0..29
 	input wire [3:0] Line_i,		// Range 0..15
 	
-	output wire DataReady_o,
 	output reg  [7:0] Pixels_o,
 	output reg  [2:0] ColorForeground_o,
 	output reg  [2:0] ColorBackground_o
+	
+	,
+	output wire [11:0] DebugTextWriteAddress,
+	output wire [15:0] DebugTextDataToWrite,
+	output wire [15:0] DebugDataFromTextRAM,
+	output wire [11:0] DebugTextReadAddress
 );
 	
 	reg WriteRequest;
@@ -29,14 +34,7 @@ module Memory(
 	
 	// State machine to analyze data from UART
 	
-	// Jeżeli DataFromUART_i[7] == 0 to odebrany został bajt
-	// i musi zostać zapisany do pamięci razem z 
-	// ostatnio odebranym rejestrem kolorów, po czym inkrementujemy
-	// adres pamięci o 1 (jeden adres przechwouje tekst i kolor)
-	// Jeżeli DataFromUART_i[7] == 1 to odebrany został kolor i 
-	// należy go zapisać do tymczasowego rejestru kolorów.
-	
-	
+
 	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
@@ -79,7 +77,6 @@ module Memory(
 				end
 				
 				// Cursor back to home
-				8'h00,
 				8'h1B: begin
 					CursorX <= 0;
 					CursorY <= 0;
@@ -117,13 +114,18 @@ module Memory(
 	end
 	
 	// Memory of text and color
-	// Pamięć tekstu i koloru
-	// 2400 wpisów po 16 bitów
-	// EBR może pracować w układzie 512x18bit
+	// 2400 words of 16 bits
+	// EBR can store 512x18bit
 	
 	// Text and color memory
-	wire [11:0] TextWriteAddress = CursorY * 80 + CursorX;		// Range 0..2399
-	wire [11:0] TextReadAddress  = Row_i * 80 + Column_i;
+	wire [31:0] Temp1 = CursorY * 80 + CursorX;
+	wire [11:0] TextWriteAddress = Temp1[11:0];		// Range 0..2399
+	
+	assign DebugTextWriteAddress = TextWriteAddress;
+	
+	wire [31:0] Temp2 = Row_i * 80 + Column_i;
+	wire [11:0] TextReadAddress  = Temp2[11:0];
+	
 	wire [15:0] TextDataToWrite = {
 		1'b0, 					// [15]
 		ColorForeground[2:0], 	// [14:12]
@@ -132,25 +134,16 @@ module Memory(
 		DataFromUART_i[7:0]		// [7:0]
 	};
 	
-	// wire [15:0] DataFromTextRAM;
+	
+	assign DebugTextDataToWrite = TextDataToWrite;
 	
 	
-	wire [15:0] DataFromTextRAM_0;
-	wire [15:0] DataFromTextRAM_1;
-	wire [15:0] DataFromTextRAM_2;
-	wire [15:0] DataFromTextRAM_3;
-	wire [15:0] DataFromTextRAM_4;
-	
-	wire [15:0] DataFromTextRAM = (TextReadAddress[11:9] == 3'd0) ? DataFromTextRAM_0 :
-	                              (TextReadAddress[11:9] == 3'd1) ? DataFromTextRAM_1 :
-								  (TextReadAddress[11:9] == 3'd2) ? DataFromTextRAM_2 :
-								  (TextReadAddress[11:9] == 3'd3) ? DataFromTextRAM_3 :
-								  (TextReadAddress[11:9] == 3'd4) ? DataFromTextRAM_4 :
-								  0;
 	
 	
 	
 	/*
+	// wire [15:0] DataFromTextRAM;
+	
 	PseudoDualPortRAM #(
 		.ADDRESS_WIDTH(12),
 		.DATA_WIDTH(16),
@@ -175,7 +168,10 @@ module Memory(
 	
 	
 	// IP Express generated module
-	/*
+	
+	wire [15:0] DataFromTextRAM;
+	assign DebugDataFromTextRAM = DataFromTextRAM;
+	
 	text_ram text_ram_inst(
 		.WrAddress(TextWriteAddress), 
 		.RdAddress(TextReadAddress), 
@@ -185,11 +181,24 @@ module Memory(
 		.RdClockEn(1'b1), 
 		.Reset(Reset), 
 		.WrClock(Clock), 
-		.WrClockEn(WriteRequest),
+		.WrClockEn(1'b1),
 		.Q(DataFromTextRAM)
-	);*/
+	);
 	
+	assign DebugTextReadAddress = TextReadAddress;
 	
+	/*
+	wire [15:0] DataFromTextRAM_0;
+	wire [15:0] DataFromTextRAM_1;
+	wire [15:0] DataFromTextRAM_2;
+	wire [15:0] DataFromTextRAM_3;
+	wire [15:0] DataFromTextRAM_4;
+	
+	wire [15:0] DataFromTextRAM = (TextReadAddress[11:9] == 3'd0) ? DataFromTextRAM_0 :
+	                              (TextReadAddress[11:9] == 3'd1) ? DataFromTextRAM_1 :
+								  (TextReadAddress[11:9] == 3'd2) ? DataFromTextRAM_2 :
+								  (TextReadAddress[11:9] == 3'd3) ? DataFromTextRAM_3 :
+								                                      DataFromTextRAM_4;
 	
 	PseudoDualPortRAM #(
 		.ADDRESS_WIDTH(9),
@@ -200,7 +209,7 @@ module Memory(
 		.WriteClock(Clock),
 		.Reset(Reset),
 		.ReadEnable_i(TextReadAddress[11:9] == 3'd0),
-		.WriteEnable_i(WriteRequest & (TextWriteAddress[11:9] == 3'd0)),
+		.WriteEnable_i(WriteRequest && (TextWriteAddress[11:9] == 3'd0)),
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
@@ -216,7 +225,7 @@ module Memory(
 		.WriteClock(Clock),
 		.Reset(Reset),
 		.ReadEnable_i(TextReadAddress[11:9] == 3'd1),
-		.WriteEnable_i(WriteRequest & (TextWriteAddress[11:9] == 3'd1)),
+		.WriteEnable_i(WriteRequest && (TextWriteAddress[11:9] == 3'd1)),
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
@@ -232,7 +241,7 @@ module Memory(
 		.WriteClock(Clock),
 		.Reset(Reset),
 		.ReadEnable_i(TextReadAddress[11:9] == 3'd2),
-		.WriteEnable_i(WriteRequest & (TextWriteAddress[11:9] == 3'd2)),
+		.WriteEnable_i(WriteRequest && (TextWriteAddress[11:9] == 3'd2)),
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
@@ -248,7 +257,7 @@ module Memory(
 		.WriteClock(Clock),
 		.Reset(Reset),
 		.ReadEnable_i(TextReadAddress[11:9] == 3'd3),
-		.WriteEnable_i(WriteRequest & (TextWriteAddress[11:9] == 3'd3)),
+		.WriteEnable_i(WriteRequest && (TextWriteAddress[11:9] == 3'd3)),
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
@@ -264,16 +273,13 @@ module Memory(
 		.WriteClock(Clock),
 		.Reset(Reset),
 		.ReadEnable_i(TextReadAddress[11:9] == 3'd4),
-		.WriteEnable_i(WriteRequest & (TextWriteAddress[11:9] == 3'd4)),
+		.WriteEnable_i(WriteRequest && (TextWriteAddress[11:9] == 3'd4)),
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
 		.Data_o(DataFromTextRAM_4)
 	);
-	
-	
-	
-	
+	*/
 	
 	// Font memory
 	// Characters from 0 to 127.
@@ -313,7 +319,7 @@ module Memory(
 		.Q(DataFromFontROM)
 	);*/
 	
-	reg [2:0] DelayLine;
+	reg [1:0] DelayLine;
 	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset)
@@ -338,8 +344,6 @@ module Memory(
 			ColorBackground_o <= DataFromTextRAM[10:8];
 		end
 	end
-	
-	assign DataReady_o = DelayLine[2];
 	
 endmodule
 

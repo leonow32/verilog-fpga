@@ -10,6 +10,9 @@ module top #(
 	
 	input wire UartRx_i,	// Pin 75
 	
+	output wire [7:0] Cathodes_o,
+	output wire [7:0] Segments_o,
+	
 	output wire Red_o,		// Pin 78
 	output wire Green_o,	// Pin 10
 	output wire Blue_o,		// Pin 9
@@ -24,7 +27,6 @@ module top #(
 	
 	// Signals between memory and VGA modules
 	wire MemoryReadRequest;
-	wire DataReady;
 	wire [7:0] Pixels;
 	wire [2:0] ColorForeground;
 	wire [2:0] ColorBackground;
@@ -45,6 +47,11 @@ module top #(
 	);
 	
 	// Memory controller
+	wire [11:0] DebugTextWriteAddress;
+	wire [11:0] DebugTextReadAddress;
+	wire [15:0] DebugTextDataToWrite;
+	wire [15:0] DebugDataFromTextRAM;
+	
 	Memory Memory_inst(
 		.Clock(Clock),
 		.Reset(Reset),
@@ -57,7 +64,11 @@ module top #(
 		.Row_i(Row),
 		.Line_i(Line),
 		
-		.DataReady_o(DataReady),
+		.DebugTextWriteAddress(DebugTextWriteAddress),
+		.DebugTextDataToWrite(DebugTextDataToWrite),
+		.DebugDataFromTextRAM(DebugDataFromTextRAM),
+		.DebugTextReadAddress(DebugTextReadAddress),
+		
 		.Pixels_o(Pixels),
 		.ColorForeground_o(ColorForeground),
 		.ColorBackground_o(ColorBackground)
@@ -73,7 +84,6 @@ module top #(
 		.Row_o(Row),
 		.Line_o(Line),
 		
-		.DataReady_i(DataReady),
 		// .PixelsToDisplay_i(DataFromUART),
 		.PixelsToDisplay_i(Pixels),
 		.ColorForeground_i(ColorForeground),
@@ -87,6 +97,43 @@ module top #(
 		.Blue_o(Blue_o),
 		.HSync_o(HSync_o),
 		.VSync_o(VSync_o)
+	);
+	
+	DisplayMultiplex #(
+		.CLOCK_HZ(CLOCK_HZ),
+		.SWITCH_PERIOD_US(1000),
+		.DIGITS(8)
+	) DisplayMultiplex_inst(
+		.Clock(Clock),
+		.Reset(Reset),
+		
+/*		.Data_i({
+			DataFromUART,
+			12'd0,
+			DebugTextWriteAddress
+		}),*/
+		
+/*		.Data_i({
+			8'd0,
+			3'd0, Row[4:0],
+			1'd0, Column[6:0],
+			4'd0, Line[3:0]
+		}),*/
+		
+/*		.Data_i({
+			DebugTextDataToWrite,
+			DebugDataFromTextRAM
+		}),*/
+		
+		.Data_i({
+			20'd0,
+			DebugTextReadAddress
+		}),
+		
+		.DecimalPoints_i(8'd0),
+		.Cathodes_o(Cathodes_o),
+		.Segments_o(Segments_o),
+		.SwitchCathode_o()
 	);
 	
 endmodule
