@@ -99,42 +99,42 @@ module top #(
 		.VSync_o(VSync_o)
 	);
 	
-	DisplayMultiplex #(
-		.CLOCK_HZ(CLOCK_HZ),
-		.SWITCH_PERIOD_US(1000),
-		.DIGITS(8)
-	) DisplayMultiplex_inst(
-		.Clock(Clock),
-		.Reset(Reset),
+	// DisplayMultiplex #(
+		// .CLOCK_HZ(CLOCK_HZ),
+		// .SWITCH_PERIOD_US(1000),
+		// .DIGITS(8)
+	// ) DisplayMultiplex_inst(
+		// .Clock(Clock),
+		// .Reset(Reset),
 		
-/*		.Data_i({
-			DataFromUART,
-			12'd0,
-			DebugTextWriteAddress
-		}),*/
+// /*		.Data_i({
+			// DataFromUART,
+			// 12'd0,
+			// DebugTextWriteAddress
+		// }),*/
 		
-/*		.Data_i({
-			8'd0,
-			3'd0, Row[4:0],
-			1'd0, Column[6:0],
-			4'd0, Line[3:0]
-		}),*/
+// /*		.Data_i({
+			// 8'd0,
+			// 3'd0, Row[4:0],
+			// 1'd0, Column[6:0],
+			// 4'd0, Line[3:0]
+		// }),*/
 		
-/*		.Data_i({
-			DebugTextDataToWrite,
-			DebugDataFromTextRAM
-		}),*/
+// /*		.Data_i({
+			// DebugTextDataToWrite,
+			// DebugDataFromTextRAM
+		// }),*/
 		
-		.Data_i({
-			20'd0,
-			DebugTextReadAddress
-		}),
+		// .Data_i({
+			// 20'd0,
+			// DebugTextReadAddress
+		// }),
 		
-		.DecimalPoints_i(8'd0),
-		.Cathodes_o(Cathodes_o),
-		.Segments_o(Segments_o),
-		.SwitchCathode_o()
-	);
+		// .DecimalPoints_i(8'd0),
+		// .Cathodes_o(Cathodes_o),
+		// .Segments_o(Segments_o),
+		// .SwitchCathode_o()
+	// );
 	
 endmodule
 

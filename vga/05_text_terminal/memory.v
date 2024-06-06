@@ -168,9 +168,8 @@ module Memory(
 	
 	
 	// IP Express generated module
-	
+	/*
 	wire [15:0] DataFromTextRAM;
-	assign DebugDataFromTextRAM = DataFromTextRAM;
 	
 	text_ram text_ram_inst(
 		.WrAddress(TextWriteAddress), 
@@ -186,8 +185,8 @@ module Memory(
 	);
 	
 	assign DebugTextReadAddress = TextReadAddress;
+	*/
 	
-	/*
 	wire [15:0] DataFromTextRAM_0;
 	wire [15:0] DataFromTextRAM_1;
 	wire [15:0] DataFromTextRAM_2;
@@ -198,7 +197,7 @@ module Memory(
 	                              (TextReadAddress[11:9] == 3'd1) ? DataFromTextRAM_1 :
 								  (TextReadAddress[11:9] == 3'd2) ? DataFromTextRAM_2 :
 								  (TextReadAddress[11:9] == 3'd3) ? DataFromTextRAM_3 :
-								                                      DataFromTextRAM_4;
+								                                    DataFromTextRAM_4;
 	
 	PseudoDualPortRAM #(
 		.ADDRESS_WIDTH(9),
@@ -279,7 +278,8 @@ module Memory(
 		.Data_i(TextDataToWrite),
 		.Data_o(DataFromTextRAM_4)
 	);
-	*/
+	
+	assign DebugDataFromTextRAM = DataFromTextRAM;
 	
 	// Font memory
 	// Characters from 0 to 127.
