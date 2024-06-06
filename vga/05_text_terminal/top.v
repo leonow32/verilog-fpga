@@ -49,8 +49,8 @@ module top #(
 	// Memory controller
 	wire [11:0] DebugTextWriteAddress;
 	wire [11:0] DebugTextReadAddress;
-	wire [15:0] DebugTextDataToWrite;
-	wire [15:0] DebugDataFromTextRAM;
+	wire [ 7:0] DebugTextDataToWrite;
+	wire [ 7:0] DebugDataFromTextRAM;
 	
 	Memory Memory_inst(
 		.Clock(Clock),
