@@ -79,24 +79,24 @@ module top_tb();
 		
 		repeat(10) @(posedge Clock);
 		
-		// UartSend("A");
-		// UartSend("B");
-		// UartSend("C");
-		// UartSend(8'b1_100_0_001);	// Color
-		// UartSend("D");
-		// UartSend("E");
-		// UartSend(8'h08);			// Backspace
-		// UartSend("F");
-		// UartSend("G");
-		// UartSend(8'h13);			// Carrige return
-		// UartSend(8'h01);
+		UartSend("A");
+		UartSend("B");
+		UartSend("C");
+		UartSend(8'b1_100_0_001);	// Color
+		UartSend("D");
+		UartSend("E");
+		UartSend(8'h08);			// Backspace
+		UartSend("F");
+		UartSend("G");
+		UartSend(8'h13);			// Carrige return
+		UartSend(8'h01);
 		
-		repeat(40) begin
-			UartSend(8'b1_101_0_000);	// Color
-			UartSend(8'h01);
-			UartSend(8'b1_011_0_000);	// Color
-			UartSend(8'h01);
-		end
+		// repeat(40) begin
+			// UartSend(8'b1_101_0_000);	// Color
+			// UartSend(8'h01);
+			// UartSend(8'b1_011_0_000);	// Color
+			// UartSend(8'h01);
+		// end
 		
 		//DUT.Memory_inst.TextRAM.Memory[2399] = 16'b01110000_00000001;
 		
@@ -110,6 +110,16 @@ module top_tb();
 	end
 	
 	// Some wires to have a look inside the memory	
+	wire [7:0] DataRAM_0000 = DUT.Memory_inst.DataRAM.Memory[0];
+	wire [7:0] DataRAM_0001 = DUT.Memory_inst.DataRAM.Memory[1];
+	wire [7:0] DataRAM_0002 = DUT.Memory_inst.DataRAM.Memory[2];
+	wire [7:0] DataRAM_0003 = DUT.Memory_inst.DataRAM.Memory[3];
+	wire [7:0] DataRAM_0004 = DUT.Memory_inst.DataRAM.Memory[4];
+	wire [7:0] DataRAM_0005 = DUT.Memory_inst.DataRAM.Memory[5];
+	wire [7:0] DataRAM_0006 = DUT.Memory_inst.DataRAM.Memory[6];
+	wire [7:0] DataRAM_0007 = DUT.Memory_inst.DataRAM.Memory[7];
+	wire [7:0] DataRAM_0008 = DUT.Memory_inst.DataRAM.Memory[8];
+	wire [7:0] DataRAM_0009 = DUT.Memory_inst.DataRAM.Memory[9];
 	// wire [15:0] TextRAM_0000 = DUT.Memory_inst.TextRAM.Memory[0];
 	// wire [15:0] TextRAM_0001 = DUT.Memory_inst.TextRAM.Memory[1];
 	// wire [15:0] TextRAM_0002 = DUT.Memory_inst.TextRAM.Memory[2];
@@ -119,9 +129,9 @@ module top_tb();
 	// wire [15:0] TextRAM_0006 = DUT.Memory_inst.TextRAM.Memory[6];
 	// wire [15:0] TextRAM_0007 = DUT.Memory_inst.TextRAM.Memory[7];
 	
-	wire [7:0] FontROM_0016 = DUT.Memory_inst.FontROM.Memory[16];
-	wire [7:0] FontROM_0017 = DUT.Memory_inst.FontROM.Memory[17];
-	wire [7:0] FontROM_0018 = DUT.Memory_inst.FontROM.Memory[18];
+	// wire [7:0] FontROM_0016 = DUT.Memory_inst.FontROM.Memory[16];
+	// wire [7:0] FontROM_0017 = DUT.Memory_inst.FontROM.Memory[17];
+	// wire [7:0] FontROM_0018 = DUT.Memory_inst.FontROM.Memory[18];
 	
 endmodule
 `default_nettype wire

@@ -47,10 +47,6 @@ module top #(
 	);
 	
 	// Memory controller
-	wire [11:0] DebugTextWriteAddress;
-	wire [11:0] DebugTextReadAddress;
-	wire [ 7:0] DebugTextDataToWrite;
-	wire [ 7:0] DebugDataFromTextRAM;
 	
 	Memory Memory_inst(
 		.Clock(Clock),
@@ -63,11 +59,6 @@ module top #(
 		.Column_i(Column),
 		.Row_i(Row),
 		.Line_i(Line),
-		
-		.DebugTextWriteAddress(DebugTextWriteAddress),
-		.DebugTextDataToWrite(DebugTextDataToWrite),
-		.DebugDataFromTextRAM(DebugDataFromTextRAM),
-		.DebugTextReadAddress(DebugTextReadAddress),
 		
 		.Pixels_o(Pixels),
 		.ColorForeground_o(ColorForeground),

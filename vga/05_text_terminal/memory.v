@@ -1,49 +1,56 @@
 // 240528
 
-`default_nettype wire
+`default_nettype none
 
 module Memory(
 	input wire Clock,
 	input wire Reset,
 	
+	// Write request from UART to text and color memory
 	input wire AnalyzeRequest_i,
 	input wire [7:0] DataFromUART_i,
 	
+	// Read request from VGA controller to the memory
 	input wire ReadRequest_i,
 	input wire [6:0] Column_i,		// Range 0..79
 	input wire [4:0] Row_i,			// Range 0..29
 	input wire [3:0] Line_i,		// Range 0..15
 	
+	// Output from font memory to VGA controller
 	output reg  [7:0] Pixels_o,
 	output reg  [2:0] ColorForeground_o,
 	output reg  [2:0] ColorBackground_o
-	
-	,
-	output wire [11:0] DebugTextWriteAddress,
-//	output wire [15:0] DebugTextDataToWrite,
-	output wire [ 7:0] DebugTextDataToWrite,
-	output wire [ 7:0] DebugDataFromTextRAM,
-	output wire [11:0] DebugTextReadAddress
 );
 	
+	reg WriteStep1;
+	reg WriteStep2;
 	reg WriteRequest;
-	reg [2:0] ColorForeground;
-	reg [2:0] ColorBackground;
-	reg [6:0] CursorX;				// Range 0..79
-	reg [4:0] CursorY;				// 
+	reg [7:0] WriteBuffer;
+	reg [12:0] WriteAddress;
 	
+	reg [7:0] ColorBuffer;
+	// reg [2:0] ColorForeground;
+	// reg [2:0] ColorBackground;
+	
+	// Currently pointed character to be written
+	reg [6:0] CursorX;										// Range 0..79
+	reg [4:0] CursorY;										// Range 0..29
+	
+	wire [31:0] WriteCharNum = CursorY * 80 + CursorX;		// Range 0..2399
+	wire [31:0] ReadCharNum  = Row_i * 80 + Column_i;
 	
 	// State machine to analyze data from UART
-	
-
-	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
+			WriteStep1   <= 0;
+			WriteStep2   <= 0;
 			WriteRequest <= 0;
-			// ColorForeground <= 3'b111;
-			// ColorBackground <= 3'b000;
-			CursorX <= 0;
-			CursorY <= 0;
+			WriteBuffer  <= 0;
+			WriteAddress <= 0;
+			
+			ColorBuffer  <= 8'b1_111_0_000;		// Default color: white text on black background
+			CursorX      <= 0;
+			CursorY      <= 0;
 		end 
 		
 		// If new data was received be UART module
@@ -83,23 +90,37 @@ module Memory(
 					CursorY <= 0;
 				end
 				
-				// Text
-				8'b0XXXXXXX: begin
-					WriteRequest <= 1;
+				// Color
+				8'b1XXXXXXX: begin
+					ColorBuffer <= DataFromUART_i;
 				end
 				
-				// Color
-				// 8'b1XXXXXXX: begin
-					// ColorForeground <= DataFromUART_i[6:4];
-					// ColorBackground <= DataFromUART_i[2:0];
-				// end
-			
+				// Text
+				8'b0XXXXXXX: begin
+					WriteStep1   <= 1;						// Data memory will save ASCII code from UART in next cycle
+					
+					WriteRequest <= 1;						// Tell the memory to save data on the next clock cycle
+					WriteBuffer  <= DataFromUART_i;
+					WriteAddress <= {WriteCharNum[11:0], 1'b0};
+				end
 			endcase
 		end
 		
-		// If previously received data has to be saved
-		// Then save it to the memory and increment the cursors
-		else if(WriteRequest) begin
+		// In previous clock cycle, the ASCII code has been saved to address [XXXXXXXXXXXX0]
+		// Now save ColorBuffer to address [XXXXXXXXXXXX0]
+		else if(WriteStep1) begin
+			WriteStep1 <= 0;
+			WriteStep2 <= 1;
+			
+			WriteRequest <= 1;						// Tell the memory to save data on the next clock cycle
+			WriteBuffer  <= ColorBuffer;
+			WriteAddress <= {WriteCharNum[11:0], 1'b1};
+		end
+		
+		// In previous clock cycle, the ASCII code has been saved to address [XXXXXXXXXXXX0]
+		// Now clear the request and move the cursor
+		else if(WriteStep2) begin
+			WriteStep2   <= 0;
 			WriteRequest <= 0;
 			
 			if(CursorX != 79) begin
@@ -115,83 +136,37 @@ module Memory(
 	end
 	
 	// Memory of text and color
-	// 2400 words of 16 bits
-	// EBR can store 512x18bit
+	// Each EBR can store 1024x8 bit
 	
 	// Text and color memory
-	wire [31:0] Temp1 = CursorY * 80 + CursorX;
-	wire [11:0] TextWriteAddress = Temp1[11:0];		// Range 0..2399
-	
-	assign DebugTextWriteAddress = TextWriteAddress;
-	
-	wire [31:0] Temp2 = Row_i * 80 + Column_i;
-	wire [11:0] TextReadAddress  = Temp2[11:0];
-	
-	// wire [15:0] TextDataToWrite = {
-		// 1'b0, 					// [15]
-		// ColorForeground[2:0], 	// [14:12]
-		// 1'b0, 					// [11]
-		// ColorBackground[2:0], 	// [10:8]
-		// DataFromUART_i[7:0]		// [7:0]
-	// };
-	
-	wire [7:0] TextDataToWrite = {
-		DataFromUART_i[7:0]		// [7:0]
-	};
-	
-	
-	assign DebugTextDataToWrite = TextDataToWrite;
 	
 	
 	
 	
 	
-	/*
 	// wire [15:0] DataFromTextRAM;
 	
 	PseudoDualPortRAM #(
-		.ADDRESS_WIDTH(12),
-		.DATA_WIDTH(16),
-		.MEMORY_DEPTH(2400)
-	) TextRAM(
+		.ADDRESS_WIDTH(13),
+		.DATA_WIDTH(8),
+		.MEMORY_DEPTH(4800)
+	) DataRAM(
 		.ReadClock(Clock),
 		.WriteClock(Clock),
 		.Reset(Reset),
 		.ReadEnable_i(1'b1),
 		.WriteEnable_i(WriteRequest),
-		.ReadAddress_i(TextReadAddress),
-		.WriteAddress_i(TextWriteAddress),
-		.Data_i({
-			1'b0, 
-			ColorForeground[2:0], 
-			1'b0, 
-			ColorBackground[2:0], 
-			DataFromUART_i[7:0]
-		}),
-		.Data_o(DataFromTextRAM)
-	);*/
-	
-	
-	// IP Express generated module
-	/*
-	wire [15:0] DataFromTextRAM;
-	
-	text_ram text_ram_inst(
-		.WrAddress(TextWriteAddress), 
-		.RdAddress(TextReadAddress), 
-		.Data(TextDataToWrite), 
-		.WE(WriteRequest), 
-		.RdClock(Clock), 
-		.RdClockEn(1'b1), 
-		.Reset(Reset), 
-		.WrClock(Clock), 
-		.WrClockEn(1'b1),
-		.Q(DataFromTextRAM)
+//		.ReadAddress_i(ReadAddress),
+		.ReadAddress_i(13'd0),
+		.WriteAddress_i(WriteAddress),
+		.Data_i(WriteBuffer),
+//		.Data_o(DataFromTextRAM)
+		.Data_o()
 	);
 	
-	assign DebugTextReadAddress = TextReadAddress;
-	*/
 	
+	
+	/*
 	wire [7:0] DataFromTextRAM_0;
 	wire [7:0] DataFromTextRAM_1;
 	wire [7:0] DataFromTextRAM_2;
@@ -213,7 +188,7 @@ module Memory(
 		.WriteClock(Clock),
 		.Reset(Reset),
 		.ReadEnable_i(TextReadAddress[11:9] == 3'd0),
-		.WriteEnable_i(WriteRequest && (TextWriteAddress[11:9] == 3'd0)),
+		.WriteEnable_i(WriteStep1 && (TextWriteAddress[11:9] == 3'd0)),
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
@@ -229,7 +204,7 @@ module Memory(
 		.WriteClock(Clock),
 		.Reset(Reset),
 		.ReadEnable_i(TextReadAddress[11:9] == 3'd1),
-		.WriteEnable_i(WriteRequest && (TextWriteAddress[11:9] == 3'd1)),
+		.WriteEnable_i(WriteStep1 && (TextWriteAddress[11:9] == 3'd1)),
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
@@ -245,7 +220,7 @@ module Memory(
 		.WriteClock(Clock),
 		.Reset(Reset),
 		.ReadEnable_i(TextReadAddress[11:9] == 3'd2),
-		.WriteEnable_i(WriteRequest && (TextWriteAddress[11:9] == 3'd2)),
+		.WriteEnable_i(WriteStep1 && (TextWriteAddress[11:9] == 3'd2)),
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
@@ -261,7 +236,7 @@ module Memory(
 		.WriteClock(Clock),
 		.Reset(Reset),
 		.ReadEnable_i(TextReadAddress[11:9] == 3'd3),
-		.WriteEnable_i(WriteRequest && (TextWriteAddress[11:9] == 3'd3)),
+		.WriteEnable_i(WriteStep1 && (TextWriteAddress[11:9] == 3'd3)),
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
@@ -277,14 +252,19 @@ module Memory(
 		.WriteClock(Clock),
 		.Reset(Reset),
 		.ReadEnable_i(TextReadAddress[11:9] == 3'd4),
-		.WriteEnable_i(WriteRequest && (TextWriteAddress[11:9] == 3'd4)),
+		.WriteEnable_i(WriteStep1 && (TextWriteAddress[11:9] == 3'd4)),
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
 		.Data_o(DataFromTextRAM_4)
 	);
+	*/
 	
-	assign DebugDataFromTextRAM = DataFromTextRAM;
+	
+	
+	
+	
+	
 	
 	// Font memory
 	// Characters from 0 to 127.
@@ -292,8 +272,8 @@ module Memory(
 	// 16 bytes per characher.
 	// Whole memory is 2048 bytes.
 	
+	/*
 	wire [7:0] DataFromFontROM;
-	//wire [7:0] DataFromFontROM = 16'h6241;
 	
 	ROM #(
 		.ADDRESS_WIDTH(11),
@@ -310,19 +290,6 @@ module Memory(
 		}),
 		.Data_o(DataFromFontROM)
 	);
-	
-	/*
-	// IP Express generated module
-	FontROM FontROM_inst(
-		.Address({
-			DataFromTextRAM[6:0],
-			Line_i[3:0]
-		}),
-		.OutClock(Clock),
-		.OutClockEn(1'b1),
-		.Reset(Reset),
-		.Q(DataFromFontROM)
-	);*/
 	
 	reg [1:0] DelayLine;
 	
@@ -351,7 +318,8 @@ module Memory(
 			ColorBackground_o <= 3'b001;
 		end
 	end
+	*/
 	
 endmodule
 
-`default_nettype none
+`default_nettype wire

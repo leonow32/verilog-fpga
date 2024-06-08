@@ -1,11 +1,11 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sat Jun 08 17:46:33 2024
+[*] Sat Jun 08 17:57:42 2024
 [*]
 [dumpfile] "C:\verilog\vga\05_text_terminal\top.vcd"
-[dumpfile_mtime] "Sat Jun 08 17:46:17 2024"
+[dumpfile_mtime] "Sat Jun 08 17:55:51 2024"
 [dumpfile_size] 51942706
-[savefile] "C:\verilog\vga\05_text_terminal\top.gtkw"
+[savefile] "C:\verilog\vga\05_text_terminal\top_uart_and_mem_write.gtkw"
 [timestart] 0
 [size] 1920 1009
 [pos] -1 -1
@@ -16,10 +16,7 @@
 [sst_width] 246
 [signals_width] 358
 [sst_expanded] 1
-[sst_vpaned_height] 297
-@28
-top_tb.Reset
-top_tb.Clock
+[sst_vpaned_height] 286
 @200
 -UART Transmitter
 @28
@@ -47,7 +44,7 @@ top_tb.DUT.Memory_inst.WriteCharNum[31:0]
 @28
 [color] 3
 top_tb.DUT.Memory_inst.AnalyzeRequest_i
-@22
+@23
 top_tb.DUT.Memory_inst.ColorBuffer[7:0]
 @28
 top_tb.DUT.Memory_inst.WriteStep1
@@ -70,7 +67,6 @@ top_tb.DataRAM_0005[7:0]
 top_tb.DataRAM_0006[7:0]
 top_tb.DataRAM_0007[7:0]
 top_tb.DataRAM_0008[7:0]
-@23
 top_tb.DataRAM_0009[7:0]
 @200
 -VGA Pixel Counter
