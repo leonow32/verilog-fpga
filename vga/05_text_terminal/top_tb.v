@@ -110,16 +110,16 @@ module top_tb();
 	end
 	
 	// Some wires to have a look inside the memory	
-	wire [7:0] DataRAM_0000 = DUT.Memory_inst.DataRAM.Memory[0];
-	wire [7:0] DataRAM_0001 = DUT.Memory_inst.DataRAM.Memory[1];
-	wire [7:0] DataRAM_0002 = DUT.Memory_inst.DataRAM.Memory[2];
-	wire [7:0] DataRAM_0003 = DUT.Memory_inst.DataRAM.Memory[3];
-	wire [7:0] DataRAM_0004 = DUT.Memory_inst.DataRAM.Memory[4];
-	wire [7:0] DataRAM_0005 = DUT.Memory_inst.DataRAM.Memory[5];
-	wire [7:0] DataRAM_0006 = DUT.Memory_inst.DataRAM.Memory[6];
-	wire [7:0] DataRAM_0007 = DUT.Memory_inst.DataRAM.Memory[7];
-	wire [7:0] DataRAM_0008 = DUT.Memory_inst.DataRAM.Memory[8];
-	wire [7:0] DataRAM_0009 = DUT.Memory_inst.DataRAM.Memory[9];
+	wire [7:0] ImageRAM_0000 = DUT.Memory_inst.ImageRAM.Memory[0];
+	wire [7:0] ImageRAM_0001 = DUT.Memory_inst.ImageRAM.Memory[1];
+	wire [7:0] ImageRAM_0002 = DUT.Memory_inst.ImageRAM.Memory[2];
+	wire [7:0] ImageRAM_0003 = DUT.Memory_inst.ImageRAM.Memory[3];
+	wire [7:0] ImageRAM_0004 = DUT.Memory_inst.ImageRAM.Memory[4];
+	wire [7:0] ImageRAM_0005 = DUT.Memory_inst.ImageRAM.Memory[5];
+	wire [7:0] ImageRAM_0006 = DUT.Memory_inst.ImageRAM.Memory[6];
+	wire [7:0] ImageRAM_0007 = DUT.Memory_inst.ImageRAM.Memory[7];
+	wire [7:0] ImageRAM_0008 = DUT.Memory_inst.ImageRAM.Memory[8];
+	wire [7:0] ImageRAM_0009 = DUT.Memory_inst.ImageRAM.Memory[9];
 	// wire [15:0] TextRAM_0000 = DUT.Memory_inst.TextRAM.Memory[0];
 	// wire [15:0] TextRAM_0001 = DUT.Memory_inst.TextRAM.Memory[1];
 	// wire [15:0] TextRAM_0002 = DUT.Memory_inst.TextRAM.Memory[2];

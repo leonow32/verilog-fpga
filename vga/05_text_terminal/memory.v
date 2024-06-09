@@ -11,10 +11,10 @@ module Memory(
 	input wire [7:0] DataFromUART_i,
 	
 	// Read request from VGA controller to the memory
-	input wire ReadRequest_i,
+	input wire GetImageRequest_i,
 	input wire [6:0] Column_i,		// Range 0..79
 	input wire [4:0] Row_i,			// Range 0..29
-	input wire [3:0] Line_i,		// Range 0..15
+	input wire [3:0] Line_i,		// Range 0..15 (each char is made of 16 lines)
 	
 	// Output from font memory to VGA controller
 	output reg  [7:0] Pixels_o,
@@ -22,6 +22,7 @@ module Memory(
 	output reg  [2:0] ColorBackground_o
 );
 	
+	// Variables to handle data write to image memory
 	reg WriteStep1;
 	reg WriteStep2;
 	reg WriteRequest;
@@ -29,17 +30,14 @@ module Memory(
 	reg [12:0] WriteAddress;
 	
 	reg [7:0] ColorBuffer;
-	// reg [2:0] ColorForeground;
-	// reg [2:0] ColorBackground;
 	
 	// Currently pointed character to be written
 	reg [6:0] CursorX;										// Range 0..79
 	reg [4:0] CursorY;										// Range 0..29
 	
 	wire [31:0] WriteCharNum = CursorY * 80 + CursorX;		// Range 0..2399
-	wire [31:0] ReadCharNum  = Row_i * 80 + Column_i;
 	
-	// State machine to analyze data from UART
+	// State machine to analyze data from UART and save it to image RAM
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset) begin
 			WriteStep1   <= 0;
@@ -135,49 +133,103 @@ module Memory(
 		end
 	end
 	
+	// Read ASCII and color form image RAM
+	
+	reg [12:0] ReadAddress;
+	reg [10:0] FontAddress;
+	
+	wire [31:0] ReadCharNum  = Row_i * 80 + Column_i;		// Range 0..2399
+	
+	reg [2:0] ReadState;
+	localparam WAITING_FOR_REQUEST = 0;
+	localparam DUMMY = 1;
+	localparam READ_ASCII_CODE = 2;
+	
+	
+	always @(posedge Clock, negedge Reset) begin
+		if(!Reset) begin
+			ReadState <= WAITING_FOR_REQUEST;
+			ReadAddress <=0;
+			FontAddress <= 0;
+			Pixels_o <= 0;
+			ColorForeground_o <= 0;
+			ColorBackground_o <= 0;
+		end 
+		
+		else case(ReadState)
+			0: begin
+				if(GetImageRequest_i) begin
+					ReadAddress[12:0] <= {ReadCharNum[11:0], 1'b0};			// Request ASCII code from image RAM
+					ReadState <= ReadState + 1'b1;					// Go to next state
+				end
+			end
+			
+			1: begin
+				ReadAddress[12:0] <= {ReadCharNum[11:0], 1'b1};			// Request color from image RAM
+				ReadState <= ReadState + 1'b1;					// Go to next state
+			end
+			
+			2: begin
+				FontAddress <= {DataFromImageRAM[6:0], Line_i[3:0]};	// Request font bitmap, DataFromImageRAM is ASCII code requested two clocls earlier
+				ReadState <= ReadState + 1'b1;					// Go to next state
+			end
+			
+			3: begin
+				// Do nothing here, just wait for FontROM to output pixel data
+				ReadState <= ReadState + 1'b1;					// Go to next state
+			end
+			
+			4: begin
+				Pixels_o <= DataFromFontROM[7:0];
+				ColorForeground_o <= DataFromImageRAM[6:4];
+				ColorBackground_o <= DataFromImageRAM[2:0];
+				ReadState <= 0;
+			end
+			
+		endcase
+	end
+	
 	// Memory of text and color
 	// Each EBR can store 1024x8 bit
 	
-	// Text and color memory
+	// Image memory - text and color data
 	
 	
 	
 	
 	
-	// wire [15:0] DataFromTextRAM;
+	wire [7:0] DataFromImageRAM;
 	
 	PseudoDualPortRAM #(
 		.ADDRESS_WIDTH(13),
 		.DATA_WIDTH(8),
 		.MEMORY_DEPTH(4800)
-	) DataRAM(
+	) ImageRAM(
 		.ReadClock(Clock),
 		.WriteClock(Clock),
 		.Reset(Reset),
 		.ReadEnable_i(1'b1),
 		.WriteEnable_i(WriteRequest),
-//		.ReadAddress_i(ReadAddress),
-		.ReadAddress_i(13'd0),
+		.ReadAddress_i(ReadAddress),
 		.WriteAddress_i(WriteAddress),
 		.Data_i(WriteBuffer),
-//		.Data_o(DataFromTextRAM)
-		.Data_o()
+		.Data_o(DataFromImageRAM)
 	);
 	
 	
 	
 	/*
-	wire [7:0] DataFromTextRAM_0;
-	wire [7:0] DataFromTextRAM_1;
-	wire [7:0] DataFromTextRAM_2;
-	wire [7:0] DataFromTextRAM_3;
-	wire [7:0] DataFromTextRAM_4;
+	wire [7:0] DataFromImageRAM_0;
+	wire [7:0] DataFromImageRAM_1;
+	wire [7:0] DataFromImageRAM_2;
+	wire [7:0] DataFromImageRAM_3;
+	wire [7:0] DataFromImageRAM_4;
 	
-	wire [7:0] DataFromTextRAM = (TextReadAddress[11:9] == 3'd0) ? DataFromTextRAM_0 :
-								 (TextReadAddress[11:9] == 3'd1) ? DataFromTextRAM_1 :
-								 (TextReadAddress[11:9] == 3'd2) ? DataFromTextRAM_2 :
-								 (TextReadAddress[11:9] == 3'd3) ? DataFromTextRAM_3 :
-								                                   DataFromTextRAM_4;
+	wire [7:0] DataFromImageRAM = (TextReadAddress[11:9] == 3'd0) ? DataFromImageRAM_0 :
+								 (TextReadAddress[11:9] == 3'd1) ? DataFromImageRAM_1 :
+								 (TextReadAddress[11:9] == 3'd2) ? DataFromImageRAM_2 :
+								 (TextReadAddress[11:9] == 3'd3) ? DataFromImageRAM_3 :
+								                                   DataFromImageRAM_4;
 	
 	PseudoDualPortRAM #(
 		.ADDRESS_WIDTH(9),
@@ -192,7 +244,7 @@ module Memory(
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
-		.Data_o(DataFromTextRAM_0)
+		.Data_o(DataFromImageRAM_0)
 	);
 	
 	PseudoDualPortRAM #(
@@ -208,7 +260,7 @@ module Memory(
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
-		.Data_o(DataFromTextRAM_1)
+		.Data_o(DataFromImageRAM_1)
 	);
 	
 	PseudoDualPortRAM #(
@@ -224,7 +276,7 @@ module Memory(
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
-		.Data_o(DataFromTextRAM_2)
+		.Data_o(DataFromImageRAM_2)
 	);
 	
 	PseudoDualPortRAM #(
@@ -240,7 +292,7 @@ module Memory(
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
-		.Data_o(DataFromTextRAM_3)
+		.Data_o(DataFromImageRAM_3)
 	);
 	
 	PseudoDualPortRAM #(
@@ -256,7 +308,7 @@ module Memory(
 		.ReadAddress_i(TextReadAddress[8:0]),
 		.WriteAddress_i(TextWriteAddress[8:0]),
 		.Data_i(TextDataToWrite),
-		.Data_o(DataFromTextRAM_4)
+		.Data_o(DataFromImageRAM_4)
 	);
 	*/
 	
@@ -272,7 +324,7 @@ module Memory(
 	// 16 bytes per characher.
 	// Whole memory is 2048 bytes.
 	
-	/*
+	
 	wire [7:0] DataFromFontROM;
 	
 	ROM #(
@@ -284,19 +336,21 @@ module Memory(
 		.Clock(Clock),
 		.Reset(Reset),
 		.ReadEnable_i(1'b1),
-		.Address_i({
-			DataFromTextRAM[6:0],
-			Line_i[3:0]
-		}),
+		.Address_i(FontAddress),
+		// .Address_i({
+			// DataFromImageRAM[6:0],
+			// Line_i[3:0]
+		// }),
 		.Data_o(DataFromFontROM)
 	);
 	
+	/*
 	reg [1:0] DelayLine;
 	
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset)
 			DelayLine <= 3'b001;
-		else if(ReadRequest_i)
+		else if(GetImageRequest_i)
 			DelayLine <= 3'b001;
 		else	
 			DelayLine <= DelayLine << 1;
@@ -311,9 +365,9 @@ module Memory(
 		
 		else if(DelayLine[1]) begin
 			Pixels_o          <= DataFromFontROM;
-			// Pixels_o          <= DataFromTextRAM[7:0];
-			// ColorForeground_o <= DataFromTextRAM[14:12];
-			// ColorBackground_o <= DataFromTextRAM[10:8];
+			// Pixels_o          <= DataFromImageRAM[7:0];
+			// ColorForeground_o <= DataFromImageRAM[14:12];
+			// ColorBackground_o <= DataFromImageRAM[10:8];
 			ColorForeground_o <= 3'b011;
 			ColorBackground_o <= 3'b001;
 		end

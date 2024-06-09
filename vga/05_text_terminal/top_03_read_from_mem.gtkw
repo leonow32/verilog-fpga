@@ -1,0 +1,89 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sun Jun 09 18:40:33 2024
+[*]
+[dumpfile] "C:\verilog\vga\05_text_terminal\top.vcd"
+[dumpfile_mtime] "Sun Jun 09 18:37:25 2024"
+[dumpfile_size] 63943416
+[savefile] "C:\verilog\vga\05_text_terminal\top_03_read_from_mem.gtkw"
+[timestart] 16682826000
+[size] 1920 1009
+[pos] -1 -1
+*-17.882816 16683518054 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top_tb.
+[treeopen] top_tb.DUT.
+[treeopen] top_tb.DUT.Memory_inst.
+[sst_width] 246
+[signals_width] 248
+[sst_expanded] 1
+[sst_vpaned_height] 286
+@200
+-Data Memory
+@22
+top_tb.ImageRAM_0000[7:0]
+top_tb.ImageRAM_0001[7:0]
+top_tb.ImageRAM_0002[7:0]
+top_tb.ImageRAM_0003[7:0]
+top_tb.ImageRAM_0004[7:0]
+top_tb.ImageRAM_0005[7:0]
+top_tb.ImageRAM_0006[7:0]
+top_tb.ImageRAM_0007[7:0]
+top_tb.ImageRAM_0008[7:0]
+top_tb.ImageRAM_0009[7:0]
+@200
+-VGA Pixel Counter
+@24
+top_tb.DUT.VGA_inst.VCounter[9:0]
+top_tb.DUT.VGA_inst.HCounter[9:0]
+top_tb.DUT.VGA_inst.Row_o[4:0]
+@c00024
+top_tb.DUT.VGA_inst.Column_o[6:0]
+@28
+(0)top_tb.DUT.VGA_inst.Column_o[6:0]
+(1)top_tb.DUT.VGA_inst.Column_o[6:0]
+(2)top_tb.DUT.VGA_inst.Column_o[6:0]
+(3)top_tb.DUT.VGA_inst.Column_o[6:0]
+(4)top_tb.DUT.VGA_inst.Column_o[6:0]
+(5)top_tb.DUT.VGA_inst.Column_o[6:0]
+(6)top_tb.DUT.VGA_inst.Column_o[6:0]
+@1401200
+-group_end
+@24
+top_tb.DUT.VGA_inst.Line_o[3:0]
+@28
+top_tb.DUT.VGA_inst.GetImageRequest_o
+@200
+-Read from Memory
+@24
+top_tb.DUT.Memory_inst.ReadCharNum[31:0]
+@28
+top_tb.DUT.Memory_inst.GetImageRequest_i
+@24
+top_tb.DUT.Memory_inst.ReadState[2:0]
+top_tb.DUT.Memory_inst.ReadAddress[12:0]
+@22
+top_tb.DUT.Memory_inst.DataFromImageRAM[7:0]
+@c00022
+top_tb.DUT.Memory_inst.FontAddress[10:0]
+@28
+(0)top_tb.DUT.Memory_inst.FontAddress[10:0]
+(1)top_tb.DUT.Memory_inst.FontAddress[10:0]
+(2)top_tb.DUT.Memory_inst.FontAddress[10:0]
+(3)top_tb.DUT.Memory_inst.FontAddress[10:0]
+(4)top_tb.DUT.Memory_inst.FontAddress[10:0]
+(5)top_tb.DUT.Memory_inst.FontAddress[10:0]
+(6)top_tb.DUT.Memory_inst.FontAddress[10:0]
+(7)top_tb.DUT.Memory_inst.FontAddress[10:0]
+(8)top_tb.DUT.Memory_inst.FontAddress[10:0]
+(9)top_tb.DUT.Memory_inst.FontAddress[10:0]
+(10)top_tb.DUT.Memory_inst.FontAddress[10:0]
+@1401200
+-group_end
+@22
+top_tb.DUT.Memory_inst.DataFromFontROM[7:0]
+top_tb.DUT.Memory_inst.Pixels_o[7:0]
+@28
+top_tb.DUT.Memory_inst.ColorForeground_o[2:0]
+top_tb.DUT.Memory_inst.ColorBackground_o[2:0]
+[pattern_trace] 1
+[pattern_trace] 0

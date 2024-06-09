@@ -26,7 +26,7 @@ module top #(
 	wire [3:0] Line;			// Range 0..15
 	
 	// Signals between memory and VGA modules
-	wire MemoryReadRequest;
+	wire GetImageRequest;
 	wire [7:0] Pixels;
 	wire [2:0] ColorForeground;
 	wire [2:0] ColorBackground;
@@ -55,7 +55,7 @@ module top #(
 		.AnalyzeRequest_i(DataReceivedEvent),
 		.DataFromUART_i(DataFromUART),
 		
-		.ReadRequest_i(MemoryReadRequest),
+		.GetImageRequest_i(GetImageRequest),
 		.Column_i(Column),
 		.Row_i(Row),
 		.Line_i(Line),
@@ -70,7 +70,7 @@ module top #(
 		.Clock(Clock),
 		.Reset(Reset),
 		
-		.MemoryReadRequest_o(MemoryReadRequest),
+		.GetImageRequest_o(GetImageRequest),
 		.Column_o(Column),
 		.Row_o(Row),
 		.Line_o(Line),
@@ -113,7 +113,7 @@ module top #(
 		
 // /*		.Data_i({
 			// DebugTextDataToWrite,
-			// DebugDataFromTextRAM
+			// DebugDataFromImageRAM
 		// }),*/
 		
 		// .Data_i({

@@ -5,7 +5,7 @@ module VGA(
 	input  wire Clock,		// Must be 25 MHz or 25.175 MHz
 	input  wire Reset,
 	
-	output wire       MemoryReadRequest_o,
+	output wire       GetImageRequest_o,
 	output wire [6:0] Column_o,			// Range 0..79
 	output wire [4:0] Row_o,			// Range 0..29
 	output wire [3:0] Line_o,			// Range 0..15
@@ -48,7 +48,7 @@ module VGA(
 	assign Column_o[6:0]       = HCounter[9:3];
 	assign Row_o[4:0]          = VCounter[8:4];
 	assign Line_o[3:0]         = VCounter[3:0];
-	assign MemoryReadRequest_o = HCounter[2:0] == 8'd0;
+	assign GetImageRequest_o = HCounter[2:0] == 8'd0;
 	
 	// Signal generation
 	reg [2:0] CharHCounter;
