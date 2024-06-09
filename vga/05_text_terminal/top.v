@@ -101,7 +101,7 @@ module top #(
 // /*		.Data_i({
 			// DataFromUART,
 			// 12'd0,
-			// DebugTextWriteAddress
+			// DebugWriteAddress
 		// }),*/
 		
 // /*		.Data_i({
@@ -118,7 +118,7 @@ module top #(
 		
 		// .Data_i({
 			// 20'd0,
-			// DebugTextReadAddress
+			// DebugReadAddress
 		// }),
 		
 		// .DecimalPoints_i(8'd0),

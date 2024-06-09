@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sun Jun 09 18:47:12 2024
+[*] Sun Jun 09 19:51:14 2024
 [*]
 [dumpfile] "C:\verilog\vga\05_text_terminal\top.vcd"
-[dumpfile_mtime] "Sun Jun 09 18:37:25 2024"
-[dumpfile_size] 63943416
-[savefile] "C:\verilog\vga\05_text_terminal\top_03_read_from_mem.gtkw"
-[timestart] 16682826000
+[dumpfile_mtime] "Sun Jun 09 19:45:42 2024"
+[dumpfile_size] 63942938
+[savefile] "C:\verilog\vga\05_text_terminal\top_04_vga_signals.gtkw"
+[timestart] 16683155000
 [size] 1920 1009
-[pos] -1 -1
-*-17.882816 16683518054 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -9 -9
+*-17.882816 16683597498 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.DUT.
 [treeopen] top_tb.DUT.Memory_inst.
@@ -86,5 +86,17 @@ top_tb.DUT.Memory_inst.Pixels_o[7:0]
 @28
 top_tb.DUT.Memory_inst.ColorForeground_o[2:0]
 top_tb.DUT.Memory_inst.ColorBackground_o[2:0]
+@200
+-VGA Signal Generation
+@24
+top_tb.DUT.VGA_inst.CharHCounter[2:0]
+@200
+-VGA Output
+@28
+top_tb.DUT.VGA_inst.Red_o
+top_tb.DUT.VGA_inst.Green_o
+top_tb.DUT.VGA_inst.Blue_o
+top_tb.DUT.VGA_inst.HSync_o
+top_tb.DUT.VGA_inst.VSync_o
 [pattern_trace] 1
 [pattern_trace] 0

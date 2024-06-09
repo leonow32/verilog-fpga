@@ -189,15 +189,11 @@ module Memory(
 		endcase
 	end
 	
-	// Memory of text and color
-	// Each EBR can store 1024x8 bit
-	
 	// Image memory - text and color data
-	
-	
-	
-	
-	
+	// Each EBR can store 1024x8 bit
+
+	/*
+	// For simulation
 	wire [7:0] DataFromImageRAM;
 	
 	PseudoDualPortRAM #(
@@ -215,102 +211,102 @@ module Memory(
 		.Data_i(WriteBuffer),
 		.Data_o(DataFromImageRAM)
 	);
+	*/
 	
 	
 	
-	/*
 	wire [7:0] DataFromImageRAM_0;
 	wire [7:0] DataFromImageRAM_1;
 	wire [7:0] DataFromImageRAM_2;
 	wire [7:0] DataFromImageRAM_3;
 	wire [7:0] DataFromImageRAM_4;
 	
-	wire [7:0] DataFromImageRAM = (TextReadAddress[11:9] == 3'd0) ? DataFromImageRAM_0 :
-								 (TextReadAddress[11:9] == 3'd1) ? DataFromImageRAM_1 :
-								 (TextReadAddress[11:9] == 3'd2) ? DataFromImageRAM_2 :
-								 (TextReadAddress[11:9] == 3'd3) ? DataFromImageRAM_3 :
-								                                   DataFromImageRAM_4;
+	wire [7:0] DataFromImageRAM = (ReadAddress[11:9] == 3'd0) ? DataFromImageRAM_0 :
+								  (ReadAddress[11:9] == 3'd1) ? DataFromImageRAM_1 :
+								  (ReadAddress[11:9] == 3'd2) ? DataFromImageRAM_2 :
+								  (ReadAddress[11:9] == 3'd3) ? DataFromImageRAM_3 :
+								                                DataFromImageRAM_4;
 	
 	PseudoDualPortRAM #(
-		.ADDRESS_WIDTH(9),
+		.ADDRESS_WIDTH(10),
 		.DATA_WIDTH(8),
-		.MEMORY_DEPTH(512)
+		.MEMORY_DEPTH(1024)
 	) TextRAM_0(
 		.ReadClock(Clock),
 		.WriteClock(Clock),
 		.Reset(Reset),
-		.ReadEnable_i(TextReadAddress[11:9] == 3'd0),
-		.WriteEnable_i(WriteStep1 && (TextWriteAddress[11:9] == 3'd0)),
-		.ReadAddress_i(TextReadAddress[8:0]),
-		.WriteAddress_i(TextWriteAddress[8:0]),
-		.Data_i(TextDataToWrite),
+		.ReadEnable_i(ReadAddress[12:10] == 3'd0),
+		.WriteEnable_i(WriteRequest && (WriteAddress[12:10] == 3'd0)),
+		.ReadAddress_i(ReadAddress[9:0]),
+		.WriteAddress_i(WriteAddress[9:0]),
+		.Data_i(WriteBuffer),
 		.Data_o(DataFromImageRAM_0)
 	);
 	
 	PseudoDualPortRAM #(
-		.ADDRESS_WIDTH(9),
+		.ADDRESS_WIDTH(10),
 		.DATA_WIDTH(8),
-		.MEMORY_DEPTH(512)
+		.MEMORY_DEPTH(1024)
 	) TextRAM_1(
 		.ReadClock(Clock),
 		.WriteClock(Clock),
 		.Reset(Reset),
-		.ReadEnable_i(TextReadAddress[11:9] == 3'd1),
-		.WriteEnable_i(WriteStep1 && (TextWriteAddress[11:9] == 3'd1)),
-		.ReadAddress_i(TextReadAddress[8:0]),
-		.WriteAddress_i(TextWriteAddress[8:0]),
-		.Data_i(TextDataToWrite),
+		.ReadEnable_i(ReadAddress[12:10] == 3'd1),
+		.WriteEnable_i(WriteRequest && (WriteAddress[12:10] == 3'd1)),
+		.ReadAddress_i(ReadAddress[9:0]),
+		.WriteAddress_i(WriteAddress[9:0]),
+		.Data_i(WriteBuffer),
 		.Data_o(DataFromImageRAM_1)
 	);
 	
 	PseudoDualPortRAM #(
-		.ADDRESS_WIDTH(9),
+		.ADDRESS_WIDTH(10),
 		.DATA_WIDTH(8),
-		.MEMORY_DEPTH(512)
+		.MEMORY_DEPTH(1024)
 	) TextRAM_2(
 		.ReadClock(Clock),
 		.WriteClock(Clock),
 		.Reset(Reset),
-		.ReadEnable_i(TextReadAddress[11:9] == 3'd2),
-		.WriteEnable_i(WriteStep1 && (TextWriteAddress[11:9] == 3'd2)),
-		.ReadAddress_i(TextReadAddress[8:0]),
-		.WriteAddress_i(TextWriteAddress[8:0]),
-		.Data_i(TextDataToWrite),
+		.ReadEnable_i(ReadAddress[12:10] == 3'd2),
+		.WriteEnable_i(WriteRequest && (WriteAddress[12:10] == 3'd2)),
+		.ReadAddress_i(ReadAddress[9:0]),
+		.WriteAddress_i(WriteAddress[9:0]),
+		.Data_i(WriteBuffer),
 		.Data_o(DataFromImageRAM_2)
 	);
 	
 	PseudoDualPortRAM #(
-		.ADDRESS_WIDTH(9),
+		.ADDRESS_WIDTH(10),
 		.DATA_WIDTH(8),
-		.MEMORY_DEPTH(512)
+		.MEMORY_DEPTH(1024)
 	) TextRAM_3(
 		.ReadClock(Clock),
 		.WriteClock(Clock),
 		.Reset(Reset),
-		.ReadEnable_i(TextReadAddress[11:9] == 3'd3),
-		.WriteEnable_i(WriteStep1 && (TextWriteAddress[11:9] == 3'd3)),
-		.ReadAddress_i(TextReadAddress[8:0]),
-		.WriteAddress_i(TextWriteAddress[8:0]),
-		.Data_i(TextDataToWrite),
+		.ReadEnable_i(ReadAddress[12:10] == 3'd3),
+		.WriteEnable_i(WriteRequest && (WriteAddress[12:10] == 3'd3)),
+		.ReadAddress_i(ReadAddress[9:0]),
+		.WriteAddress_i(WriteAddress[9:0]),
+		.Data_i(WriteBuffer),
 		.Data_o(DataFromImageRAM_3)
 	);
 	
 	PseudoDualPortRAM #(
-		.ADDRESS_WIDTH(9),
+		.ADDRESS_WIDTH(10),
 		.DATA_WIDTH(8),
-		.MEMORY_DEPTH(352)
+		.MEMORY_DEPTH(704)
 	) TextRAM_4(
 		.ReadClock(Clock),
 		.WriteClock(Clock),
 		.Reset(Reset),
-		.ReadEnable_i(TextReadAddress[11:9] == 3'd4),
-		.WriteEnable_i(WriteStep1 && (TextWriteAddress[11:9] == 3'd4)),
-		.ReadAddress_i(TextReadAddress[8:0]),
-		.WriteAddress_i(TextWriteAddress[8:0]),
-		.Data_i(TextDataToWrite),
+		.ReadEnable_i(ReadAddress[12:10] == 3'd4),
+		.WriteEnable_i(WriteRequest && (WriteAddress[12:10] == 3'd4)),
+		.ReadAddress_i(ReadAddress[9:0]),
+		.WriteAddress_i(WriteAddress[9:0]),
+		.Data_i(WriteBuffer),
 		.Data_o(DataFromImageRAM_4)
 	);
-	*/
+	
 	
 	
 	
@@ -323,8 +319,6 @@ module Memory(
 	// Character size is 16x8 pixels.
 	// 16 bytes per characher.
 	// Whole memory is 2048 bytes.
-	
-	
 	wire [7:0] DataFromFontROM;
 	
 	ROM #(
@@ -337,42 +331,8 @@ module Memory(
 		.Reset(Reset),
 		.ReadEnable_i(1'b1),
 		.Address_i(FontAddress),
-		// .Address_i({
-			// DataFromImageRAM[6:0],
-			// Line_i[3:0]
-		// }),
 		.Data_o(DataFromFontROM)
 	);
-	
-	/*
-	reg [1:0] DelayLine;
-	
-	always @(posedge Clock, negedge Reset) begin
-		if(!Reset)
-			DelayLine <= 3'b001;
-		else if(GetImageRequest_i)
-			DelayLine <= 3'b001;
-		else	
-			DelayLine <= DelayLine << 1;
-	end
-	
-	always @(posedge Clock, negedge Reset) begin
-		if(!Reset) begin
-			Pixels_o          <= 0;
-			ColorForeground_o <= 3'b111;
-			ColorBackground_o <= 3'b000;
-		end 
-		
-		else if(DelayLine[1]) begin
-			Pixels_o          <= DataFromFontROM;
-			// Pixels_o          <= DataFromImageRAM[7:0];
-			// ColorForeground_o <= DataFromImageRAM[14:12];
-			// ColorBackground_o <= DataFromImageRAM[10:8];
-			ColorForeground_o <= 3'b011;
-			ColorBackground_o <= 3'b001;
-		end
-	end
-	*/
 	
 endmodule
 
