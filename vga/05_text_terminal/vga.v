@@ -56,7 +56,7 @@ module VGA(
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset)
 			CharHCounter <= 3'd7;
-		else if(HCounter[2:0] == 6)
+		else if(HCounter[2:0] == 4)
 			CharHCounter <= 3'd7;
 		else
 			CharHCounter <= CharHCounter - 1'b1;
@@ -70,7 +70,7 @@ module VGA(
 		end 
 		
 		// Horizontal active area
-		else if(HCounter >= 3+4 && HCounter <= 642+4 && VCounter <= 479+4) begin
+		else if(HCounter >= 3+2 && HCounter <= 642+2 && VCounter <= 479+2) begin
 			if(PixelsToDisplay_i[CharHCounter])
 				{Red_o, Green_o, Blue_o} <= ColorForeground_i;
 			else
@@ -78,11 +78,11 @@ module VGA(
 		end
 		
 		// Horizontal front porch
-		else if(HCounter >= 643+4 && HCounter <= 658+4) 
+		else if(HCounter >= 643+2 && HCounter <= 658+2) 
 			{HSync_o, Red_o, Green_o, Blue_o} <= 4'b1000;
 		
 		// Horizontal sync pulse
-		else if(HCounter >= 659+4 && HCounter <= 754+4)
+		else if(HCounter >= 659+2 && HCounter <= 754+2)
 			{HSync_o, Red_o, Green_o, Blue_o} <= 4'b0000;
 		
 		// Horizontal back porch
@@ -94,7 +94,7 @@ module VGA(
 	always @(posedge Clock, negedge Reset) begin
 		if(!Reset)
 			VSync_o <= 1;
-		else if(HCounter == 3+4) begin
+		else if(HCounter == 3+2) begin
 			if(VCounter == 490 || VCounter == 491) 	// Vertical sync pulse
 				VSync_o <= 0;
 			else 									// Active area, front and back porch
