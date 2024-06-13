@@ -11,6 +11,9 @@ iverilog -o top.o 											^
 	../../synchronizer/synchronizer.v						^
 	../../uart_rx/uart_rx.v 								^
 	../../uart_tx/uart_tx.v 								^
+	../../display_multiplexed_variable/display_multiplex.v 	^
+	../../decoder_7seg/decoder_7seg.v						^
+	../../strobe_generator/strobe_generator.v
 	
 vvp top.o
 del top.o

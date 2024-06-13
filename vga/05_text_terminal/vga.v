@@ -14,11 +14,11 @@ module VGA(
 	input wire [2:0] ColorForeground_i,	// RGB
 	input wire [2:0] ColorBackground_i,	// RGB
 	
-	output reg  Red_o,
-	output reg  Green_o,
-	output reg  Blue_o,
-	output reg  HSync_o,
-	output reg  VSync_o
+	output reg Red_o,
+	output reg Green_o,
+	output reg Blue_o,
+	output reg HSync_o,
+	output reg VSync_o
 );
 	
 	// Counters for 640*480 screen resolution

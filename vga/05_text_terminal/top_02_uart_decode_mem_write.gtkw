@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sun Jun 09 17:26:41 2024
+[*] Thu Jun 13 19:01:58 2024
 [*]
 [dumpfile] "C:\verilog\vga\05_text_terminal\top.vcd"
-[dumpfile_mtime] "Sun Jun 09 17:24:51 2024"
-[dumpfile_size] 51942717
+[dumpfile_mtime] "Thu Jun 13 19:01:22 2024"
+[dumpfile_size] 92259453
 [savefile] "C:\verilog\vga\05_text_terminal\top_02_uart_decode_mem_write.gtkw"
-[timestart] 0
+[timestart] 1820000
 [size] 1920 1009
 [pos] -9 -9
-*-20.663961 2010000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-22.663961 25263192 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.DUT.
 [treeopen] top_tb.DUT.Memory_inst.
@@ -43,12 +43,6 @@ top_tb.DUT.Memory_inst.WriteStep2
 top_tb.DUT.Memory_inst.WriteRequest
 @200
 -Data Memory
-@25
-top_tb.DUT.Memory_inst.ImageRAM.WriteAddress_i[12:0]
-@22
-top_tb.DUT.Memory_inst.ImageRAM.Data_i[7:0]
-@28
-top_tb.DUT.Memory_inst.ImageRAM.WriteEnable_i
 @22
 top_tb.ImageRAM_0000[7:0]
 top_tb.ImageRAM_0001[7:0]
@@ -60,5 +54,10 @@ top_tb.ImageRAM_0006[7:0]
 top_tb.ImageRAM_0007[7:0]
 top_tb.ImageRAM_0008[7:0]
 top_tb.ImageRAM_0009[7:0]
+top_tb.ImageRAM_0510[7:0]
+top_tb.ImageRAM_0511[7:0]
+top_tb.ImageRAM_0512[7:0]
+@23
+top_tb.ImageRAM_0513[7:0]
 [pattern_trace] 1
 [pattern_trace] 0
