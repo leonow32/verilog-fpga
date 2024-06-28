@@ -1,0 +1,39 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sun Jun 09 17:26:05 2024
+[*]
+[dumpfile] "C:\verilog\vga\05_text_terminal\top.vcd"
+[dumpfile_mtime] "Sun Jun 09 17:24:51 2024"
+[dumpfile_size] 51942717
+[savefile] "C:\verilog\vga\05_text_terminal\top_01_uart_tx_rx.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -9 -9
+*-20.663961 2010000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top_tb.
+[treeopen] top_tb.DUT.
+[treeopen] top_tb.DUT.Memory_inst.
+[sst_width] 246
+[signals_width] 248
+[sst_expanded] 1
+[sst_vpaned_height] 286
+@200
+-UART Transmitter
+@28
+[color] 3
+top_tb.TxRequest
+@22
+top_tb.TxData[7:0]
+@28
+top_tb.TxRxCommon
+@200
+-UART Receiver
+@820
+top_tb.DUT.DataFromUART[7:0]
+@22
+top_tb.DUT.DataFromUART[7:0]
+@28
+[color] 3
+top_tb.DUT.DataReceivedEvent
+[pattern_trace] 1
+[pattern_trace] 0

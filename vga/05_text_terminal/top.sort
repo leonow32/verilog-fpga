@@ -1,0 +1,9 @@
+C:/verilog/vga/05_text_terminal/top.v
+C:/verilog/vga/05_text_terminal/vga.v
+C:/verilog/vga/05_text_terminal/memory.v
+C:/verilog/edge_detector/edge_detector.v
+C:/verilog/ram_pseudo_dual_port/ram_pdp.v
+C:/verilog/rom/rom.v
+C:/verilog/strobe_generator_ticks/strobe_generator_ticks.v
+C:/verilog/synchronizer/synchronizer.v
+C:/verilog/uart_rx/uart_rx.v

@@ -1,0 +1,63 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Thu Jun 13 19:30:57 2024
+[*]
+[dumpfile] "C:\verilog\vga\05_text_terminal\top.vcd"
+[dumpfile_mtime] "Thu Jun 13 19:01:22 2024"
+[dumpfile_size] 92259453
+[savefile] "C:\verilog\vga\05_text_terminal\top_02_uart_decode_mem_write.gtkw"
+[timestart] 0
+[size] 1920 1009
+[pos] -9 -9
+*-22.663961 25263192 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top_tb.
+[treeopen] top_tb.DUT.
+[treeopen] top_tb.DUT.Memory_inst.
+[sst_width] 246
+[signals_width] 248
+[sst_expanded] 1
+[sst_vpaned_height] 286
+@200
+-UART Receiver
+@820
+top_tb.DUT.DataFromUART[7:0]
+@22
+top_tb.DUT.DataFromUART[7:0]
+@28
+[color] 3
+top_tb.DUT.DataReceivedEvent
+@200
+-UART Decoder
+@24
+top_tb.DUT.Memory_inst.CursorX[6:0]
+top_tb.DUT.Memory_inst.CursorY[4:0]
+top_tb.DUT.Memory_inst.WriteCharNum[31:0]
+@28
+[color] 3
+top_tb.DUT.Memory_inst.AnalyzeRequest_i
+@22
+top_tb.DUT.Memory_inst.ColorBuffer[7:0]
+@28
+top_tb.DUT.Memory_inst.WriteStep1
+top_tb.DUT.Memory_inst.WriteStep2
+top_tb.DUT.Memory_inst.WriteRequest
+@200
+-Data Memory
+@22
+top_tb.ImageRAM_0000[7:0]
+top_tb.ImageRAM_0001[7:0]
+top_tb.ImageRAM_0002[7:0]
+top_tb.ImageRAM_0003[7:0]
+top_tb.ImageRAM_0004[7:0]
+top_tb.ImageRAM_0005[7:0]
+top_tb.ImageRAM_0006[7:0]
+top_tb.ImageRAM_0007[7:0]
+top_tb.ImageRAM_0008[7:0]
+top_tb.ImageRAM_0009[7:0]
+top_tb.ImageRAM_0510[7:0]
+top_tb.ImageRAM_0511[7:0]
+top_tb.ImageRAM_0512[7:0]
+@23
+top_tb.ImageRAM_0513[7:0]
+[pattern_trace] 1
+[pattern_trace] 0
