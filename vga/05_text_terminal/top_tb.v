@@ -122,8 +122,6 @@ module top_tb();
 			// UartSend(8'h01);
 		// end
 		
-		//DUT.Memory_inst.TextRAM.Memory[2399] = 16'b01110000_00000001;
-		
 		repeat(10) @(posedge Clock);
 		
 		wait(DUT.VGA_inst.VCounter == 524 && DUT.VGA_inst.HCounter == 799);

@@ -20,7 +20,7 @@ module top #(
 	output wire VSync_o				// Pin 8
 );
 	
-	// Currently displayed Character
+	// Currently displayed character
 	wire [6:0] Column;				// Range 0..79
 	wire [4:0] Row;					// Range 0..29
 	wire [3:0] Line;				// Range 0..15
@@ -34,10 +34,6 @@ module top #(
 	// UART data receiver
 	wire       DataReceivedEvent;
 	wire [7:0] DataFromUART;
-	
-	wire [6:0] DebugCursorX;
-	wire [4:0] DebugCursorY;
-	wire [31:0] DebugWriteCharNum;
 	
 	UartRx #(
 		.CLOCK_HZ(CLOCK_HZ),
@@ -66,11 +62,7 @@ module top #(
 		
 		.Pixels_o(Pixels),
 		.ColorForeground_o(ColorForeground),
-		.ColorBackground_o(ColorBackground),
-		
-		.DebugCursorX(DebugCursorX),
-		.DebugCursorY(DebugCursorY),
-		.DebugWriteCharNum(DebugWriteCharNum)
+		.ColorBackground_o(ColorBackground)
 	);
 	
 	// VGA instance
@@ -101,14 +93,10 @@ module top #(
 	) DisplayMultiplex_inst(
 		.Clock(Clock),
 		.Reset(Reset),
-		// .Data_i({
-			// 3'd0, DebugCursorY[4:0],
-			// 1'd0, DebugCursorX[6:0],
-			// 8'd0,
-			// DataFromUART
-		// }),
-		
-		.Data_i(DebugWriteCharNum),
+		.Data_i({
+			24'd0,
+			DataFromUART
+		}),
 		.DecimalPoints_i(8'd0),
 		.Cathodes_o(Cathodes_o),
 		.Segments_o(Segments_o),

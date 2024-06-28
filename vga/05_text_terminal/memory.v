@@ -19,11 +19,7 @@ module Memory(
 	// Output from font memory to VGA controller
 	output reg  [7:0] Pixels_o,
 	output reg  [2:0] ColorForeground_o,
-	output reg  [2:0] ColorBackground_o,
-	
-	output wire [6:0] DebugCursorX,
-	output wire [4:0] DebugCursorY,
-	output wire [31:0] DebugWriteCharNum
+	output reg  [2:0] ColorBackground_o
 );
 	
 	// Variables to handle data write to image memory
@@ -38,11 +34,7 @@ module Memory(
 	reg [ 6:0] CursorX;										// Range 0..79
 	reg [ 4:0] CursorY;										// Range 0..29
 	
-	assign DebugCursorX = CursorX;
-	assign DebugCursorY = CursorY;
-	
 	wire [31:0] WriteCharNum = CursorY * 80 + CursorX;		// Range 0..2399
-	assign DebugWriteCharNum = WriteCharNum;
 	
 	// State machine to analyze data from UART and save it to image RAM
 	always @(posedge Clock, negedge Reset) begin
@@ -186,17 +178,18 @@ module Memory(
 	
 	// Image memory - text and color data
 	// Each EBR can store 1024x8 bit	
-	wire [7:0] DataFromImageRAM_0;
-	wire [7:0] DataFromImageRAM_1;
-	wire [7:0] DataFromImageRAM_2;
-	wire [7:0] DataFromImageRAM_3;
-	wire [7:0] DataFromImageRAM_4;
+	wire [7:0] DataFromImageRAM_[0:4];
+	// wire [7:0] DataFromImageRAM_0;
+	// wire [7:0] DataFromImageRAM_1;
+	// wire [7:0] DataFromImageRAM_2;
+	// wire [7:0] DataFromImageRAM_3;
+	// wire [7:0] DataFromImageRAM_4;
 	
-	wire [7:0] DataFromImageRAM = (ReadAddress[12:10] == 3'd0) ? DataFromImageRAM_0 :
-								  (ReadAddress[12:10] == 3'd1) ? DataFromImageRAM_1 :
-								  (ReadAddress[12:10] == 3'd2) ? DataFromImageRAM_2 :
-								  (ReadAddress[12:10] == 3'd3) ? DataFromImageRAM_3 :
-								                                 DataFromImageRAM_4;
+	wire [7:0] DataFromImageRAM = (ReadAddress[12:10] == 3'd0) ? DataFromImageRAM_[0] :
+								  (ReadAddress[12:10] == 3'd1) ? DataFromImageRAM_[1] :
+								  (ReadAddress[12:10] == 3'd2) ? DataFromImageRAM_[2] :
+								  (ReadAddress[12:10] == 3'd3) ? DataFromImageRAM_[3] :
+								                                 DataFromImageRAM_[4];
 	
 	PseudoDualPortRAM #(
 		.ADDRESS_WIDTH(10),
@@ -211,7 +204,7 @@ module Memory(
 		.ReadAddress_i(ReadAddress[9:0]),
 		.WriteAddress_i(WriteAddress[9:0]),
 		.Data_i(WriteBuffer),
-		.Data_o(DataFromImageRAM_0)
+		.Data_o(DataFromImageRAM_[0])
 	);
 	
 	PseudoDualPortRAM #(
@@ -227,7 +220,7 @@ module Memory(
 		.ReadAddress_i(ReadAddress[9:0]),
 		.WriteAddress_i(WriteAddress[9:0]),
 		.Data_i(WriteBuffer),
-		.Data_o(DataFromImageRAM_1)
+		.Data_o(DataFromImageRAM_[1])
 	);
 	
 	PseudoDualPortRAM #(
@@ -243,7 +236,7 @@ module Memory(
 		.ReadAddress_i(ReadAddress[9:0]),
 		.WriteAddress_i(WriteAddress[9:0]),
 		.Data_i(WriteBuffer),
-		.Data_o(DataFromImageRAM_2)
+		.Data_o(DataFromImageRAM_[2])
 	);
 	
 	PseudoDualPortRAM #(
@@ -259,7 +252,7 @@ module Memory(
 		.ReadAddress_i(ReadAddress[9:0]),
 		.WriteAddress_i(WriteAddress[9:0]),
 		.Data_i(WriteBuffer),
-		.Data_o(DataFromImageRAM_3)
+		.Data_o(DataFromImageRAM_[3])
 	);
 	
 	PseudoDualPortRAM #(
@@ -275,7 +268,7 @@ module Memory(
 		.ReadAddress_i(ReadAddress[9:0]),
 		.WriteAddress_i(WriteAddress[9:0]),
 		.Data_i(WriteBuffer),
-		.Data_o(DataFromImageRAM_4)
+		.Data_o(DataFromImageRAM_[4])
 	);
 	
 	// Font memory

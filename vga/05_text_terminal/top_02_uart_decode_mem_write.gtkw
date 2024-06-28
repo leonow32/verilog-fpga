@@ -1,12 +1,12 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Thu Jun 13 19:01:58 2024
+[*] Thu Jun 13 19:30:57 2024
 [*]
 [dumpfile] "C:\verilog\vga\05_text_terminal\top.vcd"
 [dumpfile_mtime] "Thu Jun 13 19:01:22 2024"
 [dumpfile_size] 92259453
 [savefile] "C:\verilog\vga\05_text_terminal\top_02_uart_decode_mem_write.gtkw"
-[timestart] 1820000
+[timestart] 0
 [size] 1920 1009
 [pos] -9 -9
 *-22.663961 25263192 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
