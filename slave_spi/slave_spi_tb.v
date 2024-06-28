@@ -82,7 +82,7 @@ module SlaveSPI_tb();
 		CS = 1;
 		#DELAY;
 		
-		// Transmit one byto to another slave
+		// Transmit one byte to another slave
 		ResponseData = 8'h02;
 		TransmitSPI(8'h40);
 		#DELAY;

@@ -2,7 +2,7 @@
 
 `default_nettype none
 
-module SlaveSPI (
+module SlaveSPI(
 	input  wire Clock,
 	input  wire Reset,
 	
@@ -18,7 +18,7 @@ module SlaveSPI (
 	output wire TransmissionEnd_o		// High strobe after CS input goes high
 );
 	
-	// Syncronize CS, SCK and MOSI with clock domain
+	// Synchronize CS, SCK and MOSI with clock domain
 	wire SyncCS;
 	wire SyncSCK;
 	wire SyncMOSI;
