@@ -91,9 +91,9 @@ module VGA(
 		else if(HCounter >= 2 && HCounter <= 641 && VCounter >= 0 && VCounter <= 479) begin
 			if(HDivider == 2) begin
 				if(DataFromRAM_i[LineInPage])
-					{HSync_o, Red_o, Green_o, Blue_o} <= 4'b1111;
+					{HSync_o, Red_o, Green_o, Blue_o} <= 4'b1110;
 				else
-					{HSync_o, Red_o, Green_o, Blue_o} <= 4'b1000;
+					{HSync_o, Red_o, Green_o, Blue_o} <= 4'b1001;
 			end
 		end
 		

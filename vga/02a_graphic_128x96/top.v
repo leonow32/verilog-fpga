@@ -60,7 +60,7 @@ module top(
 		.WriteClock(Clock),
 		.Reset(Reset),
 		.ReadEnable_i(1'b1),
-		.WriteEnable_i(TransactionDone),
+		.WriteEnable_i(TransactionDone && DC),
 		.ReadAddress_i(ReadAddress),
 		.WriteAddress_i(WriteAddress),
 		.Data_i(DataFromSPI),
