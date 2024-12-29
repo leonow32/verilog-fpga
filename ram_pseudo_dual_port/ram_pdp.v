@@ -18,7 +18,7 @@ module PseudoDualPortRAM #(
 );
 	
 	// Create the memory array
-	reg [DATA_WIDTH-1:0] Memory [0:2**ADDRESS_WIDTH-1];
+	reg [DATA_WIDTH-1:0] Memory [0:MEMORY_DEPTH-1] /* synthesis syn_ramstyle = "block_ram" */;
 	
 	// Check memory depth and address space
 	initial begin
@@ -27,12 +27,12 @@ module PseudoDualPortRAM #(
 	end
 	
 	// Initialize the memory with zeros
-	integer i;
+	/*integer i;
 	initial begin
-		for(i=0; i<2**ADDRESS_WIDTH; i=i+1) begin
+		for(i=0; i<MEMORY_DEPTH; i=i+1) begin
 			Memory[i] = 0;
 		end
-	end
+	end*/
 	
 	// Read operation
 	always @(posedge ReadClock, negedge Reset) begin

@@ -7,10 +7,10 @@ module top #(
 )(
 	input wire Clock,				// Pin 20
 	input wire Reset,				// Pin 17
-	input wire CS,					// Pin 5
-	input wire SCK,					// Pin 18
-	input wire MOSI,				// Pin 23
-	output wire MISO,				// Pin 19
+	input wire CS,					// Pin 27
+	input wire SCK,					// Pin 31
+	input wire MOSI,				// Pin 49
+	output wire MISO,				// Pin 32
 	output wire [7:0] Cathodes_o,	// Pin 40 41 42 43 45 47 51 25
 	output wire [7:0] Segments_o	// Pin 39 38 37 36 35 34 30 29
 );
